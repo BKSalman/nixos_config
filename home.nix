@@ -21,7 +21,12 @@
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
-    config.credential.helper = "libsecret";
+    # extraConfig = {
+    #   credential = {
+    #     credentialStore = "secretservice";
+    #     helper = "${nur.repos.utybo.git-credential-manager}/bin/git-credential-manager-core";
+    #   };
+    # };
   };
 
   
@@ -31,6 +36,7 @@
     clang
     mold
     
+    gh
     exa
     unstable.discord
     zoxide

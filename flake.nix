@@ -8,6 +8,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     unstable-channel.url = "github:nixos/nixpkgs/fbb4cdbf121e2de303c39333bdf20bc5c8aeb5f5";
+    # nur-packages.url = "github:nix-community/NUR/master";
   };
 
   outputs = { nixpkgs, home-manager, unstable-channel, ... }:
@@ -25,6 +26,10 @@
       inherit system;
       config = { allowUnfree = true; };
     };
+
+    # nur = import nur-packages {
+    #   inherit pkgs;
+    # };
     
   in
   {
