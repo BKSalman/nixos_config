@@ -8,10 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     unstable-channel.url = "github:nixos/nixpkgs/fbb4cdbf121e2de303c39333bdf20bc5c8aeb5f5";
-    # nur-packages.url = "github:nix-community/NUR/master";
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, home-manager, unstable-channel, ... }:
+  outputs = { nixpkgs, home-manager, unstable-channel, hyprland, ... }:
   let 
     system = "x86_64-linux";
 
@@ -27,10 +27,8 @@
       config = { allowUnfree = true; };
     };
 
-    # nur = import nur-packages {
-    #   inherit pkgs;
-    # };
     
+
   in
   {
     homeManagerConfigurations = {
@@ -50,6 +48,9 @@
 
         modules = [
           ./system/configuration.nix
+          hyprland.nixosModules.default {
+            programs.hyprland.enable = true;
+          }
         ];
       };
     };
