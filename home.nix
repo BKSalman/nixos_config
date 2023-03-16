@@ -33,8 +33,6 @@
   home.packages = with pkgs; [
     # Rust
     rustup
-    clang
-    mold
     
     gh
     exa

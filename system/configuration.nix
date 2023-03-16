@@ -47,11 +47,11 @@
 
   # Enable the KDE Plasma Desktop Environment.
   # disabled
-  # services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
   
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.displayManager.gdm.wayland = false;
+  # services.xserver.displayManager.gdm.enable = true;
+  # services.xserver.displayManager.gdm.wayland = false;
 
   # Configure keymap in X11
   services.xserver = {
@@ -100,23 +100,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # sway stuff
-    sway
-    dbus-sway-environment
-    configure-gtk
+    # wayland WMs stuff
     wayland
-    xdg-utils # for opening default programs when clicking links
-    glib # gsettings
-    dracula-theme # gtk theme
-    gnome3.adwaita-icon-theme  # default gnome cursors
-    swaylock
-    swayidle
     grim # screenshot functionality
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
-    mako # notification system developed by swaywm maintainer
+    waybar
 
+    libclang
+    openssl
+    pkg-config
+    clang
     dbus
     eggdbus
     deja-dup
@@ -127,12 +122,12 @@
 
   # Nvidia stuff
   
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
+  # services.xserver.videoDrivers = [ "nvidia" ];
+  # hardware.opengl.enable = true;
   
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   
-  hardware.nvidia.modesetting.enable = true;
+  # hardware.nvidia.modesetting.enable = true;
 
   # GNOME stuff
   
