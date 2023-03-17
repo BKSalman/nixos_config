@@ -8,10 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     unstable-channel.url = "github:nixos/nixpkgs/fbb4cdbf121e2de303c39333bdf20bc5c8aeb5f5";
-    hyprland.url = "github:hyprwm/Hyprland";
+    # hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, home-manager, unstable-channel, hyprland, ... }:
+  outputs = { nixpkgs, home-manager, unstable-channel, ... }:
   let 
     system = "x86_64-linux";
 
@@ -48,9 +48,9 @@
 
         modules = [
           ./system/configuration.nix
-          hyprland.nixosModules.default {
-            programs.hyprland.enable = true;
-          }
+          # hyprland.nixosModules.default {
+          #   programs.hyprland.enable = true;
+          # }
         ];
       };
     };

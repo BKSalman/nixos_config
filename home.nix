@@ -14,7 +14,7 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "22.11";
-  
+
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
   
@@ -29,18 +29,28 @@
     # };
   };
 
-  
   home.packages = with pkgs; [
-    # Rust
     rustup
+    jdk
+    python311
     
+    # waybar
+    prismlauncher-qt5 # use unstable later
+    libsForQt5.ark
+    libsecret
+    nix-prefetch
+    lazygit
+    flameshot
+    ngrok
+    piper
+    input-remapper
+    libratbag
     gh
     exa
     unstable.discord
     zoxide
     krita
-    davinci-resolve
-    minecraft
+    # davinci-resolve
     vscode
     piper
     spotify

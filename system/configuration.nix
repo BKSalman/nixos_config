@@ -48,7 +48,7 @@
   # Enable the KDE Plasma Desktop Environment.
   # disabled
   services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+  services.xserver.desktopManager.plasma5.enable = true;
   
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.wayland = false;
@@ -106,12 +106,12 @@
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
-    waybar
 
+    mold
+    clang
     libclang
     openssl
     pkg-config
-    clang
     dbus
     eggdbus
     deja-dup
@@ -122,12 +122,12 @@
 
   # Nvidia stuff
   
-  # services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.opengl.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl.enable = true;
   
-  # hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
+  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
   
-  # hardware.nvidia.modesetting.enable = true;
+  hardware.nvidia.modesetting.enable = true;
 
   # GNOME stuff
   
@@ -142,6 +142,10 @@
   # KDE stuff
   
   programs.partition-manager.enable = true;
+  
+  services.ratbagd.enable = true;
+
+  services.input-remapper.enable = true;
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
