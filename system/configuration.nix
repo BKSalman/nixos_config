@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, unstable, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -97,6 +97,8 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  LIBCLANG_PATH="${llvmPackages.libclang}/lib";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -107,10 +109,12 @@
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
 
+    libiconv
+    unstable.cloudflared
     mold
+    openssl
     clang
     libclang
-    openssl
     pkg-config
     dbus
     eggdbus
@@ -175,6 +179,21 @@
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+
+  # Cloudflare stuff
+  # services.cloudflared = {
+  #   enable = true;
+  #   tunnels = {
+  #     "5c4b5663-f5ad-4049-82c8-d645bbd4ef06" = {
+  #       credentialsFile = "/home/salman/.cloudflared/5c4b5663-f5ad-4049-82c8-d645bbd4ef06.json";
+  #       ingress = {
+  #         "ws.bksalman.com" = "ws://localhost:3000";
+  #         "f5rfm.bksalman.com" = "http://localhost:8080";
+  #         };
+  #         default = "http_status:404";
+  #       };
+  #     };
+  # };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

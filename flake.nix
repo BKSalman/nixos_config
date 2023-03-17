@@ -3,11 +3,17 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-22.11";
+
     home-manager = {
       url = "github:nix-community/home-manager/release-22.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     unstable-channel.url = "github:nixos/nixpkgs/fbb4cdbf121e2de303c39333bdf20bc5c8aeb5f5";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     # hyprland.url = "github:hyprwm/Hyprland";
   };
 
@@ -52,6 +58,7 @@
           #   programs.hyprland.enable = true;
           # }
         ];
+        specialArgs = {inherit unstable;};
       };
     };
 
