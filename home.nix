@@ -29,13 +29,15 @@
     # };
   };
 
+  # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     rustup
     jdk
     python311
     
     # waybar
-    prismlauncher-qt5 # use unstable later
+    unstable.frp
+    unstable.prismlauncher # use unstable later
     libsForQt5.ark
     libsecret
     nix-prefetch
@@ -56,10 +58,14 @@
     spotify
     kdenlive
     unstable.chatterino2
+    unstable.alacritty
     kitty
     plasma5Packages.bismuth
     obs-studio
     unstable.helix
     vim
+
+    # fonts
+    nerdfonts
   ];
 }
