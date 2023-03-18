@@ -1,4 +1,4 @@
-pushd ~/Documents/system-flake
+pushd ~/system-flake
 nix build .#homeManagerConfigurations.salman.activationPackage
 ./result/activate
 popd
