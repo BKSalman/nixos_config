@@ -97,8 +97,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  LIBCLANG_PATH="${llvmPackages.libclang}/lib";
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -108,14 +106,15 @@
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
-
+    # perl
+    pkg-config
     libiconv
     unstable.cloudflared
     mold
-    openssl
+    openssl.dev
     clang
-    libclang
-    pkg-config
+    llvmPackages.libclang
+    llvmPackages.libcxxClang
     dbus
     eggdbus
     deja-dup
@@ -123,6 +122,12 @@
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
   ];
+
+  environment.sessionVariables = rec {
+    LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+    BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
+    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+  };
 
   # Nvidia stuff
   
@@ -208,5 +213,15 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "22.11"; # Did you read the comment?
+
+  systemd.services.cloudflared = {
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" "systemd-resolved.service" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
+      Restart = "always";
+      User = "salman";
+    };
+  };
 
 }
