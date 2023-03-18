@@ -86,7 +86,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" ];
     packages = with pkgs; [
       firefox
       kate
@@ -222,6 +222,13 @@
       Restart = "always";
       User = "salman";
     };
+  };
+
+  # Docker
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
   };
 
 }
