@@ -36,6 +36,7 @@
     python311
     
     # waybar
+    unstable.mpv
     unstable.frp
     unstable.prismlauncher # use unstable later
     libsForQt5.ark
