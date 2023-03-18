@@ -9,7 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    unstable-channel.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # unstable-channel.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    unstable-channel.url = "github:nixos/nixpkgs/master";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
