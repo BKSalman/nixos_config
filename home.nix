@@ -36,6 +36,10 @@
     python311
     
     # waybar
+    unstable.vscode
+    unstable.insomnia
+    unstable.sqlx-cli
+    unstable.dbeaver
     unstable.mpv
     unstable.frp
     unstable.prismlauncher # use unstable later
@@ -62,7 +66,7 @@
     unstable.alacritty
     kitty
     plasma5Packages.bismuth
-    obs-studio
+    unstable.obs-studio
     unstable.helix
     vim
 
