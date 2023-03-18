@@ -58,7 +58,6 @@
     zoxide
     krita
     # davinci-resolve
-    vscode
     piper
     spotify
     kdenlive
