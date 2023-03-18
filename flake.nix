@@ -9,8 +9,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # unstable-channel.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    unstable-channel.url = "github:nixos/nixpkgs/master";
+    unstable-channel.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    master-channel.url = "github:nixos/nixpkgs/master";
 
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
@@ -18,7 +19,7 @@
     # hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, home-manager, unstable-channel, ... }:
+  outputs = { nixpkgs, home-manager, unstable-channel, master-channel, ... }:
   let 
     system = "x86_64-linux";
 
@@ -34,7 +35,10 @@
       config = { allowUnfree = true; };
     };
 
-    
+    masterpkgs = import master-channel {
+      inherit system;
+      config = { allowUnfree = true; };
+    };
 
   in
   {
@@ -44,7 +48,7 @@
         modules = [
           ./home.nix
         ];
-        extraSpecialArgs = {inherit unstable;};
+        extraSpecialArgs = {inherit unstable masterpkgs;};
       };
     };
 
@@ -59,7 +63,7 @@
           #   programs.hyprland.enable = true;
           # }
         ];
-        specialArgs = {inherit unstable;};
+        specialArgs = {inherit unstable masterpkgs;};
       };
     };
 

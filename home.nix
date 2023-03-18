@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, ... }:
+{ config, pkgs, unstable, masterpkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -36,6 +36,8 @@
     python311
     
     # waybar
+    unstable.nodePackages.pnpm
+    nodejs
     unstable.vscode
     unstable.insomnia
     unstable.sqlx-cli
@@ -61,7 +63,7 @@
     piper
     spotify
     kdenlive
-    unstable.chatterino2
+    masterpkgs.chatterino2
     unstable.alacritty
     kitty
     plasma5Packages.bismuth
