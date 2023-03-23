@@ -1,4 +1,4 @@
-{ config, pkgs, unstable, masterpkgs, ... }:
+{ config, pkgs, masterpkgs, ... }:
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
@@ -13,7 +13,7 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -36,15 +36,28 @@
     python311
     
     # waybar
-    unstable.nodePackages.pnpm
+    nil
+    onlyoffice-bin
+    gdb
+    lldb
+    unzip
+    distrobox
+    neovim
+    zenith-nvidia
+    htop
+    btop
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.svelte-language-server
+    nodePackages.pnpm
     nodejs
-    unstable.vscode
-    unstable.insomnia
-    unstable.sqlx-cli
-    unstable.dbeaver
-    unstable.mpv
-    unstable.frp
-    unstable.prismlauncher # use unstable later
+    vscode
+    insomnia
+    sqlx-cli
+    dbeaver
+    mpv
+    frp
+    prismlauncher # use unstable later
     libsForQt5.ark
     libsecret
     nix-prefetch
@@ -56,19 +69,19 @@
     libratbag
     gh
     exa
-    unstable.discord
+    discord
     zoxide
     krita
     # davinci-resolve
     piper
     spotify
     kdenlive
-    masterpkgs.chatterino2
-    unstable.alacritty
+    chatterino2
+    alacritty
     kitty
     plasma5Packages.bismuth
-    unstable.obs-studio
-    unstable.helix
+    obs-studio
+    helix
     vim
 
     # fonts

@@ -2,14 +2,12 @@
   description = "Salman's System Configuration :)";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    unstable-channel.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
     master-channel.url = "github:nixos/nixpkgs/master";
 
@@ -19,7 +17,7 @@
     # hyprland.url = "github:hyprwm/Hyprland";
   };
 
-  outputs = { nixpkgs, home-manager, unstable-channel, master-channel, ... }:
+  outputs = { nixpkgs, home-manager, master-channel, ... }:
   let 
     system = "x86_64-linux";
 
@@ -29,11 +27,6 @@
     };
 
     lib = nixpkgs.lib;
-
-    unstable = import unstable-channel {
-      inherit system;
-      config = { allowUnfree = true; };
-    };
 
     masterpkgs = import master-channel {
       inherit system;
@@ -48,7 +41,7 @@
         modules = [
           ./home.nix
         ];
-        extraSpecialArgs = {inherit unstable masterpkgs;};
+        extraSpecialArgs = {inherit masterpkgs;};
       };
     };
 
@@ -63,9 +56,8 @@
           #   programs.hyprland.enable = true;
           # }
         ];
-        specialArgs = {inherit unstable masterpkgs;};
+        specialArgs = {inherit masterpkgs;};
       };
     };
-
   };
 }

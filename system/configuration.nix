@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, unstable, masterpkgs, ... }:
+{ config, pkgs, lib, masterpkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -86,7 +86,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "podman" ];
     packages = with pkgs; [
       firefox
       kate
@@ -109,7 +109,7 @@
     # perl
     pkg-config
     libiconv
-    unstable.cloudflared
+    cloudflared
     mold
     openssl.dev
     clang
@@ -123,10 +123,10 @@
     wget
   ];
 
-  environment.sessionVariables = rec {
+  environment.sessionVariables = {
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
-    PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
   };
 
   # Nvidia stuff
@@ -212,7 +212,7 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
   systemd.services.cloudflared = {
     wantedBy = [ "multi-user.target" ];
@@ -225,10 +225,14 @@
   };
 
   # Docker
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
+  # virtualisation.docker.enable = true;
+  # virtualisation.docker.rootless = {
+  #   enable = true;
+  #   setSocketVariable = true;
+  # };
 
+  # Podman
+  virtualisation.podman.enable = true;
+  virtualisation.podman.dockerCompat = true;
+  virtualisation.podman.dockerSocket.enable = true;
 }
