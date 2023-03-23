@@ -9,10 +9,18 @@
       ./hardware-configuration.nix
     ];
 
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
+
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
+  boot.loader.grub.device = "/dev/sdb";
   boot.loader.grub.useOSProber = true;
+  boot.extraModprobeConfig = "options kvm_intel nested=1";
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -86,7 +94,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "docker" "podman" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "podman" "libvirtd" ];
     packages = with pkgs; [
       firefox
       kate
@@ -121,6 +129,9 @@
     duplicity
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
+    libsForQt5.ark
+    libsecret
+    nix-prefetch
   ];
 
   environment.sessionVariables = {
@@ -235,4 +246,20 @@
   virtualisation.podman.enable = true;
   virtualisation.podman.dockerCompat = true;
   virtualisation.podman.dockerSocket.enable = true;
+
+  # Git
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    # extraConfig = {
+    #   credential = {
+    #     credentialStore = "secretservice";
+    #     helper = "${nur.repos.utybo.git-credential-manager}/bin/git-credential-manager-core";
+    #   };
+    # };
+  };
+
+  # libvirt
+  virtualisation.libvirtd.enable = true;
+  virtualisation.libvirtd.qemu.ovmf.enable = true;
 }

@@ -17,17 +17,6 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-  
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-    # extraConfig = {
-    #   credential = {
-    #     credentialStore = "secretservice";
-    #     helper = "${nur.repos.utybo.git-credential-manager}/bin/git-credential-manager-core";
-    #   };
-    # };
-  };
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
@@ -36,6 +25,8 @@
     python311
     
     # waybar
+    virt-manager
+    vopono
     nil
     onlyoffice-bin
     gdb
@@ -58,9 +49,6 @@
     mpv
     frp
     prismlauncher # use unstable later
-    libsForQt5.ark
-    libsecret
-    nix-prefetch
     lazygit
     flameshot
     ngrok
@@ -71,6 +59,7 @@
     exa
     discord
     zoxide
+    starship
     krita
     # davinci-resolve
     piper
@@ -83,8 +72,6 @@
     obs-studio
     helix
     vim
-
-    # fonts
     nerdfonts
   ];
 }
