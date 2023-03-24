@@ -114,6 +114,7 @@
     slurp # screenshot functionality
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     bemenu # wayland clone of dmenu
+
     # perl
     pkg-config
     libiconv
@@ -127,11 +128,12 @@
     eggdbus
     deja-dup
     duplicity
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
     libsForQt5.ark
     libsecret
     nix-prefetch
+    input-remapper
   ];
 
   environment.sessionVariables = {
@@ -235,17 +237,26 @@
     };
   };
 
-  # Docker
-  # virtualisation.docker.enable = true;
-  # virtualisation.docker.rootless = {
-  #   enable = true;
-  #   setSocketVariable = true;
-  # };
+  virtualisation = {
+    # Podman
+    podman.enable = true;
+    podman.dockerCompat = true;
+    podman.dockerSocket.enable = true;
 
-  # Podman
-  virtualisation.podman.enable = true;
-  virtualisation.podman.dockerCompat = true;
-  virtualisation.podman.dockerSocket.enable = true;
+    # Docker
+    # docker.enable = true;
+    # docker.rootless = {
+    #   enable = true;
+    #   setSocketVariable = true;
+    # };
+
+    # libvirt
+    libvirtd.enable = true;
+    libvirtd.qemu.ovmf.enable = true;
+
+    # redirect USB to libvirt
+    spiceUSBRedirection.enable = true;
+  };
 
   # Git
   programs.git = {
@@ -259,7 +270,9 @@
     # };
   };
 
-  # libvirt
-  virtualisation.libvirtd.enable = true;
-  virtualisation.libvirtd.qemu.ovmf.enable = true;
+  # Steam
+  hardware.steam-hardware.enable = true;
+  programs.steam.enable = true;
+  programs.steam.remotePlay.openFirewall = true;
+
 }

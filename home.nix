@@ -23,8 +23,12 @@
     rustup
     jdk
     python311
-    
-    # waybar
+
+    killall
+    waybar
+    rofi-wayland
+    # spice-gtk
+    qimgv
     virt-manager
     vopono
     nil
@@ -53,7 +57,6 @@
     flameshot
     ngrok
     piper
-    input-remapper
     libratbag
     gh
     exa
