@@ -54,7 +54,6 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # disabled
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   
@@ -116,6 +115,7 @@
     bemenu # wayland clone of dmenu
 
     # perl
+    pciutils
     pkg-config
     libiconv
     cloudflared
@@ -140,16 +140,26 @@
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
+    WLR_NO_HARDWARE_CURSORS="1";
   };
 
   # Nvidia stuff
   
   services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  
-  hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
-  
-  hardware.nvidia.modesetting.enable = true;
+  hardware = {
+    opengl = {
+      enable = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+      ];
+    };
+    nvidia = {
+      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      modesetting.enable = true;
+      powerManagement.enable = true;
+    };
+  };
 
   # GNOME stuff
   
@@ -178,12 +188,15 @@
   services.dbus.enable = true;
 
   # Hyprland already handles this
-  # xdg.portal = {
-  #   enable = true;
-  #   wlr.enable = true;
-  #   # gtk portal needed to make gtk apps happy
-  #   extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  # };
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+      # pkgs.xdg-desktop-portal-hyprland
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -240,8 +253,24 @@
   virtualisation = {
     # Podman
     podman.enable = true;
+    # Create a `docker` alias for podman, to use it as a drop-in replacement
     podman.dockerCompat = true;
     podman.dockerSocket.enable = true;
+    # Required for containers under podman-compose to be able to talk to each other.
+    podman.defaultNetwork.settings.dns_enabled = true;
+
+    oci-containers.backend = "podman";
+    oci-containers.containers = {
+      dev_database = {
+        image = "postgres";
+        autoStart = true;
+        ports = [ "127.0.0.1:5432:5432" ];
+        environment = {
+          POSTGRES_PASSWORD = "postgres";
+          POSTGRES_HOST_AUTH_METHOD = "trust";
+        };
+      };
+    };
 
     # Docker
     # docker.enable = true;
@@ -275,4 +304,11 @@
   programs.steam.enable = true;
   programs.steam.remotePlay.openFirewall = true;
 
+  programs.hyprland.enable = true;
+
+  services.mpd.enable = true;
+
+  programs.xwayland.enable = true;
+
+  hardware.opentabletdriver.enable = true;
 }

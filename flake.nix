@@ -14,10 +14,13 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    # hyprland.url = "github:hyprwm/Hyprland";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, master-channel, ... }:
+  outputs = { nixpkgs, home-manager, master-channel, hyprland, ... }:
   let 
     system = "x86_64-linux";
 
@@ -35,7 +38,7 @@
 
   in
   {
-    homeManagerConfigurations = {
+    homeConfigurations = {
       salman = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         modules = [
@@ -52,9 +55,7 @@
 
         modules = [
           ./system/configuration.nix
-          # hyprland.nixosModules.default {
-          #   programs.hyprland.enable = true;
-          # }
+          hyprland.nixosModules.default
         ];
         specialArgs = {inherit masterpkgs;};
       };
