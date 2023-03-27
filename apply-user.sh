@@ -1,4 +1,4 @@
 pushd ~/system_config
-nix build .#homeManagerConfigurations.salman.activationPackage
-./result/activate
+  nix build .#homeConfigurations.salman.activationPackage
+  ./result/activate
 popd
