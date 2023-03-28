@@ -5,8 +5,10 @@
 { config, pkgs, lib, masterpkgs, ... }:
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [
+      # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./../wayland
     ];
 
   nix = {
@@ -41,15 +43,16 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "es_US.UTF-8";
-    LC_IDENTIFICATION = "es_US.UTF-8";
-    LC_MEASUREMENT = "es_US.UTF-8";
-    LC_MONETARY = "es_US.UTF-8";
-    LC_NAME = "es_US.UTF-8";
-    LC_NUMERIC = "es_US.UTF-8";
-    LC_PAPER = "es_US.UTF-8";
-    LC_TELEPHONE = "es_US.UTF-8";
-    LC_TIME = "es_US.UTF-8";
+    # LC_ADDRESS = "en_US.UTF-8";
+    # LC_IDENTIFICATION = "en_US.UTF-8";
+    # LC_MEASUREMENT = "en_US.UTF-8";
+    # LC_MONETARY = "en_US.UTF-8";
+    # LC_NAME = "en_US.UTF-8";
+    # LC_NUMERIC = "en_US.UTF-8";
+    # LC_PAPER = "en_US.UTF-8";
+    # LC_TELEPHONE = "en_US.UTF-8";
+    # LC_TIME = "en_US.UTF-8";
+    LC_ALL = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.
@@ -109,13 +112,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # wayland WMs stuff
-    wayland
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    bemenu # wayland clone of dmenu
-
     # perl
     pciutils
     pkg-config
@@ -135,7 +131,6 @@
     libsForQt5.ark
     libsecret
     nix-prefetch
-    input-remapper
   ];
 
   environment.sessionVariables = {
@@ -317,7 +312,7 @@
   programs.steam.enable = true;
   programs.steam.remotePlay.openFirewall = true;
 
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
 
   services.mpd.enable = true;
 
@@ -338,5 +333,26 @@
         RestartSec = 1;
         TimeoutStopSec = 10;
       };
+  };
+
+  # systemd.services.input-remapper = {
+  #   enable = true;
+  #   description = "input remapper";
+  #   wantedBy = [ "graphical-session.target" ];
+  #   wants = [ "graphical-session.target" ];
+  #   after = [ "graphical-session.target" ];
+  #   serviceConfig = {
+  #       Type = "simple";
+  #       ExecStart = "${pkgs.input-remapper}/bin/input-remapper-service";
+  #       Restart = "on-failure";
+  #       RestartSec = 1;
+  #       TimeoutStopSec = 10;
+  #     };
+  # };
+
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
   };
 }

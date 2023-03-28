@@ -38,15 +38,17 @@
 
   in
   {
-    homeConfigurations = {
-      salman = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        modules = [
-          ./home.nix
-        ];
-        extraSpecialArgs = {inherit masterpkgs;};
-      };
-    };
+    # Moved to nixosConfigurations
+    # homeConfigurations = {
+    #   salman = home-manager.lib.homeManagerConfiguration {
+    #     inherit pkgs;
+    #     modules = [
+    #       ./home.nix
+          
+    #     ];
+    #     extraSpecialArgs = {inherit masterpkgs;};
+    #   };
+    # };
 
     nixosConfigurations = {
       # nixos is my hostname
@@ -55,9 +57,17 @@
 
         modules = [
           ./system/configuration.nix
-          # Move this to home manager to make it...
-          # easier to reproduce config files
-          hyprland.nixosModules.default
+
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.salman = {
+              imports = [
+                ./home.nix
+                hyprland.homeManagerModules.default
+              ];
+            };
+          }
         ];
         specialArgs = {inherit masterpkgs;};
       };

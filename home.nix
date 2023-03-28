@@ -1,5 +1,10 @@
 { config, pkgs, masterpkgs, ... }:
 {
+
+  imports = [
+    ./wayland/hyprland
+  ];
+
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "salman";
@@ -35,14 +40,13 @@
     python311
     go
 
+    hyprpicker
     playerctl
     cava
     chromium
     pamixer
-    hyprpaper
     mpc-cli
     ncmpcpp
-    mako
     webcord
     pavucontrol
     bat
@@ -53,9 +57,6 @@
     xclip
     freecad
     killall
-    wofi
-    # waybar
-    rofi-wayland
     # spice-gtk
     qimgv
     virt-manager
@@ -81,7 +82,7 @@
     dbeaver
     mpv
     frp
-    prismlauncher # use unstable later
+    prismlauncher
     lazygit
     flameshot
     ngrok
@@ -105,6 +106,16 @@
     helix
     vim
     nerdfonts
+
+    # Hyprland stuff
+    hyprpaper
+    mako
+    # swayidle
+    # swaylock-effects
+    # rofi-wayland
+    # wofi
+    # waybar
+    
   ];
 
   programs.waybar = {
