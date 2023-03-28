@@ -20,7 +20,9 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sdb";
   boot.loader.grub.useOSProber = true;
-  boot.extraModprobeConfig = "options kvm_intel nested=1";
+  boot.extraModprobeConfig = ''
+    options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -161,6 +163,16 @@
     };
   };
 
+  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+
+  boot.kernelModules = [
+    # Virtual Camera
+    "v4l2loopback"
+    # Virtual Microphone, built-in
+    "snd-aloop"
+  ];
+
+
   # GNOME stuff
   
   services.gvfs.enable = true;
@@ -241,6 +253,7 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
   systemd.services.cloudflared = {
+    enable = true;
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" "systemd-resolved.service" ];
     serviceConfig = {
@@ -312,7 +325,8 @@
 
   hardware.opentabletdriver.enable = true;
 
-  systemd.user.services.polkit-kde-authentication-agent-1 = {
+  systemd.user.services.polkit-auth-agent = {
+    enable = true;
     description = "polkit-kde-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
     wants = [ "graphical-session.target" ];
