@@ -55,6 +55,8 @@
 
         modules = [
           ./system/configuration.nix
+          # Move this to home manager to make it...
+          # easier to reproduce config files
           hyprland.nixosModules.default
         ];
         specialArgs = {inherit masterpkgs;};
