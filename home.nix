@@ -40,6 +40,7 @@
     python311
     go
 
+    zoom-us
     hyprpicker
     playerctl
     cava
