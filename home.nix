@@ -21,6 +21,13 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  programs.obs-studio = {
+    enable = true;
+    plugins = [
+      pkgs.obs-studio-plugins.wlrobs
+    ];
+  };
+
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     rustup
@@ -28,6 +35,11 @@
     python311
     go
 
+    playerctl
+    cava
+    chromium
+    pamixer
+    hyprpaper
     mpc-cli
     ncmpcpp
     mako
@@ -77,7 +89,8 @@
     libratbag
     gh
     exa
-    discord
+    # discord
+    discord-canary
     zoxide
     starship
     krita
@@ -89,7 +102,6 @@
     alacritty
     kitty
     plasma5Packages.bismuth
-    obs-studio
     helix
     vim
     nerdfonts
@@ -265,7 +277,7 @@
           "tooltip" = false;
         };
         "custom/cava-internal" = {
-          "exec" = "sleep 1s && cava-internal";
+          "exec" = "sleep 1s && cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'";
           "tooltip" = false;
         };
         "wlr/workspaces" = {
@@ -296,9 +308,9 @@
           "format-icons" = {
             "default" = [ "" "" "" ];
           };
-          "states" = {
-            "warning" = 85;
-          };
+          # "states" = {
+          #   "warning" = 85;
+          # };
           "on-click" = "pamixer -t";
           "tooltip" = false;
         };
@@ -318,8 +330,9 @@
           "interval" = 1;
           "format" = "{:%I:%M %p  %A %b %d}";
           "tooltip" = true;
-          /* "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>" */
-          "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
+          "tooltip-format"= "<tt>{calendar}</tt>";
+          # "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          # "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
         };
         "memory" = {
           "interval" = 1;
@@ -338,11 +351,11 @@
           "format-paused" = " {title}";
           "format-stopped" = "<span foreground='#bb9af7'></span>";
           "format-disconnected" = "";
-          "on-click" = "mpc --quiet toggle";
+          "on-click" = "playerctl play-pause";
           "on-click-right" = "mpc update; mpc ls | mpc add";
           "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
-          "on-scroll-up" = "mpc --quiet prev";
-          "on-scroll-down" = "mpc --quiet next";
+          "on-scroll-up" = "playerctl next";
+          "on-scroll-down" = "playerctl previous";
           "smooth-scrolling-threshold" = 5;
           "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
         };
