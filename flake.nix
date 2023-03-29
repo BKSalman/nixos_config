@@ -25,16 +25,16 @@
     pkgs = import nixpkgs {
       inherit system;
       config = { allowUnfree = true; };
+      overlays = [ (import ./discord.nix) (import ./insomnia.nix) ];
     };
 
     lib = nixpkgs.lib;
-
   in
   {
     nixosConfigurations = {
       # nixos is my hostname
       nixos = lib.nixosSystem {
-        inherit system;
+        inherit system pkgs;
 
         modules = [
           ./system/configuration.nix

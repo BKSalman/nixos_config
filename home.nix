@@ -106,7 +106,7 @@
     libratbag
     gh
     exa
-    # discord
+    discord
     discord-canary
     zoxide
     starship
@@ -134,6 +134,7 @@
     
   ];
 
+  # TODO: move to waybar directory
   programs.waybar = {
     enable = true;
           style = ''
