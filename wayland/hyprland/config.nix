@@ -151,6 +151,7 @@ bind = $mainMod, R, layoutmsg, orientationnext
 bind = $mainMod, D, exec, pkill rofi || ~/.config/rofi/launcher.sh
 bind = $mainMod, P, pseudo, # dwindle
 bind = $mainMod, J, togglesplit, # dwindle
+bind = , code:107, exec, IMG=~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png && grim -g "$(slurp)" $IMG && wl-copy < $IMG
 
 # Move focus with mainMod + arrow keys
 bind = $mainMod, left, movefocus, l
