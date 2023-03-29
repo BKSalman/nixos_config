@@ -1,29 +1,14 @@
-{ pkgs, ... }:
-
-final: prev: let
-  # commandLineArgs = toString [
-  #   "--enable-accelerated-mjpeg-decode"
-  #   "--enable-accelerated-video"
-  #   "--enable-zero-copy"
-  #   "--use-gl=desktop"
-  #   "--disable-features=UseOzonePlatform"
-  #   "--enable-features=VaapiVideoDecoder"
-  # ];
-  commandLineArgs = toString [
-    "--enable-features=UseOzonePlatform"
-    "--ozone-platform=wayland"
-  ];
-in {
+final: prev: {
   discord = let
-    wrapped = pkgs.writeShellScriptBin "discord" (''
-      exec ${pkgs.discord}/bin/discord ${commandLineArgs}
+    wrapped = prev.writeShellScriptBin "discord" (''
+      exec ${prev.discord}/bin/discord --enable-features=UseOzonePlatform --ozone-platform=wayland
     '');
   in
-    pkgs.symlinkJoin {
+    prev.symlinkJoin {
       name = "discord";
       paths = [
         wrapped
-        pkgs.discord
+        prev.discord
       ];
     };
 }
