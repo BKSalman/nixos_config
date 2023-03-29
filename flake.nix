@@ -38,18 +38,6 @@
 
   in
   {
-    # Moved to nixosConfigurations
-    # homeConfigurations = {
-    #   salman = home-manager.lib.homeManagerConfiguration {
-    #     inherit pkgs;
-    #     modules = [
-    #       ./home.nix
-          
-    #     ];
-    #     extraSpecialArgs = {inherit masterpkgs;};
-    #   };
-    # };
-
     nixosConfigurations = {
       # nixos is my hostname
       nixos = lib.nixosSystem {
