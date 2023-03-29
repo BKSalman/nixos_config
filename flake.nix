@@ -9,8 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    master-channel.url = "github:nixos/nixpkgs/master";
-
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -20,7 +18,7 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, master-channel, hyprland, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, ... }:
   let 
     system = "x86_64-linux";
 
@@ -30,11 +28,6 @@
     };
 
     lib = nixpkgs.lib;
-
-    masterpkgs = import master-channel {
-      inherit system;
-      config = { allowUnfree = true; };
-    };
 
   in
   {
@@ -57,7 +50,7 @@
             };
           }
         ];
-        specialArgs = {inherit masterpkgs;};
+        # specialArgs = {};
       };
     };
   };
