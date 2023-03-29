@@ -59,7 +59,7 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
+  # services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
   
   # services.xserver.displayManager.gdm.enable = true;
@@ -247,16 +247,16 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  systemd.services.cloudflared = {
-    enable = true;
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" "systemd-resolved.service" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
-      Restart = "always";
-      User = "salman";
-    };
-  };
+  # systemd.services.cloudflared = {
+  #   enable = true;
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network-online.target" "systemd-resolved.service" ];
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
+  #     Restart = "always";
+  #     User = "salman";
+  #   };
+  # };
 
   virtualisation = {
     # Podman
