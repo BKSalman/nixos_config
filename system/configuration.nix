@@ -137,6 +137,10 @@
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS="1";
+    # Rust analyzer
+    PATH = [
+      "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
+    ];
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
@@ -356,4 +360,5 @@
       auth include login
     '';
   };
+
 }
