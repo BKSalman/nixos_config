@@ -100,7 +100,6 @@
     description = "Salman";
     extraGroups = [ "networkmanager" "wheel" "docker" "podman" "libvirtd" ];
     packages = with pkgs; [
-      firefox
       kate
     #  thunderbird
     ];
@@ -139,6 +138,8 @@
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS="1";
   };
+
+  environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
   # Nvidia stuff
   
