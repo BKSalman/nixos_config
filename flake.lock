@@ -66,22 +66,6 @@
         "type": "github"
       }
     },
-    "master-channel": {
-      "locked": {
-        "lastModified": 1680082193,
-        "narHash": "sha256-yy2pobu5xOTl66LQ05XJxN2cjvDVIl2M6XM5jVu71DM=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "a2d0827146239af821dba02d20a6d07273156299",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "master",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1680030621,
@@ -118,7 +102,6 @@
       "inputs": {
         "home-manager": "home-manager",
         "hyprland": "hyprland",
-        "master-channel": "master-channel",
         "nixpkgs": "nixpkgs",
         "sops-nix": "sops-nix"
       }
