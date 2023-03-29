@@ -33,6 +33,16 @@
     ];
   };
 
+  # programs.firefox = {
+  #   enable = true;
+  #   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+  #     forceWayland = true;
+  #     extraPolicies = {
+  #       ExtensionSettings = {};
+  #     };
+  #   };
+  # };
+
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     rustup
@@ -40,6 +50,10 @@
     python311
     go
 
+    pacman
+    firefox-wayland
+    lolcat
+    neofetch
     zoom-us
     hyprpicker
     playerctl
