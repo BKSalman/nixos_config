@@ -1,9 +1,8 @@
-{
-  pkgs,
-  ...
+{ pkgs
+, ...
 }:
 
-let 
+let
   dbus-hyprland-environment = pkgs.writeTextFile {
     name = "dbus-hyprland-environment";
     destination = "/bin/dbus-hyprland-environment";
@@ -15,7 +14,7 @@ let
       systemctl --user start pipewire wireplumber pipewire-media-session xdg-desktop-portal xdg-desktop-portal-hyprland
     '';
   };
-  in
+in
 {
 
   environment.systemPackages = with pkgs; [
@@ -38,7 +37,7 @@ let
   xdg.portal = {
     enable = true;
     wlr.enable = true;
- };
+  };
 
   programs.xwayland.enable = true;
 
@@ -62,16 +61,16 @@ let
       "$HOME/.local/bin/:$PATH"
     ];
   };
- 
+
   services.greetd = {
-      enable = true;
-      settings = rec {
-        initial_session = {
-          command = "Hyprland";
-          user = "salman";
-        };
-        default_session = initial_session;
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "Hyprland";
+        user = "salman";
       };
+      default_session = initial_session;
+    };
   };
 
   environment.etc."greetd/environments".text = ''

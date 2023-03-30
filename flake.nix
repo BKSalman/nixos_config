@@ -19,39 +19,41 @@
   };
 
   outputs = { nixpkgs, home-manager, hyprland, ... }:
-  let 
-    system = "x86_64-linux";
+    let
+      system = "x86_64-linux";
 
-    pkgs = import nixpkgs {
-      inherit system;
-      config = { allowUnfree = true; };
-      overlays = [ (import ./discord.nix) (import ./insomnia.nix) ];
-    };
-
-    lib = nixpkgs.lib;
-  in
-  {
-    nixosConfigurations = {
-      # nixos is my hostname
-      nixos = lib.nixosSystem {
-        inherit system pkgs;
-
-        modules = [
-          ./system/configuration.nix
-
-          home-manager.nixosModules.home-manager {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.salman = {
-              imports = [
-                ./home.nix
-                hyprland.homeManagerModules.default
-              ];
-            };
-          }
-        ];
-        # specialArgs = {};
+      pkgs = import nixpkgs {
+        inherit system;
+        config = { allowUnfree = true; };
+        overlays = [ (import ./discord.nix) (import ./insomnia.nix) ];
       };
+
+      lib = nixpkgs.lib;
+    in
+    {
+      nixosConfigurations = {
+        # nixos is my hostname
+        nixos = lib.nixosSystem {
+          inherit system pkgs;
+
+          modules = [
+            ./system/configuration.nix
+
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.salman = {
+                imports = [
+                  ./home.nix
+                  hyprland.homeManagerModules.default
+                ];
+              };
+            }
+          ];
+          # specialArgs = {};
+        };
+      };
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
     };
-  };
 }

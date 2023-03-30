@@ -61,7 +61,7 @@
   # Enable the KDE Plasma Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  
+
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.wayland = false;
 
@@ -101,7 +101,7 @@
     extraGroups = [ "networkmanager" "wheel" "docker" "podman" "libvirtd" ];
     packages = with pkgs; [
       kate
-    #  thunderbird
+      #  thunderbird
     ];
   };
 
@@ -136,7 +136,7 @@
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    WLR_NO_HARDWARE_CURSORS="1";
+    WLR_NO_HARDWARE_CURSORS = "1";
     # Rust analyzer
     PATH = [
       "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
@@ -146,7 +146,7 @@
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
   # Nvidia stuff
-  
+
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     opengl = {
@@ -174,19 +174,19 @@
 
 
   # GNOME stuff
-  
+
   services.gvfs.enable = true;
 
   programs.dconf.enable = true;
-  
+
   services.duplicity.enable = true;
   services.duplicity.frequency = null;
   services.duplicity.targetUrl = "";
-  
+
   # KDE stuff
-  
+
   programs.partition-manager.enable = true;
-  
+
   services.ratbagd.enable = true;
 
   services.input-remapper.enable = true;
@@ -252,16 +252,16 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  # systemd.services.cloudflared = {
-  #   enable = true;
-  #   wantedBy = [ "multi-user.target" ];
-  #   after = [ "network-online.target" "systemd-resolved.service" ];
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
-  #     Restart = "always";
-  #     User = "salman";
-  #   };
-  # };
+  systemd.services.cloudflared = {
+    enable = true;
+    wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" "systemd-resolved.service" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
+      Restart = "always";
+      User = "salman";
+    };
+  };
 
   virtualisation = {
     # Podman
@@ -280,7 +280,7 @@
         ports = [ "127.0.0.1:5432:5432" ];
         environment = {
           POSTGRES_PASSWORD = "postgres";
-          POSTGRES_HOST_AUTH_METHOD = "trust";
+          # POSTGRES_HOST_AUTH_METHOD = "trust";
         };
       };
     };
@@ -332,12 +332,12 @@
     wants = [ "graphical-session.target" ];
     after = [ "graphical-session.target" ];
     serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
+      Type = "simple";
+      ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
+    };
   };
 
   # systemd.services.input-remapper = {
@@ -361,4 +361,5 @@
     '';
   };
 
+  services.gnome.gnome-keyring.enable = true;
 }

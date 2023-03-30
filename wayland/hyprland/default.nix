@@ -1,9 +1,8 @@
-{
-  default,
-  pkgs,
-  ...
+{ default
+, pkgs
+, ...
 }: {
-  imports = [./config.nix];
+  imports = [ ./config.nix ];
 
   wayland.windowManager.hyprland = {
     enable = true;
