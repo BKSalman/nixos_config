@@ -20,16 +20,17 @@
 
     # Execute your favorite apps at launch
     exec-once = waybar & hyprpaper & firefox
-    exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
-    exec-once=systemctl --user start graphical-session.target
-    exec-once=~/.config/hypr/idle.sh
+    exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
+    exec-once = systemctl --user start graphical-session.target
+    exec-once = ~/.config/hypr/idle.sh
 
     # See https://wiki.hyprland.org/Configuring/Monitors/
-    monitor=DP-1,1920x1080@144,1920x0,1
-    monitor=DP-2,1920x1080@144,3840x0,1
-    monitor=HDMI-A-1,1920x1080@60,0x0,1
+    monitor = DP-1,1920x1080@144,1920x0,1
+    monitor = DP-2,1920x1080@144,3840x0,1
+    monitor = HDMI-A-1,1920x1080@60,0x0,1
 
-    #workspace = DP-1, 1
+    workspace = DP-1, 1
+    workspace = DP-1, 2
     #workspace = DP-2, 3
     #workspace = HDMI-A-1, 4
     wsbind = 1, DP-1
@@ -213,6 +214,11 @@
     bind = , code:173, exec, playerctl previous
     # Mute button
     bind = , code:121, exec, pamixer -t
+
+    # Global hotkeys
+    # bind = SUPER,F10,pass,^(com\.obsproject\.Studio)$
+    # bind = ,F8,pass,^(Discord)$
+    # bind = ,F7,pass,^(Discord)$
 
   '';
 }
