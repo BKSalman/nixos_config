@@ -50,6 +50,8 @@
     python311
     go
 
+    yt-dlp
+    mpvpaper
     pacman
     firefox-wayland
     lolcat
