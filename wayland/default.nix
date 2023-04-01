@@ -9,9 +9,9 @@ let
     executable = true;
 
     text = ''
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=kde
       systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-kde
-      systemctl --user start pipewire wireplumber pipewire-media-session xdg-desktop-portal xdg-desktop-portal-hyprland
+      systemctl --user start pipewire wireplumber pipewire-media-session xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-kde
     '';
   };
 in
@@ -37,6 +37,12 @@ in
   xdg.portal = {
     enable = true;
     wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+      pkgs.xdg-desktop-portal-kde
+      # pkgs.xdg-desktop-portal-hyprland
+    ];
   };
 
   programs.xwayland.enable = true;
@@ -57,6 +63,8 @@ in
     WLR_RENDERER = "vulkan";
     # XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";
+    GTK_USE_PORTAL = "1";
+    QT_QPA_PLATFORMTHEME="kde";
     PATH = [
       "$HOME/.local/bin/:$PATH"
     ];

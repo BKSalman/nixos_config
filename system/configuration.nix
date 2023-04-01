@@ -199,17 +199,6 @@
   # printing and others.
   services.dbus.enable = true;
 
-  # Hyprland already handles this
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-      # pkgs.xdg-desktop-portal-hyprland
-    ];
-  };
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

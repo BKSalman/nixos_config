@@ -20,9 +20,13 @@
 
     # Execute your favorite apps at launch
     exec-once = waybar & hyprpaper & firefox
-    exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=hyprland
+    # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=kde
     exec-once = systemctl --user start graphical-session.target
-    exec-once = ~/.config/hypr/idle.sh
+
+    # swaylock gives a white background,
+    # and ruins workspaces on multiple monitors,
+    # so it's kinda annoying
+    # exec-once = ~/.config/hypr/idle.sh
 
     # See https://wiki.hyprland.org/Configuring/Monitors/
     monitor = DP-1,1920x1080@144,1920x0,1
