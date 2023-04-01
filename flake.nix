@@ -22,10 +22,14 @@
     let
       system = "x86_64-linux";
 
+      tokyonight-gtk-overlay = final: prev: {
+        tokyonight-gtk = prev.callPackage ./packages/tokyonight {};
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
-        overlays = [ (import ./discord.nix) (import ./insomnia.nix) ];
+        overlays = [ (import ./discord.nix) (import ./insomnia.nix) (tokyonight-gtk-overlay) ];
       };
 
       lib = nixpkgs.lib;

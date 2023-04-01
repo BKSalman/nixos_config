@@ -26,6 +26,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Tokyonight-Dark-BL";
+      package = pkgs.tokyonight-gtk.override { themeVariants = [ "Dark-BL" ]; };
+    };
+  };
+
   programs.obs-studio = {
     enable = true;
     plugins = [
@@ -50,6 +58,9 @@
     python311
     go
 
+    xdg-user-dirs
+    ludusavi
+    swww
     yt-dlp
     mpvpaper
     pacman
