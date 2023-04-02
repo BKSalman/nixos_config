@@ -32,7 +32,7 @@
         overlays = [
           (import ./overlays/discord.nix)
           (import ./overlays/insomnia.nix)
-          (import ./overlays/mpvpaper)
+          (import ./overlays/mpvpaper.nix)
           (tokyonight-gtk-overlay)
         ];
       };
