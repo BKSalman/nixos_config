@@ -30,6 +30,10 @@
         ytdlp-gui = prev.callPackage ./packages/ytdlp-gui {};
       };
 
+      helix-overlay = final: prev: {
+        helix = prev.callPackage ./packages/helix {};
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
@@ -39,6 +43,7 @@
           (import ./overlays/mpvpaper.nix)
           (tokyonight-gtk-overlay)
           (ytdlp-gui-overlay)
+          (helix-overlay)
         ];
       };
 
