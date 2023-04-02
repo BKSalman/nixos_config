@@ -26,6 +26,10 @@
         tokyonight-gtk = prev.callPackage ./packages/tokyonight {};
       };
 
+      ytdlp-gui-overlay = final: prev: {
+        ytdlp-gui = prev.callPackage ./packages/ytdlp-gui {};
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
@@ -34,6 +38,7 @@
           (import ./overlays/insomnia.nix)
           (import ./overlays/mpvpaper.nix)
           (tokyonight-gtk-overlay)
+          (ytdlp-gui-overlay)
         ];
       };
 

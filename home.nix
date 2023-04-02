@@ -60,6 +60,7 @@
     python311
     go
 
+    ytdlp-gui
     ffmpeg
     thunderbird
     nixpkgs-review
