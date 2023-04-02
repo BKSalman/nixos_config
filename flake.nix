@@ -29,7 +29,12 @@
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
-        overlays = [ (import ./discord.nix) (import ./insomnia.nix) (tokyonight-gtk-overlay) ];
+        overlays = [
+          (import ./overlays/discord.nix)
+          (import ./overlays/insomnia.nix)
+          (import ./overlays/mpvpaper)
+          (tokyonight-gtk-overlay)
+        ];
       };
 
       lib = nixpkgs.lib;

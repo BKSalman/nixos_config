@@ -34,6 +34,8 @@
     };
   };
 
+  qt.platformTheme = "gtk"; # qt5ct
+  
   programs.obs-studio = {
     enable = true;
     plugins = [
@@ -58,6 +60,9 @@
     python311
     go
 
+    ffmpeg
+    thunderbird
+    nixpkgs-review
     xdg-user-dirs
     ludusavi
     swww

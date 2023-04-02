@@ -56,19 +56,22 @@
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  # services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
 
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.wayland = false;
 
   # Configure keymap in X11
   services.xserver = {
+    displayManager.sddm.enable = true;
+    displayManager.sddm.autoNumlock = true;
+    displayManager.defaultSession = "plasma";
+    desktopManager.plasma5.enable = true;
+    enable = true;
     layout = "us";
     xkbVariant = "";
+    videoDrivers = [ "nvidia" ];
   };
 
   # Enable CUPS to print documents.
@@ -98,7 +101,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "docker" "podman" "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "podman" "libvirtd" "sddm" ];
     packages = with pkgs; [
       kate
       #  thunderbird
@@ -147,7 +150,6 @@
 
   # Nvidia stuff
 
-  services.xserver.videoDrivers = [ "nvidia" ];
   hardware = {
     opengl = {
       enable = true;
@@ -351,4 +353,6 @@
   };
 
   services.gnome.gnome-keyring.enable = true;
+
+  programs.kdeconnect.enable = true;
 }
