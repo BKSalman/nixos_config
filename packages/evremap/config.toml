@@ -1,0 +1,5 @@
+device_name = "Logitech G502"
+
+[[remap]]
+input = ["BTN_9"]
+output = ["BTN_LEFT", "BTN_LEFT"]

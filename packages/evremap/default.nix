@@ -1,28 +1,33 @@
-{ fetchFromGitHub, fakeSha256, lib, rustPlatform, installShellFiles, makeWrapper, libevdev }:
+{ fetchFromGitHub, lib, rustPlatform, pkgs }:
 
 rustPlatform.buildRustPackage rec {
   pname = "evremap";
   version = "0.1.0";
 
-  # This release tarball includes source code for the tree-sitter grammars,
-  # which is not ordinarily part of the repository.
   src = fetchFromGitHub {
     owner = "wez";
     repo = pname;
     rev = "master";
-    sha256 = fakeSha256;
+    sha256 = "sha256-7fS42x+YLci9HG0IL58IBS4qxHLZdk3YlPHseZzJ/ag=";
   };
 
-  nativeBuildInputs = [
-    libevdev
+  cargoLock = {
+      lockFile = ./Cargo.lock;
+  };
 
-    installShellFiles
-    makeWrapper
+  postPatch = ''
+    cp ${./Cargo.lock} Cargo.lock
+  '';
+
+  buildInputs = with pkgs; [
+    autoconf
+    automake
+    libevdev
   ];
 
-  # postFixup = ''
-  #   wrapProgram $out/bin/hx --set HELIX_RUNTIME $out/lib/runtime
-  # '';
+  nativeBuildInputs = with pkgs; [
+    pkg-config
+  ];
 
   meta = with lib; {
     description = "A keyboard input remapper for Linux/Wayland systems, written by @wez";
