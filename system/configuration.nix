@@ -266,17 +266,6 @@
     podman.defaultNetwork.settings.dns_enabled = true;
 
     oci-containers.backend = "podman";
-    oci-containers.containers = {
-      dev_database = {
-        image = "postgres";
-        autoStart = true;
-        ports = [ "127.0.0.1:5432:5432" ];
-        environment = {
-          POSTGRES_PASSWORD = "postgres";
-          # POSTGRES_HOST_AUTH_METHOD = "trust";
-        };
-      };
-    };
 
     # Docker
     # docker.enable = true;
