@@ -87,7 +87,7 @@
     alsa.support32Bit = true;
     pulse.enable = true;
     # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
+    jack.enable = true;
 
     # use the example session manager (no others are packaged yet so this is enabled by default,
     # no need to redefine it in your config for now)
@@ -101,7 +101,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "docker" "podman" "libvirtd" "sddm" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "libvirtd" "sddm" "audio" "video" ];
     packages = with pkgs; [
       kate
       #  thunderbird
@@ -115,12 +115,13 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # perl
+    firefox-wayland
     pciutils
     pkg-config
     libiconv
     cloudflared
     mold
-    openssl.dev
+    openssl
     clang
     llvmPackages.libclang
     llvmPackages.libcxxClang
@@ -156,6 +157,7 @@
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
+        pipewire
       ];
     };
     nvidia = {
@@ -330,21 +332,6 @@
       TimeoutStopSec = 10;
     };
   };
-
-  # systemd.services.input-remapper = {
-  #   enable = true;
-  #   description = "input remapper";
-  #   wantedBy = [ "graphical-session.target" ];
-  #   wants = [ "graphical-session.target" ];
-  #   after = [ "graphical-session.target" ];
-  #   serviceConfig = {
-  #       Type = "simple";
-  #       ExecStart = "${pkgs.input-remapper}/bin/input-remapper-service";
-  #       Restart = "on-failure";
-  #       RestartSec = 1;
-  #       TimeoutStopSec = 10;
-  #     };
-  # };
 
   security.pam.services.swaylock = {
     text = ''

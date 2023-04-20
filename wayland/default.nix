@@ -9,9 +9,7 @@ let
     executable = true;
 
     text = ''
-      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=kde
-      systemctl --user stop pipewire pipewire-media-session xdg-desktop-portal xdg-desktop-portal-wlr xdg-desktop-portal-kde
-      systemctl --user start pipewire wireplumber pipewire-media-session xdg-desktop-portal xdg-desktop-portal-hyprland xdg-desktop-portal-kde
+      dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     '';
   };
 in
@@ -39,8 +37,8 @@ in
     wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-      pkgs.xdg-desktop-portal-kde
+      # pkgs.xdg-desktop-portal-wlr
+      # pkgs.xdg-desktop-portal-kde
       # pkgs.xdg-desktop-portal-hyprland
     ];
   };

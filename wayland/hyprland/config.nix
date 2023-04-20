@@ -21,7 +21,7 @@
     # Execute your favorite apps at launch
     # exec-once = waybar & hyprpaper & firefox
     exec-once = waybar & firefox & mpvpaper -o "no-audio loop" "*" /media/big/LightShot/bg/BGs/bg.webm
-    # exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=kde
+    exec-once = dbus-hyprland-environment
     exec-once = systemctl --user start graphical-session.target
 
     # swaylock gives a white background,
@@ -219,11 +219,29 @@
     bind = , code:173, exec, playerctl previous
     # Mute button
     bind = , code:121, exec, pamixer -t
+    # Raise Spotify Volume
+    bind = , code:123, exec, playerctl --player=spotify volume 0.05+
+    # Lower Spotify Volume
+    bind = , code:122, exec, playerctl --player=spotify volume 0.05-
 
     # Global hotkeys
     # bind = SUPER,F10,pass,^(com\.obsproject\.Studio)$
     # bind = ,F8,pass,^(Discord)$
     # bind = ,F7,pass,^(Discord)$
 
+    # League of legends
+    windowrulev2 = float, class:^(leagueclientux.exe)$,title:^(League of Legends)$
+
+    windowrule = size 1280 720,^(leagueclientux.exe)$
+    
+    windowrule = center,^(leagueclientux.exe)$
+
+    windowrulev2 = size 1920 1080,class:^ (league of legends.exe)$
+
+    windowrulev2 = fullscreen,class:^(league of legends.exe)$
+
+    windowrule = forceinput,^(league of legends.exe)$
+
+    windowrulev2 = float, class:^(firefox)$,title:^(Sharing Indicator)$
   '';
 }
