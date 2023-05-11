@@ -277,4 +277,7 @@
       };
     }];
   };
+  programs.waybar.package = pkgs.waybar.overrideAttrs (old: {
+    mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
+  });
 }
