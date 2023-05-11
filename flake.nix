@@ -47,10 +47,16 @@
         insomnia = prev.callPackage ./packages/insomnia { };
       };
 
+      nerdfonts-overlay = final: prev: {
+        nerdfonts = prev.callPackage ./packages/nerdfonts { };
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
         overlays = [
+          # FIXME: remove after it gets fixed
+          nerdfonts-overlay
           prismlauncher.overlays.default
           (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
