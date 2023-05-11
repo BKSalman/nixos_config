@@ -142,7 +142,7 @@
     dbeaver
     mpv
     frp
-    # prismlauncher
+    prismlauncher
     lazygit
     flameshot
     ngrok

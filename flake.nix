@@ -16,9 +16,14 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    prismlauncher = {
+      url = "github:prismlauncher/prismlauncher";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, ...}:
+    outputs = { nixpkgs, home-manager, hyprland, prismlauncher, ...}@attrs:
     let
       system = "x86_64-linux";
 
@@ -46,6 +51,7 @@
         inherit system;
         config = { allowUnfree = true; };
         overlays = [
+          prismlauncher.overlays.default
           (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
           (tokyonight-gtk-overlay)
@@ -63,6 +69,8 @@
         nixos = lib.nixosSystem {
           inherit system pkgs;
 
+          specialArgs = attrs;
+          
           modules = [
             ./system/configuration.nix
 
