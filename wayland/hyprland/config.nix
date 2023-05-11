@@ -11,6 +11,9 @@
     exec-once = dbus-hyprland-environment
     exec-once = systemctl --user start graphical-session.target
 
+    exec-once = wl-paste --type text --watch cliphist store #Stores only text data
+    exec-once = wl-paste --type image --watch cliphist store #Stores only image data
+
     # swaylock gives a white background,
     # and ruins workspaces on multiple monitors,
     # so it's kinda annoying
@@ -211,6 +214,9 @@
     # Lower Spotify Volume
     bind = , code:122, exec, playerctl --player=spotify volume 0.05-
 
+    # Clipboard
+    bind = $mainMod, G, exec, pkill rofi || cliphist list | rofi -dmenu -theme $HOME/.config/rofi/launcher_theme | cliphist decode | wl-copy
+
     # Global hotkeys
     # bind = SUPER,F10,pass,^(com\.obsproject\.Studio)$
     # bind = ,F8,pass,^(Discord)$
@@ -230,5 +236,7 @@
     windowrule = forceinput,^(league of legends.exe)$
 
     windowrulev2 = float, class:^(firefox)$,title:^(Sharing Indicator)$
+
+    exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
   '';
 }
