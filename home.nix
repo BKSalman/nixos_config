@@ -38,8 +38,9 @@
 
   programs.obs-studio = {
     enable = true;
-    plugins = [
-      pkgs.obs-studio-plugins.wlrobs
+    plugins = with pkgs; [
+      obs-studio-plugins.wlrobs
+      obs-studio-plugins.looking-glass-obs
     ];
   };
 
@@ -60,6 +61,19 @@
     (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy ]))
     go
 
+    cliphist
+    protonup-qt
+    teams
+    wlsunset
+    blender
+    nodePackages_latest.bash-language-server
+    ranger
+    # huiontablet
+    uxplay
+    jetbrains.idea-community
+    hwloc
+    looking-glass-client
+    grapejuice
     mypaint
     nix-index
     winetricks
@@ -105,7 +119,6 @@
     killall
     # spice-gtk
     qimgv
-    virt-manager
     vopono
     nil
     onlyoffice-bin
@@ -129,7 +142,7 @@
     dbeaver
     mpv
     frp
-    prismlauncher
+    # prismlauncher
     lazygit
     flameshot
     ngrok
@@ -137,11 +150,9 @@
     libratbag
     gh
     exa
-    discord
     discord-canary
     zoxide
     starship
-    krita
     # davinci-resolve
     piper
     spotify
@@ -454,4 +465,17 @@
   home.file.".inputrc".source = ./bash/.inputrc;
 
   home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
+
+  home.file.".local/bin/logout.sh".source = ./virtual/logout.sh;
+
+  home.file.".local/share/applications/uxplay.desktop".text = ''
+    [Desktop Entry]
+    Encoding=UTF-8
+    Version=1.0
+    Type=Application
+    Terminal=false
+    Exec=uxplay -p
+    Name=UXplay
+    Icon=~/.local/share/applications/Airplay.png
+  '';
 }
