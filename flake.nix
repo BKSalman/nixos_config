@@ -54,6 +54,7 @@
           prismlauncher.overlays.default
           (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
+          (import ./overlays/nerdfonts.nix)
           (tokyonight-gtk-overlay)
           (ytdlp-gui-overlay)
           (evremap-overlay)
