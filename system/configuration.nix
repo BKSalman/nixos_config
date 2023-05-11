@@ -9,6 +9,9 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ./../wayland
+      ./../virtual/vfio.nix
+      ./../uxplay.nix
+      ./../vm.nix
     ];
 
   nix = {
@@ -101,7 +104,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "libvirtd" "sddm" "audio" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" ];
     packages = with pkgs; [
       kate
       #  thunderbird
@@ -115,6 +118,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # perl
+    egl-wayland
+    nvidia-vaapi-driver
     firefox-wayland
     pciutils
     pkg-config
@@ -136,11 +141,14 @@
     nix-prefetch
   ];
 
+  services.flatpak.enable = true;
+
   environment.sessionVariables = {
     LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
+    LIBVA_DRIVER_NAME="nvidia";
     # Rust analyzer
     PATH = [
       "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
@@ -148,6 +156,13 @@
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
+
+  environment.etc."tmpfiles.d/10-looking-glass.conf" = {
+    text = ''
+      f	/dev/shm/looking-glass	0660	salman	kvm	-
+    '';
+    user = "salman";
+  };
 
   # Nvidia stuff
 
@@ -157,6 +172,7 @@
       extraPackages = with pkgs; [
         vaapiVdpau
         libvdpau-va-gl
+        nvidia-vaapi-driver
         pipewire
       ];
     };
@@ -216,21 +232,6 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  # Cloudflare stuff
-  # services.cloudflared = {
-  #   enable = true;
-  #   tunnels = {
-  #     "5c4b5663-f5ad-4049-82c8-d645bbd4ef06" = {
-  #       credentialsFile = "/home/salman/.cloudflared/5c4b5663-f5ad-4049-82c8-d645bbd4ef06.json";
-  #       ingress = {
-  #         "ws.bksalman.com" = "ws://localhost:3000";
-  #         "f5rfm.bksalman.com" = "http://localhost:8080";
-  #         };
-  #         default = "http_status:404";
-  #       };
-  #     };
-  # };
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -273,25 +274,12 @@
     #   enable = true;
     #   setSocketVariable = true;
     # };
-
-    # libvirt
-    libvirtd.enable = true;
-    libvirtd.qemu.ovmf.enable = true;
-
-    # redirect USB to libvirt
-    spiceUSBRedirection.enable = true;
   };
 
   # Git
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
-    # extraConfig = {
-    #   credential = {
-    #     credentialStore = "secretservice";
-    #     helper = "${nur.repos.utybo.git-credential-manager}/bin/git-credential-manager-core";
-    #   };
-    # };
   };
 
   # Steam
