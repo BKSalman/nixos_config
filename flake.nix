@@ -18,7 +18,6 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, ... }:
     let
       system = "x86_64-linux";
 
@@ -38,11 +37,15 @@
         webcord = prev.callPackage ./packages/webcord { };
       };
 
+      insomnia-overlay = final: prev: {
+        insomnia = prev.callPackage ./packages/insomnia { };
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
         overlays = [
-          (import ./overlays/insomnia.nix)
+          (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
           (tokyonight-gtk-overlay)
           (ytdlp-gui-overlay)
@@ -74,7 +77,6 @@
               };
             }
           ];
-          # specialArgs = {};
         };
       };
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
