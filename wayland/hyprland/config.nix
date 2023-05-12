@@ -24,15 +24,15 @@
     monitor = DP-2,1920x1080@144,3840x0,1
     monitor = HDMI-A-1,1920x1080@60,0x0,1
 
-    workspace = DP-1, 1
-    workspace = DP-1, 2
-    #workspace = DP-2, 3
-    #workspace = HDMI-A-1, 4
-    wsbind = 1, DP-1
-    wsbind = 2, DP-1
-    wsbind = 3, DP-2
-    wsbind = 4, DP-2
-    wsbind = 5, HDMI-A-1
+    workspace = 1, monitor:DP-1, default:true
+    workspace = 2, monitor:DP-1
+    workspace = 3, monitor:DP-1
+    workspace = 4, monitor:DP-1
+
+    workspace = 5, monitor:DP-2, default:true
+    workspace = 6, monitor:DP-2
+    workspace = 7, monitor:DP-2
+    workspace = 8, monitor:DP-2
 
     # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -42,7 +42,7 @@
     # Some default env vars.
     env = XCURSOR_SIZE,24
 
-    # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
+2    # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
     input {
         kb_layout = us,ar
         kb_variant =
@@ -215,7 +215,7 @@
     bind = , code:122, exec, playerctl --player=spotify volume 0.05-
 
     # Clipboard
-    bind = $mainMod, G, exec, pkill rofi || cliphist list | rofi -dmenu -theme $HOME/.config/rofi/launcher_theme | cliphist decode | wl-copy
+    bind = $mainMod CTRL, V, exec, pkill rofi || rofi -theme $HOME/.config/rofi/clipboard_theme -modi clipboard:~/.local/bin/cliphist-rofi -show clipboard
 
     # Global hotkeys
     # bind = SUPER,F10,pass,^(com\.obsproject\.Studio)$
@@ -223,15 +223,16 @@
     # bind = ,F7,pass,^(Discord)$
 
     # League of legends
-    windowrulev2 = float, class:^(leagueclientux.exe)$,title:^(League of Legends)$
+    windowrulev2 = float,class:^(leagueclientux.exe)$,title:^(League of Legends)$
 
     windowrule = size 1280 720,^(leagueclientux.exe)$
-    
+
     windowrule = center,^(leagueclientux.exe)$
 
-    windowrulev2 = size 1920 1080,class:^ (league of legends.exe)$
+    windowrulev2 = fullscreen,class:^(league of legends.exe)$,title:^(League of Legends (TM) Client)$
+    windowrule = size 1920 1080,^(league of legends.exe)$
 
-    windowrulev2 = fullscreen,class:^(league of legends.exe)$
+    windowrule = center,^(league of legends.exe)$
 
     windowrule = forceinput,^(league of legends.exe)$
 
