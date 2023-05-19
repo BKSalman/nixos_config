@@ -1,0 +1,46 @@
+[[language]]
+name = "rust"
+# auto-format = false
+
+[language.debugger]
+command = "codelldb"
+name = "codelldb"
+port-arg = "--port {}"
+transport = "tcp"
+
+[[language.debugger.templates]]
+name = "binary"
+request = "launch"
+[[language.debugger.templates.completion]]
+completion = "filename"
+name = "binary"
+
+[language.debugger.templates.args]
+program = "{0}"
+runInTerminal = true
+
+[[language]]
+name = "python"
+indent = { tab-width = 4, unit = "    " }
+comment-token = "#"
+
+[[language]]
+name = "typescript"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "javascript"
+indent = { tab-width = 4, unit = " " }
+
+[[language]]
+name = "go"
+auto-format = true
+
+[[language]]
+name = "arduino"
+scope = "source.arduino"
+grammar = "c"
+language-server = { command = "arduino-language-server" }
+file-types = ["ino", "arduino"]
+roots = []
+indent = { tab-width = 4, unit = " " }
