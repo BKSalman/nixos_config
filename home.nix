@@ -4,6 +4,7 @@
   imports = [
     ./wayland/hyprland
     ./waybar
+    ./helix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -20,9 +21,6 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "23.05";
-  home.sessionPath = [
-    "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin"
-  ];
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -57,11 +55,14 @@
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
-    rustup
+    (rust-bin.stable.latest.default.override {
+      extensions = [ "rust-src" "rust-analyzer" ];
+    })
     jdk
     (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy ]))
     go
-
+    
+    lapce
     eww-wayland
     cliphist
     protonup-qt
@@ -138,7 +139,6 @@
     nodePackages.pnpm
     nodejs
     vscode
-    postman
     insomnia
     sqlx-cli
     dbeaver
@@ -163,9 +163,8 @@
     alacritty
     kitty
     plasma5Packages.bismuth
-    helix
+    # helix
     vim
-    nerdfonts
 
     # Hyprland stuff
     hyprpaper

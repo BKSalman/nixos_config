@@ -21,9 +21,14 @@
       url = "github:prismlauncher/prismlauncher";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    helix = {
+      url = "github:helix-editor/helix/23.05";
+    };
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, prismlauncher, ...}@attrs:
+    outputs = { nixpkgs, home-manager, hyprland, prismlauncher, helix, rust-overlay, ...}:
     let
       system = "x86_64-linux";
 
@@ -58,6 +63,8 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          rust-overlay.overlays.default
+          # helix.overlays.default
           prismlauncher.overlays.default
           (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
@@ -76,8 +83,6 @@
         nixos = lib.nixosSystem {
           inherit system pkgs;
 
-          specialArgs = attrs;
-          
           modules = [
             ./system/configuration.nix
 
@@ -91,6 +96,7 @@
                   hyprland.homeManagerModules.default
                 ];
               };
+              home-manager.extraSpecialArgs = { inherit helix; };
             }
           ];
         };
