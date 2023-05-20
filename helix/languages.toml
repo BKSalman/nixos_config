@@ -40,7 +40,7 @@ auto-format = true
 name = "arduino"
 scope = "source.arduino"
 grammar = "c"
-language-server = { command = "arduino-language-server" }
+language-server = { command = "arduino-language-server"}
 file-types = ["ino", "arduino"]
 roots = []
 indent = { tab-width = 4, unit = " " }

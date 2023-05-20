@@ -69,10 +69,14 @@ space = "all"
 
 display-messages = true
 
+[editor.statusline]
+right = ["version-control", "diagnostics", "selections", "position", "file-encoding"]
+
 [editor]
 
 line-number = "relative"
 bufferline = "multiple"
 
-# [editor.file-picker]
-# hidden = false
+[editor.file-picker]
+hidden = false
+git-ignore = true
