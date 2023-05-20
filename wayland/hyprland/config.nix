@@ -136,16 +136,15 @@
     # See https://wiki.hyprland.org/Configuring/Keywords/ for more
     $mainMod = SUPER
 
-    # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
     bind = $mainMod, Q, exec, kitty
     bind = $mainMod, C, killactive,
-    bind = $mainMod, M, exit,
     bind = $mainMod, E, exec, dolphin
     bind = $mainMod, V, togglefloating,
     bind = $mainMod, R, layoutmsg, orientationnext
     bind = $mainMod, D, exec, pkill rofi || ~/.config/rofi/launcher.sh
     bind = $mainMod, P, pseudo, # dwindle
     bind = $mainMod, J, togglesplit, # dwindle
+    bind = $mainMod, M, exec, amixer set Capture toggle
     bind = , code:107, exec, IMG=~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png && grim -g "$(slurp)" $IMG && wl-copy < $IMG
 
     # Move focus with mainMod + arrow keys
@@ -218,9 +217,9 @@
     bind = $mainMod CTRL, V, exec, pkill rofi || rofi -theme $HOME/.config/rofi/clipboard_theme -modi clipboard:~/.local/bin/cliphist-rofi -show clipboard
 
     # Global hotkeys
-    # bind = SUPER,F10,pass,^(com\.obsproject\.Studio)$
-    # bind = ,F8,pass,^(Discord)$
-    # bind = ,F7,pass,^(Discord)$
+    bind = $mainMod, F2, pass,^(com\.obsproject\.Studio)$
+    bind = $mainMod, F3,pass,^(Discord)$
+    bind = $mainMod, F4, pass,^(Discord)$
 
     # League of legends
     windowrulev2 = float,class:^(leagueclientux.exe)$,title:^(League of Legends)$
