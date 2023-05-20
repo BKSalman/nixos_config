@@ -123,6 +123,8 @@
     firefox-wayland
     pciutils
     pkg-config
+    alsa-lib
+    systemd
     libiconv
     cloudflared
     mold
@@ -141,6 +143,19 @@
     nix-prefetch
   ];
 
+  fonts.fonts = with pkgs; [
+    liberation_ttf
+    nerdfonts
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    # fira-code
+    # fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    # dina-font
+    # proggyfonts
+  ];
+
   services.flatpak.enable = true;
 
   environment.sessionVariables = {
@@ -149,10 +164,6 @@
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME="nvidia";
-    # Rust analyzer
-    PATH = [
-      "$HOME/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin:$PATH"
-    ];
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
