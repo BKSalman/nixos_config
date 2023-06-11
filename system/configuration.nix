@@ -12,6 +12,7 @@
       ./../virtual/vfio.nix
       ./../uxplay.nix
       ./../vm.nix
+      ./../bash.nix
     ];
 
   nix = {
@@ -118,8 +119,10 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # perl
+    # IOS
+    libimobiledevice
+    ifuse
     egl-wayland
-    nvidia-vaapi-driver
     firefox-wayland
     pciutils
     pkg-config
@@ -188,7 +191,7 @@
       ];
     };
     nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.beta;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       powerManagement.enable = true;
     };
@@ -330,4 +333,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   programs.kdeconnect.enable = true;
+
+  # IOS
+  services.usbmuxd.enable = true;
 }

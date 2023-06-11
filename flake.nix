@@ -17,6 +17,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    hyprland-contrib = {
+      url = "github:hyprwm/contrib";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     prismlauncher = {
       url = "github:prismlauncher/prismlauncher";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,7 +33,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, prismlauncher, helix, rust-overlay, ...}:
+    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ...}:
     let
       system = "x86_64-linux";
 
@@ -63,6 +68,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          hyprland-contrib.overlays.default
           rust-overlay.overlays.default
           # helix.overlays.default
           prismlauncher.overlays.default

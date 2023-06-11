@@ -40,6 +40,7 @@
     plugins = with pkgs; [
       obs-studio-plugins.wlrobs
       obs-studio-plugins.looking-glass-obs
+      obs-studio-plugins.droidcam-obs
     ];
   };
 
@@ -56,12 +57,29 @@
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     (rust-bin.stable.latest.default.override {
-      extensions = [ "rust-src" "rust-analyzer" ];
+      targets = [ "x86_64-unknown-linux-gnu" "wasm32-unknown-unknown" ];
+      extensions = [ "rust-analyzer" "rust-src" "rust-std" ];
     })
+
+    # rustup
     jdk
     (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy ]))
     go
-    
+    cmake
+    meson
+    rust-bindgen
+    marksman
+
+    gimp
+    direnv
+    grimblast
+    hyprpicker
+    qmk
+    tokei
+    bottles
+    fd
+    kondo
+    gifski
     lapce
     eww-wayland
     cliphist
@@ -89,9 +107,8 @@
     pureref
     python311Packages.python-lsp-server
     python311Packages.pylsp-mypy
-    handbrake
     ytdlp-gui
-    ffmpeg
+    ffmpeg_6-full
     thunderbird
     nixpkgs-review
     xdg-user-dirs
@@ -171,7 +188,6 @@
     mako
     # swayidle
     # swaylock-effects
-    # rofi-wayland
     # wofi
     # waybar
 
@@ -186,6 +202,8 @@
   home.file.".config/rofi/powermenu_theme.rasi".source = ./rofi/powermenu_theme.rasi;
 
   home.file.".inputrc".source = ./bash/.inputrc;
+
+  home.file.".bashrc".source = ./bash/.bashrc;
 
   home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
 

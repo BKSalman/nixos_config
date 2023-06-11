@@ -47,7 +47,7 @@ C-f = [":new", ":insert-output lf-pick", ":theme default", "select_all", "split_
 "X" = "extend_line_below"
 esc = ["collapse_selection", "keep_primary_selection"]
 "C-v" = ":insert-output"
-"C-i" = ":toggle lsp.display-inlay-hints"
+"C-I" = ":toggle lsp.display-inlay-hints"
 
 [keys.normal.space]
 

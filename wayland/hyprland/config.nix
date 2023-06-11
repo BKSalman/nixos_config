@@ -7,7 +7,7 @@
   wayland.windowManager.hyprland.extraConfig = ''
     # Execute your favorite apps at launch
     # exec-once = waybar & hyprpaper & firefox
-    exec-once = waybar & firefox & mpvpaper -o "no-audio loop" "*" /media/big/LightShot/bg/BGs/bg.webm
+    exec-once = waybar & firefox & swww init
     exec-once = dbus-hyprland-environment
     exec-once = systemctl --user start graphical-session.target
 
@@ -143,9 +143,10 @@
     bind = $mainMod, R, layoutmsg, orientationnext
     bind = $mainMod, D, exec, pkill rofi || ~/.config/rofi/launcher.sh
     bind = $mainMod, P, pseudo, # dwindle
-    bind = $mainMod, J, togglesplit, # dwindle
+    # bind = $mainMod, J, togglesplit, # dwindle
     bind = $mainMod, M, exec, amixer set Capture toggle
-    bind = , code:107, exec, IMG=~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png && grim -g "$(slurp)" $IMG && wl-copy < $IMG
+    bind = , code:107, exec, grimblast --freeze copysave area ~/Pictures/$(date +%Y-%m-%d_%H-%m-%s).png
+    bind = $mainMod, code:107, exec, grimblast --freeze edit area
 
     # Move focus with mainMod + arrow keys
     bind = $mainMod, left, movefocus, l
@@ -200,12 +201,12 @@
     bind = $mainMod, KP_ENTER, layoutmsg, swapwithmaster
 
     # Multimedia binds
-    # Play-Pause button
-    bind = , code:172, exec, playerctl play-pause
-    # forward button
-    bind = , code:171, exec, playerctl next
-    # backward button
-    bind = , code:173, exec, playerctl previous
+    # Spotify Play-Pause button
+    bind = , code:172, exec, playerctl --player=spotify play-pause
+    # Spotify forward button
+    bind = , code:171, exec, playerctl --player=spotify next
+    # Spotify backward button
+    bind = , code:173, exec, playerctl --player=spotify previous
     # Mute button
     bind = , code:121, exec, pamixer -t
     # Raise Spotify Volume
@@ -216,10 +217,12 @@
     # Clipboard
     bind = $mainMod CTRL, V, exec, pkill rofi || rofi -theme $HOME/.config/rofi/clipboard_theme -modi clipboard:~/.local/bin/cliphist-rofi -show clipboard
 
+    # Emoji selector
+    bind = $mainMod, J, exec, pkill rofi || rofi -modi emoji -show emoji
+
     # Global hotkeys
     bind = $mainMod, F2, pass,^(com\.obsproject\.Studio)$
-    bind = $mainMod, F3,pass,^(Discord)$
-    bind = $mainMod, F4, pass,^(Discord)$
+    bind = $mainMod, F3,pass,^(com\.obsproject\.Studio)$
 
     # League of legends
     windowrulev2 = float,class:^(leagueclientux.exe)$,title:^(League of Legends)$

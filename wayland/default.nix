@@ -24,7 +24,7 @@ in
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     wlogout
     wlr-randr
-    rofi-wayland
+    (rofi-wayland.override { plugins = [ pkgs.rofi-emoji ]; })
     swayidle
     swaylock-effects
     wayland

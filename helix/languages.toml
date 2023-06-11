@@ -1,5 +1,6 @@
 [[language]]
 name = "rust"
+language-server = { command = "rust-analyzer", environment = { "CARGO_TARGET_DIR" = "target/analyzer" } }
 # auto-format = false
 
 [language.debugger]
@@ -21,16 +22,16 @@ runInTerminal = true
 
 [[language]]
 name = "python"
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 4, unit = "4" }
 comment-token = "#"
 
 [[language]]
 name = "typescript"
-indent = { tab-width = 4, unit = "    " }
+indent = { tab-width = 4, unit = "4" }
 
 [[language]]
 name = "javascript"
-indent = { tab-width = 4, unit = " " }
+indent = { tab-width = 4, unit = "4" }
 
 [[language]]
 name = "go"
@@ -43,4 +44,17 @@ grammar = "c"
 language-server = { command = "arduino-language-server"}
 file-types = ["ino", "arduino"]
 roots = []
-indent = { tab-width = 4, unit = " " }
+indent = { tab-width = 4, unit = "4" }
+
+[[language]]
+name = "hebi"
+scope = "source.hebi"
+file-types = ["hebi"]
+roots = []
+comment-token = "#"
+indent = { tab-width = 4, unit = "    " }
+
+[[language]]
+name = "markdown"
+language-server = { command = "/home/salman/.cargo/bin/mdpls" }
+config = { markdown.preview.auto = true, markdown.preview.browser = "firefox" }
