@@ -23,9 +23,9 @@
   };
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdb";
-  boot.loader.grub.useOSProber = true;
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
@@ -75,7 +75,6 @@
     enable = true;
     layout = "us";
     xkbVariant = "";
-    videoDrivers = [ "nvidia" ];
   };
 
   # Enable CUPS to print documents.
@@ -171,15 +170,6 @@
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
-  environment.etc."tmpfiles.d/10-looking-glass.conf" = {
-    text = ''
-      f	/dev/shm/looking-glass	0660	salman	kvm	-
-    '';
-    user = "salman";
-  };
-
-  # Nvidia stuff
-
   hardware = {
     opengl = {
       enable = true;
@@ -189,11 +179,6 @@
         nvidia-vaapi-driver
         pipewire
       ];
-    };
-    nvidia = {
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      modesetting.enable = true;
-      powerManagement.enable = true;
     };
   };
 
@@ -260,16 +245,16 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 
-  systemd.services.cloudflared = {
-    enable = true;
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network-online.target" "systemd-resolved.service" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
-      Restart = "always";
-      User = "salman";
-    };
-  };
+  # systemd.services.cloudflared = {
+  #   enable = true;
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network-online.target" "systemd-resolved.service" ];
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
+  #     Restart = "always";
+  #     User = "salman";
+  #   };
+  # };
 
   virtualisation = {
     # Podman

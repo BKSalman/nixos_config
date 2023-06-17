@@ -75,7 +75,7 @@
     grimblast
     hyprpicker
     qmk
-    tokei
+   tokei
     bottles
     fd
     kondo
@@ -95,6 +95,8 @@
     hwloc
     looking-glass-client
     grapejuice
+    nomachine-client
+    microsoft-edge
     mypaint
     nix-index
     winetricks
@@ -104,7 +106,6 @@
     appimage-run
     ventoy-full
     gamescope
-    pureref
     python311Packages.python-lsp-server
     python311Packages.pylsp-mypy
     ytdlp-gui
@@ -147,7 +148,6 @@
     unzip
     distrobox
     neovim
-    zenith-nvidia
     htop
     btop
     nodePackages.typescript-language-server

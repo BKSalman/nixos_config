@@ -20,19 +20,8 @@
     # exec-once = ~/.config/hypr/idle.sh
 
     # See https://wiki.hyprland.org/Configuring/Monitors/
-    monitor = DP-1,1920x1080@144,1920x0,1
-    monitor = DP-2,1920x1080@144,3840x0,1
-    monitor = HDMI-A-1,1920x1080@60,0x0,1
 
-    workspace = 1, monitor:DP-1, default:true
-    workspace = 2, monitor:DP-1
-    workspace = 3, monitor:DP-1
-    workspace = 4, monitor:DP-1
-
-    workspace = 5, monitor:DP-2, default:true
-    workspace = 6, monitor:DP-2
-    workspace = 7, monitor:DP-2
-    workspace = 8, monitor:DP-2
+    monitor=eDP-1,1920x1080@60,0x0,1
 
     # See https://wiki.hyprland.org/Configuring/Keywords/ for more
 
@@ -116,7 +105,7 @@
 
     gestures {
         # See https://wiki.hyprland.org/Configuring/Variables/ for more
-        workspace_swipe = off
+        workspace_swipe = on
     }
 
     # Example per-device config

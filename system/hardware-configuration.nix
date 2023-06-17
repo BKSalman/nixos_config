@@ -5,57 +5,35 @@
 
 {
   imports =
-    [
-      (modulesPath + "/installer/scan/not-detected.nix")
+    [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "usbhid" "usb_storage" "sd_mod" "rtsx_pci_sdmmc" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    {
-      device = "/dev/disk/by-uuid/41e4ceb1-8ec9-4686-8932-cabe7b9d4859";
+    { device = "/dev/disk/by-uuid/dbe47c26-f9a8-44a8-8098-d4ab06bfc143";
       fsType = "ext4";
     };
 
-  fileSystems."/var/lib/containers/storage/overlay" =
-    {
-      device = "/var/lib/containers/storage/overlay";
-      fsType = "none";
-      options = [ "bind" ];
-    };
-
-  # fileSystems."/var/lib/containers/storage/overlay-containers/5c947566470f9f8f591c6dc1420b10a4f160677a87bb944d71f195cc7512d02e/userdata/shm" =
-  #   { device = "shm";
-  #     fsType = "tmpfs";
-  #   };
-
-  # fileSystems."/var/lib/containers/storage/overlay/c67442d9df70a8204a6039d7a74b629dd123afa538b6ceee8b05a135813fe112/merged" =
-  #   { device = "overlay";
-  #     fsType = "overlay";
-  #   };
-
-  fileSystems."/media/big" =
-    {
-      device = "/dev/disk/by-uuid/1acefa1e-5d56-4be1-b640-50afaaabec86";
-      fsType = "ext4";
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/0D47-7382";
+      fsType = "vfat";
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/01ae4d61-6a3d-4fa9-891b-67d73c9f2106"; }];
+    [ { device = "/dev/disk/by-uuid/83027f11-8264-4025-8125-91245dde6320"; }
+    ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.podman0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp2s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
