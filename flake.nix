@@ -30,10 +30,11 @@
     helix = {
       url = "github:helix-editor/helix/23.05";
     };
+
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ...}:
+  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ... }:
     let
       system = "x86_64-linux";
 
@@ -61,9 +62,22 @@
         nerdfonts = prev.callPackage ./packages/nerdfonts { };
       };
 
+      obs-text-pango-overlay = final: prev: {
+        obs-text-pango = prev.callPackage ./packages/obs-plugins/text-pango.nix { };
+      };
+
+      davinci-resolve-overlay = final: prev: {
+        davinci-resolve = prev.callPackage ./packages/davinci-resolve { };
+      };
+
       pkgs = import nixpkgs {
         inherit system;
-        config = { allowUnfree = true; };
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            "python-2.7.18.6"
+          ];
+        };
         overlays = [
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
@@ -72,8 +86,11 @@
           rust-overlay.overlays.default
           # helix.overlays.default
           prismlauncher.overlays.default
+          (obs-text-pango-overlay)
+          (davinci-resolve-overlay)
           (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
+          (import ./overlays/distrobox.nix)
           (tokyonight-gtk-overlay)
           (ytdlp-gui-overlay)
           (evremap-overlay)

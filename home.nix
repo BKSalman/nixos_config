@@ -41,6 +41,7 @@
       obs-studio-plugins.wlrobs
       obs-studio-plugins.looking-glass-obs
       obs-studio-plugins.droidcam-obs
+      obs-text-pango
     ];
   };
 
@@ -70,6 +71,10 @@
     rust-bindgen
     marksman
 
+    helvum
+    sd
+    davinci-resolve
+    audacity
     gimp
     direnv
     grimblast
@@ -172,7 +177,6 @@
     discord-canary
     zoxide
     starship
-    # davinci-resolve
     piper
     spotify
     kdenlive
@@ -209,7 +213,7 @@
 
   home.file.".local/bin/logout.sh".source = ./virtual/logout.sh;
 
-  home.file.".local/bin/cliphist-rofi"= {
+  home.file.".local/bin/cliphist-rofi" = {
     text = ''
       #!/usr/bin/env bash
 
@@ -231,5 +235,15 @@
     Exec=uxplay -p
     Name=UXplay
     Icon=~/.local/share/applications/Airplay.png
+  '';
+
+  home.file.".local/share/applications/resolve.desktop".text = ''
+    [Desktop Entry]
+    Encoding=UTF-8
+    Version=18.4.1
+    Type=Application
+    Terminal=false
+    Exec=env QT_QPA_PLATFORM=xcb davinci-resolve
+    Name=DaVinci Resolve
   '';
 }

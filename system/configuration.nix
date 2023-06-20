@@ -166,7 +166,7 @@
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME="nvidia";
+    LIBVA_DRIVER_NAME = "nvidia";
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";

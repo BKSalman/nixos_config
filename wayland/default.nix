@@ -62,7 +62,7 @@ in
     # XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";
     GTK_USE_PORTAL = "1";
-    QT_QPA_PLATFORMTHEME="kde";
+    QT_QPA_PLATFORMTHEME = "kde";
     PATH = [
       "$HOME/.local/bin/:$PATH"
     ];
