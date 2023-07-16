@@ -16,7 +16,6 @@ in
 {
 
   environment.systemPackages = with pkgs; [
-    teamviewer
     wayvnc
     dbus-hyprland-environment
     wayland
@@ -32,7 +31,7 @@ in
     wayland
     # bemenu # wayland clone of dmenu
   ];
-
+  services.teamviewer.enable = true;
   services.dbus.enable = true;
   xdg.portal = {
     enable = true;
