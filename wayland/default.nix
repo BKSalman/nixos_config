@@ -16,6 +16,7 @@ in
 {
 
   environment.systemPackages = with pkgs; [
+    teamviewer
     wayvnc
     dbus-hyprland-environment
     wayland
