@@ -16,6 +16,7 @@ in
 {
 
   environment.systemPackages = with pkgs; [
+    wayvnc
     dbus-hyprland-environment
     wayland
     glib
