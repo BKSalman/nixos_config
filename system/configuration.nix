@@ -122,6 +122,7 @@
     # IOS
     libimobiledevice
     ifuse
+    anydesk
     egl-wayland
     firefox-wayland
     pciutils
