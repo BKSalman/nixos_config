@@ -244,11 +244,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings.passwordAuthentication = true;
-	  # I'll disable this once I can connect.
-  };
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   networking.firewall.allowedTCPPorts = [ 22 5900 5800 ];
