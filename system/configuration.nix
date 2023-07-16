@@ -8,7 +8,7 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./../wayland
+      # ./../wayland
       ./../virtual/vfio.nix
       ./../uxplay.nix
       ./../vm.nix
