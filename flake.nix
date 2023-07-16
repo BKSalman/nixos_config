@@ -70,6 +70,10 @@
         davinci-resolve = prev.callPackage ./packages/davinci-resolve { };
       };
 
+      teamviewer-overlay = final: prev: {
+        teamviewer = prev.callPackage ./packages/teamviewer { };
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = {
@@ -85,6 +89,7 @@
           hyprland-contrib.overlays.default
           rust-overlay.overlays.default
           # helix.overlays.default
+          (teamviewer-overlay)
           prismlauncher.overlays.default
           (obs-text-pango-overlay)
           (davinci-resolve-overlay)
