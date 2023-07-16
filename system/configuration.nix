@@ -246,7 +246,7 @@
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
-    passwordAuthentication = true;
+    settings.passwordAuthentication = true;
 	  # I'll disable this once I can connect.
   };
 
