@@ -31,9 +31,14 @@
       url = "github:helix-editor/helix/23.05";
     };
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    leftwm = {
+      url = "github:leftwm/leftwm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ...}:
+    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, leftwm, ...}:
     let
       system = "x86_64-linux";
 
@@ -68,6 +73,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          leftwm.overlay
           hyprland-contrib.overlays.default
           rust-overlay.overlays.default
           # helix.overlays.default

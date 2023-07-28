@@ -8,7 +8,9 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./../wayland
+      ./../x11
+      ./../x11/leftwm
+      # ./../wayland
       ./../virtual/vfio.nix
       ./../uxplay.nix
       ./../vm.nix
@@ -32,6 +34,7 @@
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  # networking.networkmanager.wifi.backend = "iwd";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -39,6 +42,7 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # networking.wireless.iwd.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Riyadh";
@@ -59,26 +63,25 @@
     LC_ALL = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-
-  # Enable the KDE Plasma Desktop Environment.
-
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.displayManager.gdm.wayland = false;
-
-  # Configure keymap in X11
   services.xserver = {
-    displayManager.sddm.enable = true;
-    displayManager.sddm.autoNumlock = true;
-    displayManager.defaultSession = "plasma";
+    # displayManager.lightdm.enable = true;
+    displayManager.sessionPackages = [ pkgs.hyprland ];
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    displayManager.defaultSession = "none+leftwm";
     desktopManager.plasma5.enable = true;
     enable = true;
-    layout = "us";
+    layout = "us,ara";
+    xkbOptions = "grp:alt_shift_toggle";
     xkbVariant = "";
   };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  services.blueman.enable = true;
+
+  hardware.bluetooth.enable = false;
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -117,10 +120,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # perl
     # IOS
     libimobiledevice
     ifuse
+
     egl-wayland
     firefox-wayland
     pciutils
@@ -151,6 +154,7 @@
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    corefonts
     # fira-code
     # fira-code-symbols
     mplus-outline-fonts.githubRelease
@@ -167,6 +171,8 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME="nvidia";
   };
+
+  environment.noXlibs = false;
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
@@ -231,11 +237,15 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.tailscale.enable = true;
+
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
+  networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+  networking.search = [ "taildb9db.ts.net" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
@@ -321,4 +331,6 @@
 
   # IOS
   services.usbmuxd.enable = true;
+
+  programs.droidcam.enable = true;
 }

@@ -3,6 +3,7 @@
 
   imports = [
     ./wayland/hyprland
+    ./x11/leftwm/config.nix
     ./waybar
     ./helix
   ];
@@ -63,13 +64,27 @@
 
     # rustup
     jdk
-    (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy ]))
+    (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy  python-lsp-server pylsp-mypy pip ]))
     go
     cmake
     meson
     rust-bindgen
     marksman
 
+    calc
+    termusic
+    # just for pactl
+    pulseaudio
+    magic-wormhole
+    nomachine-client
+    dolphin
+    libreoffice
+    realvnc-vnc-viewer
+    mediainfo
+    glaxnimate
+    brightnessctl
+    wayvnc
+    maliit-keyboard
     gimp
     direnv
     grimblast
@@ -84,7 +99,7 @@
     eww-wayland
     cliphist
     protonup-qt
-    teams
+    # teams
     wlsunset
     blender
     nodePackages_latest.bash-language-server
@@ -95,7 +110,7 @@
     hwloc
     looking-glass-client
     grapejuice
-    nomachine-client
+    # nomachine-client
     microsoft-edge
     mypaint
     nix-index
@@ -106,8 +121,6 @@
     appimage-run
     ventoy-full
     gamescope
-    python311Packages.python-lsp-server
-    python311Packages.pylsp-mypy
     ytdlp-gui
     ffmpeg_6-full
     thunderbird
@@ -155,7 +168,7 @@
     nodePackages.svelte-language-server
     nodePackages.pnpm
     nodejs
-    vscode
+    # vscode
     insomnia
     sqlx-cli
     dbeaver

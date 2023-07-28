@@ -43,7 +43,8 @@
         follow_mouse = 1
 
         touchpad {
-            natural_scroll = no
+            natural_scroll = yes
+            scroll_factor = 0.2
         }
 
         sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
@@ -138,10 +139,10 @@
     bind = $mainMod, code:107, exec, grimblast --freeze edit area
 
     # Move focus with mainMod + arrow keys
-    bind = $mainMod, left, movefocus, l
-    bind = $mainMod, right, movefocus, r
-    bind = $mainMod, up, movefocus, u
-    bind = $mainMod, down, movefocus, d
+    bind = $mainMod, H, movefocus, l
+    bind = $mainMod, L, movefocus, r
+    bind = $mainMod, K, movefocus, u
+    bind = $mainMod, J, movefocus, d
 
     # Switch workspaces with mainMod + [0-9]
     bind = $mainMod, 1, workspace, 1
@@ -181,7 +182,7 @@
     binde = $mainMod CTRL, L, resizeactive, 45 0
     binde = $mainMod CTRL, H, resizeactive, -45 0
     binde = $mainMod CTRL, K, resizeactive, 0 -45
-    binde = $mainMod CTRL, H, resizeactive, 0 45
+    binde = $mainMod CTRL, J, resizeactive, 0 45
 
     bind = $mainMod, F, fullscreen, 1
     bind = $mainMod CTRL, F, fullscreen, 0
@@ -207,7 +208,7 @@
     bind = $mainMod CTRL, V, exec, pkill rofi || rofi -theme $HOME/.config/rofi/clipboard_theme -modi clipboard:~/.local/bin/cliphist-rofi -show clipboard
 
     # Emoji selector
-    bind = $mainMod, J, exec, pkill rofi || rofi -modi emoji -show emoji
+    bind = $mainMod, G, exec, pkill rofi || rofi -modi emoji -show emoji
 
     # Global hotkeys
     bind = $mainMod, F2, pass,^(com\.obsproject\.Studio)$

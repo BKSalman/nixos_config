@@ -188,9 +188,9 @@
         "tooltip" = false;
       };
       "backlight" = {
-        "device" = "intel_backlight";
-        "on-scroll-up" = "light -A 5";
-        "on-scroll-down" = "light -U 5";
+        "device" = "amdgpu_bl0";
+        "on-scroll-up" = "brightnessctl set 2%-";
+        "on-scroll-down" = "brightnessctl set 2%+";
         "format" = "{icon} {percent}%";
         "format-icons" = [ "" "" "" "" ];
       };
@@ -204,6 +204,7 @@
         # "states" = {
         #   "warning" = 85;
         # };
+        "on-click-right" = "killall pavucontrol || pavucontrol &";
         "on-click" = "pamixer -t";
         "tooltip" = false;
       };

@@ -31,7 +31,6 @@ in
     # bemenu # wayland clone of dmenu
   ];
 
-  services.dbus.enable = true;
   xdg.portal = {
     enable = true;
     wlr.enable = true;
@@ -50,9 +49,9 @@ in
     __GL_VRR_ALLOWED = "0";
     WLR_DRM_NO_ATOMIC = "1";
     _JAVA_AWT_WM_NONREPARENTING = "1";
-    QT_QPA_PLATFORM = "wayland";
+    QT_QPA_PLATFORM = "wayland;xcb";
     QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    GDK_BACKEND = "wayland";
+    GDK_BACKEND = "wayland,x11";
     WLR_NO_HARDWARE_CURSORS = "1";
     MOZ_ENABLE_WAYLAND = "1";
     WLR_BACKEND = "vulkan";
@@ -66,19 +65,19 @@ in
     ];
   };
 
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "Hyprland";
-        user = "salman";
-      };
-      default_session = initial_session;
-    };
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = rec {
+  #     initial_session = {
+  #       command = "Hyprland";
+  #       user = "salman";
+  #     };
+  #     default_session = initial_session;
+  #   };
+  # };
 
-  environment.etc."greetd/environments".text = ''
-    Hyprland
-  '';
+  # environment.etc."greetd/environments".text = ''
+  #   Hyprland
+  # '';
 
 }
