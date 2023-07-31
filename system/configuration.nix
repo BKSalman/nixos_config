@@ -132,11 +132,7 @@
     systemd
     libiconv
     cloudflared
-    mold
     openssl
-    clang
-    llvmPackages.libclang
-    llvmPackages.libcxxClang
     dbus
     eggdbus
     deja-dup
@@ -148,7 +144,7 @@
     nix-prefetch
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
     noto-fonts
@@ -170,6 +166,7 @@
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME="nvidia";
+    QT_QPA_PLATFORMTHEME="kde";
   };
 
   environment.noXlibs = false;
@@ -333,4 +330,6 @@
   services.usbmuxd.enable = true;
 
   programs.droidcam.enable = true;
+
+  services.teamviewer.enable = true;
 }

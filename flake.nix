@@ -30,6 +30,11 @@
     helix = {
       url = "github:helix-editor/helix/23.05";
     };
+
+    ytdlp-gui = {
+      url = "github:bksalman/ytdlp-gui";
+    };
+
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     leftwm = {
@@ -38,16 +43,12 @@
     };
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, leftwm, ...}:
+    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, leftwm, ytdlp-gui, ...}:
     let
       system = "x86_64-linux";
 
       tokyonight-gtk-overlay = final: prev: {
         tokyonight-gtk = prev.callPackage ./packages/tokyonight { };
-      };
-
-      ytdlp-gui-overlay = final: prev: {
-        ytdlp-gui = prev.callPackage ./packages/ytdlp-gui { };
       };
 
       evremap-overlay = final: prev: {
@@ -74,6 +75,7 @@
           nerdfonts-overlay
 
           leftwm.overlay
+          ytdlp-gui.overlay
           hyprland-contrib.overlays.default
           rust-overlay.overlays.default
           # helix.overlays.default
@@ -81,7 +83,6 @@
           (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
           (tokyonight-gtk-overlay)
-          (ytdlp-gui-overlay)
           (evremap-overlay)
           (webcord-overlay)
         ];

@@ -34,7 +34,11 @@
     };
   };
 
-  qt.platformTheme = "gtk"; # qt5ct
+  qt = {
+    enable = true;
+    platformTheme = "qtct"; # qt5ct
+    style.name = "adwaita-dark";
+  };
 
   programs.obs-studio = {
     enable = true;
@@ -64,13 +68,29 @@
 
     # rustup
     jdk
-    (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy  python-lsp-server pylsp-mypy pip ]))
+    (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy  python-lsp-server pylsp-mypy 
+      # (
+      #   buildPythonPackage rec {
+      #     pname = "keymap-drawer";
+      #     version = "0.10.0";
+      #     src = fetchFromGitHub {
+      #       repo = pname;
+      #       owner = "caksoylar";
+      #       rev = "v${version}";
+      #       hash = "sha256-00000000000000000000000000000000000000000000";
+      #     };
+      #     doCheck = false;
+      #     propagatedBuildInputs = [ ];
+      #   }
+      # )
+    ]))
     go
     cmake
     meson
     rust-bindgen
     marksman
 
+    feh
     calc
     termusic
     # just for pactl
@@ -90,11 +110,12 @@
     grimblast
     hyprpicker
     qmk
-   tokei
+    tokei
     bottles
     fd
     kondo
-    gifski
+    # this is broken for now
+    # gifski
     lapce
     eww-wayland
     cliphist
