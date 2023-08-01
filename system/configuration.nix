@@ -27,7 +27,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
