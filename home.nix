@@ -90,6 +90,8 @@
     rust-bindgen
     marksman
 
+    haskellPackages.greenclip
+    networkmanagerapplet
     feh
     calc
     termusic
@@ -266,4 +268,6 @@
     Name=UXplay
     Icon=~/.local/share/applications/Airplay.png
   '';
+
+  home.file.".config/starship.toml".source = ./starship.toml;
 }

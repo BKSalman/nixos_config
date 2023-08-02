@@ -1,0 +1,159 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+format = """
+  $username\
+  $hostname\
+  $shlvl\
+  $singularity\
+  $kubernetes\
+  $directory\
+  $vcsh\
+  $git_branch\
+  $git_commit\
+  $git_state\
+  $git_metrics\
+  $git_status\
+  $hg_branch\
+  $docker_context\
+  $package\
+  $buf\
+  $c\
+  $cmake\
+  $cobol\
+  $container\
+  $daml\
+  $dart\
+  $deno\
+  $dotnet\
+  $elixir\
+  $elm\
+  $erlang\
+  $golang\
+  $haskell\
+  $helm\
+  $java\
+  $julia\
+  $kotlin\
+  $lua\
+  $nim\
+  $nodejs\
+  $ocaml\
+  $perl\
+  $php\
+  $pulumi\
+  $purescript\
+  $python\
+  $rlang\
+  $red\
+  $ruby\
+  $rust\
+  $scala\
+  $swift\
+  $terraform\
+  $vlang\
+  $vagrant\
+  $zig\
+  $nix_shell\
+  $conda\
+  $spack\
+  $memory_usage\
+  $aws\
+  $gcloud\
+  $openstack\
+  $azure\
+  $env_var\
+  $crystal\
+  $custom\
+  $sudo\
+  $cmd_duration\
+  $line_break\
+  $jobs\
+  $battery\
+  $time\
+  $status\
+  $shell\
+  [└─>](bold green) """
+
+# Inserts a blank line between shell prompts
+add_newline = true
+
+# [directory]
+# truncation_length = 1
+# truncation_symbol = "…/"
+
+[username]
+style_root = "black bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
+
+[aws]
+symbol = "  "
+
+[buf]
+symbol = " "
+
+[c]
+symbol = " "
+
+[conda]
+symbol = " "
+
+[dart]
+symbol = " "
+
+[directory]
+read_only = " "
+
+[docker_context]
+symbol = " "
+
+[elixir]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[haskell]
+symbol = " "
+
+[hg_branch]
+symbol = " "
+
+[java]
+symbol = " "
+
+[julia]
+symbol = " "
+
+[memory_usage]
+symbol = " "
+
+[nim]
+symbol = " "
+
+[nix_shell]
+symbol = " "
+
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+
+[python]
+symbol = " "
+
+[spack]
+symbol = "🅢 "
+
+[rust]
+symbol = "🦀 "
+# format = "v [🦀 $version](red bold)"
