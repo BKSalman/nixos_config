@@ -24,5 +24,7 @@ if [ -x "$(command -v picom)" ]; then
 fi
 
 
-polybar -c $SCRIPTPATH/polybar.config
+polybar -c $SCRIPTPATH/polybar.config &
+nm-applet &
+greenclip daemon
 # pagbar --config $SCRIPTPATH/pagbar.toml &

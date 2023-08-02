@@ -16,7 +16,8 @@ window {
   border:                     0px;
   border-color:               @ac;
   border-radius:              8px;
-  width:                      30%;
+  width:                      40%;
+  height:                     40%;
   location:                   center;
   x-offset:                   0;
   y-offset:                   0;
