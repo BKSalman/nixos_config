@@ -90,6 +90,7 @@
     rust-bindgen
     marksman
 
+    gf
     haskellPackages.greenclip
     networkmanagerapplet
     feh

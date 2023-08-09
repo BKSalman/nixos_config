@@ -236,12 +236,12 @@
   services.tailscale.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 5173 8000 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 8101 8000 ];
+  networking.firewall.allowedUDPPorts = [ 41641 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
-  networking.search = [ "taildb9db.ts.net" ];
+  # networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
+  # networking.search = [ "taildb9db.ts.net" ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

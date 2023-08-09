@@ -67,6 +67,10 @@
         nerdfonts = prev.callPackage ./packages/nerdfonts { };
       };
 
+      gf-overlay = final: prev: {
+        gf = prev.callPackage ./packages/gf { };
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = { allowUnfree = true; };
@@ -80,8 +84,9 @@
           rust-overlay.overlays.default
           # helix.overlays.default
           prismlauncher.overlays.default
-          (insomnia-overlay)
+          # (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
+          (gf-overlay)
           (tokyonight-gtk-overlay)
           (evremap-overlay)
           (webcord-overlay)

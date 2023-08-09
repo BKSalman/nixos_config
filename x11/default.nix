@@ -6,6 +6,7 @@
   environment.systemPackages = with pkgs; [
     polybar
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
+    dunst
   ];
 
   xdg.portal = {
@@ -32,6 +33,7 @@
     # _JAVA_AWT_WM_NONREPARENTING = "1";
     PATH = [
       "$HOME/.local/bin/:$PATH"
+      "$HOME/.cargo/bin/:$PATH"
     ];
   };
 

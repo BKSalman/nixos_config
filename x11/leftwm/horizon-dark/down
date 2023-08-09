@@ -6,3 +6,5 @@ leftwm-command "UnloadTheme"
 # pkill pagbar
 pkill polybar
 pkill picom
+pkill greenclip
+pkill dunst

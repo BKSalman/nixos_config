@@ -26,5 +26,6 @@ fi
 
 polybar -c $SCRIPTPATH/polybar.config &
 nm-applet &
-greenclip daemon
+greenclip daemon &
+dunst
 # pagbar --config $SCRIPTPATH/pagbar.toml &
