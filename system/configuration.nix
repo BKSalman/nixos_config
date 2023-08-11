@@ -331,4 +331,9 @@
   programs.droidcam.enable = true;
 
   services.teamviewer.enable = true;
+
+  # give acess to backlight to be able to change it from polybar or whatever
+  services.udev.extraRules = ''
+    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl0", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  '';
 }
