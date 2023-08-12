@@ -6,6 +6,7 @@
     ./x11/leftwm/config.nix
     ./waybar
     ./helix
+    ./mpv
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -217,17 +218,7 @@
     alacritty
     kitty
     plasma5Packages.bismuth
-    # helix
     vim
-
-    # Hyprland stuff
-    hyprpaper
-    mako
-    # swayidle
-    # swaylock-effects
-    # wofi
-    # waybar
-
   ];
 
   # TODO: move to rofi directory

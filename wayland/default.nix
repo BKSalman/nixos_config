@@ -28,7 +28,8 @@ in
     swayidle
     swaylock-effects
     wayland
-    # bemenu # wayland clone of dmenu
+    hyprpaper
+    mako
   ];
 
   xdg.portal = {
