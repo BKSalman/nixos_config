@@ -60,6 +60,15 @@
   #   };
   # };
 
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+    #   dracula-theme.theme-dracula
+      vscodevim.vim
+    #   yzhang.markdown-all-in-one
+    ];
+  };
+
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     (rust-bin.stable.latest.default.override {
@@ -91,6 +100,8 @@
     rust-bindgen
     marksman
 
+    nixops_unstable
+    comma
     gf
     haskellPackages.greenclip
     networkmanagerapplet
@@ -193,7 +204,6 @@
     nodePackages.svelte-language-server
     nodePackages.pnpm
     nodejs
-    # vscode
     insomnia
     sqlx-cli
     dbeaver

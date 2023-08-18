@@ -8,13 +8,14 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./../x11
-      ./../x11/leftwm
-      # ./../wayland
-      ./../virtual/vfio.nix
-      ./../uxplay.nix
-      ./../vm.nix
-      ./../bash.nix
+      ../x11
+      ../x11/leftwm
+      # ../wayland
+      ../virtual/vfio.nix
+      ../uxplay.nix
+      ../vm.nix
+      ../bash.nix
+      # ../headscale.nix
     ];
 
   nix = {
@@ -106,7 +107,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "acme" "headscale" ];
     packages = with pkgs; [
       kate
       #  thunderbird
@@ -236,8 +237,13 @@
   services.tailscale.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 8101 8000 ];
-  networking.firewall.allowedUDPPorts = [ 41641 ];
+  networking.firewall = {
+    # enable = false;
+    allowedTCPPorts = [ 8101 8000 8080 443 22 ];
+    checkReversePath = "loose";
+    trustedInterfaces = [ "tailscale0" ];
+    allowedUDPPorts = [ 41641 config.services.tailscale.port ];
+  };
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
   # networking.nameservers = [ "100.100.100.100" "8.8.8.8" "1.1.1.1" ];
@@ -332,8 +338,28 @@
 
   services.teamviewer.enable = true;
 
+  # Fingerprint support
+  # still not working tho
+  services.fprintd = {
+    enable = true;
+
+    tod.enable = true;
+
+    tod.driver = pkgs.libfprint-2-tod1-goodix;
+  };
+
   # give acess to backlight to be able to change it from polybar or whatever
   services.udev.extraRules = ''
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl0", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
   '';
+
+  # temporary cus NetworkManager-wait-online fails the nixos switch
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+    unitConfig.StartLimitIntervalSec = 0;
+  };
 }

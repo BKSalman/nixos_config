@@ -50,3 +50,5 @@ eval "$(zoxide init bash)"
 eval "$(starship init bash)"
 
 eval "$(direnv hook bash)"
+
+alias leftwm-dev="~/.cargo/bin/leftwm"
