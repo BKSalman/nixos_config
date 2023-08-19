@@ -30,6 +30,7 @@ in
     wayland
     hyprpaper
     mako
+    element-desktop-wayland
   ];
 
   xdg.portal = {

@@ -14,7 +14,6 @@
       ../virtual/vfio.nix
       ../uxplay.nix
       ../vm.nix
-      ../bash.nix
       # ../headscale.nix
     ];
 

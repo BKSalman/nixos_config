@@ -7,6 +7,7 @@
     ./waybar
     ./helix
     ./mpv
+    ./bash.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -238,10 +239,6 @@
   home.file.".config/rofi/clipboard_theme.rasi".source = ./rofi/clipboard_theme.rasi;
   home.file.".config/rofi/powermenu.sh".source = ./rofi/powermenu.sh;
   home.file.".config/rofi/powermenu_theme.rasi".source = ./rofi/powermenu_theme.rasi;
-
-  home.file.".inputrc".source = ./bash/.inputrc;
-
-  home.file.".bashrc".source = ./bash/.bashrc;
 
   home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
 

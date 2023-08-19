@@ -7,6 +7,7 @@
     polybar
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
     dunst
+    element-desktop
   ];
 
   xdg.portal = {
@@ -41,7 +42,6 @@
 
   services.picom = {
     enable = true;
-    vSync = true;
   };
 }
 
