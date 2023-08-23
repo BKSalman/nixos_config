@@ -101,6 +101,12 @@
     rust-bindgen
     marksman
 
+    jq
+    nh
+    screenkey
+    taskwarrior
+    taskwarrior-tui
+    pdfarranger
     nixops_unstable
     comma
     gf
@@ -211,7 +217,6 @@
     mpv
     frp
     prismlauncher
-    lazygit
     flameshot
     ngrok
     piper
@@ -219,8 +224,6 @@
     gh
     exa
     discord-canary
-    zoxide
-    starship
     # davinci-resolve
     piper
     spotify
@@ -269,4 +272,15 @@
   '';
 
   home.file.".config/starship.toml".source = ./starship.toml;
+
+  programs.starship = {
+    enable = true;
+    enableBashIntegration = true;
+  };
+
+  programs.zoxide.enable = true;
+
+  # programs.nushell.enable = true;
+
+  programs.lazygit.enable = true;
 }

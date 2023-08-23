@@ -166,6 +166,7 @@
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME="nvidia";
     QT_QPA_PLATFORMTHEME="kde";
+    FLAKE = "/home/salman/nixos_config";
   };
 
   environment.noXlibs = false;

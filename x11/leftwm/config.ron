@@ -32,6 +32,7 @@
     insert_behavior: Bottom,
     scratchpad: [
         (name: "Kitty", value: "kitty", x: 420, y: 390, height: 300, width: 1000),
+        (name: "Chatterino", value: "chatterino", x: 1420, y: 100, height: 900, width: 500),
     ],
     window_rules: [],
     disable_current_tag_swap: true,
@@ -44,6 +45,7 @@
     auto_derive_workspaces: true,
     keybind: [
         (command: ToggleScratchPad, value: "Kitty", modifier: ["modkey"], key: "p"),
+        (command: ToggleScratchPad, value: "Chatterino", modifier: ["modkey"], key: "b"),
         (command: Execute, value: "dolphin", modifier: ["modkey"], key: "e"),
         (command: Execute, value: "rofi -theme $HOME/.config/rofi/clipboard_theme -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'", modifier: ["modkey", "Control"], key: "v"),
         (command: Execute, value: "pkill rofi || rofi -modi emoji -show emoji", modifier: ["modkey"], key: "g"),

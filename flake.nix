@@ -41,9 +41,14 @@
       url = "github:leftwm/leftwm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nh = {
+      url = "github:viperML/nh";
+      inputs.nixpkgs.follows = "nixpkgs"; # override this repo's nixpkgs snapshot
+    };
   };
 
-    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, leftwm, ytdlp-gui, ...}:
+    outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, leftwm, ytdlp-gui, nh, ...}:
     let
       system = "x86_64-linux";
 
@@ -63,6 +68,10 @@
         insomnia = prev.callPackage ./packages/insomnia { };
       };
 
+      nh-overlay = final: prev: {
+        nh = nh.packages.${system}.default;
+      };
+
       nerdfonts-overlay = final: prev: {
         nerdfonts = prev.callPackage ./packages/nerdfonts { };
       };
@@ -78,6 +87,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          nh-overlay
           leftwm.overlay
           ytdlp-gui.overlay
           hyprland-contrib.overlays.default
