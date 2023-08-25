@@ -224,6 +224,7 @@
     gh
     exa
     discord-canary
+    discord
     # davinci-resolve
     piper
     spotify

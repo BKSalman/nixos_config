@@ -15,6 +15,7 @@
       ../uxplay.nix
       ../vm.nix
       # ../headscale.nix
+      ../nextcloud.nix
     ];
 
   nix = {
