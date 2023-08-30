@@ -57,7 +57,9 @@ in
     GDK_BACKEND = "wayland";
     WLR_NO_HARDWARE_CURSORS = "1";
     MOZ_ENABLE_WAYLAND = "1";
-    WLR_BACKEND = "vulkan";
+    # WLR_BACKEND = "vulkan";
+    # WLR_BACKENDS="headless, vulkan, wayland";
+    # WLR_LIBINPUT_NO_DEVICES="1";
     WLR_RENDERER = "vulkan";
     # XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";

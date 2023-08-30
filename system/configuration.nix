@@ -7,12 +7,12 @@
   imports =
     [
       # Include the results of the hardware scan.
+      ./../sunshine/services.sunshine.nix
       ./hardware-configuration.nix
       ./../wayland
       ./../virtual/vfio.nix
       ./../uxplay.nix
       ./../vm.nix
-      ./../bash.nix
     ];
 
   nix = {
@@ -73,7 +73,7 @@
     displayManager.defaultSession = "plasma";
     desktopManager.plasma5.enable = true;
     enable = true;
-    layout = "us";
+    layout = "us,ara";
     xkbVariant = "";
     videoDrivers = [ "nvidia" ];
   };
@@ -122,6 +122,11 @@
     # IOS
     libimobiledevice
     ifuse
+
+    docker-compose
+    podman-compose
+    bat
+    tmux
     egl-wayland
     firefox-wayland
     pciutils
@@ -146,12 +151,13 @@
     nix-prefetch
   ];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     liberation_ttf
     nerdfonts
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
+    corefonts
     # fira-code
     # fira-code-symbols
     mplus-outline-fonts.githubRelease
@@ -167,6 +173,8 @@
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
     LIBVA_DRIVER_NAME = "nvidia";
+    MANROFFOPT="-c";
+    MANPAGER="sh -c 'col -bx | bat -l man -p'";
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
@@ -249,8 +257,8 @@
   services.tailscale.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.allowedTCPPorts = [ 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 ];
+  networking.firewall.allowedUDPPorts = [ 5900 5800 47989 47990 48010 47984 47999 4000 41641 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -274,22 +282,26 @@
   };
 
   virtualisation = {
-    # Podman
-    podman.enable = true;
-    # Create a `docker` alias for podman, to use it as a drop-in replacement
-    podman.dockerCompat = true;
-    podman.dockerSocket.enable = true;
-    # Required for containers under podman-compose to be able to talk to each other.
-    podman.defaultNetwork.settings.dns_enabled = true;
+    oci-containers.backend = "docker";
 
-    oci-containers.backend = "podman";
+    # Podman
+    # podman = {
+    #   enable = true;
+    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
+    #   dockerCompat = true;
+    #   dockerSocket.enable = true;
+    #   # Required for containers under podman-compose to be able to talk to each other.
+    #   defaultNetwork.settings.dns_enabled = true;
+    # };
 
     # Docker
-    # docker.enable = true;
-    # docker.rootless = {
-    #   enable = true;
-    #   setSocketVariable = true;
-    # };
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
   };
 
   # Git
@@ -338,4 +350,14 @@
 
   # IOS
   services.usbmuxd.enable = true;
+
+  # temporary cus NetworkManager-wait-online fails the nixos switch
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      Restart = "on-failure";
+      RestartSec = 1;
+    };
+    unitConfig.StartLimitIntervalSec = 0;
+  };
 }

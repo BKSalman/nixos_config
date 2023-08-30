@@ -5,6 +5,7 @@
     ./wayland/hyprland
     ./waybar
     ./helix
+    ./bash
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -63,7 +64,7 @@
     })
 
     # rustup
-    jdk
+    jdk17
     (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy ]))
     go
     cmake
@@ -71,6 +72,11 @@
     rust-bindgen
     marksman
 
+    magic-wormhole
+    nomachine-client
+    wayvnc
+    libreoffice-qt
+    inkscape
     helvum
     sd
     davinci-resolve
@@ -134,7 +140,6 @@
     ncmpcpp
     webcord
     pavucontrol
-    bat
     stremio
     prusa-slicer
     cura
@@ -163,7 +168,6 @@
     vscode
     insomnia
     sqlx-cli
-    dbeaver
     mpv
     frp
     prismlauncher
@@ -207,8 +211,6 @@
 
   home.file.".inputrc".source = ./bash/.inputrc;
 
-  home.file.".bashrc".source = ./bash/.bashrc;
-
   home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
 
   home.file.".local/bin/logout.sh".source = ./virtual/logout.sh;
@@ -246,4 +248,6 @@
     Exec=env QT_QPA_PLATFORM=xcb davinci-resolve
     Name=DaVinci Resolve
   '';
+
+  home.file.".config/starship.toml".source = ./starship.toml;
 }

@@ -8,6 +8,7 @@
         # Execute your favorite apps at launch
         # exec-once = waybar & hyprpaper & firefox
         exec-once = waybar & firefox & swww init
+        exec-once = wayvnc 0.0.0.0
         exec-once = dbus-hyprland-environment
         exec-once = systemctl --user start graphical-session.target
 
@@ -44,7 +45,7 @@
 
     2    # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
         input {
-            kb_layout = us,ar
+            kb_layout = us,ara
             kb_variant =
             kb_model =
             kb_options = grp:alt_shift_toggle
@@ -77,10 +78,12 @@
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
             rounding = 7
-            blur = yes
-            blur_size = 3
-            blur_passes = 1
-            blur_new_optimizations = on
+            blur {
+                enabled = yes
+                size = 3
+                passes = 1
+                new_optimizations = on
+            }
 
             drop_shadow = yes
             shadow_range = 4
@@ -192,7 +195,7 @@
         binde = $mainMod CTRL, L, resizeactive, 45 0
         binde = $mainMod CTRL, H, resizeactive, -45 0
         binde = $mainMod CTRL, K, resizeactive, 0 -45
-        binde = $mainMod CTRL, H, resizeactive, 0 45
+        binde = $mainMod CTRL, J, resizeactive, 0 45
 
         bind = $mainMod, F, fullscreen, 1
         bind = $mainMod CTRL, F, fullscreen, 0

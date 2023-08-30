@@ -4,7 +4,7 @@ final: prev: {
       owner = "89luca89";
       repo = "distrobox";
       rev = "main";
-      sha256 = "sha256-GPhYZYmYoLcwN6e1wwEZNnih/B78MdMWryZxYGW2ID0=";
+      sha256 = "sha256-Y3AfDHZThN2XWx8Mxetjy3SxKi4RZZQOHgGRYAjL688=";
     };
   });
 }

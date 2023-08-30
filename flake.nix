@@ -32,18 +32,16 @@
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    ytdlp-gui.url = "github:bksalman/ytdlp-gui";
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, ... }:
     let
       system = "x86_64-linux";
 
       tokyonight-gtk-overlay = final: prev: {
         tokyonight-gtk = prev.callPackage ./packages/tokyonight { };
-      };
-
-      ytdlp-gui-overlay = final: prev: {
-        ytdlp-gui = prev.callPackage ./packages/ytdlp-gui { };
       };
 
       evremap-overlay = final: prev: {
@@ -82,6 +80,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          ytdlp-gui.overlay
           hyprland-contrib.overlays.default
           rust-overlay.overlays.default
           # helix.overlays.default
@@ -92,7 +91,6 @@
           (import ./overlays/mpvpaper.nix)
           (import ./overlays/distrobox.nix)
           (tokyonight-gtk-overlay)
-          (ytdlp-gui-overlay)
           (evremap-overlay)
           (webcord-overlay)
         ];
