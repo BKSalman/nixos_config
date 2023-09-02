@@ -7,12 +7,13 @@
   imports =
     [
       # Include the results of the hardware scan.
-      ./../sunshine/services.sunshine.nix
+      # ../sunshine/services.sunshine.nix
       ./hardware-configuration.nix
-      ./../wayland
-      ./../virtual/vfio.nix
-      ./../uxplay.nix
-      ./../vm.nix
+      ../wayland
+      ../virtual/vfio.nix
+      ../uxplay.nix
+      ../vm.nix
+      ../nextcloud.nix
     ];
 
   nix = {
@@ -66,16 +67,22 @@
   # services.xserver.displayManager.gdm.enable = true;
   # services.xserver.displayManager.gdm.wayland = false;
 
-  # Configure keymap in X11
   services.xserver = {
-    displayManager.sddm.enable = true;
-    displayManager.sddm.autoNumlock = true;
-    displayManager.defaultSession = "plasma";
-    desktopManager.plasma5.enable = true;
     enable = true;
-    layout = "us,ara";
-    xkbVariant = "";
+
+    displayManager.sessionPackages = [ pkgs.hyprland ];
+    displayManager.gdm.enable = true;
+    displayManager.gdm.wayland = true;
+    # displayManager.sddm.enable = true;
+    # displayManager.sddm.autoNumlock = true;
+    displayManager.defaultSession = "hyprland";
+    desktopManager.plasma5.enable = true;
+
     videoDrivers = [ "nvidia" ];
+
+    layout = "us,ara";
+    xkbOptions = "grp:alt_shift_toggle";
+    xkbVariant = "";
   };
 
   # Enable CUPS to print documents.
@@ -123,6 +130,8 @@
     libimobiledevice
     ifuse
 
+    gparted
+    nixops_unstable
     docker-compose
     podman-compose
     bat
@@ -254,10 +263,13 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
-  services.tailscale.enable = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+  };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 ];
+  networking.firewall.allowedTCPPorts = [ 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 ];
   networking.firewall.allowedUDPPorts = [ 5900 5800 47989 47990 48010 47984 47999 4000 41641 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

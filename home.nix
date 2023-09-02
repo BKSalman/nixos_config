@@ -72,6 +72,7 @@
     rust-bindgen
     marksman
 
+    comma
     magic-wormhole
     nomachine-client
     wayvnc
@@ -250,4 +251,10 @@
   '';
 
   home.file.".config/starship.toml".source = ./starship.toml;
+
+  home.file.".ssh/config".text = ''
+    Host aur.archlinux.org
+    IdentityFile ~/.ssh/aur
+    User aur
+  '';
 }
