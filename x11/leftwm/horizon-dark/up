@@ -24,7 +24,13 @@ if [ -x "$(command -v picom)" ]; then
 fi
 
 
-polybar -c $SCRIPTPATH/polybar.config &
+if type "xrandr"; then 
+  for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
+    MONITOR=$m polybar -c $SCRIPTPATH/polybar.config --reload monitor &
+  done
+else 
+  polybar -c $SCRIPTPATH/polybar.config --reload monitor &
+fi
 nm-applet &
 greenclip daemon &
 dunst

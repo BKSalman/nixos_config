@@ -16,6 +16,7 @@ in
 {
 
   environment.systemPackages = with pkgs; [
+    eww-wayland
     dbus-hyprland-environment
     wayland
     glib

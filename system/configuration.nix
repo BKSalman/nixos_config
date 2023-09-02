@@ -9,7 +9,9 @@
       # Include the results of the hardware scan.
       # ../sunshine/services.sunshine.nix
       ./hardware-configuration.nix
-      ../wayland
+      # ../wayland
+      ../x11
+      ../x11/leftwm
       ../virtual/vfio.nix
       ../uxplay.nix
       ../vm.nix
@@ -75,7 +77,6 @@
     displayManager.gdm.wayland = true;
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
-    displayManager.defaultSession = "hyprland";
     desktopManager.plasma5.enable = true;
 
     videoDrivers = [ "nvidia" ];

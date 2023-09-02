@@ -2,8 +2,9 @@
 {
 
   imports = [
-    ./wayland/hyprland
-    ./waybar
+    # ./wayland/hyprland
+    # ./waybar
+    ./x11/leftwm/config.nix
     ./helix
     ./bash
   ];
@@ -72,6 +73,7 @@
     rust-bindgen
     marksman
 
+    nm-applet
     comma
     magic-wormhole
     nomachine-client
@@ -93,7 +95,7 @@
     kondo
     gifski
     lapce
-    eww-wayland
+    eww
     cliphist
     protonup-qt
     teams

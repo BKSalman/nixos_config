@@ -34,9 +34,14 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     ytdlp-gui.url = "github:bksalman/ytdlp-gui";
+
+    leftwm = {
+      url = "github:leftwm/leftwm";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, ... }:
     let
       system = "x86_64-linux";
 
@@ -80,6 +85,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          leftwm.overlays.default
           ytdlp-gui.overlay
           hyprland-contrib.overlays.default
           rust-overlay.overlays.default
@@ -114,7 +120,7 @@
               home-manager.users.salman = {
                 imports = [
                   ./home.nix
-                  hyprland.homeManagerModules.default
+                  # hyprland.homeManagerModules.default
                 ];
               };
               home-manager.extraSpecialArgs = { inherit helix; };
