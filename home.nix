@@ -73,7 +73,11 @@
     rust-bindgen
     marksman
 
-    nm-applet
+    arandr
+    gf
+    fm
+    xfce.thunar
+    screenkey
     comma
     magic-wormhole
     nomachine-client

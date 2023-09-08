@@ -5,7 +5,10 @@
   };
 
   environment.systemPackages = with pkgs; [
+    networkmanagerapplet
     haskellPackages.greenclip
+    feh
+    pulseaudio
  ];
 }
 

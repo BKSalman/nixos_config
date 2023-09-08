@@ -131,6 +131,16 @@
     libimobiledevice
     ifuse
 
+    xdg-utils
+    solaar
+    (cinnamon.nemo-with-extensions.override {
+      extensions = [
+        cinnamon.nemo-python
+        cinnamon.nemo-fileroller
+        (pkgs.callPackage ../packages/syncstate {})
+      ];
+    })
+    nextcloud-client
     gparted
     nixops_unstable
     docker-compose
@@ -185,6 +195,7 @@
     LIBVA_DRIVER_NAME = "nvidia";
     MANROFFOPT="-c";
     MANPAGER="sh -c 'col -bx | bat -l man -p'";
+    QT_QPA_PLATFORMTHEME = "kde";
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
@@ -241,7 +252,24 @@
 
   services.ratbagd.enable = true;
 
-  services.input-remapper.enable = true;
+  # services.input-remapper.enable = true;
+
+  # services.xremap = {
+  #   serviceMode = "system";
+  #   withX11 = true;
+  #   config = {
+  #     keymap = [
+  #       {
+  #         name = "Double click";
+  #         remap = {
+  #           "282" = [ "BTN_LEFT" "BTN_LEFT" ];
+  #         };
+  #       }
+  #     ];
+  #   };
+  #   userName = "salman";
+  #   deviceName = "Logitech G502";
+  # };
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -372,5 +400,15 @@
       RestartSec = 1;
     };
     unitConfig.StartLimitIntervalSec = 0;
+  };
+
+
+  systemd.services.manmap = {
+    enable = true;
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.manmap}/bin/manmap -d \"Logitech G502\"";
+      Restart = "always";
+   };
   };
 }

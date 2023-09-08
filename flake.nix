@@ -39,9 +39,13 @@
       url = "github:leftwm/leftwm";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    manmap = {
+      url = "github:bksalman/manmap";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, manmap, ... }:
     let
       system = "x86_64-linux";
 
@@ -85,6 +89,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+          manmap.overlay
           leftwm.overlays.default
           ytdlp-gui.overlay
           hyprland-contrib.overlays.default
@@ -112,6 +117,8 @@
 
           modules = [
             ./system/configuration.nix
+
+            # xremap-flake.nixosModules.default
 
             home-manager.nixosModules.home-manager
             {

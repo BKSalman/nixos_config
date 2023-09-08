@@ -26,10 +26,10 @@ fi
 
 if type "xrandr"; then 
   for m in $(xrandr --query | grep " connected" | cut -d" " -f1); do
-    MONITOR=$m polybar -c $SCRIPTPATH/polybar.config --reload monitor &
+    MONITOR=$m polybar -c $SCRIPTPATH/polybar.config --reload pag &
   done
 else 
-  polybar -c $SCRIPTPATH/polybar.config --reload monitor &
+  polybar -c $SCRIPTPATH/polybar.config --reload pag &
 fi
 nm-applet &
 greenclip daemon &
