@@ -43,9 +43,13 @@
     manmap = {
       url = "github:bksalman/manmap";
     };
+
+    sadmadbotlad = {
+      url = "github:bksalman/sadmadbotlad";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, manmap, ... }:
+  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, manmap, sadmadbotlad, ... }:
     let
       system = "x86_64-linux";
 
@@ -114,6 +118,7 @@
         # nixos is my hostname
         nixos = lib.nixosSystem {
           inherit system pkgs;
+          specialArgs = { inherit sadmadbotlad; };
 
           modules = [
             ./system/configuration.nix

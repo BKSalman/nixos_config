@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, sadmadbotlad, ... }:
 {
   imports =
     [
@@ -158,8 +158,6 @@
     mold
     openssl
     clang
-    llvmPackages.libclang
-    llvmPackages.libcxxClang
     dbus
     eggdbus
     deja-dup
@@ -405,10 +403,32 @@
 
   systemd.services.manmap = {
     enable = true;
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
       ExecStart = "${pkgs.manmap}/bin/manmap -d \"Logitech G502\"";
       Restart = "always";
    };
+  };
+
+
+  systemd.user.services.sadmadfrontendlad = {
+    enable = true;
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${sadmadbotlad.packages.x86_64-linux.server}/bin/server . 8080";
+      Restart = "always";
+    };
+  };
+
+  systemd.user.services.sadmadbotlad = {
+    enable = true;
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${sadmadbotlad.packages.x86_64-linux.default}/bin/sadmadbotlad " +
+      "-c /home/salman/.config/sadmadbotlad/config.toml " +
+      "--commands-path ${sadmadbotlad.packages.x86_64-linux.default}/share/commands " +
+      "-db /home/salman/.config/sadmadbotlad/database.db";
+      Restart = "always";
+    };
   };
 }
