@@ -33,9 +33,9 @@ unset rc
 
 export PATH=/home/salman/.surrealdb:$PATH
 
-alias ls='exa --time-style=long-iso --group-directories-first --icons --no-permissions --no-user -l --git'
+alias ls='eza --time-style=long-iso --group-directories-first --icons --no-permissions --no-user -l --git'
 
-alias ll="exa --time-style=long-iso --group-directories-first --icons -la"
+alias ll="eza --time-style=long-iso --group-directories-first --icons -la"
 
 alias cat=bat
 

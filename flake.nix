@@ -47,9 +47,13 @@
     sadmadbotlad = {
       url = "github:bksalman/sadmadbotlad";
     };
+
+    eza = {
+      url = "github:eza-community/eza";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, manmap, sadmadbotlad, ... }:
+  outputs = { nixpkgs, home-manager, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, manmap, sadmadbotlad, eza, ... }:
     let
       system = "x86_64-linux";
 
@@ -81,6 +85,10 @@
         davinci-resolve = prev.callPackage ./packages/davinci-resolve { };
       };
 
+      eza-overlay = final: prev: {
+        eza = eza.packages.${system}.default;
+      };
+
       pkgs = import nixpkgs {
         inherit system;
         config = {
@@ -93,6 +101,7 @@
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
+
           manmap.overlay
           leftwm.overlays.default
           ytdlp-gui.overlay
@@ -100,6 +109,7 @@
           rust-overlay.overlays.default
           # helix.overlays.default
           prismlauncher.overlays.default
+          (eza-overlay)
           (obs-text-pango-overlay)
           (davinci-resolve-overlay)
           (insomnia-overlay)
