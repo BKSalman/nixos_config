@@ -6,7 +6,7 @@
       nd = "nix develop";
       sk = "screenkey -g 300x300+2700+790";
       jc = "journalctl --output cat";
-      switch = "sudo nixo-rebuild switch --flake .#";
+      switch = "sudo nixos-rebuild switch --flake .# -L";
     };
     bashrcExtra = builtins.readFile ./.bashrc;
   };
