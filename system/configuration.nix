@@ -62,13 +62,6 @@
     LC_ALL = "en_US.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-
-  # Enable the KDE Plasma Desktop Environment.
-
-  # services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.displayManager.gdm.wayland = false;
-
   services.xserver = {
     enable = true;
 
@@ -77,7 +70,7 @@
     displayManager.gdm.wayland = true;
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
-    desktopManager.plasma5.enable = true;
+    # desktopManager.plasma5.enable = true;
 
     videoDrivers = [ "nvidia" ];
 
@@ -233,9 +226,6 @@
     "snd-aloop"
   ];
 
-
-  # GNOME stuff
-
   services.gvfs.enable = true;
 
   programs.dconf.enable = true;
@@ -244,30 +234,9 @@
   services.duplicity.frequency = null;
   services.duplicity.targetUrl = "";
 
-  # KDE stuff
-
   programs.partition-manager.enable = true;
 
   services.ratbagd.enable = true;
-
-  # services.input-remapper.enable = true;
-
-  # services.xremap = {
-  #   serviceMode = "system";
-  #   withX11 = true;
-  #   config = {
-  #     keymap = [
-  #       {
-  #         name = "Double click";
-  #         remap = {
-  #           "282" = [ "BTN_LEFT" "BTN_LEFT" ];
-  #         };
-  #       }
-  #     ];
-  #   };
-  #   userName = "salman";
-  #   deviceName = "Logitech G502";
-  # };
 
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -296,8 +265,8 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 ];
-  networking.firewall.allowedUDPPorts = [ 5900 5800 47989 47990 48010 47984 47999 4000 41641 ];
+  networking.firewall.allowedTCPPorts = [ 25565 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 ];
+  networking.firewall.allowedUDPPorts = [ 25565 5900 5800 47989 47990 48010 47984 47999 4000 41641 ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
@@ -410,25 +379,9 @@
    };
   };
 
-
-  systemd.user.services.sadmadfrontendlad = {
-    enable = true;
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      ExecStart = "${sadmadbotlad.packages.x86_64-linux.server}/bin/server . 8080";
-      Restart = "always";
-    };
-  };
-
-  systemd.user.services.sadmadbotlad = {
-    enable = true;
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      ExecStart = "${sadmadbotlad.packages.x86_64-linux.default}/bin/sadmadbotlad " +
-      "-c /home/salman/.config/sadmadbotlad/config.toml " +
-      "--commands-path ${sadmadbotlad.packages.x86_64-linux.default}/share/commands " +
-      "-db /home/salman/.config/sadmadbotlad/database.db";
-      Restart = "always";
-    };
+  xdg.mime.defaultApplications = {
+    "text/html" = "librewolf.desktop";
+    "x-scheme-handler/http" = "firefox.desktop";
+    "x-scheme-handler/https" = "firefox.desktop";
   };
 }
