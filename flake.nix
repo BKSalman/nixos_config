@@ -33,7 +33,10 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-    ytdlp-gui.url = "github:bksalman/ytdlp-gui";
+    ytdlp-gui = {
+      url = "github:bksalman/ytdlp-gui";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     leftwm = {
       url = "github:leftwm/leftwm";
@@ -145,7 +148,7 @@
                   # hyprland.homeManagerModules.default
                 ];
               };
-              home-manager.extraSpecialArgs = { inherit helix; };
+              home-manager.extraSpecialArgs = { inherit helix sadmadbotlad; };
             }
           ];
         };
