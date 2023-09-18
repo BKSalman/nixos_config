@@ -4,7 +4,6 @@
   imports = [
     # ./wayland/hyprland
     ./x11/leftwm/config.nix
-    ./waybar
     ./helix
     ./mpv
     ./bash.nix

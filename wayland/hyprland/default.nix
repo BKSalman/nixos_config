@@ -1,5 +1,8 @@
 { pkgs, ... }: {
-  imports = [ ./config.nix ];
+  imports = [
+    ./config.nix
+    ../../waybar
+  ];
 
   home.packages = with pkgs; [
     grimblast
