@@ -2,7 +2,7 @@
 {
 
   imports = [
-    ./wayland/hyprland
+    # ./wayland/hyprland
     ./x11/leftwm/config.nix
     ./waybar
     ./helix
@@ -38,8 +38,7 @@
 
   qt = {
     enable = true;
-    platformTheme = "qtct"; # qt5ct
-    style.name = "adwaita-dark";
+    platformTheme = "gtk";
   };
 
   programs.obs-studio = {
@@ -64,9 +63,10 @@
   programs.vscode = {
     enable = true;
     extensions = with pkgs.vscode-extensions; [
-    #   dracula-theme.theme-dracula
+      #   dracula-theme.theme-dracula
       vscodevim.vim
-    #   yzhang.markdown-all-in-one
+      asvetliakov.vscode-neovim
+      #   yzhang.markdown-all-in-one
     ];
   };
 
@@ -79,7 +79,13 @@
 
     # rustup
     jdk
-    (python311.withPackages (ps: with ps; [ pandas requests openpyxl mypy  python-lsp-server pylsp-mypy 
+    (python311.withPackages (ps: with ps; [
+      pandas
+      requests
+      openpyxl
+      mypy
+      python-lsp-server
+      pylsp-mypy
       # (
       #   buildPythonPackage rec {
       #     pname = "keymap-drawer";
@@ -98,9 +104,9 @@
     go
     cmake
     meson
-    rust-bindgen
     marksman
 
+    xcolor
     jq
     nh
     screenkey
@@ -119,7 +125,6 @@
     pulseaudio
     magic-wormhole
     nomachine-client
-    dolphin
     libreoffice
     realvnc-vnc-viewer
     mediainfo
@@ -129,7 +134,6 @@
     maliit-keyboard
     gimp
     direnv
-    grimblast
     hyprpicker
     qmk
     tokei
@@ -164,7 +168,7 @@
     appimage-run
     ventoy-full
     gamescope
-    ytdlp-gui
+    # ytdlp-gui
     ffmpeg_6-full
     thunderbird
     nixpkgs-review
@@ -222,7 +226,7 @@
     piper
     libratbag
     gh
-    exa
+    eza
     discord-canary
     discord
     # davinci-resolve
@@ -246,9 +250,7 @@
 
   home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
 
-  home.file.".local/bin/logout.sh".source = ./virtual/logout.sh;
-
-  home.file.".local/bin/cliphist-rofi"= {
+  home.file.".local/bin/cliphist-rofi" = {
     text = ''
       #!/usr/bin/env bash
 

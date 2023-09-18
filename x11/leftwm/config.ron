@@ -47,7 +47,7 @@
     keybind: [
         (command: ToggleScratchPad, value: "Kitty", modifier: ["modkey"], key: "p"),
         (command: ToggleScratchPad, value: "Chatterino", modifier: ["modkey"], key: "b"),
-        (command: Execute, value: "dolphin", modifier: ["modkey"], key: "e"),
+        (command: Execute, value: "nemo", modifier: ["modkey"], key: "e"),
         (command: Execute, value: "rofi -theme $HOME/.config/rofi/clipboard_theme -modi \"clipboard:greenclip print\" -show clipboard -run-command '{cmd}'", modifier: ["modkey", "Control"], key: "v"),
         (command: Execute, value: "pkill rofi || rofi -modi emoji -show emoji", modifier: ["modkey"], key: "g"),
         // (command: Execute, value: "rofi -combi-modi window,drun,run,ssh -theme squared-material-red -show combi", modifier: ["modkey"], key: "space"),
@@ -64,6 +64,7 @@
         // (command: Execute, value: "librewolf", modifier: ["modkey"], key: "b"),
         // (command: Execute, value: "looking-glass-client -m KEY_HOME", modifier: ["modkey"], key: "g"),
         (command: CloseWindow, value: "", modifier: ["modkey"], key: "c"),
+        (command: RotateTag, value: "", modifier: ["modkey"], key: "r"),
         (command: SoftReload, value: "", modifier: ["modkey", "Shift"], key: "r"),
         (command: HardReload, value: "", modifier: ["modkey", "Shift"], key: "m"),
         (command: Execute, value: "loginctl kill-session $XDG_SESSION_ID", modifier: ["modkey", "Shift"], key: "x"),

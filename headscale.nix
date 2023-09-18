@@ -1,8 +1,9 @@
-{ config, pkgs, ...}:
+{ config, pkgs, ... }:
 let
   baseDomain = "bksalman.com";
   domain = "headscale.bksalman.com";
-in{
+in
+{
   services = {
     headscale = {
       enable = true;
@@ -22,13 +23,13 @@ in{
       recommendedProxySettings = true;
       recommendedTlsSettings = true;
       virtualHosts.${domain} = {
-          forceSSL = true;
-          enableACME = true;
-          locations."/" = {
-            proxyPass =
-              "http://localhost:${toString config.services.headscale.port}";
-            proxyWebsockets = true;
-          };
+        forceSSL = true;
+        enableACME = true;
+        locations."/" = {
+          proxyPass =
+            "http://localhost:${toString config.services.headscale.port}";
+          proxyWebsockets = true;
+        };
       };
     };
   };

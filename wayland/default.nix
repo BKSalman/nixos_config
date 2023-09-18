@@ -14,8 +14,13 @@ let
   };
 in
 {
+  services.xserver = {
+    displayManager.sessionPackages = [ pkgs.hyprland ];
+  };
 
   environment.systemPackages = with pkgs; [
+    egl-wayland
+    firefox-wayland
     dbus-hyprland-environment
     wayland
     glib
@@ -61,7 +66,7 @@ in
     # XCURSOR_SIZE = "24";
     NIXOS_OZONE_WL = "1";
     GTK_USE_PORTAL = "1";
-    QT_QPA_PLATFORMTHEME="kde";
+    QT_QPA_PLATFORMTHEME = "kde";
     PATH = [
       "$HOME/.local/bin/:$PATH"
     ];

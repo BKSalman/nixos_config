@@ -8,15 +8,13 @@
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
     dunst
     element-desktop
+    firefox
   ];
 
   xdg.portal = {
     enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      # pkgs.xdg-desktop-portal-wlr
-      # pkgs.xdg-desktop-portal-kde
-      # pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -24,8 +22,8 @@
     libinput.touchpad.naturalScrolling = true;
 
     deviceSection = ''
-        Option "TearFree" "true"
-      '';
+      Option "TearFree" "true"
+    '';
   };
 
   environment.sessionVariables = {

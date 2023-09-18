@@ -1,5 +1,9 @@
-{ pkgs , ... }: {
+{ pkgs, ... }: {
   imports = [ ./config.nix ];
+
+  home.packages = with pkgs; [
+    grimblast
+  ];
 
   wayland.windowManager.hyprland = {
     enable = true;

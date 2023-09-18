@@ -11,11 +11,10 @@
       ../x11
       ../x11/leftwm
       # ../wayland
-      ../virtual/vfio.nix
       ../uxplay.nix
       ../vm.nix
       # ../headscale.nix
-      ../nextcloud.nix
+      # ../nextcloud.nix
     ];
 
   nix = {
@@ -65,7 +64,6 @@
 
   services.xserver = {
     # displayManager.lightdm.enable = true;
-    displayManager.sessionPackages = [ pkgs.hyprland ];
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     displayManager.defaultSession = "none+leftwm";
@@ -78,6 +76,11 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+  services.printing.drivers = [ pkgs.hplipWithPlugin pkgs.hplip ];
+  # services.avahi.enable = true;
+  # services.avahi.nssmdns = true;
+  # # for a WiFi printer
+  # services.avahi.openFirewall = true;
 
   services.blueman.enable = true;
 
@@ -124,20 +127,27 @@
     libimobiledevice
     ifuse
 
-    egl-wayland
-    firefox-wayland
+    (cinnamon.nemo-with-extensions.override {
+      extensions = [
+        cinnamon.nemo-python
+        cinnamon.nemo-fileroller
+        (pkgs.callPackage ../packages/syncstate { })
+      ];
+    })
+    x11vnc
     pciutils
     pkg-config
     alsa-lib
     systemd
     libiconv
-    cloudflared
     openssl
     dbus
     eggdbus
     deja-dup
     duplicity
     vim
+    neovim
+    helix
     wget
     libsForQt5.ark
     libsecret
@@ -151,6 +161,7 @@
     noto-fonts-cjk
     noto-fonts-emoji
     corefonts
+    google-fonts
     # fira-code
     # fira-code-symbols
     mplus-outline-fonts.githubRelease
@@ -165,8 +176,8 @@
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME="nvidia";
-    QT_QPA_PLATFORMTHEME="kde";
+    LIBVA_DRIVER_NAME = "nvidia";
+    QT_QPA_PLATFORMTHEME = "kde";
     FLAKE = "/home/salman/nixos_config";
   };
 
@@ -240,7 +251,7 @@
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [ 8101 8000 8080 443 22 ];
+    allowedTCPPorts = [ 8101 8000 8080 443 11000 ];
     checkReversePath = "loose";
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ 41641 config.services.tailscale.port ];
@@ -270,22 +281,29 @@
   # };
 
   virtualisation = {
+    # oci-containers.backend = "podman";
     # Podman
-    podman.enable = true;
-    # Create a `docker` alias for podman, to use it as a drop-in replacement
-    podman.dockerCompat = true;
-    podman.dockerSocket.enable = true;
-    # Required for containers under podman-compose to be able to talk to each other.
-    podman.defaultNetwork.settings.dns_enabled = true;
-
-    oci-containers.backend = "podman";
-
-    # Docker
-    # docker.enable = true;
-    # docker.rootless = {
+    # podman = {
     #   enable = true;
-    #   setSocketVariable = true;
+    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
+    #   dockerCompat = true;
+    #   dockerSocket.enable = true;
+
+    #   # Required for containers under podman-compose to be able to talk to each other.
+    #   defaultNetwork.settings = {
+    #     dns_enabled = true;
+    #   };
     # };
+
+    oci-containers.backend = "docker";
+    # Docker
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
   };
 
   # Git
@@ -298,8 +316,6 @@
   hardware.steam-hardware.enable = true;
   programs.steam.enable = true;
   programs.steam.remotePlay.openFirewall = true;
-
-  # programs.hyprland.enable = true;
 
   services.mpd.enable = true;
 

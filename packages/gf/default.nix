@@ -33,9 +33,9 @@ stdenv.mkDerivation rec {
   #     cp ${ext} ./${ext.name or (builtins.baseNameOf ext)}
   # '');
 
-   preConfigure = ''
-     patchShebangs build.sh
-   '';
+  preConfigure = ''
+    patchShebangs build.sh
+  '';
 
   buildPhase = ''
     runHook preBuild
