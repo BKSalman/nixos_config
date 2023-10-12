@@ -32,13 +32,13 @@
     };
 
     ytdlp-gui = {
-      url = "github:bksalman/ytdlp-gui";
+      url = "github:bksalman/ytdlp-gui/v1.0.0";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay/master";
 
     leftwm = {
-      url = "github:leftwm/leftwm";
+      url = "github:bksalman/leftwm/pinned-tags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -51,9 +51,14 @@
       url = "github:eza-community/eza";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    bunnuafeth = {
+      url = "/home/salman/Documents/coding/bunnuafeth";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, ... }:
+  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, bunnuafeth, ... }:
     let
       system = "x86_64-linux";
 
@@ -100,6 +105,7 @@
           ];
         };
         overlays = [
+          bunnuafeth.overlays.default
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 

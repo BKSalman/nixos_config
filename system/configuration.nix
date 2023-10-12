@@ -9,12 +9,12 @@
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../x11
+      ../x11/bunnuafeth
       ../x11/leftwm
       # ../wayland
       ../uxplay.nix
       ../vm.nix
-      # ../headscale.nix
-      # ../nextcloud.nix
+      # ../battery.nix
     ];
 
   nix = {
@@ -67,7 +67,8 @@
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     displayManager.defaultSession = "none+leftwm";
-    desktopManager.plasma5.enable = true;
+    # desktopManager.plasma5.enable = true;
+    windowManager.bunnuafeth.enable = true;
     enable = true;
     layout = "us,ara";
     xkbOptions = "grp:alt_shift_toggle";
@@ -127,6 +128,7 @@
     libimobiledevice
     ifuse
 
+    distrobox
     (cinnamon.nemo-with-extensions.override {
       extensions = [
         cinnamon.nemo-python
@@ -251,7 +253,7 @@
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [ 8101 8000 8080 443 11000 ];
+    allowedTCPPorts = [ 8101 8000 8080 443 11000 4000 ];
     checkReversePath = "loose";
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ 41641 config.services.tailscale.port ];
@@ -281,29 +283,29 @@
   # };
 
   virtualisation = {
-    # oci-containers.backend = "podman";
     # Podman
-    # podman = {
-    #   enable = true;
-    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
-    #   dockerCompat = true;
-    #   dockerSocket.enable = true;
-
-    #   # Required for containers under podman-compose to be able to talk to each other.
-    #   defaultNetwork.settings = {
-    #     dns_enabled = true;
-    #   };
-    # };
-
-    oci-containers.backend = "docker";
-    # Docker
-    docker = {
+    oci-containers.backend = "podman";
+    podman = {
       enable = true;
-      rootless = {
-        enable = true;
-        setSocketVariable = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      dockerSocket.enable = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings = {
+        dns_enabled = true;
       };
     };
+
+    # Docker
+    # oci-containers.backend = "docker";
+    # docker = {
+    #   enable = true;
+    #   rootless = {
+    #     enable = true;
+    #     setSocketVariable = true;
+    #   };
+    # };
   };
 
   # Git

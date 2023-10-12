@@ -11,7 +11,10 @@
 (
     modkey: "Mod4", // SUPER key
     mousekey: "Mod4",
-    workspaces: [],
+    workspaces: [
+        // {output: "eDP1", x: 0, y: 0, width: 960, height: 1080, pinned_tags: ["1", "2"] },
+        // {output: "eDP1", x: 960, y: 0, width: 960, height: 1080 },
+    ],
     tags: [
         "1",
         "2",
@@ -34,7 +37,10 @@
         (name: "Kitty", value: "kitty", x: 420, y: 390, height: 300, width: 1000),
         (name: "Chatterino", value: "chatterino", x: 1420, y: 100, height: 900, width: 500),
     ],
-    window_rules: [],
+    window_rules: [
+        ( window_title: "^(League of Legends)$", window_class: "^(leagueclientux.exe)$", width: 1280, height: 720, spawn_floating: true ),
+        ( window_title: "^(League of Legends (TM) Client)$", window_class: "^(league of legends.exe)$", width: 1920, height: 1080, spawn_fullscreen: true ),
+    ],
     disable_current_tag_swap: true,
     disable_tile_drag: false,
     disable_cursor_reposition_on_resize: true,
@@ -55,6 +61,10 @@
         (command: Execute, value: "pamixer -t", modifier: [], key: "XF86XK_AudioMute"),
         (command: Execute, value: "pamixer -d 5", modifier: [], key: "XF86XK_AudioLowerVolume"),
         (command: Execute, value: "pamixer -i 5", modifier: [], key: "XF86XK_AudioRaiseVolume"),
+        (command: Execute, value: "playerctl --player spotify volume 0.05+", modifier: ["Shift"], key: "XF86XK_AudioRaiseVolume"),
+        (command: Execute, value: "playerctl --player spotify volume 0.05-", modifier: ["Shift"], key: "XF86XK_AudioLowerVolume"),
+        (command: Execute, value: "playerctl --player spotify play-pause", modifier: ["Shift"], key: "XF86XK_AudioPlay"),
+        (command: Execute, value: "playerctl --player spotify previous", modifier: ["Shift"], key: "XF86XK_AudioPrev"),
         // `playerctl --player playerctld play-pause` plays/pauses the most recent player reference: https://github.com/altdesktop/playerctl/issues/161
         (command: Execute, value: "playerctl --player playerctld play-pause", modifier: [], key: "XF86XK_AudioPlay"),
         (command: Execute, value: "playerctl --player playerctld previous", modifier: [], key: "XF86XK_AudioPrev"),
@@ -92,6 +102,7 @@
         (command: IncreaseMainSize, value: "0 5", modifier: ["modkey", "Control"], key: "j"),
         (command: IncreaseMainSize, value: "5", modifier: ["modkey", "Control"], key: "l"),
         (command: IncreaseMainSize, value: "-5", modifier: ["modkey", "Control"], key: "h"),
+        (command: ReturnToLastTag, value: "", modifier: ["modkey"], key: "Tab"),
         (command: GotoTag, value: "1", modifier: ["modkey"], key: "1"),
         (command: GotoTag, value: "2", modifier: ["modkey"], key: "2"),
         (command: GotoTag, value: "3", modifier: ["modkey"], key: "3"),

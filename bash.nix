@@ -14,6 +14,8 @@
       cat = "bat";
       imwheel = "imwheel -b 45";
       sk = "screenkey -g 300x500+1520+600";
+      db = "distrobox";
+      wmdev = "Xephyr -br -ac -noreset -screen 1880x1000 :2";
     };
     enableCompletion = true;
     bashrcExtra = builtins.readFile ./bash/.bashrc;

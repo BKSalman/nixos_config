@@ -1,7 +1,6 @@
+# taken from https://github.com/TechsupportOnHold/Nixos-VM
 { config, pkgs, ... }:
-
 {
-
   # Add user to libvirtd group
   users.users.salman.extraGroups = [ "libvirtd" ];
 
@@ -30,5 +29,5 @@
     spiceUSBRedirection.enable = true;
   };
   services.spice-vdagentd.enable = true;
-
+  services.spice-webdavd.enable = true;
 }

@@ -63,7 +63,6 @@
     enable = true;
     extensions = with pkgs.vscode-extensions; [
       #   dracula-theme.theme-dracula
-      vscodevim.vim
       asvetliakov.vscode-neovim
       #   yzhang.markdown-all-in-one
     ];
@@ -72,7 +71,6 @@
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     (rust-bin.stable.latest.default.override {
-      targets = [ "x86_64-unknown-linux-gnu" "wasm32-unknown-unknown" ];
       extensions = [ "rust-analyzer" "rust-src" "rust-std" ];
     })
 
@@ -105,6 +103,8 @@
     meson
     marksman
 
+    hunspell
+    hunspellDicts.en_US
     xcolor
     jq
     nh
@@ -167,7 +167,7 @@
     appimage-run
     ventoy-full
     gamescope
-    # ytdlp-gui
+    ytdlp-gui
     ffmpeg_6-full
     thunderbird
     nixpkgs-review
@@ -202,10 +202,8 @@
     vopono
     nil
     onlyoffice-bin
-    gdb
     lldb
     unzip
-    distrobox
     neovim
     htop
     btop
@@ -226,16 +224,15 @@
     libratbag
     gh
     eza
-    discord-canary
     discord
-    # davinci-resolve
+    davinci-resolve
     piper
     spotify
     kdenlive
     chatterino2
     alacritty
     kitty
-    plasma5Packages.bismuth
+    # plasma5Packages.bismuth
     vim
   ];
 
