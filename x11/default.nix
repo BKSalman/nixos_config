@@ -4,11 +4,11 @@
 {
 
   environment.systemPackages = with pkgs; [
+    shareet
     polybar
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
     dunst
     element-desktop
-    firefox
   ];
 
   xdg.portal = {

@@ -53,12 +53,22 @@
     };
 
     bunnuafeth = {
-      url = "/home/salman/Documents/coding/bunnuafeth";
+      url = "/home/salman/coding/bunnuafeth";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    shareet = {
+      url = "/home/salman/coding/shareet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    buddaraysh = {
+      url = "/home/salman/coding/buddaraysh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, bunnuafeth, ... }:
+  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, bunnuafeth, shareet, buddaraysh, ... }:
     let
       system = "x86_64-linux";
 
@@ -68,14 +78,6 @@
 
       evremap-overlay = final: prev: {
         evremap = prev.callPackage ./packages/evremap { };
-      };
-
-      webcord-overlay = final: prev: {
-        webcord = prev.callPackage ./packages/webcord { };
-      };
-
-      insomnia-overlay = final: prev: {
-        insomnia = prev.callPackage ./packages/insomnia { };
       };
 
       nh-overlay = final: prev: {
@@ -106,6 +108,8 @@
         };
         overlays = [
           bunnuafeth.overlays.default
+          shareet.overlays.default
+          buddaraysh.overlays.default
           # FIXME: remove after it gets fixed
           nerdfonts-overlay
 
@@ -117,13 +121,11 @@
           # rust-overlay.overlays.default
           # helix.overlays.default
           prismlauncher.overlays.default
-          # (insomnia-overlay)
           (import ./overlays/mpvpaper.nix)
           (eza-overlay)
           (gf-overlay)
           (tokyonight-gtk-overlay)
           (evremap-overlay)
-          (webcord-overlay)
         ];
       };
 

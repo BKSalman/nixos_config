@@ -8,10 +8,12 @@
     [
       # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../x11
-      ../x11/bunnuafeth
-      ../x11/leftwm
-      # ../wayland
+      # ../x11
+      # ../x11/bunnuafeth
+      # ../x11/leftwm
+      # ../x11/awesome
+      ../wayland
+      ../wayland/buddaraysh
       ../uxplay.nix
       ../vm.nix
       # ../battery.nix
@@ -64,16 +66,18 @@
 
   services.xserver = {
     # displayManager.lightdm.enable = true;
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
-    displayManager.defaultSession = "none+leftwm";
+    # displayManager.gdm.enable = true;
+    # displayManager.gdm.wayland = true;
+    # displayManager.defaultSession = "none+leftwm";
     # desktopManager.plasma5.enable = true;
-    windowManager.bunnuafeth.enable = true;
+    # windowManager.bunnuafeth.enable = true;
     enable = true;
     layout = "us,ara";
     xkbOptions = "grp:alt_shift_toggle";
     xkbVariant = "";
   };
+
+  programs.buddaraysh.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -111,15 +115,15 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "acme" "headscale" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "input" "audio" "video" "acme" "headscale" ];
     packages = with pkgs; [
       kate
       #  thunderbird
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # # Allow unfree packages
+  # config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -128,6 +132,7 @@
     libimobiledevice
     ifuse
 
+    firefox
     distrobox
     (cinnamon.nemo-with-extensions.override {
       extensions = [
@@ -174,11 +179,6 @@
   services.flatpak.enable = true;
 
   environment.sessionVariables = {
-    LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
-    BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
-    # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
     QT_QPA_PLATFORMTHEME = "kde";
     FLAKE = "/home/salman/nixos_config";
   };
@@ -253,7 +253,7 @@
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [ 8101 8000 8080 443 11000 4000 ];
+    allowedTCPPorts = [ 8101 8000 8080 443 11000 4000 53317 ];
     checkReversePath = "loose";
     trustedInterfaces = [ "tailscale0" ];
     allowedUDPPorts = [ 41641 config.services.tailscale.port ];
@@ -311,6 +311,7 @@
   # Git
   programs.git = {
     enable = true;
+    lfs.enable = true;
     package = pkgs.gitFull;
   };
 

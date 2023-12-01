@@ -42,10 +42,8 @@
 
   programs.obs-studio = {
     enable = true;
-    plugins = with pkgs; [
-      obs-studio-plugins.wlrobs
-      obs-studio-plugins.looking-glass-obs
-      obs-studio-plugins.droidcam-obs
+    plugins = [
+      pkgs.obs-studio-plugins.wlrobs
     ];
   };
 
@@ -76,33 +74,16 @@
 
     # rustup
     jdk
-    (python311.withPackages (ps: with ps; [
-      pandas
-      requests
-      openpyxl
-      mypy
-      python-lsp-server
-      pylsp-mypy
-      # (
-      #   buildPythonPackage rec {
-      #     pname = "keymap-drawer";
-      #     version = "0.10.0";
-      #     src = fetchFromGitHub {
-      #       repo = pname;
-      #       owner = "caksoylar";
-      #       rev = "v${version}";
-      #       hash = "sha256-00000000000000000000000000000000000000000000";
-      #     };
-      #     doCheck = false;
-      #     propagatedBuildInputs = [ ];
-      #   }
-      # )
-    ]))
     go
     cmake
     meson
     marksman
 
+    inkscape
+    localsend
+    ripgrep
+    drawio
+    zathura
     hunspell
     hunspellDicts.en_US
     xcolor
@@ -127,7 +108,8 @@
     libreoffice
     realvnc-vnc-viewer
     mediainfo
-    glaxnimate
+    # python broke here
+    # glaxnimate
     brightnessctl
     wayvnc
     maliit-keyboard
@@ -157,7 +139,6 @@
     looking-glass-client
     grapejuice
     # nomachine-client
-    microsoft-edge
     mypaint
     nix-index
     winetricks
@@ -180,14 +161,12 @@
     lolcat
     neofetch
     zoom-us
-    hyprpicker
     playerctl
     cava
     chromium
     pamixer
     mpc-cli
     ncmpcpp
-    webcord
     pavucontrol
     bat
     stremio
@@ -195,7 +174,7 @@
     cura
     lutris
     xclip
-    freecad
+    # freecad
     killall
     # spice-gtk
     qimgv

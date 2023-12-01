@@ -1,11 +1,7 @@
-{ pkgs, ... }: {
+{ ... }: {
   imports = [
     ./config.nix
     ../../waybar
-  ];
-
-  home.packages = with pkgs; [
-    grimblast
   ];
 
   wayland.windowManager.hyprland = {

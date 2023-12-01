@@ -16,6 +16,8 @@
       sk = "screenkey -g 300x500+1520+600";
       db = "distrobox";
       wmdev = "Xephyr -br -ac -noreset -screen 1880x1000 :2";
+      o = "xdg-open";
+      update-input = "nix flake lock --update-input";
     };
     enableCompletion = true;
     bashrcExtra = builtins.readFile ./bash/.bashrc;
