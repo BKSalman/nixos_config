@@ -11,7 +11,7 @@
       # ../x11
       # ../x11/bunnuafeth
       # ../x11/leftwm
-      # ../x11/awesome
+      ../x11/awesome
       ../wayland
       ../wayland/buddaraysh
       ../uxplay.nix
@@ -109,7 +109,8 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput.enable = true;
+  services.xserver.libinput.touchpad.naturalScrolling = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.salman = {
@@ -141,7 +142,6 @@
         (pkgs.callPackage ../packages/syncstate { })
       ];
     })
-    x11vnc
     pciutils
     pkg-config
     alsa-lib
@@ -159,6 +159,7 @@
     libsForQt5.ark
     libsecret
     nix-prefetch
+    gamemode
   ];
 
   fonts.packages = with pkgs; [

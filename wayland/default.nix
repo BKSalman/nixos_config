@@ -1,6 +1,4 @@
-{ pkgs
-, ...
-}:
+{ pkgs, ... }:
 {
   services.xserver = {
     displayManager.sessionPackages = [ pkgs.hyprland ];

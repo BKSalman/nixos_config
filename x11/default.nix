@@ -9,6 +9,7 @@
     (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
     dunst
     element-desktop
+    x11vnc
   ];
 
   xdg.portal = {

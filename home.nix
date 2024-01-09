@@ -3,7 +3,7 @@
 
   imports = [
     # ./wayland/hyprland
-    ./x11/leftwm/config.nix
+    # ./x11/leftwm/config.nix
     ./helix
     ./mpv
     ./bash.nix
@@ -26,6 +26,15 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
+
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
 
   gtk = {
     enable = true;
@@ -156,7 +165,7 @@
     ludusavi
     swww
     yt-dlp
-    mpvpaper
+    # mpvpaper
     pacman
     lolcat
     neofetch
@@ -204,7 +213,7 @@
     gh
     eza
     discord
-    davinci-resolve
+    # davinci-resolve
     piper
     spotify
     kdenlive
