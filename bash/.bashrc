@@ -1,6 +1,7 @@
 export PATH
 
 export PATH=/home/salman/.surrealdb:$PATH
+export PATH=/home/salman/.cargo/bin:$PATH
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" 
 

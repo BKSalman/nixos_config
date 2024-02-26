@@ -35,13 +35,12 @@
     x11.enable = true;
   };
 
-
   gtk = {
     enable = true;
-    theme = {
-      name = "Tokyonight-Dark-BL";
-      package = pkgs.tokyonight-gtk.override { themeVariants = [ "Dark-BL" ]; };
-    };
+    # theme = {
+    #   name = "Tokyonight-Dark-BL";
+    #   package = pkgs.tokyonight-gtk.override { themeVariants = [ "Dark-BL" ]; };
+    # };
   };
 
   qt = {
@@ -77,17 +76,15 @@
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
-    (rust-bin.stable.latest.default.override {
-      extensions = [ "rust-analyzer" "rust-src" "rust-std" ];
-    })
-
-    # rustup
     jdk
     go
     cmake
     meson
     marksman
 
+    fzf
+    zellij
+    tmux
     inkscape
     localsend
     ripgrep
@@ -102,7 +99,6 @@
     taskwarrior
     taskwarrior-tui
     pdfarranger
-    nixops_unstable
     comma
     gf
     haskellPackages.greenclip
@@ -195,13 +191,12 @@
     neovim
     htop
     btop
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted
-    nodePackages.svelte-language-server
-    nodePackages.pnpm
+    # nodePackages.typescript-language-server
+    # nodePackages.vscode-langservers-extracted
+    # nodePackages.svelte-language-server
+    # nodePackages.pnpm
     nodejs
     insomnia
-    sqlx-cli
     dbeaver
     mpv
     frp

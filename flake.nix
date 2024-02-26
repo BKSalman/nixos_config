@@ -66,9 +66,11 @@
       url = "/home/salman/coding/buddaraysh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, bunnuafeth, shareet, buddaraysh, ... }:
+  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, bunnuafeth, shareet, buddaraysh, stylix, ... }:
     let
       system = "x86_64-linux";
 
@@ -104,9 +106,14 @@
             "python3.10-requests-2.29.0"
             "python3.10-cryptography-40.0.2"
             "python3.10-cryptography-40.0.1"
+            # "electron-25.9.0"
+            "electron-24.8.6"
           ];
         };
         overlays = [
+          (final: prev: {
+            obsidian-wayland = prev.obsidian.override {electron = final.electron_24;};
+          })
           bunnuafeth.overlays.default
           shareet.overlays.default
           buddaraysh.overlays.default
@@ -138,6 +145,7 @@
           inherit system pkgs;
 
           modules = [
+            stylix.nixosModules.stylix
             ./system/configuration.nix
 
             home-manager.nixosModules.home-manager

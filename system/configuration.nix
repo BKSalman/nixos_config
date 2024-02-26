@@ -72,9 +72,11 @@
     # desktopManager.plasma5.enable = true;
     # windowManager.bunnuafeth.enable = true;
     enable = true;
-    layout = "us,ara";
-    xkbOptions = "grp:alt_shift_toggle";
-    xkbVariant = "";
+    xkb = {
+      layout = "us,ara";
+      options = "grp:alt_shift_toggle";
+      variant = "";
+    };
   };
 
   programs.buddaraysh.enable = true;
@@ -129,6 +131,11 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    rustup
+    gcc
+
+    probe-rs
+    
     # IOS
     libimobiledevice
     ifuse
@@ -308,6 +315,8 @@
     #   };
     # };
   };
+
+  programs.nix-ld.enable = true;
 
   # Git
   programs.git = {

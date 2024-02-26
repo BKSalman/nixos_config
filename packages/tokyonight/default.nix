@@ -13,35 +13,27 @@ let
 
 in
 checkListOfEnum "$Tokyonight: GTK Theme Variants" [
-  "Dark-B-LB"
   "Dark-B"
-  "Dark-BL-LB"
   "Dark-BL"
-  "Light-B-LB"
-  "Light-B"
-  "Light-BL-LB"
-  "Light-BL"
-  "Moon-B-LB"
-  "Moon-B"
-  "Moon-BL-LB"
-  "Moon-BL"
-  "Storm-B-LB"
+  "Dark-B-LB"
+  "Dark-BL-LB"
   "Storm-B"
-  "Storm-BL-LB"
   "Storm-BL"
+  "Storm-B-LB"
+  "Storm-BL-LB"
 ]
   themeVariants
 
   stdenv.mkDerivation
 {
   pname = "tokyonight-gtk-theme";
-  version = "unstable-2022-12-09";
+  version = "unstable-2023-05-31";
 
   src = fetchFromGitHub {
     owner = "Fausto-Korpsvart";
     repo = "Tokyo-Night-GTK-Theme";
-    rev = "d17eec24180b890bc4a9aa64162074b1bfc7258a";
-    hash = "sha256-b35J6NsFkUNM/yxMe7bi0kpyuI/pGLnCywCEDLHLf5A=";
+    rev = "e9790345a6231cd6001f1356d578883fac52233a";
+    hash = "sha256-Q9UnvmX+GpvqSmTwdjU4hsEsYhA887wPqs5pyqbIhmc=";
   };
 
   nativeBuildInputs = [ jdupes ];
@@ -55,10 +47,7 @@ checkListOfEnum "$Tokyonight: GTK Theme Variants" [
 
       mkdir -p $out/share/themes
 
-      cp -r $src/themes/${gtkTheme} $out/share/themes
-
-      # Duplicate files -> hard-links = reduced install-size!
-      jdupes -L -r $out/share
+      cp -r -a $src/themes/${gtkTheme} $out/share/themes
 
       runHook postInstall
     '';
