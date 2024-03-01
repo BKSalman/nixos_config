@@ -1,5 +1,6 @@
-{ python3
-, lib
+{
+  python3,
+  lib,
 }:
 python3.pkgs.buildPythonApplication {
   pname = "syncstate";

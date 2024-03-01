@@ -1,25 +1,29 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 with lib;
-with builtins;
-let
+with builtins; let
   cfg = config.nextcloud;
 
   # Cleanup override info
-  settings = pkgs.lib.mapAttrsRecursiveCond
+  settings =
+    pkgs.lib.mapAttrsRecursiveCond
     (s: ! s ? "_type")
-    (_: value: if value ? "content" then value.content else value)
+    (_: value:
+      if value ? "content"
+      then value.content
+      else value)
     cfg.settings;
-
-in
-{
-
+in {
   options.nextcloud = {
-
     enable = mkEnableOption "Enable nextcloud";
 
     apps = mkOption {
       type = types.attrsOf types.path;
-      default = { };
+      default = {};
       description = "
         Nextcloud apps to enable
       ";
@@ -35,22 +39,20 @@ in
 
     settings = mkOption {
       type = types.attrsOf types.attrs;
-      default = { };
+      default = {};
       description = "
         Nextcloud settings to be imported using `occ config:import`
 
         https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/occ_command.html#config-commands
       ";
     };
-
   };
 
   config = mkIf cfg.enable {
-
     services.mysql = {
       enable = true;
       package = pkgs.mysql;
-      ensureDatabases = [ "nextcloud" ];
+      ensureDatabases = ["nextcloud"];
       ensureUsers = [
         {
           name = "nextcloud";
@@ -98,7 +100,7 @@ in
     config = {
       dbtype = "mysql";
       adminuser = "admin";
-      extraTrustedDomains = [ "100.64.0.1" ];
+      extraTrustedDomains = ["100.64.0.1"];
       adminpassFile = "${pkgs.writeText "adminpass" "test123"}";
     };
   };
@@ -108,9 +110,9 @@ in
   # host.
   systemd.services.nextcloud-setup = {
     serviceConfig.RemainAfterExit = true;
-    partOf = [ "phpfpm-nextcloud.service" ];
-    after = [ "nextcloud-admin-key.service" "mysql.service" ];
-    requires = [ "nextcloud-admin-key.service" "mysql.service" ];
+    partOf = ["phpfpm-nextcloud.service"];
+    after = ["nextcloud-admin-key.service" "mysql.service"];
+    requires = ["nextcloud-admin-key.service" "mysql.service"];
     script = mkAfter ''
       nextcloud-occ user:setting admin settings email ${cfg.adminEmail}
       echo '${toJSON settings}' | nextcloud-occ config:import
@@ -133,12 +135,12 @@ in
         imageDigest = "sha256:aab41379baf5652832e9237fcc06a768096a5a7fccc66cf8bd4fdb06d2cbba7f";
         sha256 = "sha256-M66lynhzaOEFnE15Sy1N6lBbGDxwNw6ap+IUJAvoCLs=";
       };
-      ports = [ "9980:9980" ];
+      ports = ["9980:9980"];
       environment = {
         domain = "localhost";
         extra_params = "--o:ssl.enable=false --o:ssl.termination=true";
       };
-      extraOptions = [ "--cap-add" "MKNOD" ];
+      extraOptions = ["--cap-add" "MKNOD"];
     };
   };
 }

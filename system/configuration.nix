@@ -1,23 +1,25 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      # ../x11
-      # ../x11/bunnuafeth
-      # ../x11/leftwm
-      ../x11/awesome
-      ../wayland
-      ../wayland/buddaraysh
-      ../uxplay.nix
-      ../vm.nix
-      # ../battery.nix
-    ];
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    # ../x11
+    # ../x11/bunnuafeth
+    # ../x11/leftwm
+    ../x11/awesome
+    ../wayland
+    ../wayland/buddaraysh
+    ../uxplay.nix
+    ../vm.nix
+    # ../battery.nix
+  ];
 
   nix = {
     package = pkgs.nixFlakes;
@@ -83,7 +85,7 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [ pkgs.hplipWithPlugin pkgs.hplip ];
+  services.printing.drivers = [pkgs.hplipWithPlugin pkgs.hplip];
   # services.avahi.enable = true;
   # services.avahi.nssmdns = true;
   # # for a WiFi printer
@@ -118,7 +120,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "input" "audio" "video" "acme" "headscale" ];
+    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "input" "audio" "video" "acme" "headscale"];
     packages = with pkgs; [
       kate
       #  thunderbird
@@ -135,7 +137,7 @@
     gcc
 
     probe-rs
-    
+
     # IOS
     libimobiledevice
     ifuse
@@ -146,7 +148,7 @@
       extensions = [
         cinnamon.nemo-python
         cinnamon.nemo-fileroller
-        (pkgs.callPackage ../packages/syncstate { })
+        (pkgs.callPackage ../packages/syncstate {})
       ];
     })
     pciutils
@@ -207,7 +209,7 @@
     };
   };
 
-  boot.extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
   boot.kernelModules = [
     # Virtual Camera
@@ -215,7 +217,6 @@
     # Virtual Microphone, built-in
     "snd-aloop"
   ];
-
 
   # GNOME stuff
 
@@ -261,10 +262,10 @@
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [ 8101 8000 8080 443 11000 4000 53317 ];
+    allowedTCPPorts = [8101 8000 8080 443 11000 4000 53317];
     checkReversePath = "loose";
-    trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ 41641 config.services.tailscale.port ];
+    trustedInterfaces = ["tailscale0"];
+    allowedUDPPorts = [41641 config.services.tailscale.port];
   };
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -339,9 +340,9 @@
   systemd.user.services.polkit-auth-agent = {
     enable = true;
     description = "polkit-kde-authentication-agent-1";
-    wantedBy = [ "graphical-session.target" ];
-    wants = [ "graphical-session.target" ];
-    after = [ "graphical-session.target" ];
+    wantedBy = ["graphical-session.target"];
+    wants = ["graphical-session.target"];
+    after = ["graphical-session.target"];
     serviceConfig = {
       Type = "simple";
       ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
@@ -386,7 +387,7 @@
   # temporary cus NetworkManager-wait-online fails the nixos switch
   systemd.services.NetworkManager-wait-online = {
     serviceConfig = {
-      ExecStart = [ "" "${pkgs.networkmanager}/bin/nm-online -q" ];
+      ExecStart = ["" "${pkgs.networkmanager}/bin/nm-online -q"];
       Restart = "on-failure";
       RestartSec = 1;
     };

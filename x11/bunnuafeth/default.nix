@@ -1,11 +1,12 @@
-{ config, lib, pkgs, ... }:
-
-with lib;
-
-let
-  cfg = config.services.xserver.windowManager.bunnuafeth;
-in
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
+  cfg = config.services.xserver.windowManager.bunnuafeth;
+in {
   ###### interface
   options = {
     services.xserver.windowManager.bunnuafeth.enable = mkEnableOption (lib.mdDoc "bunnuafeth");
@@ -20,6 +21,6 @@ in
         waitPID=$!
       '';
     };
-    environment.systemPackages = [ pkgs.bunnuafeth ];
+    environment.systemPackages = [pkgs.bunnuafeth];
   };
 }

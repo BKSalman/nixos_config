@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   stylix = {
     image = ./yoda.png;
 

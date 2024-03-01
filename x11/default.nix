@@ -1,12 +1,8 @@
-{ pkgs
-, ...
-}:
-{
-
+{pkgs, ...}: {
   environment.systemPackages = with pkgs; [
     shareet
     polybar
-    (rofi.override { plugins = [ pkgs.rofi-emoji ]; })
+    (rofi.override {plugins = [pkgs.rofi-emoji];})
     dunst
     element-desktop
     x11vnc
@@ -43,4 +39,3 @@
     enable = true;
   };
 }
-

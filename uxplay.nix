@@ -1,10 +1,12 @@
 # reference: https://github.com/TechsupportOnHold/uxplay
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Open network ports
-  networking.firewall.allowedTCPPorts = [ 7000 7001 7100 ];
-  networking.firewall.allowedUDPPorts = [ 5353 6000 6001 7011 ];
+  networking.firewall.allowedTCPPorts = [7000 7001 7100];
+  networking.firewall.allowedUDPPorts = [5353 6000 6001 7011];
 
   # To enable network-discovery
   services.avahi = {
@@ -18,5 +20,4 @@
       domain = true;
     };
   };
-
 }

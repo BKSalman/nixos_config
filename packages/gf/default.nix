@@ -1,15 +1,15 @@
-{ lib
-, stdenv
-, makeWrapper
-, fetchFromGitHub
-, libX11
-, pkg-config
-, gdb
-, freetype
-, freetypeSupport ? true
-, extensions ? [ ]
+{
+  lib,
+  stdenv,
+  makeWrapper,
+  fetchFromGitHub,
+  libX11,
+  pkg-config,
+  gdb,
+  freetype,
+  freetypeSupport ? true,
+  extensions ? [],
 }:
-
 stdenv.mkDerivation rec {
   pname = "gf";
   version = "unstable-2023-08-09";
@@ -21,8 +21,9 @@ stdenv.mkDerivation rec {
     hash = "sha256-28Xgw/KxwZ94r/TXsdISeUtXHSips4irB0D+tEefMYE=";
   };
 
-  nativeBuildInputs = [ makeWrapper pkg-config ];
-  buildInputs = [ libX11 gdb ]
+  nativeBuildInputs = [makeWrapper pkg-config];
+  buildInputs =
+    [libX11 gdb]
     ++ lib.optional freetypeSupport freetype;
 
   # patches = [
@@ -51,7 +52,7 @@ stdenv.mkDerivation rec {
   '';
 
   postFixup = ''
-    wrapProgram $out/bin/gf2 --prefix PATH : ${lib.makeBinPath[ gdb ]}
+    wrapProgram $out/bin/gf2 --prefix PATH : ${lib.makeBinPath [gdb]}
   '';
 
   meta = with lib; {
@@ -59,6 +60,6 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/nakst/gf";
     license = licenses.mit;
     platforms = platforms.linux;
-    maintainers = with maintainers; [ _0xd61 ];
+    maintainers = with maintainers; [_0xd61];
   };
 }

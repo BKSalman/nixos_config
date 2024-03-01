@@ -1,5 +1,8 @@
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   home.file.".inputrc".source = ./bash/.inputrc;
 
   # home.file.".bashrc".source = ./bash/.bashrc;

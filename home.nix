@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
 {
-
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     # ./wayland/hyprland
     # ./x11/leftwm/config.nix
@@ -37,10 +39,10 @@
 
   gtk = {
     enable = true;
-    # theme = {
-    #   name = "Tokyonight-Dark-BL";
-    #   package = pkgs.tokyonight-gtk.override { themeVariants = [ "Dark-BL" ]; };
-    # };
+    theme = {
+      name = "Tokyonight-Dark-BL";
+      package = pkgs.tokyonight-gtk.override {themeVariants = ["Dark-BL"];};
+    };
   };
 
   qt = {
@@ -82,6 +84,8 @@
     meson
     marksman
 
+    difftastic
+    alejandra
     fzf
     zellij
     tmux
@@ -132,24 +136,19 @@
     eww-wayland
     cliphist
     protonup-qt
-    # teams
     wlsunset
     blender
     nodePackages_latest.bash-language-server
     ranger
-    # huiontablet
     uxplay
     jetbrains.idea-community
     hwloc
     looking-glass-client
     grapejuice
-    # nomachine-client
     mypaint
     nix-index
     winetricks
     wineWowPackages.stable
-    # wineWowPackages.waylandFull
-    # evremap
     appimage-run
     ventoy-full
     gamescope
@@ -191,10 +190,6 @@
     neovim
     htop
     btop
-    # nodePackages.typescript-language-server
-    # nodePackages.vscode-langservers-extracted
-    # nodePackages.svelte-language-server
-    # nodePackages.pnpm
     nodejs
     insomnia
     dbeaver
@@ -212,7 +207,15 @@
     piper
     spotify
     kdenlive
-    chatterino2
+    (chatterino2.overrideAttrs (final: prev: {
+      src = fetchFromGitHub {
+        owner = "chatterino";
+        repo = "chatterino2";
+        rev = "c1fa51242f667bc73e66118e8485c5201a762fbc";
+        sha256 = "sha256-Y0ra5pbUPnQaOchpcrpAzytEXKgC5b+kBnsww2naKb0=";
+        fetchSubmodules = true;
+      };
+    }))
     alacritty
     kitty
     # plasma5Packages.bismuth

@@ -1,7 +1,6 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   services.xserver = {
-    displayManager.sessionPackages = [ pkgs.hyprland ];
+    displayManager.sessionPackages = [pkgs.hyprland];
   };
 
   environment.systemPackages = with pkgs; [
@@ -12,7 +11,7 @@
     wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
     wlogout
     wlr-randr
-    (rofi-wayland.override { plugins = [ pkgs.rofi-emoji ]; })
+    (rofi-wayland.override {plugins = [pkgs.rofi-emoji];})
     swayidle
     swaylock-effects
     hyprpaper

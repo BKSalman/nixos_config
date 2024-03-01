@@ -1,8 +1,11 @@
 # taken from https://github.com/TechsupportOnHold/Nixos-VM
-{ config, pkgs, ... }:
 {
+  config,
+  pkgs,
+  ...
+}: {
   # Add user to libvirtd group
-  users.users.salman.extraGroups = [ "libvirtd" ];
+  users.users.salman.extraGroups = ["libvirtd"];
 
   # Install necessary packages
   environment.systemPackages = with pkgs; [
@@ -23,7 +26,7 @@
       qemu = {
         swtpm.enable = true;
         ovmf.enable = true;
-        ovmf.packages = [ pkgs.OVMFFull.fd ];
+        ovmf.packages = [pkgs.OVMFFull.fd];
       };
     };
     spiceUSBRedirection.enable = true;

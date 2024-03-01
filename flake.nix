@@ -66,103 +66,112 @@
       url = "/home/salman/coding/buddaraysh";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    stylix.url = "github:danth/stylix";
   };
 
-  outputs = { nixpkgs, home-manager, prismlauncher, rust-overlay, ytdlp-gui, helix, leftwm, nh, eza, bunnuafeth, shareet, buddaraysh, stylix, ... }:
-    let
-      system = "x86_64-linux";
+  outputs = {
+    nixpkgs,
+    home-manager,
+    prismlauncher,
+    rust-overlay,
+    ytdlp-gui,
+    helix,
+    leftwm,
+    nh,
+    eza,
+    bunnuafeth,
+    shareet,
+    buddaraysh,
+    ...
+  }: let
+    system = "x86_64-linux";
 
-      tokyonight-gtk-overlay = final: prev: {
-        tokyonight-gtk = prev.callPackage ./packages/tokyonight { };
-      };
+    tokyonight-gtk-overlay = final: prev: {
+      tokyonight-gtk = prev.callPackage ./packages/tokyonight {};
+    };
 
-      evremap-overlay = final: prev: {
-        evremap = prev.callPackage ./packages/evremap { };
-      };
+    evremap-overlay = final: prev: {
+      evremap = prev.callPackage ./packages/evremap {};
+    };
 
-      nh-overlay = final: prev: {
-        nh = nh.packages.${system}.default;
-      };
+    nh-overlay = final: prev: {
+      nh = nh.packages.${system}.default;
+    };
 
-      nerdfonts-overlay = final: prev: {
-        nerdfonts = prev.callPackage ./packages/nerdfonts { };
-      };
+    nerdfonts-overlay = final: prev: {
+      nerdfonts = prev.callPackage ./packages/nerdfonts {};
+    };
 
-      gf-overlay = final: prev: {
-        gf = prev.callPackage ./packages/gf { };
-      };
+    gf-overlay = final: prev: {
+      gf = prev.callPackage ./packages/gf {};
+    };
 
-      eza-overlay = final: prev: {
-        eza = eza.packages.${system}.default;
-      };
+    eza-overlay = final: prev: {
+      eza = eza.packages.${system}.default;
+    };
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [
-            "python3.10-requests-2.29.0"
-            "python3.10-cryptography-40.0.2"
-            "python3.10-cryptography-40.0.1"
-            # "electron-25.9.0"
-            "electron-24.8.6"
-          ];
-        };
-        overlays = [
-          (final: prev: {
-            obsidian-wayland = prev.obsidian.override {electron = final.electron_24;};
-          })
-          bunnuafeth.overlays.default
-          shareet.overlays.default
-          buddaraysh.overlays.default
-          # FIXME: remove after it gets fixed
-          nerdfonts-overlay
-
-          rust-overlay.overlays.default
-          nh-overlay
-          leftwm.overlays.default
-          ytdlp-gui.overlay
-          # hyprland-contrib.overlays.default
-          # rust-overlay.overlays.default
-          # helix.overlays.default
-          prismlauncher.overlays.default
-          (import ./overlays/mpvpaper.nix)
-          (eza-overlay)
-          (gf-overlay)
-          (tokyonight-gtk-overlay)
-          (evremap-overlay)
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+          "python3.10-requests-2.29.0"
+          "python3.10-cryptography-40.0.2"
+          "python3.10-cryptography-40.0.1"
+          # "electron-25.9.0"
+          "electron-24.8.6"
         ];
       };
+      overlays = [
+        (final: prev: {
+          obsidian-wayland = prev.obsidian.override {electron = final.electron_24;};
+        })
+        bunnuafeth.overlays.default
+        shareet.overlays.default
+        buddaraysh.overlays.default
+        # FIXME: remove after it gets fixed
+        nerdfonts-overlay
 
-      lib = nixpkgs.lib;
-    in
-    {
-      nixosConfigurations = {
-        # nixos is my hostname
-        nixos = lib.nixosSystem {
-          inherit system pkgs;
-
-          modules = [
-            stylix.nixosModules.stylix
-            ./system/configuration.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.salman = {
-                imports = [
-                  ./home.nix
-                  # hyprland.homeManagerModules.default
-                ];
-              };
-              home-manager.extraSpecialArgs = { inherit helix; };
-            }
-          ];
-        };
-      };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+        rust-overlay.overlays.default
+        nh-overlay
+        leftwm.overlays.default
+        ytdlp-gui.overlay
+        # hyprland-contrib.overlays.default
+        # rust-overlay.overlays.default
+        # helix.overlays.default
+        prismlauncher.overlays.default
+        (import ./overlays/mpvpaper.nix)
+        eza-overlay
+        gf-overlay
+        tokyonight-gtk-overlay
+        evremap-overlay
+      ];
     };
+
+    lib = nixpkgs.lib;
+  in {
+    nixosConfigurations = {
+      # nixos is my hostname
+      nixos = lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./system/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.salman = {
+              imports = [
+                ./home.nix
+                # hyprland.homeManagerModules.default
+              ];
+            };
+            home-manager.extraSpecialArgs = {inherit helix;};
+          }
+        ];
+      };
+    };
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+  };
 }

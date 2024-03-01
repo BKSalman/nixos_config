@@ -1,5 +1,4 @@
-{ pkgs, ... }: {
-
+{pkgs, ...}: {
   programs.waybar = {
     enable = true;
     style = ''
@@ -132,153 +131,155 @@
                font-family: "Hack Nerd Font" ;
              }
     '';
-    settings = [{
-      "layer" = "top";
-      "position" = "top";
-      modules-left = [
-        "custom/launcher"
-        "wlr/workspaces"
-        "temperature"
-        #"idle_inhibitor"
-        "custom/wall"
-        "mpd"
-        "custom/cava-internal"
-      ];
-      modules-center = [
-        "clock"
-      ];
-      modules-right = [
-        "pulseaudio"
-        "backlight"
-        "memory"
-        "cpu"
-        "network"
-        "battery"
-        "custom/powermenu"
-        "tray"
-      ];
-      "custom/launcher" = {
-        "format" = " ";
-        "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";
-        "tooltip" = false;
-      };
-      "custom/wall" = {
-        "on-click" = "wallpaper_random";
-        "on-click-middle" = "default_wall";
-        "on-click-right" = "killall dynamic_wallpaper || dynamic_wallpaper &";
-        "format" = " ﴔ ";
-        "tooltip" = false;
-      };
-      "custom/cava-internal" = {
-        "exec" = "sleep 1s && cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'";
-        "tooltip" = false;
-      };
-      "wlr/workspaces" = {
-        "format" = "{icon}";
-        "on-click" = "activate";
-        "on-scroll-up" = "hyprctl dispatch workspace e+1";
-        "on-scroll-down" = "hyprctl dispatch workspace e-1";
-      };
-      "idle_inhibitor" = {
-        "format" = "{icon}";
-        "format-icons" = {
-          "activated" = "";
-          "deactivated" = "";
+    settings = [
+      {
+        "layer" = "top";
+        "position" = "top";
+        modules-left = [
+          "custom/launcher"
+          "wlr/workspaces"
+          "temperature"
+          #"idle_inhibitor"
+          "custom/wall"
+          "mpd"
+          "custom/cava-internal"
+        ];
+        modules-center = [
+          "clock"
+        ];
+        modules-right = [
+          "pulseaudio"
+          "backlight"
+          "memory"
+          "cpu"
+          "network"
+          "battery"
+          "custom/powermenu"
+          "tray"
+        ];
+        "custom/launcher" = {
+          "format" = " ";
+          "on-click" = "pkill rofi || ~/.config/rofi/launcher.sh";
+          "tooltip" = false;
         };
-        "tooltip" = false;
-      };
-      "backlight" = {
-        "device" = "amdgpu_bl0";
-        "on-scroll-up" = "brightnessctl set 2%-";
-        "on-scroll-down" = "brightnessctl set 2%+";
-        "format" = "{icon} {percent}%";
-        "format-icons" = [ "" "" "" "" ];
-      };
-      "pulseaudio" = {
-        "scroll-step" = 1;
-        "format" = "{icon} {volume}%";
-        "format-muted" = "婢 Muted";
-        "format-icons" = {
-          "default" = [ "" "" "" ];
+        "custom/wall" = {
+          "on-click" = "wallpaper_random";
+          "on-click-middle" = "default_wall";
+          "on-click-right" = "killall dynamic_wallpaper || dynamic_wallpaper &";
+          "format" = " ﴔ ";
+          "tooltip" = false;
         };
-        # "states" = {
-        #   "warning" = 85;
+        "custom/cava-internal" = {
+          "exec" = "sleep 1s && cava -p ~/.config/cava/config | sed -u 's/;//g;s/0/▁/g;s/1/▂/g;s/2/▃/g;s/3/▄/g;s/4/▅/g;s/5/▆/g;s/6/▇/g;s/7/█/g;'";
+          "tooltip" = false;
+        };
+        "wlr/workspaces" = {
+          "format" = "{icon}";
+          "on-click" = "activate";
+          "on-scroll-up" = "hyprctl dispatch workspace e+1";
+          "on-scroll-down" = "hyprctl dispatch workspace e-1";
+        };
+        "idle_inhibitor" = {
+          "format" = "{icon}";
+          "format-icons" = {
+            "activated" = "";
+            "deactivated" = "";
+          };
+          "tooltip" = false;
+        };
+        "backlight" = {
+          "device" = "amdgpu_bl0";
+          "on-scroll-up" = "brightnessctl set 2%-";
+          "on-scroll-down" = "brightnessctl set 2%+";
+          "format" = "{icon} {percent}%";
+          "format-icons" = ["" "" "" ""];
+        };
+        "pulseaudio" = {
+          "scroll-step" = 1;
+          "format" = "{icon} {volume}%";
+          "format-muted" = "婢 Muted";
+          "format-icons" = {
+            "default" = ["" "" ""];
+          };
+          # "states" = {
+          #   "warning" = 85;
+          # };
+          "on-click-right" = "killall pavucontrol || pavucontrol &";
+          "on-click" = "pamixer -t";
+          "tooltip" = false;
+        };
+        # "battery" = {
+        #   "interval" = 10;
+        #   "states" = {
+        #     "warning" = 20;
+        #     "critical" = 10;
+        #   };
+        #   "format" = "{icon} {capacity}%";
+        #   "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
+        #   "format-full" = "{icon} {capacity}%";
+        #   "format-charging" = " {capacity}%";
+        #   "tooltip" = false;
         # };
-        "on-click-right" = "killall pavucontrol || pavucontrol &";
-        "on-click" = "pamixer -t";
-        "tooltip" = false;
-      };
-      # "battery" = {
-      #   "interval" = 10;
-      #   "states" = {
-      #     "warning" = 20;
-      #     "critical" = 10;
-      #   };
-      #   "format" = "{icon} {capacity}%";
-      #   "format-icons" = [ "" "" "" "" "" "" "" "" "" ];
-      #   "format-full" = "{icon} {capacity}%";
-      #   "format-charging" = " {capacity}%";
-      #   "tooltip" = false;
-      # };
-      "clock" = {
-        "interval" = 1;
-        "format" = "{:%I:%M %p  %A %b %d}";
-        "tooltip" = true;
-        "tooltip-format" = "<tt>{calendar}</tt>";
-        # "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
-        # "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
-      };
-      "memory" = {
-        "interval" = 1;
-        "format" = "﬙ {percentage}%";
-        "states" = {
-          "warning" = 85;
+        "clock" = {
+          "interval" = 1;
+          "format" = "{:%I:%M %p  %A %b %d}";
+          "tooltip" = true;
+          "tooltip-format" = "<tt>{calendar}</tt>";
+          # "tooltip-format"= "{=%A; %d %B %Y}\n<tt>{calendar}</tt>";
+          # "tooltip-format" = "上午：高数\n下午：Ps\n晚上：Golang\n<tt>{calendar}</tt>";
         };
-      };
-      "cpu" = {
-        "interval" = 1;
-        "format" = " {usage}%";
-      };
-      "mpd" = {
-        "max-length" = 25;
-        "format" = "<span foreground='#bb9af7'></span> {title}";
-        "format-paused" = " {title}";
-        "format-stopped" = "<span foreground='#bb9af7'></span>";
-        "format-disconnected" = "";
-        "on-click" = "playerctl play-pause";
-        "on-click-right" = "mpc update; mpc ls | mpc add";
-        "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
-        "on-scroll-up" = "playerctl next";
-        "on-scroll-down" = "playerctl previous";
-        "smooth-scrolling-threshold" = 5;
-        "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
-      };
-      "network" = {
-        "interval" = 1;
-        "format-wifi" = "說 {essid}";
-        "format-ethernet" = ""; # {ifname} ({ipaddr})
-        "format-linked" = "說 {essid} (No IP)";
-        "format-disconnected" = "說 Disconnected";
-        "tooltip" = false;
-      };
-      "temperature" = {
-        # "hwmon-path"= "${env:HWMON_PATH}";
-        #"critical-threshold"= 80;
-        "tooltip" = false;
-        "format" = " {temperatureC}°C";
-      };
-      "custom/powermenu" = {
-        "format" = "";
-        "on-click" = "pkill rofi || ~/.config/rofi/powermenu.sh";
-        "tooltip" = false;
-      };
-      "tray" = {
-        "icon-size" = 15;
-        "spacing" = 5;
-      };
-    }];
+        "memory" = {
+          "interval" = 1;
+          "format" = "﬙ {percentage}%";
+          "states" = {
+            "warning" = 85;
+          };
+        };
+        "cpu" = {
+          "interval" = 1;
+          "format" = " {usage}%";
+        };
+        "mpd" = {
+          "max-length" = 25;
+          "format" = "<span foreground='#bb9af7'></span> {title}";
+          "format-paused" = " {title}";
+          "format-stopped" = "<span foreground='#bb9af7'></span>";
+          "format-disconnected" = "";
+          "on-click" = "playerctl play-pause";
+          "on-click-right" = "mpc update; mpc ls | mpc add";
+          "on-click-middle" = "kitty --class='ncmpcpp' ncmpcpp ";
+          "on-scroll-up" = "playerctl next";
+          "on-scroll-down" = "playerctl previous";
+          "smooth-scrolling-threshold" = 5;
+          "tooltip-format" = "{title} - {artist} ({elapsedTime:%M:%S}/{totalTime:%H:%M:%S})";
+        };
+        "network" = {
+          "interval" = 1;
+          "format-wifi" = "說 {essid}";
+          "format-ethernet" = ""; # {ifname} ({ipaddr})
+          "format-linked" = "說 {essid} (No IP)";
+          "format-disconnected" = "說 Disconnected";
+          "tooltip" = false;
+        };
+        "temperature" = {
+          # "hwmon-path"= "${env:HWMON_PATH}";
+          #"critical-threshold"= 80;
+          "tooltip" = false;
+          "format" = " {temperatureC}°C";
+        };
+        "custom/powermenu" = {
+          "format" = "";
+          "on-click" = "pkill rofi || ~/.config/rofi/powermenu.sh";
+          "tooltip" = false;
+        };
+        "tray" = {
+          "icon-size" = 15;
+          "spacing" = 5;
+        };
+      }
+    ];
   };
   programs.waybar.package = pkgs.waybar.overrideAttrs (old: {
-    mesonFlags = (old.mesonFlags or [ ]) ++ [ "-Dexperimental=true" ];
+    mesonFlags = (old.mesonFlags or []) ++ ["-Dexperimental=true"];
   });
 }

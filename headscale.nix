@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   baseDomain = "bksalman.com";
   domain = "headscale.bksalman.com";
-in
-{
+in {
   services = {
     headscale = {
       enable = true;
@@ -13,7 +15,7 @@ in
         server_url = "https://${domain}";
         dns_config.base_domain = baseDomain;
       };
-      settings = { logtail.enabled = true; };
+      settings = {logtail.enabled = true;};
     };
 
     nginx = {
@@ -26,15 +28,14 @@ in
         forceSSL = true;
         enableACME = true;
         locations."/" = {
-          proxyPass =
-            "http://localhost:${toString config.services.headscale.port}";
+          proxyPass = "http://localhost:${toString config.services.headscale.port}";
           proxyWebsockets = true;
         };
       };
     };
   };
 
-  users.users.nginx.extraGroups = [ "acme" ];
+  users.users.nginx.extraGroups = ["acme"];
   security.acme = {
     acceptTerms = true;
     defaults.email = "salman.f.abuhaimed@gmail.com";
