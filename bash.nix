@@ -11,7 +11,6 @@
     enable = true;
     shellAliases = {
       nd = "nix develop";
-      switch = "sudo nixos-rebuild switch --flake .#";
       ls = "eza --time-style=long-iso --group-directories-first --icons --no-permissions --no-user -l --git";
       ll = "eza --time-style=long-iso --group-directories-first --icons -la";
       cat = "bat";

@@ -232,6 +232,8 @@
 
   home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
 
+  home.file.".local/bin/switch".source = ./switch;
+
   home.file.".local/bin/cliphist-rofi" = {
     text = ''
       #!/usr/bin/env bash
