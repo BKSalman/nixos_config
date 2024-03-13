@@ -384,9 +384,9 @@
     ++ [
       "ACTION==\"add\", SUBSYSTEM==\"backlight\", KERNEL==\"amdgpu_bl0\", MODE=\"0666\", RUN+=\"${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness\""
     ]);
-  # services.udev.extraRules = ''
-  #
-  # '';
+  services.udev.packages = [
+    ../udev-rules/69-probe-rs.rules
+  ];
 
   # temporary cus NetworkManager-wait-online fails the nixos switch
   systemd.services.NetworkManager-wait-online = {
