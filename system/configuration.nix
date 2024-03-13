@@ -380,9 +380,12 @@
   };
 
   # give acess to backlight to be able to change it from polybar or whatever
-  services.udev.extraRules = builtins.concatStringsSep "\n" (map (name: builtins.readFile (../udev-rules + ("/" + name))) (builtins.attrNames (builtins.readDir ../udev-rules)));
+  services.udev.extraRules = builtins.concatStringsSep "\n" ((map (name: builtins.readFile (../udev-rules + ("/" + name))) (builtins.attrNames (builtins.readDir ../udev-rules)))
+    ++ [
+      "ACTION==\"add\", SUBSYSTEM==\"backlight\", KERNEL==\"amdgpu_bl0\", MODE=\"0666\", RUN+=\"${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness\""
+    ]);
   # services.udev.extraRules = ''
-  #   ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="amdgpu_bl0", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+  #
   # '';
 
   # temporary cus NetworkManager-wait-online fails the nixos switch
