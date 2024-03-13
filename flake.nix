@@ -125,6 +125,9 @@
         (final: prev: {
           obsidian-wayland = prev.obsidian.override {electron = final.electron_24;};
         })
+        (final: prev: {
+          probe-rs-udev-rules = prev.callPackage ./packages/probe-rs-udev-rules;
+        })
         bunnuafeth.overlays.default
         shareet.overlays.default
         buddaraysh.overlays.default
