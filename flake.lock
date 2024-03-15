@@ -1926,16 +1926,16 @@
         "rust-overlay": "rust-overlay_11"
       },
       "locked": {
-        "lastModified": 1693259818,
-        "narHash": "sha256-yf/OdA2LgM9HehZiHg4dPT0ixLyzbEoHv2954geFwQU=",
+        "lastModified": 1708981470,
+        "narHash": "sha256-I4kxWgHvJSQFdJbcE2ihml9wsyisFxdZdfJvVAE71Qw=",
         "owner": "bksalman",
         "repo": "ytdlp-gui",
-        "rev": "62361efcc08b89ce1b934def7801480a39962200",
+        "rev": "d80719442e13a4cd2c405873fe595a16f0714a4f",
         "type": "github"
       },
       "original": {
         "owner": "bksalman",
-        "ref": "v1.0.0",
+        "ref": "v1.0.2",
         "repo": "ytdlp-gui",
         "type": "github"
       }

@@ -32,7 +32,7 @@
     };
 
     ytdlp-gui = {
-      url = "github:bksalman/ytdlp-gui/v1.0.0";
+      url = "github:bksalman/ytdlp-gui/v1.0.2";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay/master";
