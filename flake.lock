@@ -26,11 +26,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1704831004,
-        "narHash": "sha256-jpTF4bd9pYaJrPwEn69n5thI36mQXQcRqm9lnP0B13U=",
+        "lastModified": 1707414667,
+        "narHash": "sha256-qPBpypIH1AeB6frXN3cJZZ7YLGu/1uCEMCo/omNuUwI=",
         "ref": "refs/heads/main",
-        "rev": "aefd83429ed828560c5eee052a2992e049d25fb8",
-        "revCount": 37,
+        "rev": "3a37dca4f148552bf3a9c0cadb435d0632d00294",
+        "revCount": 39,
         "type": "git",
         "url": "file:///home/salman/coding/buddaraysh"
       },
