@@ -1,12 +1,12 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, pkg-config
-, obs-studio
-, pango
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  pkg-config,
+  obs-studio,
+  pango,
 }:
-
 stdenv.mkDerivation {
   pname = "obs-text-pango";
   version = "1.0";
@@ -22,8 +22,8 @@ stdenv.mkDerivation {
     "-DOBS_DIR=${obs-studio.src}"
   ];
 
-  nativeBuildInputs = [ cmake pkg-config ];
-  buildInputs = [ obs-studio pango ];
+  nativeBuildInputs = [cmake pkg-config];
+  buildInputs = [obs-studio pango];
 
   postInstall = ''
     mkdir -p $out/lib/obs-plugins
@@ -35,7 +35,7 @@ stdenv.mkDerivation {
     description = "Text Source using Pango for OBS Studio";
     homepage = "https://github.com/kkartaltepe/obs-text-pango";
     license = licenses.gpl2;
-    maintainers = with maintainers; [ bksalman ];
-    platforms = [ "x86_64-linux" ];
+    maintainers = with maintainers; [bksalman];
+    platforms = ["x86_64-linux"];
   };
 }

@@ -1,7 +1,8 @@
-{ lib
-, stdenv
-, dpkg
-, fetchurl
+{
+  lib,
+  stdenv,
+  dpkg,
+  fetchurl,
 }:
 stdenv.mkDerivation rec {
   pname = "huiontablet";
@@ -35,6 +36,6 @@ stdenv.mkDerivation rec {
   meta = {
     description = "Official Huion tablets driver";
     homepage = "https://www.huion.com";
-    platforms = [ "x86_64-linux" ];
+    platforms = ["x86_64-linux"];
   };
 }

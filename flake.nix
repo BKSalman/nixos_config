@@ -56,103 +56,133 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, hyprland-contrib, prismlauncher, helix, rust-overlay, ytdlp-gui, leftwm, manmap, sadmadbotlad, eza, ... }:
-    let
-      system = "x86_64-linux";
+  outputs = {
+    nixpkgs,
+    home-manager,
+    hyprland-contrib,
+    prismlauncher,
+    helix,
+    rust-overlay,
+    ytdlp-gui,
+    leftwm,
+    manmap,
+    sadmadbotlad,
+    eza,
+    hyprland,
+    ...
+  }: let
+    system = "x86_64-linux";
 
-      tokyonight-gtk-overlay = final: prev: {
-        tokyonight-gtk = prev.callPackage ./packages/tokyonight { };
-      };
+    tokyonight-gtk-overlay = final: prev: {
+      tokyonight-gtk = prev.callPackage ./packages/tokyonight {};
+    };
 
-      evremap-overlay = final: prev: {
-        evremap = prev.callPackage ./packages/evremap { };
-      };
+    evremap-overlay = final: prev: {
+      evremap = prev.callPackage ./packages/evremap {};
+    };
 
-      webcord-overlay = final: prev: {
-        webcord = prev.callPackage ./packages/webcord { };
-      };
+    webcord-overlay = final: prev: {
+      webcord = prev.callPackage ./packages/webcord {};
+    };
 
-      insomnia-overlay = final: prev: {
-        insomnia = prev.callPackage ./packages/insomnia { };
-      };
+    insomnia-overlay = final: prev: {
+      insomnia = prev.callPackage ./packages/insomnia {};
+    };
 
-      nerdfonts-overlay = final: prev: {
-        nerdfonts = prev.callPackage ./packages/nerdfonts { };
-      };
+    nerdfonts-overlay = final: prev: {
+      nerdfonts = prev.callPackage ./packages/nerdfonts {};
+    };
 
-      obs-text-pango-overlay = final: prev: {
-        obs-text-pango = prev.callPackage ./packages/obs-plugins/text-pango.nix { };
-      };
+    obs-text-pango-overlay = final: prev: {
+      obs-text-pango = prev.callPackage ./packages/obs-plugins/text-pango.nix {};
+    };
 
-      davinci-resolve-overlay = final: prev: {
-        davinci-resolve = prev.callPackage ./packages/davinci-resolve { };
-      };
+    davinci-resolve-overlay = final: prev: {
+      davinci-resolve = prev.callPackage ./packages/davinci-resolve {};
+    };
 
-      eza-overlay = final: prev: {
-        eza = eza.packages.${system}.default;
-      };
+    eza-overlay = final: prev: {
+      eza = eza.packages.${system}.default;
+    };
 
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-          permittedInsecurePackages = [
-            "python-2.7.18.6"
-          ];
-        };
-        overlays = [
-          # FIXME: remove after it gets fixed
-          nerdfonts-overlay
-
-
-          manmap.overlay
-          leftwm.overlays.default
-          ytdlp-gui.overlay
-          hyprland-contrib.overlays.default
-          rust-overlay.overlays.default
-          # helix.overlays.default
-          prismlauncher.overlays.default
-          (eza-overlay)
-          (obs-text-pango-overlay)
-          (davinci-resolve-overlay)
-          (insomnia-overlay)
-          (import ./overlays/mpvpaper.nix)
-          (import ./overlays/distrobox.nix)
-          (tokyonight-gtk-overlay)
-          (evremap-overlay)
-          (webcord-overlay)
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [
+          "python-2.7.18.6"
         ];
       };
+      overlays = [
+        # FIXME: remove after it gets fixed
+        nerdfonts-overlay
 
-      lib = nixpkgs.lib;
-    in
-    {
-      nixosConfigurations = {
-        # nixos is my hostname
-        nixos = lib.nixosSystem {
-          inherit system pkgs;
-          specialArgs = { inherit sadmadbotlad; };
-
-          modules = [
-            ./system/configuration.nix
-
-            # xremap-flake.nixosModules.default
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.salman = {
-                imports = [
-                  ./home.nix
-                  # hyprland.homeManagerModules.default
-                ];
-              };
-              home-manager.extraSpecialArgs = { inherit helix sadmadbotlad; };
-            }
-          ];
-        };
-      };
-      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+        manmap.overlay
+        leftwm.overlays.default
+        ytdlp-gui.overlay
+        hyprland-contrib.overlays.default
+        rust-overlay.overlays.default
+        # helix.overlays.default
+        prismlauncher.overlays.default
+        eza-overlay
+        obs-text-pango-overlay
+        davinci-resolve-overlay
+        insomnia-overlay
+        (import ./overlays/mpvpaper.nix)
+        (import ./overlays/distrobox.nix)
+        tokyonight-gtk-overlay
+        evremap-overlay
+        webcord-overlay
+      ];
     };
+
+    lib = nixpkgs.lib;
+  in {
+    nixosConfigurations = {
+      pc = lib.nixosSystem {
+        inherit system pkgs;
+        specialArgs = {inherit sadmadbotlad;};
+
+        modules = [
+          ./hosts/pc/configuration.nix
+
+          # xremap-flake.nixosModules.default
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.salman = {
+              imports = [
+                ./hosts/pc/home.nix
+                # hyprland.homeManagerModules.default
+              ];
+            };
+            home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
+          }
+        ];
+      };
+      laptops = lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./hosts/laptop/configuration.nix
+
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.salman = {
+              imports = [
+                ./hosts/laptop/home.nix
+                hyprland.homeManagerModules.default
+              ];
+            };
+            home-manager.extraSpecialArgs = {inherit helix;};
+          }
+        ];
+      };
+    };
+    formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+  };
 }

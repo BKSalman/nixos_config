@@ -1,31 +1,31 @@
-{ mkDerivation
-, lib
-, fetchurl
-, autoPatchelfHook
-, makeWrapper
-, xdg-utils
-, dbus
-, qtbase
-, qtwebengine
-, qtx11extras
-, getconf
-, glibc
-, libXrandr
-, libX11
-, libXext
-, libXdamage
-, libXtst
-, libSM
-, libXfixes
-, coreutils
-, wrapQtAppsHook
-, icu63
+{
+  mkDerivation,
+  lib,
+  fetchurl,
+  autoPatchelfHook,
+  makeWrapper,
+  xdg-utils,
+  dbus,
+  qtbase,
+  qtwebengine,
+  qtx11extras,
+  getconf,
+  glibc,
+  libXrandr,
+  libX11,
+  libXext,
+  libXdamage,
+  libXtst,
+  libSM,
+  libXfixes,
+  coreutils,
+  wrapQtAppsHook,
+  icu63,
 }:
-
 mkDerivation rec {
   pname = "teamviewer";
   # teamviewer itself has not development files but the dev output removes propagated other dev outputs from runtime
-  outputs = [ "out" "dev" ];
+  outputs = ["out" "dev"];
   version = "15.43.7";
 
   src = fetchurl {
@@ -38,8 +38,8 @@ mkDerivation rec {
     tar xf data.tar.*
   '';
 
-  nativeBuildInputs = [ autoPatchelfHook makeWrapper wrapQtAppsHook ];
-  buildInputs = [ qtbase qtwebengine qtx11extras icu63 ];
+  nativeBuildInputs = [autoPatchelfHook makeWrapper wrapQtAppsHook];
+  buildInputs = [qtbase qtwebengine qtx11extras icu63];
 
   installPhase = ''
     mkdir -p $out/share/teamviewer $out/bin $out/share/applications
@@ -113,8 +113,8 @@ mkDerivation rec {
   '';
 
   makeWrapperArgs = [
-    "--prefix PATH : ${lib.makeBinPath [ getconf coreutils ]}"
-    "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [ libXrandr libX11 libXext libXdamage libXtst libSM libXfixes dbus icu63 ]}"
+    "--prefix PATH : ${lib.makeBinPath [getconf coreutils]}"
+    "--prefix LD_LIBRARY_PATH : ${lib.makeLibraryPath [libXrandr libX11 libXext libXdamage libXtst libSM libXfixes dbus icu63]}"
   ];
 
   postFixup = ''
@@ -131,10 +131,10 @@ mkDerivation rec {
 
   meta = with lib; {
     homepage = "https://www.teamviewer.com";
-    sourceProvenance = with sourceTypes; [ binaryNativeCode ];
+    sourceProvenance = with sourceTypes; [binaryNativeCode];
     license = licenses.unfree;
     description = "Desktop sharing application, providing remote support and online meetings";
-    platforms = [ "x86_64-linux" ];
-    maintainers = with maintainers; [ jagajaga jraygauthier gador ];
+    platforms = ["x86_64-linux"];
+    maintainers = with maintainers; [jagajaga jraygauthier gador];
   };
 }

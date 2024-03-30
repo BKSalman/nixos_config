@@ -1,4 +1,16 @@
-{ lib, stdenv, buildNpmPackage, fetchFromGitHub, copyDesktopItems, python3, rustc, pipewire, libpulseaudio, electron, makeDesktopItem }:
+{
+  lib,
+  stdenv,
+  buildNpmPackage,
+  fetchFromGitHub,
+  copyDesktopItems,
+  python3,
+  rustc,
+  pipewire,
+  libpulseaudio,
+  electron,
+  makeDesktopItem,
+}:
 buildNpmPackage rec {
   name = "webcord";
   version = "4.1.1";
@@ -23,7 +35,7 @@ buildNpmPackage rec {
     libpulseaudio
   ];
 
-  patches = [ ./node-pipewire.patch ];
+  patches = [./node-pipewire.patch];
 
   # npm install will error when electron tries to download its binary
   # we don't need it anyways since we wrap the program with our nixpkgs electron
@@ -31,8 +43,8 @@ buildNpmPackage rec {
 
   # remove husky commit hooks, errors and aren't needed for packaging
   postPatch = ''
-    		rm -rf .husky
-    	'';
+    rm -rf .husky
+  '';
 
   nodePipewire = builtins.fetchTarball {
     url = "https://github.com/kakxem/node-pipewire/releases/download/${nodePipewireVersion}/node-v108-linux-x64.tar.gz";
@@ -41,22 +53,22 @@ buildNpmPackage rec {
 
   # override installPhase so we can copy the only folders that matter
   installPhase = ''
-    		runHook preInstall
+    runHook preInstall
 
-    		mkdir -p $out/lib/node_modules/webcord
-    		mkdir -p $out/lib/node_modules/webcord/node_modules/node-pipewire
-    		cp -r app node_modules sources package.json $out/lib/node_modules/webcord/
-    		cp -r ${nodePipewire}/* $out/lib/node_modules/webcord/node_modules/node-pipewire/
+    mkdir -p $out/lib/node_modules/webcord
+    mkdir -p $out/lib/node_modules/webcord/node_modules/node-pipewire
+    cp -r app node_modules sources package.json $out/lib/node_modules/webcord/
+    cp -r ${nodePipewire}/* $out/lib/node_modules/webcord/node_modules/node-pipewire/
 
-    		install -Dm644 sources/assets/icons/app.png $out/share/icons/hicolor/256x256/apps/webcord.png
+    install -Dm644 sources/assets/icons/app.png $out/share/icons/hicolor/256x256/apps/webcord.png
 
-    		makeWrapper '${electron}/bin/electron' $out/bin/webcord \
-    		--prefix LD_LIBRARY_PATH : ${libPath}:$out/opt/webcord \
-    		--add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}" \
-    		--add-flags $out/lib/node_modules/webcord/
+    makeWrapper '${electron}/bin/electron' $out/bin/webcord \
+    --prefix LD_LIBRARY_PATH : ${libPath}:$out/opt/webcord \
+    --add-flags "\''${NIXOS_OZONE_WL:+\''${WAYLAND_DISPLAY:+--ozone-platform=wayland}}" \
+    --add-flags $out/lib/node_modules/webcord/
 
-    		runHook postInstall
-    	'';
+    runHook postInstall
+  '';
 
   desktopItems = [
     (makeDesktopItem {
@@ -65,7 +77,7 @@ buildNpmPackage rec {
       icon = "webcord";
       desktopName = "WebCord";
       comment = meta.description;
-      categories = [ "Network" "InstantMessaging" ];
+      categories = ["Network" "InstantMessaging"];
     })
   ];
 
@@ -75,7 +87,7 @@ buildNpmPackage rec {
     downloadPage = "https://github.com/SpacingBat3/WebCord/releases";
     changelog = "https://github.com/SpacingBat3/WebCord/releases/tag/v${version}";
     license = licenses.mit;
-    maintainers = with maintainers; [ huantian ];
+    maintainers = with maintainers; [huantian];
     platforms = platforms.linux;
   };
 }

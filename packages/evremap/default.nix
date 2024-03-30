@@ -1,5 +1,9 @@
-{ fetchFromGitHub, lib, rustPlatform, pkgs }:
-
+{
+  fetchFromGitHub,
+  lib,
+  rustPlatform,
+  pkgs,
+}:
 rustPlatform.buildRustPackage rec {
   pname = "evremap";
   version = "0.1.0";
@@ -34,6 +38,6 @@ rustPlatform.buildRustPackage rec {
     homepage = "https://github.com/wez/evremap";
     license = licenses.mit;
     mainProgram = pname;
-    maintainers = with maintainers; [ bksalman ];
+    maintainers = with maintainers; [bksalman];
   };
 }
