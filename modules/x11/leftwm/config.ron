@@ -12,9 +12,9 @@
     modkey: "Mod4", // SUPER key
     mousekey: "Mod4",
     workspaces: [
-        ( output: "HDMI-0", y: 0, x: 0, height: 1080, width: 1920 ),
-        ( output: "DP-0", y: 0, x: 1920, height: 1080, width: 1920 ),
-        ( output: "DP-2", y: 0, x: 3840, height: 1080, width: 1920 ),
+        // ( output: "HDMI-0", y: 0, x: 0, height: 1080, width: 1920 ),
+        // ( output: "DP-0", y: 0, x: 1920, height: 1080, width: 1920 ),
+        // ( output: "DP-2", y: 0, x: 3840, height: 1080, width: 1920 ),
     ],
     tags: [
         "1",
@@ -51,7 +51,7 @@
     focus_new_windows: true,
     single_window_border: true,
     sloppy_mouse_follows_focus: true,
-    // auto_derive_workspaces: true,
+    auto_derive_workspaces: true,
     keybind: [
         (command: ToggleScratchPad, value: "Kitty", modifier: ["modkey"], key: "p"),
         (command: ToggleScratchPad, value: "Chatterino", modifier: ["modkey"], key: "b"),
