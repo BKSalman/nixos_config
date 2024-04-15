@@ -276,7 +276,7 @@
   networking.firewall.allowedTCPPorts = [25565 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
   networking.firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
