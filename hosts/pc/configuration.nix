@@ -70,10 +70,11 @@
     LC_ALL = "en_US.UTF-8";
   };
 
+  services.displayManager.sessionPackages = [pkgs.hyprland];
+
   services.xserver = {
     enable = true;
 
-    displayManager.sessionPackages = [pkgs.hyprland];
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
     # displayManager.sddm.enable = true;
@@ -82,9 +83,11 @@
 
     videoDrivers = ["nvidia"];
 
-    layout = "us,ara";
-    xkbOptions = "grp:alt_shift_toggle";
-    xkbVariant = "";
+    xkb = {
+      layout = "us,ara";
+      options = "grp:alt_shift_toggle";
+      variant = "";
+    };
   };
 
   # Enable CUPS to print documents.
@@ -121,9 +124,6 @@
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -143,7 +143,7 @@
     })
     nextcloud-client
     gparted
-    nixops_unstable
+    # nixops_unstable
     docker-compose
     podman-compose
     bat
@@ -273,7 +273,7 @@
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [25565 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80];
+  networking.firewall.allowedTCPPorts = [25565 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001];
   networking.firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -289,6 +289,7 @@
   systemd.services.cloudflared = {
     enable = true;
     wantedBy = ["multi-user.target"];
+    requires = ["network-online.target"];
     after = ["network-online.target" "systemd-resolved.service"];
     serviceConfig = {
       ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";

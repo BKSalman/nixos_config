@@ -5,7 +5,7 @@ machine=$(echo "$1" | tr -d '[:space:]')
 set -e
 set -x
 alejandra . &> /dev/null
-git dft *.nix
+git dft *.nix *.toml ./*/*.nix
 echo "Rebuilding NixOS for $machine..."
 sudo nixos-rebuild switch --flake ".#$machine" &>nixos-switch.log || (cat "nixos-switch.log" | grep --color error && false)
 gen=$(nixos-rebuild list-generations | grep current)

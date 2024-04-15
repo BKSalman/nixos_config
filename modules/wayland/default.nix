@@ -36,6 +36,7 @@ in {
       # pkgs.xdg-desktop-portal-kde
       # pkgs.xdg-desktop-portal-hyprland
     ];
+    config.common.default = "*";
   };
 
   programs.xwayland.enable = true;

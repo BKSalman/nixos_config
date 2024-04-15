@@ -28,7 +28,7 @@
     };
 
     helix = {
-      url = "github:helix-editor/helix/23.05";
+      url = "github:helix-editor/helix/23.10";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -110,6 +110,7 @@
       config = {
         allowUnfree = true;
         permittedInsecurePackages = [
+          "python-2.7.18.8"
           "python-2.7.18.6"
         ];
       };
@@ -128,7 +129,7 @@
         obs-text-pango-overlay
         davinci-resolve-overlay
         insomnia-overlay
-        (import ./overlays/mpvpaper.nix)
+        # (import ./overlays/mpvpaper.nix)
         (import ./overlays/distrobox.nix)
         tokyonight-gtk-overlay
         evremap-overlay

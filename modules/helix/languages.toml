@@ -1,7 +1,11 @@
 [[language]]
 name = "rust"
-language-server = { command = "rust-analyzer", environment = { "CARGO_TARGET_DIR" = "target/analyzer" } }
+language-servers = ["rust-analyzer"]
 # auto-format = false
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+environment = { "CARGO_TARGET_DIR" = "target/analyzer" }
 
 [language.debugger]
 command = "codelldb"
@@ -41,10 +45,13 @@ auto-format = true
 name = "arduino"
 scope = "source.arduino"
 grammar = "c"
-language-server = { command = "arduino-language-server"}
+language-servers = ["arduino-lsp"]
 file-types = ["ino", "arduino"]
 roots = []
 indent = { tab-width = 4, unit = "4" }
+
+[language-server.arduino-lsp]
+command = "arduino-language-server"
 
 [[language]]
 name = "hebi"
@@ -56,5 +63,25 @@ indent = { tab-width = 4, unit = "    " }
 
 [[language]]
 name = "markdown"
-language-server = { command = "/home/salman/.cargo/bin/mdpls" }
+language-servers = ["mdpls"]
+[language-server.mdpls]
+command = "/home/salman/.cargo/bin/mdpls"
 config = { markdown.preview.auto = true, markdown.preview.browser = "firefox" }
+
+[[language]]
+name = "typescript"
+language-id = "typescript"
+scope = "source.ts"
+injection-regex = "^(ts|typescript)$"
+file-types = ["ts"]
+shebangs = ["deno"]
+roots = ["deno.json", "deno.jsonc", "package.json"]
+auto-format = true
+language-servers = ["deno-lsp"]
+
+[language-server.deno-lsp]
+command = "deno"
+args = ["lsp"]
+
+[language-server.deno-lsp.config.deno]
+enable = true

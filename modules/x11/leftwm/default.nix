@@ -11,9 +11,9 @@
   config = lib.mkIf config.leftwm.enable {
     x11.enable = true;
 
+    services.displayManager.defaultSession = "none+leftwm";
     services.xserver = {
       windowManager.leftwm.enable = true;
-      displayManager.defaultSession = "none+leftwm";
     };
 
     environment.systemPackages = with pkgs; [

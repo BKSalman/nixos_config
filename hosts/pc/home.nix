@@ -66,12 +66,7 @@
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
-    (rust-bin.stable.latest.default.override {
-      targets = ["x86_64-unknown-linux-gnu" "wasm32-unknown-unknown"];
-      extensions = ["rust-analyzer" "rust-src" "rust-std"];
-    })
-
-    # rustup
+    rustup
     jdk17
     (python311.withPackages (ps: with ps; [pandas requests openpyxl mypy]))
     go
@@ -79,6 +74,7 @@
     meson
     rust-bindgen
     marksman
+    deno
 
     difftastic
     alejandra
@@ -95,7 +91,7 @@
     inkscape
     helvum
     sd
-    davinci-resolve
+    # davinci-resolve
     audacity
     gimp
     direnv
@@ -111,7 +107,6 @@
     eww
     cliphist
     protonup-qt
-    teams
     wlsunset
     blender
     nodePackages_latest.bash-language-server
@@ -142,7 +137,7 @@
     ludusavi
     swww
     yt-dlp
-    mpvpaper
+    # mpvpaper
     pacman
     lolcat
     neofetch
@@ -263,6 +258,8 @@
   '';
 
   home.file.".config/starship.toml".source = ../../modules/starship.toml;
+
+  home.file.".config/kitty/kitty.conf".source = ../../modules/kitty.conf;
 
   home.file.".ssh/config".text = ''
     Host aur.archlinux.org
