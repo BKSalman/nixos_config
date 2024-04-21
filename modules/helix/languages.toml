@@ -85,3 +85,7 @@ args = ["lsp"]
 
 [language-server.deno-lsp.config.deno]
 enable = true
+
+[[language]]
+name = "c"
+indent = { tab-width = 4, unit = "4" }
