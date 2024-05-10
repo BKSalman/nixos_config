@@ -76,8 +76,6 @@
     marksman
     deno
 
-    zellij
-
     difftastic
     alejandra
     arandr

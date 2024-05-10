@@ -132,6 +132,8 @@
     libimobiledevice
     ifuse
 
+    zellij
+
     xdg-utils
     solaar
     (cinnamon.nemo-with-extensions.override {
