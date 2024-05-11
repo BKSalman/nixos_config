@@ -33,6 +33,14 @@
   # Enable virtual machines VFIO
   vfio.enable = true;
 
+  # enable android stuff
+  programs.adb.enable = true;
+
+  # udev rules
+  services.udev.packages = [
+    pkgs.android-udev-rules
+  ];
+
   # Bootloader.
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sdb";
@@ -117,7 +125,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video"];
+    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers"];
     packages = with pkgs; [
       kate
       #  thunderbird
