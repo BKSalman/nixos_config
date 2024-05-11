@@ -48,6 +48,7 @@
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
+  boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
