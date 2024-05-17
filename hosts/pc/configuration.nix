@@ -57,6 +57,10 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
+  networking.hosts = {
+    "127.0.0.1" = ["test.bksalman.com"];
+  };
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -136,6 +140,8 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    mergerfs
+
     # perl
     # IOS
     libimobiledevice
@@ -403,4 +409,12 @@
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
   };
+
+  # TODO: figure out if this could be done without changing nix store path
+  # merge /nix/store with other drive for extra disk space
+  # fileSystems."/nix/store" = {
+  #   fsType = "fuse.mergerfs";
+  #   device = "/media/extra/nix-store:/nix/store";
+  #   options = ["cache.files=partial" "dropcacheonclose=true" "category.create=mfs"];
+  # };
 }
