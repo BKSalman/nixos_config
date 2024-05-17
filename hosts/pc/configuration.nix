@@ -141,6 +141,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     mergerfs
+    fzf
 
     # perl
     # IOS

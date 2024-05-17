@@ -22,7 +22,20 @@
       o = "xdg-open";
       update-input = "nix flake lock --update-input";
     };
+    sessionVariables = {
+      MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+      MANROFFOPT = "-c";
+      EDITOR = "hx";
+    };
     enableCompletion = true;
-    bashrcExtra = builtins.readFile ./.bashrc;
+    bashrcExtra = ''
+      export PATH
+
+      eval "$(starship init bash)"
+
+      eval "$(zoxide init bash)"
+
+      eval "$(direnv hook bash)"
+    '';
   };
 }
