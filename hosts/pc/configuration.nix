@@ -58,7 +58,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   networking.hosts = {
-    "127.0.0.1:3030" = ["test.bksalman.com"];
+    "127.0.0.1:3030" = ["test.wow.com"];
   };
 
   # Enable networking
