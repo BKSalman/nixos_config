@@ -36,6 +36,11 @@
       eval "$(zoxide init bash)"
 
       eval "$(direnv hook bash)"
+
+      if command -v fzf-share >/dev/null; then
+        source "$(fzf-share)/key-bindings.bash"
+        source "$(fzf-share)/completion.bash"
+      fi
     '';
   };
 }
