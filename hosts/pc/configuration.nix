@@ -142,7 +142,9 @@
   environment.systemPackages = with pkgs; [
     mergerfs
     fzf
+    tree
 
+    jay
     # perl
     # IOS
     libimobiledevice
