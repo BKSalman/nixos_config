@@ -90,6 +90,16 @@
 
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
+    displayManager.session = [
+      {
+        manage = "desktop";
+        name = "jay";
+        start = ''
+          ${pkgs.jay}/bin/jay run &
+          waitPID=$!
+        '';
+      }
+    ];
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
     # desktopManager.plasma5.enable = true;
