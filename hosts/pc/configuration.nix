@@ -22,7 +22,7 @@
     export _JAVA_AWT_WM_NONREPARENTING=1
     export NO_AT_BRIDGE=1
 
-    systemd-cat --identifier=jay ${pkgs.jay}/bin/jay --log-level info run
+    ${pkgs.jay}/bin/jay --log-level info run
   '';
   jay-with-session = pkgs.jay.overrideAttrs (final: prev: let
     session = pkgs.writeText "jay" ''
