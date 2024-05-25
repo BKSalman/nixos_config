@@ -197,7 +197,7 @@
     libratbag
     gh
     eza
-    discord-canary
+    discord
     zoxide
     starship
     piper
