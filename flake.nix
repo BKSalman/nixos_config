@@ -2,10 +2,10 @@
   description = "Salman's System Configuration :)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/master";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -153,6 +153,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
             home-manager.users.salman = {
               imports = [
                 ./hosts/pc/home.nix
@@ -163,7 +164,7 @@
           }
         ];
       };
-      laptops = lib.nixosSystem {
+      laptop = lib.nixosSystem {
         inherit system pkgs;
 
         modules = [

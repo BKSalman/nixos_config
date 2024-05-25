@@ -133,7 +133,7 @@
     # this is broken for now
     # gifski
     lapce
-    eww-wayland
+    eww
     cliphist
     protonup-qt
     wlsunset

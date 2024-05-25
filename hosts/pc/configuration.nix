@@ -71,9 +71,9 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  networking.hosts = {
-    "127.0.0.1:3030" = ["test.wow.com"];
-  };
+  # networking.hosts = {
+  #   "127.0.0.1:3030" = ["test.wow.com"];
+  # };
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -165,19 +165,19 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # mergerfs
-    # fzf
-    # tree
+    fzf
+    tree
 
-    # jay
+    jay
     # perl
     # IOS
-    # libimobiledevice
-    # ifuse
+    libimobiledevice
+    ifuse
 
-    # zellij
+    zellij
 
-    # xdg-utils
-    # solaar
+    xdg-utils
+    solaar
     (cinnamon.nemo-with-extensions.override {
       extensions = [
         cinnamon.nemo-python
@@ -192,8 +192,8 @@
     # podman-compose
     bat
     # tmux
-    # egl-wayland
-    # firefox-wayland
+    egl-wayland
+    firefox-wayland
     pciutils
     pkg-config
     alsa-lib
