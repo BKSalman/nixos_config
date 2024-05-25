@@ -42,9 +42,7 @@
 in {
   imports = [
     # Include the results of the hardware scan.
-    # ../sunshine/services.sunshine.nix
     ./hardware-configuration.nix
-    # ../wayland
     ./modules
     ../../modules
   ];
