@@ -1,8 +1,21 @@
-{...}: {
+{pkgs, ...}: {
   home.file.".inputrc".source = ./.inputrc;
 
   home.file.".local/bin/switch" = {
-    source = ./switch;
+    text = ''
+      #!/usr/bin/env bash
+
+      machine=$(echo "$1" | tr -d '[:space:]')
+
+      set -e
+      set -x
+      ${pkgs.alejandra}/bin/alejandra . &> /dev/null
+      ${pkgs.git}/bin/git dft $(find . -name '*.nix') $(find . -name '*.toml')
+      echo "Rebuilding NixOS for $machine..."
+      sudo nixos-rebuild switch --flake ".#$machine" | tee nixos-switch.log || (cat "nixos-switch.log" | grep --color error && false)
+      gen=$(nixos-rebuild list-generations | grep current)
+      ${pkgs.git}/bin/git commit -am "$gen"
+    '';
     executable = true;
   };
 

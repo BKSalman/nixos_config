@@ -7,7 +7,38 @@
   lib,
   sadmadbotlad,
   ...
-}: {
+}: let
+  jay-wrapped = pkgs.writeText "jay-wrapped" ''
+    #!/bin/sh
+      export XDG_SESSION_TYPE=wayland
+      export XDG_SESSION_DESKTOP=jay
+      export XDG_CURRENT_DESKTOP=jay
+
+      export CLUTTER_BACKEND=wayland
+      export ECORE_EVAS_ENGINE=wayland
+      export ELM_ENGINE=wayland
+      export SDL_VIDEODRIVER=wayland
+      export _JAVA_AWT_WM_NONREPARENTING=1
+      export NO_AT_BRIDGE=1
+
+      systemd-cat --identifier=jay jay --log-level info run
+  '';
+  jay-with-session = pkgs.jay.overrideAttrs (final: prev: let
+    session = pkgs.writeText "jay" ''
+      [Desktop Entry]
+      Name=Jay
+      Exec=${jay-wrapped}
+      Type=Application
+    '';
+  in {
+    postInstall =
+      prev.postInstall
+      + ''
+        install -D ${session} $out/share/wayland-sessions/jay.desktop
+      '';
+    passthru.providedSessions = ["jay"];
+  });
+in {
   imports = [
     # Include the results of the hardware scan.
     # ../sunshine/services.sunshine.nix
@@ -97,23 +128,16 @@
     LC_ALL = "en_US.UTF-8";
   };
 
-  services.displayManager.sessionPackages = [pkgs.hyprland];
+  services.displayManager.sessionPackages = [
+    jay-with-session
+    pkgs.hyprland
+  ];
 
   services.xserver = {
     enable = true;
 
     displayManager.gdm.enable = true;
     displayManager.gdm.wayland = true;
-    displayManager.session = [
-      {
-        manage = "desktop";
-        name = "jay";
-        start = ''
-          ${pkgs.jay}/bin/jay run &
-          waitPID=$!
-        '';
-      }
-    ];
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
     # desktopManager.plasma5.enable = true;
@@ -168,7 +192,7 @@
     fzf
     tree
 
-    jay
+    jay-with-session
     # perl
     # IOS
     libimobiledevice
