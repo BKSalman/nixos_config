@@ -34,6 +34,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
+  home.pointerCursor = {
+    name = "Adwaita";
+    package = pkgs.gnome.adwaita-icon-theme;
+    size = 24;
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   gtk = {
     enable = true;
     theme = {
