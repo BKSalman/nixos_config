@@ -28,7 +28,7 @@
   leftwm.enable = true;
 
   # Enable nextcloud
-  nextcloud.enable = true;
+  nextcloud.enable = false;
 
   # Enable virtual machines VFIO
   vfio.enable = true;
