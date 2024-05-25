@@ -9,19 +9,20 @@
   ...
 }: let
   jay-wrapped = pkgs.writeText "jay-wrapped" ''
-    #!/bin/sh
-      export XDG_SESSION_TYPE=wayland
-      export XDG_SESSION_DESKTOP=jay
-      export XDG_CURRENT_DESKTOP=jay
+    #!/usr/bin/env bash
 
-      export CLUTTER_BACKEND=wayland
-      export ECORE_EVAS_ENGINE=wayland
-      export ELM_ENGINE=wayland
-      export SDL_VIDEODRIVER=wayland
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export NO_AT_BRIDGE=1
+    export XDG_SESSION_TYPE=wayland
+    export XDG_SESSION_DESKTOP=jay
+    export XDG_CURRENT_DESKTOP=jay
 
-      systemd-cat --identifier=jay jay --log-level info run
+    export CLUTTER_BACKEND=wayland
+    export ECORE_EVAS_ENGINE=wayland
+    export ELM_ENGINE=wayland
+    export SDL_VIDEODRIVER=wayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
+    export NO_AT_BRIDGE=1
+
+    systemd-cat --identifier=jay ${pkgs.jay} --log-level info run
   '';
   jay-with-session = pkgs.jay.overrideAttrs (final: prev: let
     session = pkgs.writeText "jay" ''
