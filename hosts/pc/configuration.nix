@@ -28,7 +28,7 @@
     session = pkgs.writeText "jay" ''
       [Desktop Entry]
       Name=Jay
-      Exec=${jay-wrapped}
+      Exec=${pkgs.jay}/bin/jay --log-level info run
       Type=Application
     '';
   in {
