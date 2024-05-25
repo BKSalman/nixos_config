@@ -59,7 +59,7 @@ in {
   # Enable leftwm
   leftwm.enable = true;
 
-  services.displayManager.defaultSession = "Jay";
+  services.displayManager.defaultSession = "jay";
 
   # Enable nextcloud
   nextcloud.enable = false;
