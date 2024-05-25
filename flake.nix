@@ -28,7 +28,7 @@
     };
 
     helix = {
-      url = "github:helix-editor/helix/23.10";
+      url = "github:helix-editor/helix/24.03";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";

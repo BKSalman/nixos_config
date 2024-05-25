@@ -18,37 +18,32 @@
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/41e4ceb1-8ec9-4686-8932-cabe7b9d4859";
-    fsType = "ext4";
+    device = "zpool/root";
+    fsType = "zfs";
   };
 
-  fileSystems."/var/lib/containers/storage/overlay" = {
-    device = "/var/lib/containers/storage/overlay";
-    fsType = "none";
-    options = ["bind"];
+  fileSystems."/nix" = {
+    device = "zpool/nix";
+    fsType = "zfs";
   };
 
-  # fileSystems."/var/lib/containers/storage/overlay-containers/5c947566470f9f8f591c6dc1420b10a4f160677a87bb944d71f195cc7512d02e/userdata/shm" =
-  #   { device = "shm";
-  #     fsType = "tmpfs";
-  #   };
-
-  # fileSystems."/var/lib/containers/storage/overlay/c67442d9df70a8204a6039d7a74b629dd123afa538b6ceee8b05a135813fe112/merged" =
-  #   { device = "overlay";
-  #     fsType = "overlay";
-  #   };
-
-  fileSystems."/media/big" = {
-    device = "/dev/disk/by-uuid/1acefa1e-5d56-4be1-b640-50afaaabec86";
-    fsType = "ext4";
+  fileSystems."/var" = {
+    device = "zpool/var";
+    fsType = "zfs";
   };
 
-  fileSystems."/media/extra" = {
-    device = "/dev/disk/by-uuid/78ec7175-a339-4330-a463-d6516b6f169f";
-    fsType = "ext4";
+  fileSystems."/home" = {
+    device = "zpool/home";
+    fsType = "zfs";
   };
 
-  swapDevices = [{device = "/dev/disk/by-uuid/01ae4d61-6a3d-4fa9-891b-67d73c9f2106";}];
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/2876-48E4";
+    fsType = "vfat";
+    options = ["fmask=0022" "dmask=0022"];
+  };
+
+  swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -56,10 +51,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.podman0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "performance";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

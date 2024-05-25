@@ -42,8 +42,22 @@
   ];
 
   # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sdb";
+  boot.loader.grub = {
+    enable = true;
+    zfsSupport = true;
+    efiSupport = true;
+    efiInstallAsRemovable = true;
+    mirroredBoots = [
+      {
+        devices = ["nodev"];
+        path = "/boot";
+      }
+    ];
+  };
+  services.zfs.autoScrub.enable = true;
+
+  networking.hostId = "97d1662c";
+
   boot.loader.grub.useOSProber = true;
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
@@ -150,20 +164,20 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    mergerfs
-    fzf
-    tree
+    # mergerfs
+    # fzf
+    # tree
 
-    jay
+    # jay
     # perl
     # IOS
-    libimobiledevice
-    ifuse
+    # libimobiledevice
+    # ifuse
 
-    zellij
+    # zellij
 
-    xdg-utils
-    solaar
+    # xdg-utils
+    # solaar
     (cinnamon.nemo-with-extensions.override {
       extensions = [
         cinnamon.nemo-python
@@ -171,19 +185,19 @@
         (pkgs.callPackage ../../packages/syncstate {})
       ];
     })
-    nextcloud-client
+    # nextcloud-client
     gparted
     # nixops_unstable
-    docker-compose
-    podman-compose
+    # docker-compose
+    # podman-compose
     bat
-    tmux
-    egl-wayland
-    firefox-wayland
+    # tmux
+    # egl-wayland
+    # firefox-wayland
     pciutils
     pkg-config
     alsa-lib
-    systemd
+    # systemd
     libiconv
     cloudflared
     mold
@@ -255,6 +269,8 @@
     };
   };
 
+  # for ZFS compatibility
+  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
   boot.kernelModules = [
