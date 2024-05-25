@@ -298,6 +298,11 @@ in {
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "nvidia-drm.fbdev=1"
+  ];
+
   boot.kernelModules = [
     # Virtual Camera
     "v4l2loopback"
