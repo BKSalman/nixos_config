@@ -16,7 +16,7 @@ in {
     glib
     grim # screenshot functionality
     slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+    # wl-clipboard # commented out because I'm using a wrapper when using jay
     wlogout
     wlr-randr
     (rofi-wayland.override {plugins = [pkgs.rofi-emoji];})
