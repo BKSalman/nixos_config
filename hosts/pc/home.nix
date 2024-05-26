@@ -282,4 +282,9 @@
     #!/usr/bin/env bash
     jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
   '';
+
+  home.file.".local/bin/obs-privileged".text = ''
+    #!/usr/bin/env bash
+    jay run-privileged -- obs "$@"
+  '';
 }
