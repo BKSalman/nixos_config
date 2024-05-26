@@ -273,18 +273,27 @@
     User aur
   '';
 
-  home.file.".local/bin/wl-paste".text = ''
-    #!/usr/bin/env bash
-    jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-paste "$@"
-  '';
+  home.file.".local/bin/wl-paste" = {
+    text = ''
+      #!/usr/bin/env bash
+      jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-paste "$@"
+    '';
+    executable = true;
+  };
 
-  home.file.".local/bin/wl-copy".text = ''
-    #!/usr/bin/env bash
-    jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
-  '';
+  home.file.".local/bin/wl-copy" = {
+    text = ''
+      #!/usr/bin/env bash
+      jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
+    '';
+    executable = true;
+  };
 
-  home.file.".local/bin/obs-privileged".text = ''
-    #!/usr/bin/env bash
-    jay run-privileged -- obs "$@"
-  '';
+  home.file.".local/bin/obs-privileged" = {
+    text = ''
+      #!/usr/bin/env bash
+      jay run-privileged -- obs "$@"
+    '';
+    executable = true;
+  };
 }
