@@ -272,4 +272,14 @@
     IdentityFile ~/.ssh/aur
     User aur
   '';
+
+  home.file.".local/bin/wl-paste".text = ''
+    #!/usr/bin/env bash
+    jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-paste "$@"
+  '';
+
+  home.file.".local/bin/wl-copy".text = ''
+    #!/usr/bin/env bash
+    jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
+  '';
 }
