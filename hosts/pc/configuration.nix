@@ -12,11 +12,11 @@
     session = pkgs.writeText "jay" ''
       [Desktop Entry]
       Name=Jay
-      Exec=${pkgs.jay}/bin/jay --log-level info run
+      Exec=${final.jay}/bin/jay --log-level info run
       Type=Application
     '';
   in rec {
-    verion = "master";
+    verion = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "mahkoh";
       repo = "jay";
