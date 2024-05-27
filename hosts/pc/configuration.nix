@@ -8,22 +8,6 @@
   sadmadbotlad,
   ...
 }: let
-  jay-wrapped = pkgs.writeText "jay-wrapped" ''
-    #!/usr/bin/env bash
-
-    export XDG_SESSION_TYPE=wayland
-    export XDG_SESSION_DESKTOP=jay
-    export XDG_CURRENT_DESKTOP=jay
-
-    export CLUTTER_BACKEND=wayland
-    export ECORE_EVAS_ENGINE=wayland
-    export ELM_ENGINE=wayland
-    export SDL_VIDEODRIVER=wayland
-    export _JAVA_AWT_WM_NONREPARENTING=1
-    export NO_AT_BRIDGE=1
-
-    ${pkgs.jay}/bin/jay --log-level info run
-  '';
   jay-with-session = pkgs.jay.overrideAttrs (final: prev: let
     session = pkgs.writeText "jay" ''
       [Desktop Entry]
@@ -31,7 +15,18 @@
       Exec=${pkgs.jay}/bin/jay --log-level info run
       Type=Application
     '';
-  in {
+  in rec {
+    verion = "master";
+    src = pkgs.fetchFromGitHub {
+      owner = "mahkoh";
+      repo = "jay";
+      rev = "077651dd8035c866ed77adb0b9bcdb2fc7ad3c33";
+      sha256 = "sha256-5Jm9JBt/EWNALycHd7zVnztRgcODiRZRxTZFbHWW0fo=";
+    };
+    cargoDeps = prev.cargoDeps.overrideAttrs (_: {
+      inherit src;
+      outputHash = "sha256-SghGnnuV9fQ1S72A/SHewG7oTu0oXqq86wkh0OPak5U=";
+    });
     postInstall =
       prev.postInstall
       + ''
