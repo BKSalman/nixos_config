@@ -12,7 +12,7 @@
     session = pkgs.writeText "jay" ''
       [Desktop Entry]
       Name=Jay
-      Exec=${final.jay}/bin/jay --log-level info run
+      Exec=${final}/bin/jay --log-level info run
       Type=Application
     '';
   in rec {
