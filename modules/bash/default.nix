@@ -12,7 +12,7 @@
       ${pkgs.alejandra}/bin/alejandra . &> /dev/null
       ${pkgs.git}/bin/git dft $(find . -name '*.nix') $(find . -name '*.toml')
       echo "Rebuilding NixOS for $machine..."
-      (sudo nixos-rebuild switch --flake ".#$machine" | tee nixos-switch.log) || (cat "nixos-switch.log" | grep --color error && false)
+      (sudo nixos-rebuild switch --flake ".#$machine" | tee nixos-switch.log) || (cat "nixos-switch.log" | grep --color error && false) && exit 1
       gen=$(nixos-rebuild list-generations | grep current)
       ${pkgs.git}/bin/git commit -am "$gen"
     '';

@@ -8,14 +8,7 @@
   sadmadbotlad,
   ...
 }: let
-  jay-with-session = pkgs.jay.overrideAttrs (final: prev: let
-    session = pkgs.writeText "jay" ''
-      [Desktop Entry]
-      Name=Jay
-      Exec=${final}/bin/jay --log-level info run
-      Type=Application
-    '';
-  in rec {
+  jay-unstable = pkgs.jay.overrideAttrs (final: prev: rec {
     verion = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "mahkoh";
@@ -27,6 +20,15 @@
       inherit src;
       outputHash = "sha256-SghGnnuV9fQ1S72A/SHewG7oTu0oXqq86wkh0OPak5U=";
     });
+  });
+  jay-with-session = jay-unstable.overrideAttrs (final: prev: let
+    session = pkgs.writeText "jay" ''
+      [Desktop Entry]
+      Name=Jay
+      Exec=${jay-unstable}/bin/jay --log-level info run
+      Type=Application
+    '';
+  in {
     postInstall =
       prev.postInstall
       + ''
