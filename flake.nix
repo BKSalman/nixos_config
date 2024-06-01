@@ -157,7 +157,7 @@
             home-manager.users.salman = {
               imports = [
                 ./hosts/pc/home.nix
-                # hyprland.homeManagerModules.default
+                hyprland.homeManagerModules.default
               ];
             };
             home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};

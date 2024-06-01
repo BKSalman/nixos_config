@@ -284,14 +284,7 @@ in {
       #   settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
       #   persistencedSha256 = lib.fakeSha256;
       # };
-      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-        version = "535.179";
-        sha256_64bit = "sha256-tDmkUYaZ5S7MdKqtZUEEIlBvH2WaIKIoj+MLUxizcuc=";
-        sha256_aarch64 = lib.fakeSha256;
-        openSha256 = "sha256-1000000000000000000000000000000000000000000=";
-        settingsSha256 = "sha256-3u/mY/n7ZvAXPOaocNEtLlekP5B3BNsrVyVSpK3JkHM=";
-        persistencedSha256 = lib.fakeSha256;
-      };
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
       # modesetting.enable = true;
       # powerManagement.enable = true;
     };
@@ -410,8 +403,6 @@ in {
   hardware.steam-hardware.enable = true;
   programs.steam.enable = true;
   programs.steam.remotePlay.openFirewall = true;
-
-  # programs.hyprland.enable = true;
 
   services.mpd.enable = true;
 
