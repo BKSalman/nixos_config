@@ -12,11 +12,6 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -68,7 +63,6 @@
     manmap,
     sadmadbotlad,
     eza,
-    hyprland,
     ...
   }: let
     system = "x86_64-linux";
@@ -157,7 +151,6 @@
             home-manager.users.salman = {
               imports = [
                 ./hosts/pc/home.nix
-                hyprland.homeManagerModules.default
               ];
             };
             home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
@@ -177,7 +170,6 @@
             home-manager.users.salman = {
               imports = [
                 ./hosts/laptop/home.nix
-                hyprland.homeManagerModules.default
               ];
             };
             home-manager.extraSpecialArgs = {inherit helix;};
