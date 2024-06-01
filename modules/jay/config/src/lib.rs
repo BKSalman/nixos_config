@@ -16,7 +16,7 @@ use jay_config::keyboard::syms::{
 };
 use jay_config::status::set_status;
 use jay_config::timer::{duration_until_wall_clock_is_multiple_of, get_timer};
-use jay_config::video::on_graphics_initialized;
+use jay_config::video::{connectors, on_connector_connected, on_graphics_initialized, Connector};
 use jay_config::{config, exec, get_workspace, quit, reload, switch_to_vt, Axis, Direction};
 use sysinfo::{CpuRefreshKind, MemoryRefreshKind, RefreshKind, System};
 
@@ -146,6 +146,14 @@ fn setup_keybinds(seat: Seat) {
     });
 }
 
+fn set_max_refresh_rate(connector: Connector) {
+    if connector.connected() {
+        let max_refresh_rate = connector.modes().iter().map(|m| m.refresh_rate()).max();
+
+        connector.set_mode(connector.width(), connector.height(), max_refresh_rate);
+    }
+}
+
 fn configure() {
     setup_status();
 
@@ -154,6 +162,12 @@ fn configure() {
     seat.set_keymap(parse_keymap(include_str!("keymap.xkb")));
 
     setup_keybinds(seat);
+
+    for connector in connectors() {
+        set_max_refresh_rate(connector);
+    }
+
+    on_connector_connected(set_max_refresh_rate);
 
     on_graphics_initialized(|| {
         exec::Command::new("jay")
