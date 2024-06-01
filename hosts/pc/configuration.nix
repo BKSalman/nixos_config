@@ -9,7 +9,7 @@
   ...
 }: let
   jay-unstable = pkgs.jay.overrideAttrs (final: prev: rec {
-    verion = "unstable";
+    version = "unstable";
     src = pkgs.fetchFromGitHub {
       owner = "mahkoh";
       repo = "jay";
@@ -17,7 +17,7 @@
       sha256 = "sha256-5Jm9JBt/EWNALycHd7zVnztRgcODiRZRxTZFbHWW0fo=";
     };
     cargoDeps = prev.cargoDeps.overrideAttrs (_: {
-      inherit src;
+      inherit src version;
       outputHash = "sha256-SghGnnuV9fQ1S72A/SHewG7oTu0oXqq86wkh0OPak5U=";
     });
   });
@@ -277,6 +277,14 @@ in {
       ];
     };
     nvidia = {
+      # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+      #   version = "555.42.02";
+      #   sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
+      #   sha256_aarch64 = lib.fakeSha256;
+      #   openSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
+      #   settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
+      #   persistencedSha256 = lib.fakeSha256;
+      # };
       package = config.boot.kernelPackages.nvidiaPackages.stable;
       modesetting.enable = true;
       powerManagement.enable = true;

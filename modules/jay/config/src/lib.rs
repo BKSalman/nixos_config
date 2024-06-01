@@ -9,15 +9,15 @@ use jay_config::keyboard::parse_keymap;
 use jay_config::keyboard::syms::{
     KeySym, SYM_Arabic_alef, SYM_Arabic_alefmaksura, SYM_Arabic_beh, SYM_Arabic_dad,
     SYM_Arabic_gaf, SYM_Arabic_hamza, SYM_Arabic_hamzaonwaw, SYM_Arabic_meem, SYM_Arabic_noon,
-    SYM_Arabic_ra, SYM_Arabic_tah, SYM_Arabic_yeh, SYM_Print, SYM_Super_L, SYM_c, SYM_d, SYM_f,
-    SYM_h, SYM_j, SYM_k, SYM_l, SYM_n, SYM_q, SYM_r, SYM_v, SYM_x, SYM_0, SYM_1, SYM_2, SYM_3,
-    SYM_4, SYM_5, SYM_6, SYM_7, SYM_8, SYM_9, SYM_F1, SYM_F10, SYM_F11, SYM_F12, SYM_F2, SYM_F3,
-    SYM_F4, SYM_F5, SYM_F6, SYM_F7, SYM_F8, SYM_F9,
+    SYM_Arabic_ra, SYM_Arabic_tah, SYM_Arabic_yeh, SYM_Print, SYM_Super_L, SYM_b, SYM_c, SYM_d,
+    SYM_f, SYM_g, SYM_h, SYM_j, SYM_k, SYM_l, SYM_n, SYM_p, SYM_q, SYM_r, SYM_t, SYM_v, SYM_x,
+    SYM_0, SYM_1, SYM_2, SYM_3, SYM_4, SYM_5, SYM_6, SYM_7, SYM_8, SYM_9, SYM_F1, SYM_F10, SYM_F11,
+    SYM_F12, SYM_F2, SYM_F3, SYM_F4, SYM_F5, SYM_F6, SYM_F7, SYM_F8, SYM_F9,
 };
 use jay_config::status::set_status;
 use jay_config::timer::{duration_until_wall_clock_is_multiple_of, get_timer};
-use jay_config::video::on_graphics_initialized;
-use jay_config::{config, exec, get_workspace, quit, reload, switch_to_vt, Direction};
+use jay_config::video::{on_graphics_initialized, set_gfx_api, GfxApi};
+use jay_config::{config, exec, get_workspace, quit, reload, switch_to_vt, Axis, Direction};
 use sysinfo::{CpuRefreshKind, MemoryRefreshKind, RefreshKind, System};
 
 const MOD: Modifiers = MOD4;
@@ -75,6 +75,11 @@ fn setup_keybinds(seat: Seat) {
     seat.bind(MOD | SHIFT | SYM_Arabic_noon, move || {
         seat.move_(Direction::Up)
     });
+
+    seat.bind(MOD | SYM_g, move || seat.create_split(Axis::Horizontal));
+    seat.bind(MOD | SYM_b, move || seat.create_split(Axis::Vertical));
+    seat.bind(MOD | SYM_t, move || seat.toggle_split());
+    seat.bind(MOD | SYM_p, move || seat.focus_parent());
 
     seat.bind(MOD | SHIFT | SYM_Arabic_meem, move || {
         seat.move_(Direction::Right)
@@ -142,6 +147,8 @@ fn setup_keybinds(seat: Seat) {
 }
 
 fn configure() {
+    set_gfx_api(GfxApi::Vulkan);
+
     setup_status();
 
     let seat = get_default_seat();
@@ -161,6 +168,8 @@ fn configure() {
             .arg("cliphist")
             .arg("store")
             .spawn();
+
+        exec::Command::new("swww-daemon").spawn();
     });
 }
 
