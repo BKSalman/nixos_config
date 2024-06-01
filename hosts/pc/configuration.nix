@@ -265,7 +265,6 @@ in {
   };
 
   # Nvidia stuff
-
   hardware = {
     opengl = {
       enable = true;
@@ -285,9 +284,16 @@ in {
       #   settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
       #   persistencedSha256 = lib.fakeSha256;
       # };
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      modesetting.enable = true;
-      powerManagement.enable = true;
+      package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
+        version = "535.179";
+        sha256_64bit = "sha256-3u/mY/n7ZvAXPOaocNEtLlekP5B3BNsrVyVSpK3JkHM=";
+        sha256_aarch64 = lib.fakeSha256;
+        openSha256 = "sha256-1000000000000000000000000000000000000000000=";
+        settingsSha256 = "sha256-3u/mY/n7ZvAXPOaocNEtLlekP5B3BNsrVyVSpK3JkHM=";
+        persistencedSha256 = lib.fakeSha256;
+      };
+      # modesetting.enable = true;
+      # powerManagement.enable = true;
     };
   };
 

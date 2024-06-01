@@ -16,7 +16,7 @@ use jay_config::keyboard::syms::{
 };
 use jay_config::status::set_status;
 use jay_config::timer::{duration_until_wall_clock_is_multiple_of, get_timer};
-use jay_config::video::{on_graphics_initialized, set_gfx_api, GfxApi};
+use jay_config::video::on_graphics_initialized;
 use jay_config::{config, exec, get_workspace, quit, reload, switch_to_vt, Axis, Direction};
 use sysinfo::{CpuRefreshKind, MemoryRefreshKind, RefreshKind, System};
 
@@ -147,8 +147,6 @@ fn setup_keybinds(seat: Seat) {
 }
 
 fn configure() {
-    set_gfx_api(GfxApi::Vulkan);
-
     setup_status();
 
     let seat = get_default_seat();
