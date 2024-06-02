@@ -42,6 +42,7 @@ in {
     ./hardware-configuration.nix
     ./modules
     ../../modules
+    ./nfs.nix
   ];
 
   nix = {
