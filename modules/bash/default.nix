@@ -24,6 +24,9 @@
       #!/usr/bin/env bash
       set -e
       set -x
+
+      export NIX_SSHOPTS="-p 222"
+
       ${pkgs.alejandra}/bin/alejandra . &> /dev/null
       ${pkgs.git}/bin/git dft $(find . -name '*.nix') $(find . -name '*.toml')
       echo "Rebuilding NixOS for home-server..."
