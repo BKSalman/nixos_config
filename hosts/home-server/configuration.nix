@@ -19,15 +19,15 @@
           ${pkgs.util-linux}/bin/mount -t vfat -o iocharset=iso8859-1 /dev/disk/by-label/boot /efiboot/efi
           ${pkgs.coreutils}/bin/cp -r /efiboot/efi/*
         '';
-      }; # systemd-boot
+      };
 
       generationsDir.copyKernels = true;
 
       efi = {
         canTouchEfiVariables = true;
         efiSysMountPoint = "/efiboot/efi";
-      }; # efi
-    }; # loader
+      };
+    };
 
     kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
 
@@ -43,17 +43,22 @@
 
     zfs = {
       devNodes = "/dev/disk/by-partlabel";
-    }; # zfs
-  }; # boot
+    };
+  };
 
-  networking.hostName = "nixos-server";
-  networking.interfaces.enp7s0.ipv4.addresses = [
-    {
-      address = "192.168.0.225";
-      prefixLength = 24;
-    }
-  ];
-  networking.hostId = "f6c1cbac";
+  networking = {
+    hostName = "nixos-server";
+    defaultGateway = "192.168.0.1";
+    nameservers = ["1.1.1.1"];
+    interfaces.enp7s0.ipv4.addresses = [
+      {
+        address = "192.168.0.225";
+        prefixLength = 24;
+      }
+    ];
+    hostId = "f6c1cbac";
+  };
+
   time.timeZone = "Asia/Riyadh";
 
   # Configure network proxy if necessary
