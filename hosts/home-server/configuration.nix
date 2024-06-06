@@ -47,6 +47,12 @@
   }; # boot
 
   networking.hostName = "nixos-server";
+  networking.interfaces.enp7s0.ipv4.addresses = [
+    {
+      address = "192.168.0.225";
+      prefixLength = 24;
+    }
+  ];
   networking.hostId = "f6c1cbac";
   time.timeZone = "Asia/Riyadh";
 

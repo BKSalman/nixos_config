@@ -20,18 +20,7 @@
   };
 
   home.file.".local/bin/switch-home-server" = {
-    text = ''
-      #!/usr/bin/env bash
-      set -e
-      set -x
-
-      export NIX_SSHOPTS="-p 222"
-
-      ${pkgs.alejandra}/bin/alejandra . &> /dev/null
-      ${pkgs.git}/bin/git dft $(find . -name '*.nix') $(find . -name '*.toml')
-      echo "Rebuilding NixOS for home-server..."
-      nixos-rebuild switch --use-remote-sudo --build-host 192.168.0.225 --target-host 192.168.0.225 --flake ".#home-server"
-    '';
+    source = ./switch-home-server;
     executable = true;
   };
 
