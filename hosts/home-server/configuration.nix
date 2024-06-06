@@ -68,12 +68,10 @@
     packages = with pkgs; [];
   };
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
     git
     curl
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    vim
     wget
   ];
 
@@ -83,15 +81,25 @@
     openFirewall = true;
   };
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  services.nfs.server = {
+    enable = true;
+    # fixed rpc.statd port; for firewall
+    lockdPort = 4001;
+    mountdPort = 4002;
+    statdPort = 4000;
+    extraNfsdConfig = '''';
+  };
+  services.nfs.server.exports = ''
+    /mnt/general         *(rw,fsid=0,no_subtree_check,no_root_squash)
+  '';
 
-  # Copy the NixOS configuration file and link it from the resulting system
-  # (/run/current-system/configuration.nix). This is useful in case you
-  # accidentally delete configuration.nix.
+  networking.firewall = {
+    enable = true;
+    # for NFSv3; view with `rpcinfo -p`
+    allowedTCPPorts = [111 2049 4000 4001 4002 20048];
+    allowedUDPPorts = [111 2049 4000 4001 4002 20048];
+  };
+
   # system.copySystemConfiguration = true;
 
   # This option defines the first version of NixOS you have installed on this particular machine,

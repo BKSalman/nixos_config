@@ -345,7 +345,11 @@ in {
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
+  services.openssh = {
+    enable = true;
+    ports = [222];
+    openFirewall = true;
+  };
 
   services.tailscale = {
     enable = true;
@@ -353,7 +357,7 @@ in {
   };
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [25565 22 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
+  networking.firewall.allowedTCPPorts = [25565 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
   networking.firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

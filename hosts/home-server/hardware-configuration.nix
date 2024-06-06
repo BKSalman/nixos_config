@@ -43,6 +43,11 @@
     options = ["fmask=0077" "dmask=0077" "X-mount.mkdir" "iocharset=iso8859-1"];
   };
 
+  fileSystems."/mnt/general" = {
+    device = "tank/general";
+    fsType = "zfs";
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
