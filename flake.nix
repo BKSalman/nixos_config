@@ -176,6 +176,13 @@
           }
         ];
       };
+      home-server = lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./hosts/home-server/configuration.nix
+        ];
+      };
     };
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
   };
