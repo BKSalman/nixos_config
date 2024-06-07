@@ -8,6 +8,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules/nextcloud.nix
+    ./modules/sops.nix
   ];
 
   nix = {
@@ -115,12 +116,6 @@
 
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker.enable = true;
-
-  sops = {
-    defaultSopsFile = ./secrets/secrets.yaml;
-    defaultSopsFormat = "yaml";
-    age.keyFile = "/home/salman/.config/sops/age/keys.txt";
-  };
 
   # system.copySystemConfiguration = true;
 
