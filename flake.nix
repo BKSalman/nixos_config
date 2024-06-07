@@ -149,6 +149,7 @@
         modules = [
           ./hosts/pc/configuration.nix
 
+          sops-nix.nixosModules.sops
           # xremap-flake.nixosModules.default
 
           home-manager.nixosModules.home-manager
