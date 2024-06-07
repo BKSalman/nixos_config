@@ -108,7 +108,6 @@
 
   networking.firewall = {
     enable = true;
-    # for NFSv3; view with `rpcinfo -p`
     allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048];
     allowedUDPPorts = [111 2049 4000 4001 4002 20048];
   };

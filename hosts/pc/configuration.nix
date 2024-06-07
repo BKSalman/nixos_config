@@ -257,6 +257,7 @@ in {
     LIBVA_DRIVER_NAME = "nvidia";
     MANROFFOPT = "-c";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    EDITOR = "hx";
     QT_QPA_PLATFORMTHEME = "kde";
   };
 
