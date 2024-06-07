@@ -82,6 +82,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    sops
     git
     curl
     vim
