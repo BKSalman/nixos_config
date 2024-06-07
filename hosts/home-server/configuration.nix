@@ -7,7 +7,15 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./modules/nextcloud.nix
   ];
+
+  nix = {
+    package = pkgs.nixFlakes;
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+  };
 
   boot = {
     loader = {
@@ -69,7 +77,7 @@
 
   users.users.salman = {
     isNormalUser = true;
-    extraGroups = ["wheel"];
+    extraGroups = ["wheel" "docker"];
     packages = with pkgs; [];
   };
 
@@ -101,9 +109,18 @@
   networking.firewall = {
     enable = true;
     # for NFSv3; view with `rpcinfo -p`
-    allowedTCPPorts = [111 2049 4000 4001 4002 20048];
+    allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048];
     allowedUDPPorts = [111 2049 4000 4001 4002 20048];
   };
+
+  virtualisation.oci-containers.backend = "docker";
+  virtualisation.docker.enable = true;
+
+  # sops = {
+  #   defaultSopsFile = ./secrets/secrets.yaml;
+  #   defaultSopsFormat = "yaml";
+  #   age.keyFile = "/home/salman/.config/sops/age/keys.txt";
+  # };
 
   # system.copySystemConfiguration = true;
 

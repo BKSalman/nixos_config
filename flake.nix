@@ -9,8 +9,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     hyprland-contrib = {
       url = "github:hyprwm/contrib";
@@ -49,6 +51,10 @@
     eza = {
       url = "github:eza-community/eza";
     };
+
+    arion = {
+      url = "github:hercules-ci/arion";
+    };
   };
 
   outputs = {
@@ -63,6 +69,8 @@
     manmap,
     sadmadbotlad,
     eza,
+    arion,
+    sops-nix,
     ...
   }: let
     system = "x86_64-linux";
@@ -181,6 +189,8 @@
 
         modules = [
           ./hosts/home-server/configuration.nix
+          sops-nix.nixosModules.sops
+          arion.nixosModules.arion
         ];
       };
     };
