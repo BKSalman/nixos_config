@@ -9,6 +9,7 @@
     ./hardware-configuration.nix
     ./modules/nextcloud.nix
     ./modules/sops.nix
+    ./modules/immich.nix
   ];
 
   nix = {
@@ -145,10 +146,14 @@
     /mnt/general         *(rw,fsid=0,no_subtree_check,no_root_squash)
   '';
 
+  services.tailscale.enable = true;
+
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048];
-    allowedUDPPorts = [111 2049 4000 4001 4002 20048];
+    allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048 2283];
+    checkReversePath = "loose";
+    trustedInterfaces = ["tailscale0"];
+    allowedUDPPorts = [111 2049 4000 4001 4002 20048 config.services.tailscale.port];
   };
 
   virtualisation.oci-containers.backend = "docker";
