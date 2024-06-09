@@ -58,6 +58,16 @@
     fsType = "zfs";
   };
 
+  fileSystems."/mnt/jellyfin" = {
+    device = "tank/jellyfin";
+    fsType = "zfs";
+  };
+
+  fileSystems."/mnt/movies" = {
+    device = "tank/movies";
+    fsType = "zfs";
+  };
+
   swapDevices = [];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

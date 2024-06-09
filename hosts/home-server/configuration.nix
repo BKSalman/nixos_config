@@ -10,6 +10,8 @@
     ./modules/nextcloud.nix
     ./modules/sops.nix
     ./modules/immich.nix
+    ./modules/jellyfin.nix
+    ./modules/homepage.nix
   ];
 
   nix = {
@@ -62,6 +64,13 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      intel-media-driver
+      (pkgs.vaapiIntel.override {enableHybridCodec = true;})
+      vaapiVdpau
+      libvdpau-va-gl
+      intel-compute-runtime # OpenCL filter support (hardware tonemapping and subtitle burn-in)
+    ];
   };
 
   hardware.nvidia = {
