@@ -62,15 +62,9 @@
     ];
   };
 
-  # programs.firefox = {
-  #   enable = true;
-  #   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-  #     forceWayland = true;
-  #     extraPolicies = {
-  #       ExtensionSettings = {};
-  #     };
-  #   };
-  # };
+  programs.firefox = {
+    enable = true;
+  };
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
