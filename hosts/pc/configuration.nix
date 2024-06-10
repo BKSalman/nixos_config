@@ -145,8 +145,6 @@ in {
     # displayManager.sddm.autoNumlock = true;
     # desktopManager.plasma5.enable = true;
 
-    videoDrivers = ["nvidia"];
-
     xkb = {
       layout = "us,ara";
       options = "grp:alt_shift_toggle";
@@ -262,7 +260,6 @@ in {
     BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     WLR_NO_HARDWARE_CURSORS = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
     MANROFFOPT = "-c";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     EDITOR = "hx";
@@ -278,40 +275,9 @@ in {
     user = "salman";
   };
 
-  # Nvidia stuff
-  hardware = {
-    opengl = {
-      enable = true;
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-        nvidia-vaapi-driver
-        pipewire
-      ];
-    };
-    nvidia = {
-      # package = config.boot.kernelPackages.nvidiaPackages.mkDriver {
-      #   version = "555.42.02";
-      #   sha256_64bit = "sha256-k7cI3ZDlKp4mT46jMkLaIrc2YUx1lh1wj/J4SVSHWyk=";
-      #   sha256_aarch64 = lib.fakeSha256;
-      #   openSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
-      #   settingsSha256 = "sha256-rtDxQjClJ+gyrCLvdZlT56YyHQ4sbaL+d5tL4L4VfkA=";
-      #   persistencedSha256 = lib.fakeSha256;
-      # };
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
-      # modesetting.enable = true;
-      # powerManagement.enable = true;
-    };
-  };
-
   # for ZFS compatibility
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
-
-  boot.kernelParams = [
-    "nvidia-drm.modeset=1"
-    "nvidia-drm.fbdev=1"
-  ];
 
   boot.kernelModules = [
     # Virtual Camera
