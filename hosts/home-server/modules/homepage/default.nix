@@ -24,7 +24,7 @@ in {
     ];
     settings = {
       title = "Dashboard";
-      background = ./yoda.png;
+      background = "https://nextcloud.bksalman.com/apps/files_sharing/publicpreview/AieSr6bj9SQfr28?x=1920&y=1080";
       layout = {
         "Cloud apps" = {
           style = "row";
