@@ -11,7 +11,7 @@
     ./modules/sops.nix
     ./modules/immich.nix
     ./modules/jellyfin.nix
-    ./modules/homepage.nix
+    ./modules/homepage
   ];
 
   nix = {

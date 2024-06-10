@@ -8,7 +8,11 @@
     https = true;
     package = pkgs.nextcloud29;
     hostName = "nextcloud.bksalman.com";
-    config.adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
+    database.createLocally = true;
+    config = {
+      adminpassFile = config.sops.secrets.nextcloud-admin-pass.path;
+      dbtype = "pgsql";
+    };
     settings.trusted_domains = ["192.168.0.225"];
     configureRedis = true;
     datadir = "/mnt/ncdata";
