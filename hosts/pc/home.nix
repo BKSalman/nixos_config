@@ -72,9 +72,6 @@
     jdk17
     (python311.withPackages (ps: with ps; [pandas requests openpyxl mypy]))
     go
-    cmake
-    meson
-    rust-bindgen
     marksman
     deno
 
