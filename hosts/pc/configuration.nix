@@ -226,7 +226,6 @@ in {
     cloudflared
     mold
     openssl
-    clang
     dbus
     eggdbus
     deja-dup
@@ -255,8 +254,8 @@ in {
   services.flatpak.enable = true;
 
   environment.sessionVariables = {
-    LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
-    BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
+    # LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+    # BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     # XXX: force firefox to use xwayland, for Nvidia explicit sync + wayland
     # XXX: remove when fixed
