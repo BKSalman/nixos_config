@@ -24,6 +24,9 @@
   # Enable leftwm
   leftwm.enable = true;
 
+  # Enable jay
+  jay.enable = true;
+
   programs.nh = {
     enable = true;
     clean.enable = true;

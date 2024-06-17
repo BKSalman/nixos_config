@@ -14,7 +14,7 @@
     };
     cargoDeps = prev.cargoDeps.overrideAttrs (_: {
       inherit src version;
-      outputHash = "sha256-SghGnnuV9fQ1S72A/SHewG7oTu0oXqq86wkh0OPak5U=";
+      outputHash = "sha256-WEEAFr5lemyOfeIKC9Pvr9sYMz8rLO6k1BFgbxXJ0Pk=";
     });
   });
   jay-with-session = jay-unstable.overrideAttrs (final: prev: let
