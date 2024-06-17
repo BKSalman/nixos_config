@@ -4,41 +4,13 @@
   lib,
   sadmadbotlad,
   ...
-}: let
-  jay-unstable = pkgs.jay.overrideAttrs (final: prev: rec {
-    version = "unstable";
-    src = pkgs.fetchFromGitHub {
-      owner = "mahkoh";
-      repo = "jay";
-      rev = "040ce3cfb3f388ec370b8778178d1ea257716621";
-      sha256 = "sha256-2Vp0r3m6J1mDVd0ulP7FYoCbZNrk7PBZGv/BZQe3ILk=";
-    };
-    cargoDeps = prev.cargoDeps.overrideAttrs (_: {
-      inherit src version;
-      outputHash = "sha256-SghGnnuV9fQ1S72A/SHewG7oTu0oXqq86wkh0OPak5U=";
-    });
-  });
-  jay-with-session = jay-unstable.overrideAttrs (final: prev: let
-    session = pkgs.writeText "jay" ''
-      [Desktop Entry]
-      Name=Jay
-      Exec=${jay-unstable}/bin/jay --log-level info run
-      Type=Application
-    '';
-  in {
-    postInstall =
-      prev.postInstall
-      + ''
-        install -D ${session} $out/share/wayland-sessions/jay.desktop
-      '';
-    passthru.providedSessions = ["jay"];
-  });
-in {
+}: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules
     ../../modules
+    ../../modules/jay
     ./nfs.nix
   ];
 
@@ -51,8 +23,6 @@ in {
 
   # Enable leftwm
   leftwm.enable = true;
-
-  services.displayManager.defaultSession = "jay";
 
   programs.nh = {
     enable = true;
@@ -132,7 +102,6 @@ in {
   };
 
   services.displayManager.sessionPackages = [
-    jay-with-session
     pkgs.hyprland
   ];
 
@@ -185,6 +154,8 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    ripgrep
+    davinci-resolve
     mangohud
     dig
     sops
@@ -192,8 +163,6 @@ in {
     # mergerfs
     fzf
     tree
-
-    jay-with-session
     # perl
     # IOS
     libimobiledevice
@@ -443,16 +412,8 @@ in {
   };
 
   xdg.mime.defaultApplications = {
-    "text/html" = "librewolf.desktop";
+    "text/html" = "firefox.desktop";
     "x-scheme-handler/http" = "firefox.desktop";
     "x-scheme-handler/https" = "firefox.desktop";
   };
-
-  # TODO: figure out if this could be done without changing nix store path
-  # merge /nix/store with other drive for extra disk space
-  # fileSystems."/nix/store" = {
-  #   fsType = "fuse.mergerfs";
-  #   device = "/media/extra/nix-store:/nix/store";
-  #   options = ["cache.files=partial" "dropcacheonclose=true" "category.create=mfs"];
-  # };
 }

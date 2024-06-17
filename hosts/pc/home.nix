@@ -108,7 +108,7 @@
     protonup-qt
     wlsunset
     blender
-    nodePackages_latest.bash-language-server
+    # nodePackages_latest.bash-language-server
     ranger
     # huiontablet
     uxplay
@@ -246,15 +246,15 @@
     Icon=~/.local/share/applications/Airplay.png
   '';
 
-  home.file.".local/share/applications/resolve.desktop".text = ''
-    [Desktop Entry]
-    Encoding=UTF-8
-    Version=18.4.1
-    Type=Application
-    Terminal=false
-    Exec=env QT_QPA_PLATFORM=xcb davinci-resolve
-    Name=DaVinci Resolve
-  '';
+  # home.file.".local/share/applications/resolve.desktop".text = ''
+  #   [Desktop Entry]
+  #   Encoding=UTF-8
+  #   Version=18.4.1
+  #   Type=Application
+  #   Terminal=false
+  #   Exec=env QT_QPA_PLATFORM=xcb davinci-resolve
+  #   Name=DaVinci Resolve
+  # '';
 
   home.file.".config/starship.toml".source = ../../modules/starship.toml;
 

@@ -99,10 +99,6 @@
       obs-text-pango = prev.callPackage ./packages/obs-plugins/text-pango.nix {};
     };
 
-    davinci-resolve-overlay = final: prev: {
-      davinci-resolve = prev.callPackage ./packages/davinci-resolve {};
-    };
-
     eza-overlay = final: prev: {
       eza = eza.packages.${system}.default;
     };
@@ -129,7 +125,6 @@
         prismlauncher.overlays.default
         eza-overlay
         obs-text-pango-overlay
-        davinci-resolve-overlay
         insomnia-overlay
         # (import ./overlays/mpvpaper.nix)
         (import ./overlays/distrobox.nix)
