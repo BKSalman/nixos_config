@@ -3,20 +3,6 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    command: ['start.sh', 'immich']
-    volumes:
-      - ${UPLOAD_LOCATION}:/usr/src/app/upload
-      - /etc/localtime:/etc/localtime:ro
-    ports:
-      - 2283:3001
-    depends_on:
-      - redis
-      - database
-    restart: always
-
-  immich-microservices:
-    container_name: immich_microservices
-    image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
     deploy:
       resources:
         reservations:
@@ -27,13 +13,16 @@ services:
                 - gpu
                 - compute
                 - video
-    command: ['start.sh', 'microservices']
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 2283:3001
     depends_on:
       - redis
       - database
+    env_file:
+      .env
     restart: always
 
   immich-machine-learning:
@@ -49,6 +38,8 @@ services:
                 - gpu
     volumes:
       - model-cache:/cache
+    env_file:
+      .env
     restart: always
 
   redis:

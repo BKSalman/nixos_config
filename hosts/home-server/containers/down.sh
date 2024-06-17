@@ -3,6 +3,6 @@
 sops -d ../../../secrets/secrets.env > .env
 
 # docker compose is stupid and needs the .env to be the same name as in the docker-compose.yml file
-docker compose -f immich.yml --env-file .env up -d --remove-orphans
+docker compose -f immich.yml --env-file .env down
 
 rm .env
