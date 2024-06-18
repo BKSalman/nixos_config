@@ -7,6 +7,7 @@
 in {
   services.nginx = {
     enable = true;
+    clientMaxBodySize = "50000m";
     virtualHosts.${domain} = {
       forceSSL = true;
       enableACME = true;
