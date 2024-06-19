@@ -139,7 +139,6 @@
   };
 
   environment.systemPackages = with pkgs; [
-    mullvad-vpn
     ripgrep
     davinci-resolve
     mangohud
@@ -273,10 +272,15 @@
     useRoutingFeatures = "both";
   };
 
+  services.mullvad-vpn = {
+    enable = true;
+    package = pkgs.mullvad-vpn;
+  };
+
   networking = {
-    nameservers = ["1.1.1.1"];
     hostId = "97d1662c";
     hostName = "nixos";
+    nameservers = ["1.1.1.1"];
     firewall.allowedTCPPorts = [25565 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
     firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
     networkmanager.enable = true;

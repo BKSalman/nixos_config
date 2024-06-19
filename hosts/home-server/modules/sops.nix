@@ -21,6 +21,7 @@
       stalwart-salman-secret = {
         owner = "stalwart-mail";
       };
+      wireguard-private-key = {};
     };
   };
 }
