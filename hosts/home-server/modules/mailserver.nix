@@ -1,18 +1,18 @@
-{config, ...}: let
+{
+  lib,
+  config,
+  ...
+}: let
   domain = "mail.bksalman.com";
   inherit (config.security.acme) certs;
 in {
   services.stalwart-mail = {
     enable = true;
     settings = {
-      certificate."cert" = {
-        cert = "file://${certs.${domain}.directory}/fullchain.pem";
-        private-key = "file://${certs.${domain}.directory}/key.pem";
-      };
       server = {
         hostname = domain;
         tls = {
-          certificate = "cert";
+          certificate = "default";
           enable = true;
           implicit = false;
         };
@@ -25,21 +25,55 @@ in {
             bind = ["[::]:143"];
             protocol = "imap";
           };
+          "management" = {
+            bind = ["127.0.0.1:8080"];
+            protocol = "http";
+          };
         };
       };
       session = {
-        rcpt.directory = "internal";
+        rcpt.directory = "'internal'";
         auth = {
-          mechanisms = ["LOGIN"];
-          directory = "internal";
+          mechanisms = [
+            {
+              "if" = "local_port != 25 && is_tls";
+              "then" = "[plain, login]";
+            }
+            {"else" = false;}
+          ];
+          directory = "'internal'";
         };
       };
-      jmap.directory = "internal";
-      queue.outbound.next-hop = ["local"];
-      directory."internal" = {
-        type = "internal";
-        store = "rocksdb";
+      store = {
+        db.type = "rocksdb";
+        db.path = "/var/lib/stalwart-mail/db";
+        db.compression = "lz4";
       };
+      storage.blob = "db";
+      jmap.directory = "internal";
+      directory.internal.type = "internal";
+      directory.internal.store = "db";
+      certificate."default" = {
+        cert = "%{file:${certs.${domain}.directory}/cert.pem}%";
+        private-key = "%{file:${certs.${domain}.directory}/key.pem}%";
+      };
+      authentication.fallback-admin = {
+        user = "admin";
+        secret = "%{file:${config.sops.secrets.stalwart-salman-secret.path}}%";
+      };
+    };
+  };
+  users.users.stalwart-mail.extraGroups = [config.security.acme.certs.${domain}.group];
+
+  networking.firewall = {
+    allowedTCPPorts = [8080 25 587 465 143 993 4190 110 995];
+  };
+
+  services.nginx.virtualHosts.${domain} = {
+    enableACME = true;
+    forceSSL = true;
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:8080";
     };
   };
 
@@ -50,7 +84,7 @@ in {
       dnsProvider = "cloudflare";
       environmentFile = config.sops.secrets.cloudflare-api-info.path;
       webroot = null;
-      # group = "nginx";
+      group = "nginx";
     };
   };
 }

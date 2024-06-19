@@ -139,7 +139,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    kdePackages.dolphin
+    mullvad-vpn
     ripgrep
     davinci-resolve
     mangohud
@@ -273,12 +273,6 @@
     useRoutingFeatures = "both";
   };
 
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  # networking.hosts = {
-  #   "127.0.0.1:3030" = ["test.wow.com"];
-  # };
   networking = {
     nameservers = ["1.1.1.1"];
     hostId = "97d1662c";

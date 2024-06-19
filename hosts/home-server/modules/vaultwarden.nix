@@ -19,19 +19,15 @@ in {
 
       ROCKET_LOG = "critical";
 
-      # This example assumes a mailserver running on localhost,
-      # thus without transport encryption.
-      # If you use an external mail server, follow:
-      #   https://github.com/dani-garcia/vaultwarden/wiki/SMTP-configuration
-      SMTP_HOST = "127.0.0.1";
-      SMTP_PORT = 25;
+      SMTP_HOST = "mail.bksalman.com";
+      SMTP_PORT = 587;
       SMTP_SECURITY = "force_tls";
 
-      SMTP_USERNAME = "admin@$bitwarden.bksalman.com";
+      SMTP_USERNAME = "bitwarden";
       # SMTP_PASSWORD = ""; # set in config.sops.secrets.vaultwarden-secrets
 
       SMTP_FROM = "admin@bitwarden.bksalman.com";
-      SMTP_FROM_NAME = "example.com Bitwarden server";
+      SMTP_FROM_NAME = "bksalman.com Bitwarden server";
     };
   };
 

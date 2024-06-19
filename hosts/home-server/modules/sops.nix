@@ -18,6 +18,9 @@
       vaultwarden-secrets = {
         owner = "vaultwarden";
       };
+      stalwart-salman-secret = {
+        owner = "stalwart-mail";
+      };
     };
   };
 }
