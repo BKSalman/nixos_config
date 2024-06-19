@@ -22,6 +22,11 @@
         owner = "stalwart-mail";
       };
       wireguard-private-key = {};
+      gluetun-wg-config = {};
+      gluetun-env = {};
+      deluge-web-auth = {
+        owner = "deluge";
+      };
     };
   };
 }

@@ -1,20 +1,22 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
-  domain = "prowlarr.bksalman.com";
+{config, ...}: let
+  domain = "sonarr.bksalman.com";
 in {
-  services.prowlarr = {
+  services.sonarr = {
     enable = true;
     openFirewall = true;
+    group = "multimedia";
   };
+
+  # TODO: move all multimedia stuff to a single module
+  systemd.tmpfiles.rules = [
+    "d /mnt/media 0770 - multimedia - -"
+  ];
 
   services.nginx.virtualHosts.${domain} = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:9696";
+      proxyPass = "http://127.0.0.1:8989";
       proxyWebsockets = true;
       recommendedProxySettings = true;
     };

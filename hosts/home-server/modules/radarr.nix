@@ -1,20 +1,17 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
-  domain = "prowlarr.bksalman.com";
+{config, ...}: let
+  domain = "radarr.bksalman.com";
 in {
-  services.prowlarr = {
+  services.radarr = {
     enable = true;
     openFirewall = true;
+    group = "multimedia";
   };
 
   services.nginx.virtualHosts.${domain} = {
     forceSSL = true;
     enableACME = true;
     locations."/" = {
-      proxyPass = "http://127.0.0.1:9696";
+      proxyPass = "http://127.0.0.1:7878";
       proxyWebsockets = true;
       recommendedProxySettings = true;
     };

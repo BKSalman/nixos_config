@@ -1,21 +1,13 @@
 {
   config,
-  lib,
   pkgs,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ./modules/nextcloud.nix
-    ./modules/sops.nix
-    ./modules/immich.nix
-    ./modules/jellyfin.nix
-    ./modules/homepage
-    ./modules/grafana.nix
-    ./modules/prometheus.nix
-    ./modules/mailserver.nix
-    ./modules/vaultwarden.nix
+    ./modules
+    ./containers
   ];
 
   nix = {
@@ -116,6 +108,40 @@
       }
     ];
     hostId = "f6c1cbac";
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048 2283];
+      checkReversePath = "loose";
+      trustedInterfaces = ["tailscale0"];
+      allowedUDPPorts = [111 2049 4000 4001 4002 20048 config.services.tailscale.port];
+    };
+    wireguard.enable = true;
+    # Dummy routing table to stop wireguard from routing all traffic
+    iproute2.enable = true;
+    iproute2.rttablesExtraConfig = ''
+      200 vpn
+    '';
+    wg-quick.interfaces.wg1 = {
+      table = "vpn";
+      address = ["10.70.98.176/32"];
+      privateKeyFile = config.sops.secrets.wireguard-private-key.path;
+      peers = [
+        {
+          publicKey = "VgNcwWy8MRhfEZY+XSisDM1ykX+uXlHQScOLqqGMLkc=";
+          allowedIPs = ["0.0.0.0/0"];
+          endpoint = "194.36.25.48:51820";
+          persistentKeepalive = 25;
+        }
+      ];
+    };
+  };
+
+  services.resolved = {
+    enable = true;
+    dnssec = "true";
+    domains = ["~."];
+    fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+    dnsovertls = "true";
   };
 
   time.timeZone = "Asia/Riyadh";
@@ -128,9 +154,11 @@
 
   users.users.salman = {
     isNormalUser = true;
-    extraGroups = ["wheel" "docker"];
+    extraGroups = ["wheel" "docker" "multimedia"];
     packages = with pkgs; [];
   };
+
+  users.groups.multimedia = {};
 
   environment.systemPackages = with pkgs; [
     dig
@@ -162,14 +190,6 @@
   '';
 
   services.tailscale.enable = true;
-
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048 2283];
-    checkReversePath = "loose";
-    trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [111 2049 4000 4001 4002 20048 config.services.tailscale.port];
-  };
 
   virtualisation.oci-containers.backend = "docker";
   virtualisation.docker = {

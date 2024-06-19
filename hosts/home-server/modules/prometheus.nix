@@ -16,6 +16,10 @@ in {
         enabledCollectors = ["systemd"];
         port = 9091;
       };
+      # exportarr-prowlarr = {
+      #   enable = true;
+      #   apiKeyFile = ;
+      # };
     };
 
     scrapeConfigs = [
