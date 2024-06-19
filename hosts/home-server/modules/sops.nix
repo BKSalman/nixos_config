@@ -15,6 +15,9 @@
       cloudflare-api-info = {
         owner = "acme";
       };
+      vaultwarden-secrets = {
+        owner = "vaultwarden";
+      };
     };
   };
 }

@@ -63,27 +63,11 @@
   };
   services.zfs.autoScrub.enable = true;
 
-  networking.hostId = "97d1662c";
-
   boot.loader.grub.useOSProber = true;
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
   # boot.binfmt.emulatedSystems = ["aarch64-linux"];
-
-  networking.hostName = "nixos"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # networking.hosts = {
-  #   "127.0.0.1:3030" = ["test.wow.com"];
-  # };
-
-  # Enable networking
-  networking.networkmanager.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Riyadh";
@@ -302,11 +286,22 @@
     useRoutingFeatures = "both";
   };
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [25565 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
-  networking.firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+
+  # Configure network proxy if necessary
+  # networking.proxy.default = "http://user:password@proxy:port/";
+  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # networking.hosts = {
+  #   "127.0.0.1:3030" = ["test.wow.com"];
+  # };
+  networking = {
+    nameservers = ["1.1.1.1"];
+    hostId = "97d1662c";
+    hostName = "nixos";
+    firewall.allowedTCPPorts = [25565 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
+    firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
+    networkmanager.enable = true;
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

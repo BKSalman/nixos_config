@@ -12,6 +12,10 @@
     ./modules/immich.nix
     ./modules/jellyfin.nix
     ./modules/homepage
+    ./modules/grafana.nix
+    ./modules/prometheus.nix
+    ./modules/mailserver.nix
+    ./modules/vaultwarden.nix
   ];
 
   nix = {
