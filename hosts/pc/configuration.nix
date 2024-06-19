@@ -284,6 +284,7 @@
     firewall.allowedTCPPorts = [25565 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
     firewall.allowedUDPPorts = [25565 5900 5800 47989 47990 48010 47984 47999 4000 41641];
     networkmanager.enable = true;
+    wireguard.enable = true;
   };
 
   # This value determines the NixOS release from which the default
