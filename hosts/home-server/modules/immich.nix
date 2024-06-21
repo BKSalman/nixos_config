@@ -24,6 +24,9 @@ in {
     };
   };
 
+  # for some reason I need to disable this for the GPU to work in the immich_machine_learning container
+  systemd.enableUnifiedCgroupHierarchy = false;
+
   security.acme = {
     acceptTerms = true;
     defaults.email = "salman.f.abuhaimed@gmail.com";
