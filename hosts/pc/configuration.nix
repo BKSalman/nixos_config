@@ -213,7 +213,7 @@
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     # XXX: force firefox to use xwayland, for Nvidia explicit sync + wayland
     # XXX: remove when fixed
-    # MOZ_ENABLE_WAYLAND = "0";
+    MOZ_ENABLE_WAYLAND = "0";
     WLR_NO_HARDWARE_CURSORS = "1";
     MANROFFOPT = "-c";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
