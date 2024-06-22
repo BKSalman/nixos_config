@@ -5,5 +5,7 @@
     ./x11
     ./wayland
     ./x11/leftwm
+    ./jay
+    ./sway
   ];
 }

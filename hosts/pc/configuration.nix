@@ -1,8 +1,6 @@
 {
   config,
   pkgs,
-  lib,
-  sadmadbotlad,
   ...
 }: {
   imports = [
@@ -10,7 +8,6 @@
     ./hardware-configuration.nix
     ./modules
     ../../modules
-    ../../modules/jay
     ./nfs.nix
   ];
 
@@ -21,11 +18,11 @@
     '';
   };
 
-  # Enable leftwm
-  leftwm.enable = true;
+  leftwm.enable = false;
 
-  # Enable jay
-  jay.enable = true;
+  jay.enable = false;
+
+  sway.enable = true;
 
   programs.nh = {
     enable = true;
@@ -34,13 +31,12 @@
     flake = "/home/salman/nixos_config";
   };
 
-  # Enable nextcloud
   nextcloud.enable = false;
 
   # Enable virtual machines VFIO
   vfio.enable = true;
 
-  # enable android stuff
+  # Enable android stuff
   programs.adb.enable = true;
 
   # udev rules

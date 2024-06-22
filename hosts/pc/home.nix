@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: {
   # TODO: find a better way for home manager modules
@@ -266,27 +267,29 @@
     User aur
   '';
 
-  home.file.".local/bin/wl-paste" = {
-    text = ''
-      #!/usr/bin/env bash
-      jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-paste "$@"
-    '';
-    executable = true;
-  };
+  # config = lib.mkIf config.jay.enable {
+  #   home.file.".local/bin/wl-paste" = {
+  #     text = ''
+  #       #!/usr/bin/env bash
+  #       jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-paste "$@"
+  #     '';
+  #     executable = true;
+  #   };
 
-  home.file.".local/bin/wl-copy" = {
-    text = ''
-      #!/usr/bin/env bash
-      jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
-    '';
-    executable = true;
-  };
+  #   home.file.".local/bin/wl-copy" = {
+  #     text = ''
+  #       #!/usr/bin/env bash
+  #       jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
+  #     '';
+  #     executable = true;
+  #   };
 
-  home.file.".local/bin/obs-privileged" = {
-    text = ''
-      #!/usr/bin/env bash
-      jay run-privileged -- obs "$@"
-    '';
-    executable = true;
-  };
+  #   home.file.".local/bin/obs-privileged" = {
+  #     text = ''
+  #       #!/usr/bin/env bash
+  #       jay run-privileged -- obs "$@"
+  #     '';
+  #     executable = true;
+  #   };
+  # };
 }
