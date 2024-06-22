@@ -55,6 +55,10 @@
     arion = {
       url = "github:hercules-ci/arion";
     };
+
+    hyprland = {
+      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    };
   };
 
   outputs = {
@@ -71,6 +75,7 @@
     eza,
     arion,
     sops-nix,
+    hyprland,
     ...
   }: let
     system = "x86_64-linux";
@@ -139,7 +144,10 @@
     nixosConfigurations = {
       pc = lib.nixosSystem {
         inherit system pkgs;
-        specialArgs = {inherit sadmadbotlad;};
+        specialArgs = {
+          inherit sadmadbotlad;
+          inherit hyprland;
+        };
 
         modules = [
           ./hosts/pc/configuration.nix

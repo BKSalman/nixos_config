@@ -22,7 +22,9 @@
 
   jay.enable = false;
 
-  sway.enable = true;
+  sway.enable = false;
+
+  hyprland.enable = true;
 
   programs.nh = {
     enable = true;
@@ -202,6 +204,9 @@
   ];
 
   services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+  };
 
   environment.sessionVariables = {
     # LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";

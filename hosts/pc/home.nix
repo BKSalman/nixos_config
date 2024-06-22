@@ -6,15 +6,12 @@
 }: {
   # TODO: find a better way for home manager modules
   imports = [
-    ../../modules/wayland/hyprland
-    # ./waybar
     ../../modules/x11/leftwm/config.nix
     ../../modules/helix
     ../../modules/bash
+    # ../../modules/hyprland/config.nix
     ./modules/sadmadbotlad.nix
   ];
-
-  hyprland.enable = true;
 
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
