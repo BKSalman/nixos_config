@@ -10,7 +10,7 @@
       owner = "mahkoh";
       repo = "jay";
       rev = "f94f199ab12a4545a455a04aec11ec84b62f7c27";
-      sha256 = "sha256-2Vp0r3m6J1mDVd0ulP7FYoCbZNrk7PBZGv/BZQe3ILk=";
+      sha256 = "sha256-eE1l9ZHOejP+UHf4lOTK7Nr5xwH/eXaM7SHXJRT/C7k=";
     };
     cargoDeps = prev.cargoDeps.overrideAttrs (_: {
       inherit src version;
