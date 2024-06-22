@@ -63,11 +63,6 @@
     fsType = "zfs";
   };
 
-  fileSystems."/mnt/movies" = {
-    device = "tank/movies";
-    fsType = "zfs";
-  };
-
   fileSystems."/mnt/homepage-dashboard" = {
     device = "tank/homepage-dashboard";
     fsType = "zfs";
@@ -75,6 +70,11 @@
 
   fileSystems."/mnt/media" = {
     device = "tank/media";
+    fsType = "zfs";
+  };
+
+  fileSystems."/mnt/minecraft" = {
+    device = "tank/minecraft";
     fsType = "zfs";
   };
 

@@ -13,5 +13,8 @@
     ./sonarr.nix
     ./radarr.nix
     ./deluge.nix
+    ./minecraft.nix
   ];
+
+  nextcloud.enable = false;
 }
