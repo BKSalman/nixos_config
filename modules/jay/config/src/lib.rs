@@ -17,7 +17,10 @@ use jay_config::keyboard::syms::{
 use jay_config::status::set_status;
 use jay_config::timer::{duration_until_wall_clock_is_multiple_of, get_timer};
 use jay_config::video::{connectors, on_connector_connected, on_graphics_initialized, Connector};
-use jay_config::{config, exec, get_workspace, quit, reload, switch_to_vt, Axis, Direction};
+use jay_config::{
+    config, exec, get_workspace, quit, reload, set_explicit_sync_enabled, switch_to_vt, Axis,
+    Direction,
+};
 use sysinfo::{CpuRefreshKind, MemoryRefreshKind, RefreshKind, System};
 
 const MOD: Modifiers = MOD4;
@@ -155,6 +158,7 @@ fn set_max_refresh_rate(connector: Connector) {
 }
 
 fn configure() {
+    set_explicit_sync_enabled(false);
     setup_status();
 
     let seat = get_default_seat();

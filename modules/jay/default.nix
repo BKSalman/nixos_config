@@ -42,8 +42,16 @@ in {
     services.displayManager.sessionPackages = [
       jay-with-session
     ];
-    environment.systemPackages = [
+    environment.systemPackages = with pkgs; [
       jay-with-session
+      bemenu
+      grim
+      slurp
+      wl-clipboard
     ];
+    xdg.portal = {
+      enable = true;
+    };
+    programs.xwayland.enable = true;
   };
 }

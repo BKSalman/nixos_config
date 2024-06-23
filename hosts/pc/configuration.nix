@@ -20,11 +20,11 @@
 
   leftwm.enable = false;
 
-  jay.enable = false;
+  jay.enable = true;
 
   sway.enable = false;
 
-  hyprland.enable = true;
+  hyprland.enable = false;
 
   programs.nh = {
     enable = true;
@@ -136,7 +136,10 @@
     enable = true;
   };
 
+  environment.localBinInPath = true;
+
   environment.systemPackages = with pkgs; [
+    yazi
     ripgrep
     davinci-resolve
     mangohud
@@ -214,7 +217,7 @@
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
     # XXX: force firefox to use xwayland, for Nvidia explicit sync + wayland
     # XXX: remove when fixed
-    MOZ_ENABLE_WAYLAND = "0";
+    # MOZ_ENABLE_WAYLAND = "0";
     WLR_NO_HARDWARE_CURSORS = "1";
     MANROFFOPT = "-c";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";

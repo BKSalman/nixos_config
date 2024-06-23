@@ -55,7 +55,7 @@
 
       eval "$(direnv hook bash)"
 
-      eval "$(jay generate-completion bash)"
+      # eval "$(jay generate-completion bash)"
 
       if command -v fzf-share >/dev/null; then
         source "$(fzf-share)/key-bindings.bash"

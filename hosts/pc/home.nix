@@ -9,7 +9,9 @@
     ../../modules/x11/leftwm/config.nix
     ../../modules/helix
     ../../modules/bash
-    # ../../modules/hyprland/config.nix
+    ../../modules/waybar
+    ../../modules/hyprland/home.nix
+    ../../modules/jay/home.nix
     ./modules/sadmadbotlad.nix
   ];
 
@@ -30,6 +32,10 @@
 
   # enable sadmadbotlad
   sadmadbotlad.enable = true;
+
+  jay.enable = true;
+
+  hyprland.enable = false;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -263,30 +269,4 @@
     IdentityFile ~/.ssh/aur
     User aur
   '';
-
-  # config = lib.mkIf config.jay.enable {
-  #   home.file.".local/bin/wl-paste" = {
-  #     text = ''
-  #       #!/usr/bin/env bash
-  #       jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-paste "$@"
-  #     '';
-  #     executable = true;
-  #   };
-
-  #   home.file.".local/bin/wl-copy" = {
-  #     text = ''
-  #       #!/usr/bin/env bash
-  #       jay run-privileged -- ${pkgs.wl-clipboard}/bin/wl-copy "$@"
-  #     '';
-  #     executable = true;
-  #   };
-
-  #   home.file.".local/bin/obs-privileged" = {
-  #     text = ''
-  #       #!/usr/bin/env bash
-  #       jay run-privileged -- obs "$@"
-  #     '';
-  #     executable = true;
-  #   };
-  # };
 }
