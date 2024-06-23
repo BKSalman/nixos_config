@@ -32,5 +32,13 @@
       '';
       executable = true;
     };
+
+    home.file.".local/bin/discord" = {
+      text = ''
+        #!/usr/bin/env bash
+        jay run-privileged -- discord "$@"
+      '';
+      executable = true;
+    };
   };
 }
