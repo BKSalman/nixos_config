@@ -12,6 +12,7 @@
     ./prowlarr.nix
     ./sonarr.nix
     ./radarr.nix
+    ./bazarr.nix
     ./deluge.nix
     ./minecraft.nix
   ];
