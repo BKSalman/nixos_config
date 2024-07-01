@@ -236,6 +236,7 @@
 
   # for ZFS compatibility
   boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
   boot.kernelModules = [

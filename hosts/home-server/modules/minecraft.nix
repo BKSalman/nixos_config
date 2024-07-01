@@ -17,7 +17,7 @@
         exit 1
       fi
 
-      export JAVA_ARGS="-Xms4G -Xmx4G -XX:+UseG1GC -XX:+ParallelRefProcEnabled \
+      export JAVA_ARGS="-Xms4G -Xmx8G -XX:+UseG1GC -XX:+ParallelRefProcEnabled \
         -XX:MaxGCPauseMillis=200 -XX:+UnlockExperimentalVMOptions \
         -XX:+DisableExplicitGC -XX:+AlwaysPreTouch -XX:G1NewSizePercent=30 \
         -XX:G1MaxNewSizePercent=40 -XX:G1HeapRegionSize=8M \
