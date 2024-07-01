@@ -97,7 +97,7 @@
     displayManager.gdm.wayland = true;
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
-    # desktopManager.plasma5.enable = true;
+    desktopManager.plasma6.enable = true;
 
     xkb = {
       layout = "us,ara";
@@ -105,6 +105,12 @@
       variant = "";
     };
   };
+
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    oxygen
+  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
