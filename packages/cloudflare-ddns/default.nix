@@ -16,6 +16,10 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-fTWx+6GP6x33DA5gOA+7dNIThGkP0Eka9qVdNtz9XAo=";
   };
 
+  nativeBuildInputs = with python3.pkgs; [
+    requests
+  ];
+
   propagatedBuildInputs = with python3.pkgs; [
     requests
   ];
