@@ -15,6 +15,7 @@
     ./bazarr.nix
     ./deluge.nix
     ./minecraft.nix
+    # ./ddns.nix
   ];
 
   nextcloud.enable = false;

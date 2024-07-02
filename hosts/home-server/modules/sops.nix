@@ -25,6 +25,7 @@
         deluge-web-auth = {
           owner = "deluge";
         };
+        "config.json" = {}; # cloudflare-dns config
       }
       (lib.mkIf config.nextcloud.enable {
         nextcloud-admin-pass = {

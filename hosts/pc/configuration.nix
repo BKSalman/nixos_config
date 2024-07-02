@@ -151,6 +151,7 @@
     mangohud
     dig
     sops
+    (callPackage ../../packages/cloudflare-ddns {})
 
     # mergerfs
     fzf
