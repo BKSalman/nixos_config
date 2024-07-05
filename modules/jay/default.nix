@@ -16,6 +16,11 @@
       inherit src version;
       outputHash = "sha256-WEEAFr5lemyOfeIKC9Pvr9sYMz8rLO6k1BFgbxXJ0Pk=";
     });
+
+    postInstall = ''
+      install -D etc/jay.portal $out/share/xdg-desktop-portal/portals/jay.portal
+      install -D etc/jay-portals.conf $out/share/xdg-desktop-portal/jay-portals.conf
+    '';
   });
   jay-with-session = jay-unstable.overrideAttrs (final: prev: let
     session = pkgs.writeText "jay" ''
