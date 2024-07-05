@@ -1,4 +1,8 @@
-{config, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   systemd.services.cloudflare-ddns = {
     enable = true;
     wantedBy = [
@@ -14,8 +18,9 @@
 
     serviceConfig = {
       Type = "oneshot";
-      Environment = "CONFIG_PATH=${builtins.dirOf config.sops.secrets."config.json".path}";
-      ExecStart = "cloudflare-ddns";
+      Environment = "CONFIG_PATH=${config.sops.secrets."config.json".path}";
+      ExecStart = "${pkgs.cloudflare-ddns}/bin/cloudflare-ddns";
+      User = "cloudflare-ddns";
     };
   };
 
@@ -33,4 +38,10 @@
       OnUnitActiveSec = "15m";
     };
   };
+
+  users.users.cloudflare-ddns = {
+    group = "cloudflare-ddns";
+    isSystemUser = true;
+  };
+  users.groups.cloudflare-ddns.members = ["cloudflare-ddns"];
 }

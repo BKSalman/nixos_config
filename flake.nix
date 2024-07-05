@@ -96,6 +96,10 @@
       insomnia = prev.callPackage ./packages/insomnia {};
     };
 
+    cloudflare-ddns-overlay = final: prev: {
+      cloudflare-ddns = prev.callPackage ./packages/cloudflare-ddns {};
+    };
+
     nerdfonts-overlay = final: prev: {
       nerdfonts = prev.callPackage ./packages/nerdfonts {};
     };
@@ -121,6 +125,7 @@
         # FIXME: remove after it gets fixed
         nerdfonts-overlay
 
+        cloudflare-ddns-overlay
         manmap.overlay
         leftwm.overlays.default
         ytdlp-gui.overlay

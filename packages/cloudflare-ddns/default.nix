@@ -1,35 +1,31 @@
 {
   python3,
   lib,
-  fetchFromGitHub,
   stdenv,
 }:
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "cloudflare-ddns";
 
   version = "v1.0.3";
 
-  src = fetchFromGitHub {
-    owner = "timothymiller";
-    repo = pname;
-    rev = "4ea9ba5745ab65ffd250091e865d140675730f82";
-    sha256 = "sha256-fTWx+6GP6x33DA5gOA+7dNIThGkP0Eka9qVdNtz9XAo=";
-  };
+  src = ./.;
 
-  nativeBuildInputs = with python3.pkgs; [
-    requests
-  ];
-
-  propagatedBuildInputs = with python3.pkgs; [
-    requests
+  propagatedBuildInputs = [
+    (python3.withPackages (pythonPackages:
+      with pythonPackages; [
+        requests
+      ]))
   ];
 
   installPhase = ''
     mkdir -p $out/bin
-    ls -la
-    cp cloudflare-ddns.py $out/bin/cloudflare-ddns
+    pwd
+    ls -la $src
+    cp $src/cloudflare-ddns.py $out/bin/cloudflare-ddns
     chmod +x $out/bin/cloudflare-ddns
   '';
+
+  dontUnpack = true;
 
   meta = with lib; {
     platforms = platforms.linux;

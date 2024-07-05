@@ -151,7 +151,6 @@
     mangohud
     dig
     sops
-    (callPackage ../../packages/cloudflare-ddns {})
 
     # mergerfs
     fzf
@@ -174,7 +173,6 @@
     })
     # nextcloud-client
     gparted
-    # nixops_unstable
     # docker-compose
     # podman-compose
     bat
@@ -216,6 +214,7 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
+    config.common.default = "*";
   };
 
   environment.sessionVariables = {
