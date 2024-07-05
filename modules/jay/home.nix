@@ -33,7 +33,7 @@
       executable = true;
     };
 
-    home.file.".local/bin/discord" = {
+    home.file.".local/bin/discordj" = {
       text = ''
         #!/usr/bin/env bash
         jay run-privileged -- discord "$@"
