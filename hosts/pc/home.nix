@@ -155,11 +155,11 @@
     webcord
     pavucontrol
     stremio
-    prusa-slicer
-    cura
+    # prusa-slicer
+    # cura
     lutris
     xclip
-    freecad
+    # freecad
     killall
     # spice-gtk
     qimgv

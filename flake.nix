@@ -59,6 +59,12 @@
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
+
+    # TODO: remove when upstreamed to nixpkgs
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -76,6 +82,7 @@
     arion,
     sops-nix,
     hyprland,
+    nixos-cosmic,
     ...
   }: let
     system = "x86_64-linux";
@@ -156,6 +163,14 @@
 
         modules = [
           ./hosts/pc/configuration.nix
+
+          {
+            nix.settings = {
+              substituters = ["https://cosmic.cachix.org/"];
+              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
+            };
+          }
+          nixos-cosmic.nixosModules.default
 
           sops-nix.nixosModules.sops
           # xremap-flake.nixosModules.default

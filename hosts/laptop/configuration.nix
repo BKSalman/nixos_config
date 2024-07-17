@@ -81,7 +81,8 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-  services.printing.drivers = [pkgs.hplipWithPlugin pkgs.hplip];
+  # TODO: uncomment when sip becomes compatible with python 3.12
+  # services.printing.drivers = [pkgs.hplipWithPlugin];
   # services.avahi.enable = true;
   # services.avahi.nssmdns = true;
   # # for a WiFi printer

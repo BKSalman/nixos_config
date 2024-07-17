@@ -174,8 +174,8 @@
     pavucontrol
     bat
     stremio
-    prusa-slicer
-    cura
+    # prusa-slicer
+    # cura
     lutris
     xclip
     # freecad

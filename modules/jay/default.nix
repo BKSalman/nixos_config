@@ -14,7 +14,7 @@
     };
     cargoDeps = prev.cargoDeps.overrideAttrs (_: {
       inherit src version;
-      outputHash = "sha256-WEEAFr5lemyOfeIKC9Pvr9sYMz8rLO6k1BFgbxXJ0Pk=";
+      outputHash = "sha256-Rvbn7QNBkkiDjJP1/KGtz8o2WtuTcIK4zIPib6oZ9Bc=";
     });
 
     postInstall = ''

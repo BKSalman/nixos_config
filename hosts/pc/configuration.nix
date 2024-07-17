@@ -24,6 +24,9 @@
 
   sway.enable = false;
 
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+
   hyprland.enable = false;
 
   programs.nh = {
@@ -93,8 +96,8 @@
   services.xserver = {
     enable = true;
 
-    displayManager.gdm.enable = true;
-    displayManager.gdm.wayland = true;
+    # displayManager.gdm.enable = true;
+    # displayManager.gdm.wayland = true;
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
     desktopManager.plasma6.enable = true;
