@@ -159,6 +159,7 @@
     fzf
     tree
     # perl
+
     # IOS
     libimobiledevice
     ifuse
@@ -401,7 +402,10 @@
   programs.kdeconnect.enable = true;
 
   # IOS
-  services.usbmuxd.enable = true;
+  services.usbmuxd = {
+    enable = true;
+    package = pkgs.usbmuxd2;
+  };
 
   # temporary cus NetworkManager-wait-online fails the nixos switch
   systemd.services.NetworkManager-wait-online = {
