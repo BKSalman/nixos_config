@@ -113,7 +113,6 @@
     # just for pactl
     pulseaudio
     magic-wormhole
-    nomachine-client
     libreoffice
     realvnc-vnc-viewer
     mediainfo
@@ -191,7 +190,6 @@
     htop
     btop
     nodejs
-    insomnia
     dbeaver
     mpv
     frp

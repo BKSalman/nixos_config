@@ -58,8 +58,8 @@
 
   hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    # driSupport = true;
+    # driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       (pkgs.vaapiIntel.override {enableHybridCodec = true;})
@@ -192,9 +192,9 @@
   services.tailscale.enable = true;
 
   virtualisation.oci-containers.backend = "docker";
+  hardware.nvidia-container-toolkit.enable = true;
   virtualisation.docker = {
     enable = true;
-    enableNvidia = true;
   };
 
   # system.copySystemConfiguration = true;

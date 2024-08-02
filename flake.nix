@@ -99,10 +99,6 @@
       webcord = prev.callPackage ./packages/webcord {};
     };
 
-    insomnia-overlay = final: prev: {
-      insomnia = prev.callPackage ./packages/insomnia {};
-    };
-
     cloudflare-ddns-overlay = final: prev: {
       cloudflare-ddns = prev.callPackage ./packages/cloudflare-ddns {};
     };
@@ -130,7 +126,7 @@
       };
       overlays = [
         # FIXME: remove after it gets fixed
-        nerdfonts-overlay
+        # nerdfonts-overlay
 
         cloudflare-ddns-overlay
         manmap.overlay
@@ -142,7 +138,6 @@
         prismlauncher.overlays.default
         eza-overlay
         obs-text-pango-overlay
-        insomnia-overlay
         # (import ./overlays/mpvpaper.nix)
         (import ./overlays/distrobox.nix)
         tokyonight-gtk-overlay

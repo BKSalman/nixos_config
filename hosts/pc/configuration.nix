@@ -150,7 +150,6 @@
   environment.systemPackages = with pkgs; [
     yazi
     ripgrep
-    davinci-resolve
     mangohud
     dig
     sops

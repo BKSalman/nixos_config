@@ -88,7 +88,6 @@
     screenkey
     comma
     magic-wormhole
-    nomachine-client
     wayvnc
     libreoffice-qt
     inkscape
@@ -180,7 +179,6 @@
     nodePackages.pnpm
     nodejs
     vscode
-    insomnia
     sqlx-cli
     mpv
     frp
