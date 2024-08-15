@@ -4,11 +4,9 @@
   ...
 }: {
   imports = [
-    # ./wayland/hyprland
-    # ./x11/leftwm/config.nix
-    ./helix
-    ./mpv
-    ./bash.nix
+    ../../modules/helix
+    ../../modules/mpv
+    ../../modules/bash
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -39,16 +37,16 @@
 
   gtk = {
     enable = true;
-    theme = {
-      name = "Tokyonight-Dark-BL";
-      package = pkgs.tokyonight-gtk.override {themeVariants = ["Dark-BL"];};
-    };
+    # theme = {
+    #   name = "Tokyonight-Dark-BL";
+    #   package = pkgs.tokyonight-gtk.override {themeVariants = ["Dark-BL"];};
+    # };
   };
 
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk";
+  # };
 
   programs.obs-studio = {
     enable = true;
@@ -123,7 +121,6 @@
     maliit-keyboard
     gimp
     direnv
-    hyprpicker
     qmk
     tokei
     bottles
@@ -135,12 +132,9 @@
     eww
     cliphist
     protonup-qt
-    wlsunset
-    blender
     nodePackages_latest.bash-language-server
-    ranger
+    yazi
     uxplay
-    jetbrains.idea-community
     hwloc
     looking-glass-client
     grapejuice
@@ -190,7 +184,6 @@
     htop
     btop
     nodejs
-    dbeaver
     mpv
     frp
     prismlauncher
@@ -201,19 +194,10 @@
     gh
     eza
     discord
-    # davinci-resolve
     piper
     spotify
     kdenlive
-    (chatterino2.overrideAttrs (final: prev: {
-      src = fetchFromGitHub {
-        owner = "chatterino";
-        repo = "chatterino2";
-        rev = "c1fa51242f667bc73e66118e8485c5201a762fbc";
-        sha256 = "sha256-Y0ra5pbUPnQaOchpcrpAzytEXKgC5b+kBnsww2naKb0=";
-        fetchSubmodules = true;
-      };
-    }))
+    chatterino2
     alacritty
     kitty
     # plasma5Packages.bismuth
@@ -221,16 +205,14 @@
   ];
 
   # TODO: move to rofi directory
-  home.file.".config/rofi/off.sh".source = ./rofi/off.sh;
-  home.file.".config/rofi/launcher.sh".source = ./rofi/launcher.sh;
-  home.file.".config/rofi/launcher_theme.rasi".source = ./rofi/launcher_theme.rasi;
-  home.file.".config/rofi/clipboard_theme.rasi".source = ./rofi/clipboard_theme.rasi;
-  home.file.".config/rofi/powermenu.sh".source = ./rofi/powermenu.sh;
-  home.file.".config/rofi/powermenu_theme.rasi".source = ./rofi/powermenu_theme.rasi;
+  home.file.".config/rofi/off.sh".source = ../../modules/rofi/off.sh;
+  home.file.".config/rofi/launcher.sh".source = ../../modules/rofi/launcher.sh;
+  home.file.".config/rofi/launcher_theme.rasi".source = ../../modules/rofi/launcher_theme.rasi;
+  home.file.".config/rofi/clipboard_theme.rasi".source = ../../modules/rofi/clipboard_theme.rasi;
+  home.file.".config/rofi/powermenu.sh".source = ../../modules/rofi/powermenu.sh;
+  home.file.".config/rofi/powermenu_theme.rasi".source = ../../modules/rofi/powermenu_theme.rasi;
 
-  home.file.".config/evremap/config.toml".source = ./packages/evremap/config.toml;
-
-  home.file.".local/bin/switch".source = ./switch;
+  home.file.".config/evremap/config.toml".source = ../../packages/evremap/config.toml;
 
   home.file.".local/bin/cliphist-rofi" = {
     text = ''
@@ -256,7 +238,7 @@
     Icon=~/.local/share/applications/Airplay.png
   '';
 
-  home.file.".config/starship.toml".source = ./starship.toml;
+  home.file.".config/starship.toml".source = ../../modules/starship.toml;
 
   programs.starship = {
     enable = true;

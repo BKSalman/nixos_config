@@ -56,7 +56,7 @@
     };
   };
 
-  qt.platformTheme = "gtk"; # qt5ct
+  # qt.platformTheme.name = "gtk"; # qt5ct
 
   programs.obs-studio = {
     enable = true;

@@ -4,16 +4,8 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    # ../x11
-    # ../x11/bunnuafeth
-    # ../x11/leftwm
-    ../x11/awesome
-    ../wayland
-    ../wayland/buddaraysh
-    ../uxplay.nix
-    ../vm.nix
+    ../../modules
     # ../battery.nix
   ];
 
@@ -30,6 +22,11 @@
   boot.extraModprobeConfig = ''
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
+
+  services.desktopManager.cosmic.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+
+  environment.localBinInPath = true;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -77,7 +74,8 @@
     };
   };
 
-  programs.buddaraysh.enable = true;
+  # TODO: maybe add this back later
+  # programs.buddaraysh.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -92,8 +90,6 @@
 
   hardware.bluetooth.enable = true;
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -110,8 +106,8 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-  services.xserver.libinput.touchpad.naturalScrolling = true;
+  services.libinput.enable = true;
+  services.libinput.touchpad.naturalScrolling = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.salman = {
@@ -143,11 +139,11 @@
 
     firefox
     distrobox
-    (cinnamon.nemo-with-extensions.override {
+    (nemo-with-extensions.override {
       extensions = [
-        cinnamon.nemo-python
-        cinnamon.nemo-fileroller
-        (pkgs.callPackage ../packages/syncstate {})
+        nemo-python
+        nemo-fileroller
+        (pkgs.callPackage ../../packages/syncstate {})
       ];
     })
     pciutils
@@ -186,10 +182,11 @@
   ];
 
   services.flatpak.enable = true;
-
   environment.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = "kde";
-    FLAKE = "/home/salman/nixos_config";
+    WLR_NO_HARDWARE_CURSORS = "1";
+    MANROFFOPT = "-c";
+    MANPAGER = "sh -c 'col -bx | bat -l man -p'";
+    EDITOR = "hx";
   };
 
   environment.noXlibs = false;
@@ -197,7 +194,7 @@
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
   hardware = {
-    opengl = {
+    graphics = {
       enable = true;
       extraPackages = with pkgs; [
         vaapiVdpau
@@ -366,7 +363,7 @@
 
   programs.droidcam.enable = true;
 
-  services.teamviewer.enable = true;
+  # services.teamviewer.enable = true;
 
   # Fingerprint support
   # still not working tho
