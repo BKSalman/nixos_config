@@ -147,6 +147,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    sendme
     yazi
     ripgrep
     mangohud

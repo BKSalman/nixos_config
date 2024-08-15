@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{config, ...}: let
   domain = "deluge.bksalman.com";
 in {
   services.deluge = {
@@ -15,12 +11,7 @@ in {
       enabled_plugins = ["Label"];
       outgoing_interface = "wg1";
     };
-    authFile = pkgs.writeTextFile {
-      name = "auth";
-      text = ''
-        localclient::10
-      '';
-    };
+    authFile = config.sops.secrets.deluge-web-auth.path;
   };
 
   services.nginx.virtualHosts.${domain} = {
