@@ -147,7 +147,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
-    jamin
+    easyeffects
     sendme
     yazi
     ripgrep
