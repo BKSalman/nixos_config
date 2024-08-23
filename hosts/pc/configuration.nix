@@ -92,6 +92,8 @@
     pkgs.hyprland
   ];
 
+  services.desktopManager.plasma6.enable = true;
+
   services.xserver = {
     enable = true;
 
@@ -99,7 +101,6 @@
     # displayManager.gdm.wayland = true;
     # displayManager.sddm.enable = true;
     # displayManager.sddm.autoNumlock = true;
-    desktopManager.plasma6.enable = true;
 
     xkb = {
       layout = "us,ara";
@@ -147,7 +148,9 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
-    easyeffects
+    zathura
+    # mypaint
+    # easyeffects
     sendme
     yazi
     ripgrep
@@ -168,10 +171,10 @@
 
     xdg-utils
     solaar
-    (cinnamon.nemo-with-extensions.override {
+    (nemo-with-extensions.override {
       extensions = [
-        cinnamon.nemo-python
-        cinnamon.nemo-fileroller
+        nemo-python
+        nemo-fileroller
         (pkgs.callPackage ../../packages/syncstate {})
       ];
     })

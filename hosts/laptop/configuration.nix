@@ -127,6 +127,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     sops
+    zathura
 
     rustup
     gcc

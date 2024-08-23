@@ -105,7 +105,6 @@
     fd
     kondo
     gifski
-    lapce
     eww
     cliphist
     protonup-qt
@@ -119,7 +118,6 @@
     hwloc
     looking-glass-client
     grapejuice
-    mypaint
     nix-index
     winetricks
     wineWowPackages.stable
@@ -128,7 +126,6 @@
     appimage-run
     ventoy-full
     gamescope
-    pureref
     python311Packages.python-lsp-server
     python311Packages.pylsp-mypy
     ytdlp-gui
@@ -199,7 +196,6 @@
     chatterino2
     alacritty
     kitty
-    plasma5Packages.bismuth
     # helix
     vim
 

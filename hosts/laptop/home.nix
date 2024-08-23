@@ -91,7 +91,6 @@
     localsend
     ripgrep
     drawio
-    zathura
     hunspell
     hunspellDicts.en_US
     xcolor
@@ -128,7 +127,6 @@
     kondo
     # this is broken for now
     # gifski
-    lapce
     eww
     cliphist
     protonup-qt
