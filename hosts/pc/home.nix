@@ -149,7 +149,6 @@
     stremio
     # prusa-slicer
     # cura
-    lutris
     xclip
     # freecad
     killall

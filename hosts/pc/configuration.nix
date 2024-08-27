@@ -148,6 +148,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    lutris
     heroic
     # winetricks
     # wineWowPackages.stable
