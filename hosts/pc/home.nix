@@ -117,7 +117,6 @@
     jetbrains.idea-community
     hwloc
     looking-glass-client
-    grapejuice
     nix-index
     winetricks
     wineWowPackages.stable

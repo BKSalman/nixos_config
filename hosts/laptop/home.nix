@@ -135,7 +135,6 @@
     uxplay
     hwloc
     looking-glass-client
-    grapejuice
     mypaint
     nix-index
     winetricks
