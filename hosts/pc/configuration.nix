@@ -148,6 +148,9 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    # winetricks
+    # wineWowPackages.stable
+    wineWowPackages.waylandFull
     zathura
     # mypaint
     # easyeffects

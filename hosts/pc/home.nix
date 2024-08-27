@@ -118,9 +118,6 @@
     hwloc
     looking-glass-client
     nix-index
-    winetricks
-    wineWowPackages.stable
-    # wineWowPackages.waylandFull
     # evremap
     appimage-run
     ventoy-full
