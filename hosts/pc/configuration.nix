@@ -148,6 +148,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    heroic
     # winetricks
     # wineWowPackages.stable
     wineWowPackages.waylandFull
