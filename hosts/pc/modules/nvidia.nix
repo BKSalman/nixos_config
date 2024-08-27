@@ -27,7 +27,9 @@
       modesetting.enable = true;
       powerManagement.enable = false;
       nvidiaSettings = true;
-      # open = true;
+      # 1070 TI is not supported by the open kernel module
+      # https://github.com/NVIDIA/open-gpu-kernel-modules?tab=readme-ov-file#compatible-gpus
+      open = false;
     };
   };
 
