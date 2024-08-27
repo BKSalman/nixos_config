@@ -25,7 +25,8 @@
       # };
 
       modesetting.enable = true;
-      powerManagement.enable = true;
+      powerManagement.enable = false;
+      nvidiaSettings = true;
       # open = true;
     };
   };
@@ -38,7 +39,7 @@
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
     "nvidia-drm.fbdev=1"
-    "nvidia.NVreg_EnableGpuFirmware=0"
+    # "nvidia.NVreg_EnableGpuFirmware=0"
   ];
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
