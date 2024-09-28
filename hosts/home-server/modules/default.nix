@@ -7,7 +7,8 @@
     ./homepage
     ./grafana.nix
     ./prometheus.nix
-    ./mailserver.nix
+    # TODO: uncomment after stalwart test crash is resolved
+    # ./mailserver.nix
     ./vaultwarden.nix
     ./prowlarr.nix
     ./sonarr.nix

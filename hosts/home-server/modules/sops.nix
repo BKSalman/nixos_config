@@ -17,7 +17,8 @@
           owner = "vaultwarden";
         };
         stalwart-salman-secret = {
-          owner = "stalwart-mail";
+          # TODO: uncomment after stalwart test crash is resolved
+          # owner = "stalwart-mail";
         };
         wireguard-private-key = {};
         gluetun-wg-config = {};

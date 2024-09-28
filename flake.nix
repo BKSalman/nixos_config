@@ -66,7 +66,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+    # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
   };
 
   outputs = {
@@ -85,7 +85,7 @@
     sops-nix,
     hyprland,
     nixos-cosmic,
-    proxmox-nixos,
+    # proxmox-nixos,
     ...
   }: let
     system = "x86_64-linux";
@@ -146,7 +146,7 @@
         tokyonight-gtk-overlay
         evremap-overlay
         webcord-overlay
-        proxmox-nixos.overlays.${system}
+        # proxmox-nixos.overlays.${system}
       ];
     };
 
@@ -218,16 +218,16 @@
         inherit system pkgs;
 
         modules = [
-          {
-            nix.settings = {
-              substituters = ["https://cache.saumon.network/proxmox-nixos"];
-              trusted-public-keys = ["proxmox-nixos:nveXDuVVhFDRFx8Dn19f1WDEaNRJjPrF2CPD2D+m1ys="];
-            };
-          }
+          # {
+          #   nix.settings = {
+          #     substituters = ["https://cache.saumon.network/proxmox-nixos"];
+          #     trusted-public-keys = ["proxmox-nixos:nveXDuVVhFDRFx8Dn19f1WDEaNRJjPrF2CPD2D+m1ys="];
+          #   };
+          # }
           ./hosts/home-server/configuration.nix
           sops-nix.nixosModules.sops
           arion.nixosModules.arion
-          proxmox-nixos.nixosModules.proxmox-ve
+          # proxmox-nixos.nixosModules.proxmox-ve
         ];
       };
     };

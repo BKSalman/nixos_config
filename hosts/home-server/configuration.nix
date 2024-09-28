@@ -37,7 +37,7 @@
       };
     };
 
-    kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+    kernelPackages = pkgs.linuxPackages_6_10;
 
     initrd = {
       kernelModules = ["zfs"];
