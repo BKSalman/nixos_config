@@ -259,8 +259,7 @@
     user = "salman";
   };
 
-  # for ZFS compatibility
-  boot.kernelPackages = config.boot.zfs.package.latestCompatibleLinuxPackages;
+  boot.kernelPackages = pkgs.linuxPackages_6_10;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 

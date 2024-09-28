@@ -194,11 +194,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1727502477,
-        "narHash": "sha256-0HMJtev4aLd5XDIeY7Zv22vAKEl2tg3YjDZbSZgjuLo=",
+        "lastModified": 1727520503,
+        "narHash": "sha256-bWa/FLPd9BArdkbpj6z3VDj7H2lI5mUfqtGcbCvw418=",
         "owner": "eza-community",
         "repo": "eza",
-        "rev": "9681cb65b36d58b15afd0e986445493e89d0da92",
+        "rev": "e7882ceb427cc13ab337d688fd650674f3478800",
         "type": "github"
       },
       "original": {
@@ -656,11 +656,11 @@
         "xdph": "xdph"
       },
       "locked": {
-        "lastModified": 1727484580,
-        "narHash": "sha256-mnsHdcJdvc2ZDl5xRSztvXfNxvLQ2EGsDEAbxnKYl9A=",
+        "lastModified": 1727527591,
+        "narHash": "sha256-8Mrz/pH+zknWtY25XOKvsfx9KZRdST/0VrjKXKHvZSk=",
         "ref": "refs/heads/main",
-        "rev": "2cf6e7862a844ad96aa060d63f6774df7e2234a6",
-        "revCount": 5273,
+        "rev": "6f313de952311282e82461a342c74ea702d9f13a",
+        "revCount": 5274,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/hyprwm/Hyprland"
