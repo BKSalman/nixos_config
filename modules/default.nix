@@ -7,5 +7,6 @@
     ./jay
     ./sway
     ./hyprland
+    ./cosmic
   ];
 }

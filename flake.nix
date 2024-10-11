@@ -169,7 +169,6 @@
               trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
             };
           }
-          nixos-cosmic.nixosModules.default
 
           sops-nix.nixosModules.sops
           # xremap-flake.nixosModules.default
@@ -186,6 +185,7 @@
             };
             home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
           }
+          nixos-cosmic.nixosModules.default
         ];
       };
       laptop = lib.nixosSystem {

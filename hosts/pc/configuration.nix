@@ -23,8 +23,7 @@
 
   sway.enable = false;
 
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  cosmic.enable = true;
 
   hyprland.enable = false;
 
