@@ -1312,11 +1312,11 @@
         "rust-overlay": "rust-overlay_7"
       },
       "locked": {
-        "lastModified": 1728897739,
-        "narHash": "sha256-1uA9s3alq9hmUDc1tu5iqhMrA9rmbKgX5G/K/LWHTIQ=",
+        "lastModified": 1729542554,
+        "narHash": "sha256-tWRPOhLveE9/iXnotyLOrEhsRYwcOE126HZqv8A3IcA=",
         "owner": "bksalman",
         "repo": "prayer-times-applet",
-        "rev": "e2cd4d607012b56401a853d95ec160ffadd11a70",
+        "rev": "8d1e1a375e411d80a6e2b6967c24d3a6420081f0",
         "type": "github"
       },
       "original": {
