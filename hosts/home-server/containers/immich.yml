@@ -8,11 +8,14 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities:
                 - gpu
                 - compute
                 - video
+            - driver: cdi
+              device_ids:
+              - nvidia.com/gpu=all
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -26,6 +29,10 @@ services:
     restart: always
     healthcheck:
       disable: false
+    devices:
+      - driver: cdi
+        device_ids:
+        - nvidia.com/gpu=all
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -35,9 +42,12 @@ services:
         reservations:
           devices:
             - driver: nvidia
-              count: 1
+              count: all
               capabilities:
                 - gpu
+            - driver: cdi
+              device_ids:
+              - nvidia.com/gpu=all
     volumes:
       - model-cache:/cache
     env_file:

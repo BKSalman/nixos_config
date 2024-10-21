@@ -35,6 +35,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    prayer-times-applet = {
+      url = "github:bksalman/prayer-times-applet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     leftwm = {
       url = "github:leftwm/leftwm";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,6 +82,7 @@
     helix,
     rust-overlay,
     ytdlp-gui,
+    prayer-times-applet,
     leftwm,
     manmap,
     sadmadbotlad,
@@ -135,6 +141,7 @@
         manmap.overlay
         leftwm.overlays.default
         ytdlp-gui.overlay
+        prayer-times-applet.overlay
         hyprland-contrib.overlays.default
         rust-overlay.overlays.default
         # helix.overlays.default

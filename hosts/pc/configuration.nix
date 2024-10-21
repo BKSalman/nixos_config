@@ -147,6 +147,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    prayer-times-applet
     easyeffects
     waydroid
     vesktop
@@ -228,22 +229,12 @@
   services.flatpak.enable = true;
   xdg.portal = {
     enable = true;
-    # extraPortals = with pkgs; [
-    #   xdg-desktop-portal-gtk
-    # ];
-    # config.common.default = [
-    #   "jay"
-    #   "gtk"
-    # ];
   };
 
   environment.sessionVariables = {
     # LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     # BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    # XXX: force firefox to use xwayland, for Nvidia explicit sync + wayland
-    # XXX: remove when fixed
-    # MOZ_ENABLE_WAYLAND = "0";
     WLR_NO_HARDWARE_CURSORS = "1";
     MANROFFOPT = "-c";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
