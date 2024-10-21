@@ -7,12 +7,6 @@ services:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              count: all
-              capabilities:
-                - gpu
-                - compute
-                - video
             - driver: cdi
               device_ids:
               - nvidia.com/gpu=all
@@ -29,10 +23,6 @@ services:
     restart: always
     healthcheck:
       disable: false
-    devices:
-      - driver: cdi
-        device_ids:
-        - nvidia.com/gpu=all
 
   immich-machine-learning:
     container_name: immich_machine_learning
@@ -41,10 +31,6 @@ services:
       resources:
         reservations:
           devices:
-            - driver: nvidia
-              count: all
-              capabilities:
-                - gpu
             - driver: cdi
               device_ids:
               - nvidia.com/gpu=all
