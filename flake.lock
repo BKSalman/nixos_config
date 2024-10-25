@@ -1930,11 +1930,11 @@
         "rust-overlay": "rust-overlay_11"
       },
       "locked": {
-        "lastModified": 1729878705,
-        "narHash": "sha256-TmcJfDEkFyTsuHupogowRbkqFZMFJR1xYRe82Igdp9U=",
+        "lastModified": 1729880358,
+        "narHash": "sha256-MgvLPagGXIkmApWkdRGqmSYtbU19LEthAHWKRUhQ1c0=",
         "owner": "bksalman",
         "repo": "ytdlp-gui",
-        "rev": "96b941e1e681c9e5c5f2d53f666192f8770c2b0d",
+        "rev": "27a637313c8f1d8dbaa4082cf2de75232e862569",
         "type": "github"
       },
       "original": {
