@@ -1659,11 +1659,11 @@
         "rust-overlay": "rust-overlay_10"
       },
       "locked": {
-        "lastModified": 1694649781,
-        "narHash": "sha256-x1uiU+UYVwXtxq8AM0doG51hQqYCkrQi9a4UyKf56k8=",
+        "lastModified": 1729877004,
+        "narHash": "sha256-ExzFcPbgWoseDZmQJr2LXm5hsJFqWL/LomA5DqvcchA=",
         "owner": "bksalman",
         "repo": "sadmadbotlad",
-        "rev": "e15317f7516d78c96ae0a8a8c0a76099c829c859",
+        "rev": "f6f642d61232137616887b00d052d6771f2e4225",
         "type": "github"
       },
       "original": {
