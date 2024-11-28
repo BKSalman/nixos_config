@@ -2,11 +2,12 @@
   description = "Salman's System Configuration :)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.follows = "nixos-cosmic/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixos-cosmic/nixpkgs";
     };
 
     sops-nix = {
@@ -67,11 +68,13 @@
 
     # TODO: remove when upstreamed to nixpkgs
     nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:lilyinstarlight/nixos-cosmic/c294772655f83716e69f5585cb8b3aec049998a6";
     };
 
     # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware/master";
+    };
   };
 
   outputs = {
@@ -92,6 +95,7 @@
     hyprland,
     nixos-cosmic,
     # proxmox-nixos,
+    nixos-hardware,
     ...
   }: let
     system = "x86_64-linux";
@@ -173,7 +177,7 @@
           {
             nix.settings = {
               substituters = ["https://cosmic.cachix.org/"];
-              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
+              trusted-public-keys = ["cosmic.cachix.org-1:dya9iyxd4xdbehwjrkpv6rtxpmmdrel02smyza85dpe="];
             };
           }
 
@@ -215,6 +219,33 @@
             home-manager.users.salman = {
               imports = [
                 ./hosts/laptop/home.nix
+              ];
+            };
+            home-manager.extraSpecialArgs = {inherit helix;};
+          }
+        ];
+      };
+      alshaikh = lib.nixosSystem {
+        inherit system pkgs;
+
+        modules = [
+          ./hosts/alshaikh/configuration.nix
+
+	  {
+	    nix.settings = {
+	      substituters = [ "https://cosmic.cachix.org" ];
+	      trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
+	    };
+	  }
+          nixos-cosmic.nixosModules.default
+          nixos-hardware.nixosModules.framework-13-7040-amd
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.salman = {
+              imports = [
+                ./hosts/alshaikh/home.nix
               ];
             };
             home-manager.extraSpecialArgs = {inherit helix;};
