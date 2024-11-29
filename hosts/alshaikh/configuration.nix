@@ -6,6 +6,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./framework.nix
   ];
 
   # Bootloader.
@@ -39,6 +40,10 @@
     LC_TELEPHONE = "ar_SA.UTF-8";
     LC_TIME = "ar_SA.UTF-8";
   };
+
+  # services.fprintd.enable = true;
+  # services.fprintd.tod.enable = true;
+  # security.pam.services.login.fprintAuth = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
