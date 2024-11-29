@@ -231,12 +231,12 @@
         modules = [
           ./hosts/alshaikh/configuration.nix
 
-	  {
-	    nix.settings = {
-	      substituters = [ "https://cosmic.cachix.org" ];
-	      trusted-public-keys = [ "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE=" ];
-	    };
-	  }
+          {
+            nix.settings = {
+              substituters = ["https://cosmic.cachix.org"];
+              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
+            };
+          }
           nixos-cosmic.nixosModules.default
           nixos-hardware.nixosModules.framework-13-7040-amd
           home-manager.nixosModules.home-manager
