@@ -68,7 +68,7 @@
 
     # TODO: remove when upstreamed to nixpkgs
     nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic/c294772655f83716e69f5585cb8b3aec049998a6";
+      url = "github:lilyinstarlight/nixos-cosmic";
     };
 
     # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
