@@ -139,7 +139,7 @@
     zoom-us
     hyprpicker
     playerctl
-    cava
+    # cava
     chromium
     pamixer
     mpc-cli
@@ -160,7 +160,6 @@
     gdb
     lldb
     unzip
-    distrobox
     neovim
     zenith-nvidia
     htop

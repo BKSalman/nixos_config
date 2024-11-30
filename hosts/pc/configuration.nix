@@ -11,7 +11,7 @@
   ];
 
   nix = {
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
     extraOptions = ''
       experimental-features = nix-command flakes
     '';
@@ -46,6 +46,8 @@
   services.udev.packages = [
     pkgs.android-udev-rules
   ];
+
+  # boot.zfs.package = pkgs.linuxKernel.packages.linux_6_11.zfs_unstable;
 
   # Bootloader.
   boot.loader.grub = {
@@ -216,7 +218,7 @@
     liberation_ttf
     nerdfonts
     noto-fonts
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     corefonts
     # fira-code
@@ -251,7 +253,7 @@
     user = "salman";
   };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_10;
+  boot.kernelPackages = pkgs.linuxPackages_6_6;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
