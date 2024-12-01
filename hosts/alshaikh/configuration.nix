@@ -41,9 +41,10 @@
     LC_TIME = "ar_SA.UTF-8";
   };
 
-  # services.fprintd.enable = true;
-  # services.fprintd.tod.enable = true;
-  # security.pam.services.login.fprintAuth = true;
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "both";
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -120,10 +121,13 @@
   services.openssh.enable = true;
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall = {
+    # enable = false;
+    allowedTCPPorts = [];
+    checkReversePath = "loose";
+    trustedInterfaces = ["tailscale0"];
+    allowedUDPPorts = [config.services.tailscale.port];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
