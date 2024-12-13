@@ -134,6 +134,8 @@
     allowedUDPPorts = [config.services.tailscale.port];
   };
 
+  services.resolved.enable = true;
+
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
   # This value determines the NixOS release from which the default
