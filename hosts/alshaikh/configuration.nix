@@ -64,8 +64,10 @@
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us,ara";
-    xkbVariant = "";
+    xkb = {
+      layout = "us,ara";
+      variant = "";
+    };
   };
 
   # Enable CUPS to print documents.
@@ -82,7 +84,7 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.salman = {
@@ -137,6 +139,11 @@
   services.resolved.enable = true;
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
+
+  # Steam
+  hardware.steam-hardware.enable = true;
+  programs.steam.enable = true;
+  programs.steam.remotePlay.openFirewall = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

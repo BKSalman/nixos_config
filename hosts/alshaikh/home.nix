@@ -97,7 +97,7 @@
     jq
     nh
     screenkey
-    taskwarrior
+    taskwarrior3
     taskwarrior-tui
     pdfarranger
     comma
