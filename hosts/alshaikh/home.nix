@@ -97,8 +97,6 @@
     jq
     nh
     screenkey
-    taskwarrior3
-    taskwarrior-tui
     pdfarranger
     comma
     gf
