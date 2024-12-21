@@ -147,6 +147,32 @@
 
   services.flatpak.enable = true;
 
+  virtualisation = {
+    # Podman
+    oci-containers.backend = "podman";
+    podman = {
+      enable = true;
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+      dockerSocket.enable = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings = {
+        dns_enabled = true;
+      };
+    };
+
+    # Docker
+    # oci-containers.backend = "docker";
+    # docker = {
+    #   enable = true;
+    #   rootless = {
+    #     enable = true;
+    #     setSocketVariable = true;
+    #   };
+    # };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
