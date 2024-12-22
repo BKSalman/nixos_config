@@ -75,6 +75,10 @@
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
+
+    reaction-roles-bot = {
+      url = "github:bksalman/reaction_roles";
+    };
   };
 
   outputs = {
@@ -96,6 +100,7 @@
     nixos-cosmic,
     # proxmox-nixos,
     nixos-hardware,
+    reaction-roles-bot,
     ...
   }: let
     system = "x86_64-linux";
@@ -145,6 +150,7 @@
         manmap.overlay
         leftwm.overlays.default
         ytdlp-gui.overlay
+        reaction-roles-bot.overlay
         prayer-times-applet.overlay
         hyprland-contrib.overlays.default
         rust-overlay.overlays.default

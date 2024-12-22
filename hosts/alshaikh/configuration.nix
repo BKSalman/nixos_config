@@ -103,6 +103,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    sops
     rpcs3
     dolphin-emu
     vesktop
