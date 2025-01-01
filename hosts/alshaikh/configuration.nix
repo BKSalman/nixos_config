@@ -7,6 +7,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./framework.nix
+    ../../modules
   ];
 
   # Bootloader.
@@ -173,6 +174,8 @@
     #   };
     # };
   };
+
+  uxplay.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
