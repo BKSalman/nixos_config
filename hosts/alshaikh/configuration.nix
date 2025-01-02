@@ -49,6 +49,20 @@
     LC_TIME = "ar_SA.UTF-8";
   };
 
+  fonts.packages = with pkgs; [
+    liberation_ttf
+    nerdfonts
+    noto-fonts
+    noto-fonts-cjk-sans
+    noto-fonts-emoji
+    corefonts
+    # fira-code
+    # fira-code-symbols
+    mplus-outline-fonts.githubRelease
+    # dina-font
+    # proggyfonts
+  ];
+
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
