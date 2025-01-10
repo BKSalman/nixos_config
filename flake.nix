@@ -67,9 +67,7 @@
     };
 
     # TODO: remove when upstreamed to nixpkgs
-    nixos-cosmic = {
-      url = "github:lilyinstarlight/nixos-cosmic";
-    };
+    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
 
     # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     nixos-hardware = {
@@ -182,8 +180,12 @@
 
           {
             nix.settings = {
-              substituters = ["https://cosmic.cachix.org/"];
-              trusted-public-keys = ["cosmic.cachix.org-1:dya9iyxd4xdbehwjrkpv6rtxpmmdrel02smyza85dpe="];
+              substituters = [
+                "https://cosmic.cachix.org"
+              ];
+              trusted-public-keys = [
+                "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+              ];
             };
           }
 
