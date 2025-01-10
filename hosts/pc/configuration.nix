@@ -19,7 +19,7 @@
 
   leftwm.enable = false;
 
-  jay.enable = true;
+  # jay.enable = true;
 
   sway.enable = false;
 
@@ -149,6 +149,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    # looking-glass-client
     prayer-times-applet
     easyeffects
     waydroid
@@ -205,8 +206,8 @@
     openssl
     dbus
     eggdbus
-    deja-dup
-    duplicity
+    # deja-dup
+    # duplicity
     vim
     wget
     libsForQt5.ark
@@ -216,7 +217,8 @@
 
   fonts.packages = with pkgs; [
     liberation_ttf
-    nerdfonts
+    nerd-fonts.fira-code
+    nerd-fonts.noto
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -246,12 +248,12 @@
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
-  environment.etc."tmpfiles.d/10-looking-glass.conf" = {
-    text = ''
-      f	/dev/shm/looking-glass	0660	salman	kvm	-
-    '';
-    user = "salman";
-  };
+  # environment.etc."tmpfiles.d/10-looking-glass.conf" = {
+  #   text = ''
+  #     f	/dev/shm/looking-glass	0660	salman	kvm	-
+  #   '';
+  #   user = "salman";
+  # };
 
   boot.kernelPackages = pkgs.linuxPackages_6_6;
 
@@ -268,9 +270,9 @@
 
   programs.dconf.enable = true;
 
-  services.duplicity.enable = true;
-  services.duplicity.frequency = null;
-  services.duplicity.targetUrl = "";
+  # services.duplicity.enable = true;
+  # services.duplicity.frequency = null;
+  # services.duplicity.targetUrl = "";
 
   programs.partition-manager.enable = true;
 

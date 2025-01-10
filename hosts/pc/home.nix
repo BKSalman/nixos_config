@@ -58,13 +58,13 @@
 
   # qt.platformTheme.name = "gtk"; # qt5ct
 
-  programs.obs-studio = {
-    enable = true;
-    plugins = with pkgs; [
-      obs-studio-plugins.wlrobs
-      obs-text-pango
-    ];
-  };
+  # programs.obs-studio = {
+  #   enable = true;
+  #   plugins = with pkgs; [
+  #     obs-studio-plugins.wlrobs
+  #     obs-text-pango
+  #   ];
+  # };
 
   programs.firefox = {
     enable = true;
@@ -101,7 +101,6 @@
     hyprpicker
     qmk
     tokei
-    bottles
     fd
     kondo
     gifski
@@ -116,7 +115,6 @@
     uxplay
     jetbrains.idea-community
     hwloc
-    looking-glass-client
     nix-index
     # evremap
     appimage-run

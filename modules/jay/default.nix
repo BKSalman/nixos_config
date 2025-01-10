@@ -9,8 +9,8 @@
     src = pkgs.fetchFromGitHub {
       owner = "mahkoh";
       repo = "jay";
-      rev = "f94f199ab12a4545a455a04aec11ec84b62f7c27";
-      sha256 = "sha256-eE1l9ZHOejP+UHf4lOTK7Nr5xwH/eXaM7SHXJRT/C7k=";
+      rev = "1ca5d43557e892749b2497cefc69675faa7290ba";
+      sha256 = "sha256-VAg59hmI38hJzkh/Vtv6LjrqQFLaq7rIGtk9sfQe1TA=";
     };
     cargoDeps = prev.cargoDeps.overrideAttrs (_: {
       inherit src version;
