@@ -22,6 +22,7 @@
         pkgs.xdg-desktop-portal-cosmic
       ];
     };
+
     programs.xwayland.enable = true;
   };
 }
