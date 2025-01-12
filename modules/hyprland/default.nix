@@ -18,5 +18,9 @@
     environment.systemPackages = with pkgs; [
       wofi
     ];
+
+    services.displayManager.sessionPackages = [
+      pkgs.hyprland
+    ];
   };
 }

@@ -16,7 +16,7 @@
 
   sway.enable = false;
 
-  cosmic.enable = false;
+  cosmic.enable = true;
 
   hyprland.enable = false;
 
@@ -82,11 +82,12 @@
     LC_ALL = "en_US.UTF-8";
   };
 
-  services.displayManager.sessionPackages = [
-    pkgs.hyprland
-  ];
-
   services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    oxygen
+  ];
 
   services.xserver = {
     enable = true;
@@ -102,12 +103,6 @@
       variant = "";
     };
   };
-
-  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
-    konsole
-    oxygen
-  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
