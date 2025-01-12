@@ -43,7 +43,6 @@
 
     leftwm = {
       url = "github:leftwm/leftwm";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     manmap = {
@@ -179,13 +178,20 @@
           ./hosts/pc/configuration.nix
 
           {
-            nix.settings = {
-              substituters = [
-                "https://cosmic.cachix.org"
-              ];
-              trusted-public-keys = [
-                "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-              ];
+            nix = {
+              settings = rec {
+                trusted-substituters = ["https://cosmic.cachix.org/"];
+                substituters = trusted-substituters;
+                trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
+                trusted-users = [
+                  "@wheel"
+                  "salman"
+                  "root"
+                ];
+              };
+              extraOptions = ''
+                experimental-features = nix-command flakes
+              '';
             };
           }
 
@@ -214,11 +220,21 @@
           ./hosts/laptop/configuration.nix
 
           {
-            nix.settings = {
-              substituters = ["https://cosmic.cachix.org/"];
+            nix.settings = rec {
+              trusted-substituters = ["https://cosmic.cachix.org/"];
+              substituters = trusted-substituters;
               trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
+              trusted-users = [
+                "@wheel"
+                "salman"
+                "root"
+              ];
+              extraOptions = ''
+                experimental-features = nix-command flakes
+              '';
             };
           }
+
           nixos-cosmic.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -277,6 +293,16 @@
         ];
       };
     };
+
+    nixConfig = {
+      extra-substituters = [
+        "https://cosmic.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
+      ];
+    };
+
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
   };
 }

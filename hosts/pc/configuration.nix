@@ -10,20 +10,13 @@
     ./nfs.nix
   ];
 
-  nix = {
-    package = pkgs.nixVersions.stable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   leftwm.enable = false;
 
   # jay.enable = true;
 
   sway.enable = false;
 
-  cosmic.enable = true;
+  cosmic.enable = false;
 
   hyprland.enable = false;
 
