@@ -33,7 +33,7 @@
   # enable sadmadbotlad
   sadmadbotlad.enable = true;
 
-  jay.enable = true;
+  jay.enable = false;
 
   hyprland.enable = false;
 
