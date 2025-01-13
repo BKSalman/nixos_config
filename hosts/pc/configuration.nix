@@ -16,7 +16,7 @@
 
   sway.enable = false;
 
-  cosmic.enable = true;
+  cosmic.enable = false;
 
   hyprland.enable = false;
 
