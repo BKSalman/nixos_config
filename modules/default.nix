@@ -9,5 +9,6 @@
     ./sway
     ./hyprland
     ./cosmic
+    ./nix.nix
   ];
 }

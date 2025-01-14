@@ -26,7 +26,7 @@
     };
 
     helix = {
-      url = "github:helix-editor/helix/24.07";
+      url = "github:helix-editor/helix/25.01";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
@@ -177,24 +177,6 @@
         modules = [
           ./hosts/pc/configuration.nix
 
-          {
-            nix = {
-              settings = rec {
-                trusted-substituters = ["https://cosmic.cachix.org/"];
-                substituters = trusted-substituters;
-                trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-                trusted-users = [
-                  "@wheel"
-                  "salman"
-                  "root"
-                ];
-              };
-              extraOptions = ''
-                experimental-features = nix-command flakes
-              '';
-            };
-          }
-
           sops-nix.nixosModules.sops
           # xremap-flake.nixosModules.default
 
@@ -219,22 +201,6 @@
         modules = [
           ./hosts/laptop/configuration.nix
 
-          {
-            nix.settings = rec {
-              trusted-substituters = ["https://cosmic.cachix.org/"];
-              substituters = trusted-substituters;
-              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-              trusted-users = [
-                "@wheel"
-                "salman"
-                "root"
-              ];
-              extraOptions = ''
-                experimental-features = nix-command flakes
-              '';
-            };
-          }
-
           nixos-cosmic.nixosModules.default
           home-manager.nixosModules.home-manager
           {
@@ -255,12 +221,6 @@
         modules = [
           ./hosts/alshaikh/configuration.nix
 
-          {
-            nix.settings = {
-              substituters = ["https://cosmic.cachix.org"];
-              trusted-public-keys = ["cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="];
-            };
-          }
           nixos-cosmic.nixosModules.default
           nixos-hardware.nixosModules.framework-13-7040-amd
           home-manager.nixosModules.home-manager
@@ -292,15 +252,6 @@
           # proxmox-nixos.nixosModules.proxmox-ve
         ];
       };
-    };
-
-    nixConfig = {
-      extra-substituters = [
-        "https://cosmic.cachix.org"
-      ];
-      trusted-public-keys = [
-        "cosmic.cachix.org-1:Dya9IyXD4xdBehWjrkPv6rtxpmMdRel02smYzA85dPE="
-      ];
     };
 
     formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;

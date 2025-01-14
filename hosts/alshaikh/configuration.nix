@@ -51,7 +51,8 @@
 
   fonts.packages = with pkgs; [
     liberation_ttf
-    nerdfonts
+    nerd-fonts.fira-code
+    nerd-fonts.noto
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-emoji
@@ -193,6 +194,8 @@
   };
 
   uxplay.enable = true;
+
+  vm.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
