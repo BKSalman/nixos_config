@@ -1699,11 +1699,11 @@
         "rust-overlay": "rust-overlay_10"
       },
       "locked": {
-        "lastModified": 1729877004,
-        "narHash": "sha256-ExzFcPbgWoseDZmQJr2LXm5hsJFqWL/LomA5DqvcchA=",
+        "lastModified": 1737147538,
+        "narHash": "sha256-hhaNZKu5qOl/5D8srXV4qQY2rjlfhtHaxrG4riIYfhs=",
         "owner": "bksalman",
         "repo": "sadmadbotlad",
-        "rev": "f6f642d61232137616887b00d052d6771f2e4225",
+        "rev": "1b55c9af42e6d2bd8f616bed6d1c598962188642",
         "type": "github"
       },
       "original": {
