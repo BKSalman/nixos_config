@@ -72,7 +72,6 @@
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
-    rustup
     jdk17
     (python311.withPackages (ps: with ps; [pandas requests openpyxl mypy]))
     go

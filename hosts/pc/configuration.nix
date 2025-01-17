@@ -138,6 +138,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    rustup
     # looking-glass-client
     prayer-times-applet
     easyeffects
