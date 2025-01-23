@@ -245,7 +245,7 @@
   #   user = "salman";
   # };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_6;
+  boot.kernelPackages = pkgs.linuxPackages_6_12;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 

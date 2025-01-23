@@ -26,10 +26,9 @@
         deluge-web-auth = {
           owner = "deluge";
         };
-        # "config.json" = {
-        #   # cloudflare-dns config
-        #   owner = "cloudflare-ddns";
-        # };
+        cloudflared-home-server-reverse-proxy = {
+          owner = "cloudflared";
+        };
       }
       (lib.mkIf config.nextcloud.enable {
         nextcloud-admin-pass = {

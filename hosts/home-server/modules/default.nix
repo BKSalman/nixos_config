@@ -16,7 +16,10 @@
     ./bazarr.nix
     ./deluge.nix
     ./minecraft.nix
+    ./cloudflared.nix
   ];
 
   nextcloud.enable = false;
+  minecraft.enable = false;
+  cloudflared.enable = true;
 }

@@ -1,8 +1,4 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{config, ...}: let
   domain = "bitwarden.bksalman.com";
 in {
   services.vaultwarden = {
@@ -19,15 +15,8 @@ in {
 
       ROCKET_LOG = "critical";
 
-      SMTP_HOST = "mail.bksalman.com";
-      SMTP_PORT = 587;
-      SMTP_SECURITY = "force_tls";
-
-      SMTP_USERNAME = "bitwarden";
-      # SMTP_PASSWORD = ""; # set in config.sops.secrets.vaultwarden-secrets
-
-      SMTP_FROM = "admin@bitwarden.bksalman.com";
       SMTP_FROM_NAME = "bksalman.com Bitwarden server";
+      # Other SMTP settings are in the vaultwarden secrets
     };
   };
 

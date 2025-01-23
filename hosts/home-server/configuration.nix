@@ -8,15 +8,9 @@
     ./hardware-configuration.nix
     ./modules
     ./containers
+    ../../modules/nix.nix
     ../../modules/ssh.nix
   ];
-
-  nix = {
-    package = pkgs.nixVersions.stable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
 
   boot = {
     loader = {
@@ -38,7 +32,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_6_10;
+    kernelPackages = pkgs.linuxPackages_6_12;
 
     initrd = {
       kernelModules = ["zfs"];
