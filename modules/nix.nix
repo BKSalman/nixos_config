@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   config.nix = {
     settings = rec {
       trusted-substituters = [

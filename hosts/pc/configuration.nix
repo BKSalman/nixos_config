@@ -276,12 +276,6 @@
   # printing and others.
   services.dbus.enable = true;
 
-  services.openssh = {
-    enable = true;
-    ports = [222];
-    openFirewall = true;
-  };
-
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";

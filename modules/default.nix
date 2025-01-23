@@ -10,5 +10,6 @@
     ./hyprland
     ./cosmic
     ./nix.nix
+    ./ssh.nix
   ];
 }

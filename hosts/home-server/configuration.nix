@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./modules
     ./containers
+    ../../modules/ssh.nix
   ];
 
   nix = {
@@ -170,12 +171,6 @@
     vim
     wget
   ];
-
-  services.openssh = {
-    enable = true;
-    ports = [222];
-    openFirewall = true;
-  };
 
   services.nfs.server = {
     enable = true;
