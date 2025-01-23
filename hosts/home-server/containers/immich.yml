@@ -3,13 +3,8 @@ services:
   immich-server:
     container_name: immich_server
     image: ghcr.io/immich-app/immich-server:${IMMICH_VERSION:-release}
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: cdi
-              device_ids:
-              - nvidia.com/gpu=all
+    devices:
+      - /dev/dri:/dev/dri
     volumes:
       - ${UPLOAD_LOCATION}:/usr/src/app/upload
       - /etc/localtime:/etc/localtime:ro
@@ -34,6 +29,8 @@ services:
             - driver: cdi
               device_ids:
               - nvidia.com/gpu=all
+              capabilities:
+              - gpu
     volumes:
       - model-cache:/cache
     env_file:
