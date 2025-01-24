@@ -83,7 +83,6 @@
     arandr
     gf
     fm
-    xfce.thunar
     screenkey
     comma
     magic-wormhole
