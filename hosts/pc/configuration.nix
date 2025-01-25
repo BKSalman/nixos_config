@@ -445,6 +445,7 @@
       libdrm
       libgbm
       xorg.libXcomposite
+      dbus
     ];
   };
 }
