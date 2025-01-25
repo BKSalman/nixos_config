@@ -433,6 +433,7 @@
       xorg.xrandr
       libxkbcommon
       atk
+      cairo
     ];
   };
 }
