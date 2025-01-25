@@ -449,6 +449,7 @@
       expat
       nss
       nspr
+      cups
     ];
   };
 }
