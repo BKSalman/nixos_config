@@ -444,6 +444,7 @@
       xorg.libXdamage
       libdrm
       libgbm
+      xorg.libXcomposite
     ];
   };
 }
