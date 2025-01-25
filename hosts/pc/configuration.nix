@@ -434,6 +434,7 @@
       libxkbcommon
       atk
       cairo
+      gdk-pixbuf
     ];
   };
 }
