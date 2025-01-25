@@ -430,7 +430,7 @@
       harfbuzz
       libnotify
       xorg.libX11
-      xorg.xrandr
+      xorg.libXrandr
       libxkbcommon
       atk
       cairo
