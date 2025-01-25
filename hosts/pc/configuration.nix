@@ -448,6 +448,7 @@
       dbus
       expat
       nss
+      nspr
     ];
   };
 }
