@@ -439,6 +439,7 @@
       xorg.libXScrnSaver
       xorg.libXtst
       xorg.libXext
+      xorg.libXfixes
     ];
   };
 }
