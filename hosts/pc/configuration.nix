@@ -437,6 +437,7 @@
       gdk-pixbuf
       glib
       xorg.libXScrnSaver
+      xorg.libXtst
     ];
   };
 }
