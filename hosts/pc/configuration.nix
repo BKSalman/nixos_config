@@ -436,6 +436,7 @@
       cairo
       gdk-pixbuf
       glib
+      xorg.libXScrnSaver
     ];
   };
 }
