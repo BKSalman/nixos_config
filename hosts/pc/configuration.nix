@@ -440,6 +440,7 @@
       xorg.libXtst
       xorg.libXext
       xorg.libXfixes
+      xorg.libXrender
     ];
   };
 }
