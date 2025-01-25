@@ -442,6 +442,7 @@
       xorg.libXfixes
       xorg.libXrender
       xorg.libXdamage
+      libdrm
     ];
   };
 }
