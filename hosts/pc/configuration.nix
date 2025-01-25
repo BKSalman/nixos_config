@@ -451,6 +451,7 @@
       nspr
       cups
       xorg.libxcb
+      alsa-lib
     ];
   };
 }
