@@ -443,6 +443,7 @@
       xorg.libXrender
       xorg.libXdamage
       libdrm
+      libgbm
     ];
   };
 }
