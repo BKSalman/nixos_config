@@ -435,6 +435,7 @@
       atk
       cairo
       gdk-pixbuf
+      glib
     ];
   };
 }
