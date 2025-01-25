@@ -432,6 +432,7 @@
       xorg.libX11
       xorg.xrandr
       libxkbcommon
+      atk
     ];
   };
 }
