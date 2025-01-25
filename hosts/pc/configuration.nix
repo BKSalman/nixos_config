@@ -438,6 +438,7 @@
       glib
       xorg.libXScrnSaver
       xorg.libXtst
+      xorg.libXext
     ];
   };
 }
