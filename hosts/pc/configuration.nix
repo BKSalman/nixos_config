@@ -446,6 +446,7 @@
       libgbm
       xorg.libXcomposite
       dbus
+      expat
     ];
   };
 }
