@@ -450,6 +450,7 @@
       nss
       nspr
       cups
+      xorg.libxcb
     ];
   };
 }
