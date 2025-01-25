@@ -427,6 +427,11 @@
       # here, NOT in environment.systemPackages
       gtk3
       pango
+      harfbuzz
+      libnotify
+      xorg.libX11
+      xorg.xrandr
+      libxkbcommon
     ];
   };
 }
