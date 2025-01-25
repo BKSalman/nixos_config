@@ -447,6 +447,7 @@
       xorg.libXcomposite
       dbus
       expat
+      nss
     ];
   };
 }
