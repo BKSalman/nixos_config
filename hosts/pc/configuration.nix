@@ -441,6 +441,7 @@
       xorg.libXext
       xorg.libXfixes
       xorg.libXrender
+      xorg.libXdamage
     ];
   };
 }
