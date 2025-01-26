@@ -49,7 +49,7 @@ F = ["find_prev_char", "collapse_selection"]
 "x" = "extend_to_line_bounds"
 "X" = "extend_line_below"
 esc = ["collapse_selection", "keep_primary_selection"]
-"C-I" = "toggle-option lsp.display-inlay-hints"
+"C-I" = ":toggle-option lsp.display-inlay-hints"
 
 [keys.normal.space]
 
