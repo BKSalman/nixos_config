@@ -1,14 +1,17 @@
 keys:
   - &pc age1s846hz0u8c9clu6m8tdke8ve6v9cj3c3myuwp48c5kcwlm95dshqkc6jf9
   - &home-server age1tsveyqtg8823dmt6udkzx7thfl8ta4alr7dcckpsm5wux5784cpq98leg0
+  - &alshaikh age1dl9ketajxt5nss0f0l0c8c4zdx4peu329y745p4ku7gt3g0tmd6scymnke
 creation_rules:
   - path_regex: secrets/secrets.yaml$
     key_groups:
     - age:
       - *pc
       - *home-server
+      - *alshaikh
   - path_regex: secrets/secrets.env$
     key_groups:
     - age:
       - *pc
       - *home-server
+      - *alshaikh
