@@ -125,7 +125,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers"];
+    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers" "plugdev"];
     packages = with pkgs; [
       kate
       #  thunderbird
