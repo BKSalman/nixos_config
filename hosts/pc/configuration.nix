@@ -140,6 +140,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    keymapp
     rustup
     # looking-glass-client
     prayer-times-applet
