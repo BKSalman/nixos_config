@@ -122,6 +122,7 @@
   services.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  users.extraGroups.plugdev = {};
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
