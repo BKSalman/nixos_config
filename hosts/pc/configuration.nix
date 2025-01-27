@@ -6,7 +6,6 @@
   imports = [
     ./hardware-configuration.nix
     ./modules
-    ../../modules/zsa.nix
     ../../modules
     ./nfs.nix
   ];
@@ -86,7 +85,6 @@
   wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
-    plasma-browser-integration
     konsole
     oxygen
   ];
@@ -457,4 +455,6 @@
       alsa-lib
     ];
   };
+
+  hardware.keyboard.zsa.enable = true;
 }
