@@ -8,6 +8,7 @@
     ./hardware-configuration.nix
     ./framework.nix
     ../../modules
+    ../../modules/zsa.nix
   ];
 
   # Bootloader.
