@@ -26,7 +26,7 @@
     };
 
     helix = {
-      url = "github:helix-editor/helix/25.01";
+      url = "github:mattwparas/helix/steel-event-system";
     };
 
     rust-overlay.url = "github:oxalica/rust-overlay";
