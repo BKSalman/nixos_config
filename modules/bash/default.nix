@@ -62,6 +62,8 @@
         source "$(fzf-share)/key-bindings.bash"
         source "$(fzf-share)/completion.bash"
       fi
+
+      export PATH="$PATH:$HOME/.cargo/bin"
     '';
   };
 }
