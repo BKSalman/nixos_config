@@ -161,7 +161,6 @@
     nodejs
     mpv
     frp
-    # prismlauncher
     gh
     eza
     piper
