@@ -35,13 +35,13 @@
     x11.enable = true;
   };
 
-  gtk = {
-    enable = true;
-    # theme = {
-    #   name = "Tokyonight-Dark-BL";
-    #   package = pkgs.tokyonight-gtk.override {themeVariants = ["Dark-BL"];};
-    # };
-  };
+  # gtk = {
+  #   enable = true;
+  #   # theme = {
+  #   #   name = "Tokyonight-Dark-BL";
+  #   #   package = pkgs.tokyonight-gtk.override {themeVariants = ["Dark-BL"];};
+  #   # };
+  # };
 
   # qt = {
   #   enable = true;
