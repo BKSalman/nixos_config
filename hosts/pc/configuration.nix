@@ -138,6 +138,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    sendme
     keymapp
     rustup
     # looking-glass-client
