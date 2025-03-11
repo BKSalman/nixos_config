@@ -12,7 +12,7 @@
       ${pkgs.alejandra}/bin/alejandra . &> /dev/null
       ${pkgs.git}/bin/git dft $(find . -name '*.nix') $(find . -name '*.toml')
       echo "Rebuilding NixOS for $machine..."
-      nh os switch ~/nixos_config -H "$machine" --ask
+      nh os switch ~/nixos_config -H "$machine" --ask "$@"
       gen=$(nixos-rebuild list-generations | grep current)
       ${pkgs.git}/bin/git commit -am "$gen"
     '';
