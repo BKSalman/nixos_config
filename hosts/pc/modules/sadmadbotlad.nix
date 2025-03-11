@@ -10,23 +10,27 @@
 
   config = lib.mkIf config.sadmadbotlad.enable {
     systemd.user.services.sadmadfrontendlad = {
-      Install.WantedBy = ["default.target"];
-      Service = {
+      wantedBy = ["default.target"];
+      serviceConfig = {
         ExecStart = "${sadmadbotlad.packages.x86_64-linux.server}/bin/server ${sadmadbotlad.packages.x86_64-linux.frontend}/ 8080";
         Restart = "always";
       };
     };
 
     systemd.user.services.sadmadbotlad = {
-      Install.WantedBy = ["default.target"];
-      Service = {
-        ExecStart =
+      wantedBy = ["default.target"];
+      serviceConfig = {
+        script =
           "${sadmadbotlad.packages.x86_64-linux.default}/bin/sadmadbotlad "
-          + "-c /home/salman/.config/sadmadbotlad/config.toml "
+          + "-c ${config.sops.secrets.sadmadbotlad-config.path} "
           + "--commands-path ${sadmadbotlad.packages.x86_64-linux.default}/share/commands "
           + "-db /home/salman/.config/sadmadbotlad/database.db";
         Restart = "always";
-        Environment = "RUST_LOG=none,sadmadbotlad=debug";
+      };
+
+      environment = {
+        RUST_LOG = "none";
+        sadmadbotlad = "debug";
       };
     };
   };

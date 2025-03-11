@@ -20,6 +20,8 @@
 
   hyprland.enable = false;
 
+  sadmadbotlad.enable = true;
+
   programs.nh = {
     enable = true;
     clean.enable = true;
@@ -126,7 +128,7 @@
     description = "Salman";
     extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers" "plugdev" "dialout"];
     packages = with pkgs; [
-      kate
+      kdePackages.kate
       #  thunderbird
     ];
   };
@@ -302,7 +304,7 @@
     enable = true;
     dnssec = "true";
     domains = ["~."];
-    fallbackDns = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
+    fallbackDns = ["1.1.1.1" "1.0.0.1"];
     dnsovertls = "true";
   };
 

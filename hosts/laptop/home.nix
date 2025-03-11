@@ -193,7 +193,7 @@
     discord
     piper
     spotify
-    kdenlive
+    kdePackages.kate
     chatterino2
     alacritty
     kitty

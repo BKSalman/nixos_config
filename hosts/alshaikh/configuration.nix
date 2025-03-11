@@ -113,7 +113,7 @@
     description = "salman";
     extraGroups = ["networkmanager" "wheel"];
     packages = with pkgs; [
-      kate
+      kdePackages.kate
       #  thunderbird
     ];
   };

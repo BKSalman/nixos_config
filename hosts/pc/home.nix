@@ -12,7 +12,6 @@
     ../../modules/waybar
     ../../modules/hyprland/home.nix
     ../../modules/jay/home.nix
-    ./modules/sadmadbotlad.nix
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -29,9 +28,6 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "23.05";
-
-  # enable sadmadbotlad
-  sadmadbotlad.enable = true;
 
   jay.enable = false;
 
@@ -182,7 +178,7 @@
     starship
     piper
     spotify
-    kdenlive
+    kdePackages.kdenlive
     chatterino2
     alacritty
     kitty

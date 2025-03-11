@@ -115,7 +115,7 @@
     description = "Salman";
     extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "input" "audio" "video" "acme" "headscale" "plugdev"];
     packages = with pkgs; [
-      kate
+      kdePackages.kate
       #  thunderbird
     ];
   };
