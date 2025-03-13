@@ -20,7 +20,7 @@
     systemd.user.services.sadmadbotlad = {
       wantedBy = ["default.target"];
       serviceConfig = {
-        script =
+        ExecStart =
           "${sadmadbotlad.packages.x86_64-linux.default}/bin/sadmadbotlad "
           + "-c ${config.sops.secrets.sadmadbotlad-config.path} "
           + "--commands-path ${sadmadbotlad.packages.x86_64-linux.default}/share/commands "
