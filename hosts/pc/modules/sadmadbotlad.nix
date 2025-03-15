@@ -29,7 +29,6 @@
       };
 
       environment = {
-        RUST_LOG = "none";
         sadmadbotlad = "debug";
       };
     };
