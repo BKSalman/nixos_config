@@ -3,6 +3,10 @@
   lib,
   ...
 }: {
+  # to mount /home before the sops service runs
+  # so it can look at the key file in /home
+  fileSystems."/home".neededForBoot = true;
+
   sops = {
     defaultSopsFile = ../../../secrets/secrets.yaml;
     defaultSopsFormat = "yaml";
