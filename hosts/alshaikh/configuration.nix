@@ -24,7 +24,10 @@
   wayland.enable = true;
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  networking.networkmanager = {
+    enable = true;
+    wifi.powersave = false;
+  };
 
   services.mullvad-vpn = {
     enable = true;
