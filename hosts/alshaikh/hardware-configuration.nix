@@ -15,6 +15,7 @@
   boot.initrd.availableKernelModules = ["nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
+  boot.kernelPackages = pkgs.linuxPackages_zen;
   boot.extraModulePackages = [];
 
   fileSystems."/" = {
