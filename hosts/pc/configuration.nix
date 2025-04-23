@@ -31,6 +31,8 @@
 
   nextcloud.enable = false;
 
+  vm.enable = true;
+
   # Enable virtual machines VFIO
   vfio.enable = true;
 
