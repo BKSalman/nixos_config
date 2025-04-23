@@ -90,7 +90,6 @@
     sd
     # davinci-resolve
     audacity
-    gimp
     direnv
     grimblast
     hyprpicker
