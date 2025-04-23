@@ -10,6 +10,7 @@
     ../../modules/helix
     ../../modules/bash
     ../../modules/waybar
+    ../../modules/mpv
     ../../modules/hyprland/home.nix
     ../../modules/jay/home.nix
   ];
