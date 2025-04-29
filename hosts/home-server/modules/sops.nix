@@ -31,14 +31,9 @@
           owner = "deluge";
         };
         cloudflared-home-server-reverse-proxy = {
-          owner = "cloudflared";
+          # owner = "cloudflared";
         };
       }
-      (lib.mkIf config.nextcloud.enable {
-        nextcloud-admin-pass = {
-          owner = "nextcloud";
-        };
-      })
     ];
   };
 }

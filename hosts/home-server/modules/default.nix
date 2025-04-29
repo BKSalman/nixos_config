@@ -1,6 +1,5 @@
 {...}: {
   imports = [
-    ./nextcloud.nix
     ./sops.nix
     ./immich.nix
     ./jellyfin.nix
@@ -17,9 +16,10 @@
     ./deluge.nix
     ./minecraft.nix
     ./cloudflared.nix
+    ./seafile.nix
   ];
 
-  nextcloud.enable = false;
+  seafile.enable = true;
   minecraft.enable = false;
   cloudflared.enable = true;
 }

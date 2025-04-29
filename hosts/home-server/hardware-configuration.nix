@@ -48,8 +48,8 @@
     fsType = "zfs";
   };
 
-  fileSystems."/mnt/ncdata" = {
-    device = "tank/ncdata";
+  fileSystems."/mnt/seafile-data" = {
+    device = "tank/seafile-data";
     fsType = "zfs";
   };
 

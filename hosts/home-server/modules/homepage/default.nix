@@ -15,9 +15,9 @@ in {
             };
           }
           {
-            "Nextcloud" = {
-              icon = "nextcloud";
-              href = "https://nextcloud.bksalman.com";
+            "Seafile" = {
+              icon = "seafile";
+              href = "https://seafile.bksalman.com";
               description = "Cloud storage";
             };
           }
