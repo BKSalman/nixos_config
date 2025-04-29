@@ -6,4 +6,4 @@ export NIX_SSHOPTS="-p 222"
 
 alejandra . &> /dev/null
 echo "Rebuilding NixOS for home-server..."
-nixos-rebuild switch --use-remote-sudo --build-host 192.168.0.225 --target-host 192.168.0.225 --flake ".#home-server"
+nixos-rebuild switch --use-remote-sudo --build-host salman@192.168.0.225 --target-host salman@192.168.0.225 --flake ".#home-server"
