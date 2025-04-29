@@ -29,8 +29,6 @@
     flake = "/home/salman/nixos_config";
   };
 
-  nextcloud.enable = false;
-
   vm.enable = true;
 
   # Enable virtual machines VFIO
@@ -185,7 +183,6 @@
         (pkgs.callPackage ../../packages/syncstate {})
       ];
     })
-    # nextcloud-client
     gparted
     # docker-compose
     # podman-compose
