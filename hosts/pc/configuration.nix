@@ -176,13 +176,6 @@
 
     xdg-utils
     solaar
-    (nemo-with-extensions.override {
-      extensions = [
-        nemo-python
-        nemo-fileroller
-        (pkgs.callPackage ../../packages/syncstate {})
-      ];
-    })
     gparted
     # docker-compose
     # podman-compose

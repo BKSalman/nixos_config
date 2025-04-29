@@ -140,13 +140,6 @@
 
     firefox
     distrobox
-    (nemo-with-extensions.override {
-      extensions = [
-        nemo-python
-        nemo-fileroller
-        (pkgs.callPackage ../../packages/syncstate {})
-      ];
-    })
     pciutils
     pkg-config
     alsa-lib
