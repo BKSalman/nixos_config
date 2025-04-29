@@ -24,7 +24,7 @@
         '';
       };
 
-      generationsDir.copyKernels = true;
+      # generationsDir.copyKernels = true;
 
       efi = {
         canTouchEfiVariables = true;
@@ -37,15 +37,17 @@
     initrd = {
       kernelModules = ["zfs"];
 
-      postDeviceCommands = ''
-        zpool import -lf root
-      ''; # postDeviceCommands
-    }; # initrd
+      # postDeviceCommands = ''
+      #   zpool import -lf root
+      # '';
+    };
 
     supportedFilesystems = ["zfs"];
 
     zfs = {
       devNodes = "/dev/disk/by-partlabel";
+      # https://search.nixos.org/options?channel=unstable&show=boot.zfs.forceImportRoot
+      forceImportRoot = false;
     };
   };
 
