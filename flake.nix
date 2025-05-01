@@ -2,12 +2,12 @@
   description = "Salman's System Configuration :)";
 
   inputs = {
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.follows = "nixos-cosmic/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    # nixpkgs.follows = "nixos-cosmic/nixpkgs";
 
     home-manager = {
       url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixos-cosmic/nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sops-nix = {
@@ -67,6 +67,7 @@
 
     # TODO: remove when upstreamed to nixpkgs
     nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
+    nixos-cosmic.follows = "nixpkgs";
 
     # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     nixos-hardware = {

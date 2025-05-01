@@ -16,7 +16,7 @@
           credentialsFile = config.sops.secrets.cloudflared-home-server-reverse-proxy.path;
           ingress = {
             "bitwarden.bksalman.com" = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
-            "immich.bksalman.com" = "http://127.0.0.1:2283";
+            "immich.bksalman.com" = "http://[::1]:${toString config.services.immich.port}";
             "seafile.bksalman.com" = "http://127.0.0.1:8882";
           };
         };
