@@ -4,7 +4,7 @@
   ...
 }: {
   options = {
-    cloudflared.enable = lib.mkEnableOption "Enable cloudflared container";
+    cloudflared.enable = lib.mkEnableOption "Enable cloudflared";
   };
 
   config = lib.mkIf config.cloudflared.enable {
@@ -17,6 +17,7 @@
           ingress = {
             "bitwarden.bksalman.com" = "http://127.0.0.1:${toString config.services.vaultwarden.config.ROCKET_PORT}";
             "immich.bksalman.com" = "http://127.0.0.1:2283";
+            "seafile.bksalman.com" = "http://127.0.0.1:8882";
           };
         };
       };

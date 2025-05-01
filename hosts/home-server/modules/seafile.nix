@@ -28,8 +28,15 @@ in {
     };
 
     services.nginx.virtualHosts.${domain} = {
-      forceSSL = true;
-      enableACME = true;
+      listen = [
+        {
+          addr = "127.0.0.1";
+          port = 8882;
+        }
+      ];
+
+      # forceSSL = true;
+      # enableACME = true;
       locations = {
         "/" = {
           proxyPass = "http://unix:/run/seahub/gunicorn.sock";
