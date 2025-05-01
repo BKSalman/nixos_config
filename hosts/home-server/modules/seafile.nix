@@ -21,6 +21,7 @@ in {
       seafileSettings = {
         fileserver = {
           host = "unix:/run/seafile/server.sock";
+          max_download_dir_size = "20000";
         };
       };
 
