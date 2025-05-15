@@ -9,6 +9,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -77,6 +79,7 @@
   outputs = {
     nixpkgs,
     home-manager,
+    determinate,
     hyprland-contrib,
     prismlauncher,
     helix,
@@ -173,6 +176,8 @@
         modules = [
           ./hosts/pc/configuration.nix
 
+          determinate.nixosModules.default
+
           sops-nix.nixosModules.sops
           # xremap-flake.nixosModules.default
 
@@ -196,6 +201,8 @@
         modules = [
           ./hosts/laptop/configuration.nix
 
+          determinate.nixosModules.default
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -216,6 +223,9 @@
           ./hosts/alshaikh/configuration.nix
 
           nixos-hardware.nixosModules.framework-13-7040-amd
+
+          determinate.nixosModules.default
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
