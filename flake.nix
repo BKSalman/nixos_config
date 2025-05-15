@@ -2,8 +2,7 @@
   description = "Salman's System Configuration :)";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    # nixpkgs.follows = "nixos-cosmic/nixpkgs";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -36,10 +35,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    prayer-times-applet = {
-      url = "github:bksalman/prayer-times-applet";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # prayer-times-applet = {
+    #   url = "github:bksalman/prayer-times-applet";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     leftwm = {
       url = "github:leftwm/leftwm";
@@ -65,10 +64,6 @@
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
 
-    # TODO: remove when upstreamed to nixpkgs
-    nixos-cosmic.url = "github:lilyinstarlight/nixos-cosmic";
-    nixos-cosmic.follows = "nixpkgs";
-
     # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
@@ -87,7 +82,7 @@
     helix,
     rust-overlay,
     ytdlp-gui,
-    prayer-times-applet,
+    # prayer-times-applet,
     leftwm,
     manmap,
     sadmadbotlad,
@@ -95,7 +90,6 @@
     arion,
     sops-nix,
     hyprland,
-    nixos-cosmic,
     # proxmox-nixos,
     nixos-hardware,
     reaction-roles-bot,
@@ -151,7 +145,7 @@
         leftwm.overlays.default
         ytdlp-gui.overlay
         reaction-roles-bot.overlay
-        prayer-times-applet.overlay
+        # prayer-times-applet.overlay
         hyprland-contrib.overlays.default
         rust-overlay.overlays.default
         # helix.overlays.default
@@ -159,7 +153,6 @@
         eza-overlay
         obs-text-pango-overlay
         # (import ./overlays/mpvpaper.nix)
-        (import ./overlays/distrobox.nix)
         tokyonight-gtk-overlay
         evremap-overlay
         webcord-overlay
@@ -195,7 +188,6 @@
             };
             home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
           }
-          nixos-cosmic.nixosModules.default
         ];
       };
       laptop = lib.nixosSystem {
@@ -204,7 +196,6 @@
         modules = [
           ./hosts/laptop/configuration.nix
 
-          nixos-cosmic.nixosModules.default
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -224,7 +215,6 @@
         modules = [
           ./hosts/alshaikh/configuration.nix
 
-          nixos-cosmic.nixosModules.default
           nixos-hardware.nixosModules.framework-13-7040-amd
           home-manager.nixosModules.home-manager
           {

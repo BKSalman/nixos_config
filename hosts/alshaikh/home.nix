@@ -129,7 +129,6 @@
     winetricks
     wineWowPackages.stable
     appimage-run
-    ventoy-full
     gamescope
     ytdlp-gui
     ffmpeg_6-full

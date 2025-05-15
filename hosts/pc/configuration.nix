@@ -140,11 +140,13 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    distrobox
+    seafile-client
     sendme
     keymapp
     rustup
     # looking-glass-client
-    prayer-times-applet
+    # prayer-times-applet
     easyeffects
     waydroid
     vesktop

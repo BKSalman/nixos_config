@@ -112,7 +112,6 @@
     nix-index
     # evremap
     appimage-run
-    ventoy-full
     gamescope
     python311Packages.python-lsp-server
     python311Packages.pylsp-mypy
