@@ -140,7 +140,6 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
-    nur.repos.nprindle.githug
     distrobox
     seafile-client
     sendme
