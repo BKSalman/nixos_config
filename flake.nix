@@ -166,7 +166,7 @@
         evremap-overlay
         webcord-overlay
         # proxmox-nixos.overlays.${system}
-        nur.overlay
+        nur.overlays.default
       ];
     };
 
