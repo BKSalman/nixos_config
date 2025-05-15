@@ -11,6 +11,11 @@
 
     determinate.url = "https://flakehub.com/f/DeterminateSystems/determinate/*";
 
+    nur = {
+      url = "github:nix-community/NUR";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     sops-nix = {
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -96,6 +101,7 @@
     # proxmox-nixos,
     nixos-hardware,
     reaction-roles-bot,
+    nur,
     ...
   }: let
     system = "x86_64-linux";
@@ -160,6 +166,7 @@
         evremap-overlay
         webcord-overlay
         # proxmox-nixos.overlays.${system}
+        nur.overlay
       ];
     };
 
