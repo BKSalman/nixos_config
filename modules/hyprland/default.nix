@@ -17,6 +17,11 @@
 
     environment.systemPackages = with pkgs; [
       wofi
+      hyprpaper
+      mako
+      # swayidle
+      # swaylock-effects
+      waybar
     ];
 
     services.displayManager.sessionPackages = [

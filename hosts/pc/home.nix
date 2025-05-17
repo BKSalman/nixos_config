@@ -184,14 +184,6 @@
     kitty
     # helix
     vim
-
-    # Hyprland stuff
-    hyprpaper
-    mako
-    # swayidle
-    # swaylock-effects
-    # wofi
-    # waybar
   ];
 
   # TODO: move to rofi directory
