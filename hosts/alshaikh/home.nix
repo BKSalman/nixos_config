@@ -4,9 +4,9 @@
   ...
 }: {
   imports = [
-    ../../modules/helix
-    ../../modules/mpv
-    ../../modules/bash
+    ../../modules/helix/home.nix
+    ../../modules/mpv/home.nix
+    ../../modules/bash/home.nix
   ];
 
   # Home Manager needs a bit of information about you and the

@@ -7,10 +7,11 @@
   # TODO: find a better way for home manager modules
   imports = [
     ../../modules/x11/leftwm/config.nix
-    ../../modules/helix
-    ../../modules/bash
-    ../../modules/waybar
-    ../../modules/mpv
+    ../../modules/helix/home.nix
+    ../../modules/zellij/home.nix
+    ../../modules/bash/home.nix
+    ../../modules/waybar/home.nix
+    ../../modules/mpv/home.nix
     ../../modules/hyprland/home.nix
     ../../modules/jay/home.nix
   ];
