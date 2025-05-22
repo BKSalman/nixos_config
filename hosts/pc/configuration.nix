@@ -137,6 +137,12 @@
     enable = true;
   };
 
+  programs.wireshark = {
+    enable = true;
+    dumpcap.enable = true;
+    usbmon.enable = true;
+  };
+
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
