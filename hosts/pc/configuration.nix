@@ -45,6 +45,10 @@
     extraRules = ''
       # MCU-Link (CMSIS-DAP)
       KERNEL=="hidraw*", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0143", MODE="0666"
+      # MCU-Link (CMSIS-DAP WinUSB)
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0143", MODE="0666"
+      # MCU-Link (VCOM)
+      KERNEL=="ttyACM*", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0143", MODE="0666"
     '';
   };
 
