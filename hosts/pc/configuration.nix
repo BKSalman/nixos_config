@@ -126,7 +126,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers" "plugdev" "dialout"];
+    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers" "plugdev" "dialout" "wireshark"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
