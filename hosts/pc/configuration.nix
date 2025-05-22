@@ -38,9 +38,15 @@
   programs.adb.enable = true;
 
   # udev rules
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
+  services.udev = {
+    packages = [
+      pkgs.android-udev-rules
+    ];
+    extraRules = ''
+      # MCU-Link (CMSIS-DAP)
+      KERNEL=="hidraw*", ATTRS{idVendor}=="1fc9", ATTRS{idProduct}=="0143", MODE="0666"
+    '';
+  };
 
   # boot.zfs.package = pkgs.linuxKernel.packages.linux_6_11.zfs_unstable;
 
