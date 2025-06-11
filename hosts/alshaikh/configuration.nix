@@ -52,6 +52,8 @@
     LC_TIME = "ar_SA.UTF-8";
   };
 
+  i18n.extraLocales = "all";
+
   fonts.packages = with pkgs; [
     liberation_ttf
     nerd-fonts.fira-code
