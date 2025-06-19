@@ -216,4 +216,14 @@
   system.stateVersion = "23.11"; # Did you read the comment?
 
   hardware.keyboard.zsa.enable = true;
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      # Add any missing dynamic libraries for unpackaged programs
+      # here, NOT in environment.systemPackages
+      pkg-config
+      openssl
+    ];
+  };
 }
