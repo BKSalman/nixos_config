@@ -35,8 +35,6 @@
       url = "github:mattwparas/helix/steel-event-system";
     };
 
-    rust-overlay.url = "github:oxalica/rust-overlay";
-
     ytdlp-gui = {
       url = "github:bksalman/ytdlp-gui";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -88,7 +86,6 @@
     hyprland-contrib,
     prismlauncher,
     helix,
-    rust-overlay,
     ytdlp-gui,
     # prayer-times-applet,
     leftwm,
@@ -156,7 +153,6 @@
         reaction-roles-bot.overlay
         # prayer-times-applet.overlay
         hyprland-contrib.overlays.default
-        rust-overlay.overlays.default
         # helix.overlays.default
         prismlauncher.overlays.default
         eza-overlay
