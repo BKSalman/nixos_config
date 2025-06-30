@@ -138,7 +138,6 @@
     ludusavi
     swww
     yt-dlp
-    # mpvpaper
     pacman
     lolcat
     neofetch
