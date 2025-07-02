@@ -8,8 +8,6 @@
 
 (load-package "cogs/rainbow-parens.scm")
 (load-package "cogs/keymaps.scm")
-(require (only-in "cogs/rainbow-parens.scm"
-                  toggle-rainbow-parentheses))
 
 (provide shell git-add open-helix-scm open-init-scm list-packages half-page-up half-page-down helix.set-status!)
 
