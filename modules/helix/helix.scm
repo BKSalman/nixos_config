@@ -54,7 +54,7 @@
   (if rect
       (let ((total-height (- (helix.area-height rect) 1)))
           (define half-height (round (/ total-height 4)))
-          (define target-line (max 0 (- current-line half-height 1)))
+          (define target-line (max 0 (- current-line half-height)))
           (define char-offset (rope-line->char (editor-rope) target-line))
           (define new-selection (helix.static.range->selection (helix.static.range char-offset char-offset)))
           (helix.static.set-current-selection-object! new-selection)
