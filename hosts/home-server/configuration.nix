@@ -153,6 +153,9 @@
     isNormalUser = true;
     extraGroups = ["wheel" "docker" "multimedia"];
     packages = with pkgs; [];
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIJkV9LhQ+F3F9dWbpuqKQSkGaCSy9HWPmllFSYemLo5 pc"
+    ];
   };
 
   users.groups.multimedia = {};

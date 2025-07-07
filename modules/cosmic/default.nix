@@ -13,7 +13,7 @@
     services.displayManager.cosmic-greeter.enable = true;
 
     environment.systemPackages = with pkgs; [
-      cosmic-ext-applet-clipboard-manager
+      # cosmic-ext-applet-clipboard-manager
     ];
 
     xdg.portal = {

@@ -33,6 +33,9 @@
         cloudflared-home-server-reverse-proxy = {
           # owner = "cloudflared";
         };
+        paperless-password = {
+          owner = "paperless";
+        };
       }
     ];
   };

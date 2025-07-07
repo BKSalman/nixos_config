@@ -25,7 +25,7 @@
       # };
 
       modesetting.enable = true;
-      powerManagement.enable = false;
+      powerManagement.enable = true;
       nvidiaSettings = true;
       # 1070 TI is not supported by the open kernel module
       # https://github.com/NVIDIA/open-gpu-kernel-modules?tab=readme-ov-file#compatible-gpus
@@ -41,8 +41,9 @@
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
     # "nvidia-drm.fbdev=1"
-    # "nvidia.NVreg_EnableGpuFirmware=0"
+    "nvidia.NVreg_EnableGpuFirmware=0"
   ];
+
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
   };

@@ -17,6 +17,7 @@
     ./minecraft.nix
     ./cloudflared.nix
     ./seafile.nix
+    ./paperless.nix
   ];
 
   seafile.enable = true;

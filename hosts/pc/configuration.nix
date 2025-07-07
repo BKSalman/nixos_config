@@ -16,9 +16,9 @@
 
   sway.enable = false;
 
-  cosmic.enable = false;
+  cosmic.enable = true;
 
-  hyprland.enable = false;
+  hyprland.enable = true;
 
   sadmadbotlad.enable = true;
 
@@ -116,6 +116,8 @@
     '';
   };
 
+  services.fwupd.enable = true;
+
   # boot.zfs.package = pkgs.linuxKernel.packages.linux_6_11.zfs_unstable;
 
   # Bootloader.
@@ -168,11 +170,6 @@
   services.xserver = {
     enable = true;
 
-    # displayManager.gdm.enable = true;
-    # displayManager.gdm.wayland = true;
-    # displayManager.sddm.enable = true;
-    # displayManager.sddm.autoNumlock = true;
-
     xkb = {
       layout = "us,ara";
       options = "grp:alt_shift_toggle";
@@ -202,7 +199,7 @@
     description = "Salman";
     extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers" "plugdev" "dialout" "wireshark"];
     packages = with pkgs; [
-      kdePackages.kate
+      # kdePackages.kate
       #  thunderbird
     ];
   };
@@ -221,6 +218,8 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    protontricks
+    jujutsu
     usbutils
     kdePackages.kcalc
     # Create an FHS environment using the command `fhs`, enabling the execution of non-NixOS packages in NixOS!
@@ -471,20 +470,20 @@
 
   hardware.opentabletdriver.enable = true;
 
-  systemd.user.services.polkit-auth-agent = {
-    enable = true;
-    description = "polkit-kde-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
+  # systemd.user.services.polkit-auth-agent = {
+  #   enable = true;
+  #   description = "polkit-kde-authentication-agent-1";
+  #   wantedBy = ["graphical-session.target"];
+  #   wants = ["graphical-session.target"];
+  #   after = ["graphical-session.target"];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+  #     Restart = "on-failure";
+  #     RestartSec = 1;
+  #     TimeoutStopSec = 10;
+  #   };
+  # };
 
   security.pam.services.swaylock = {
     text = ''
