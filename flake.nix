@@ -77,6 +77,11 @@
     reaction-roles-bot = {
       url = "github:bksalman/reaction_roles";
     };
+
+    nixos-cosmic = {
+      url = "github:lilyinstarlight/nixos-cosmic";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -97,6 +102,7 @@
     hyprland,
     # proxmox-nixos,
     nixos-hardware,
+    nixos-cosmic,
     reaction-roles-bot,
     nur,
     ...
@@ -113,10 +119,6 @@
 
     webcord-overlay = final: prev: {
       webcord = prev.callPackage ./packages/webcord {};
-    };
-
-    nerdfonts-overlay = final: prev: {
-      nerdfonts = prev.callPackage ./packages/nerdfonts {};
     };
 
     obs-text-pango-overlay = final: prev: {
@@ -144,9 +146,6 @@
         ];
       };
       overlays = [
-        # FIXME: remove after it gets fixed
-        # nerdfonts-overlay
-
         manmap.overlay
         leftwm.overlays.default
         ytdlp-gui.overlay
@@ -177,7 +176,7 @@
         };
 
         modules = [
-          ./hosts/pc/configuration.nix
+          nixos-cosmic.nixosModules.default
 
           determinate.nixosModules.default
 
@@ -196,6 +195,8 @@
             };
             home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
           }
+
+          ./hosts/pc/configuration.nix
         ];
       };
       laptop = lib.nixosSystem {
