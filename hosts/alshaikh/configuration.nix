@@ -149,6 +149,7 @@
     wget
     git
     easyeffects
+    podman-compose
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
