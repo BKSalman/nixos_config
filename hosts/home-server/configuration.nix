@@ -4,7 +4,6 @@
   ...
 }: {
   imports = [
-    # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./modules
     ./containers
@@ -107,7 +106,7 @@
     hostId = "f6c1cbac";
     firewall = {
       enable = true;
-      allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048 2283 25565];
+      allowedTCPPorts = [80 443 8080 111 2049 4000 4001 4002 20048 2283 25565 8123];
       checkReversePath = "loose";
       trustedInterfaces = ["tailscale0"];
       allowedUDPPorts = [111 2049 4000 4001 4002 20048 config.services.tailscale.port 25565];
