@@ -6,6 +6,7 @@
     ./wayland
     ./x11/leftwm
     ./jay
+    ./niri
     ./sway
     ./hyprland
     ./cosmic
