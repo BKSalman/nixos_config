@@ -14,6 +14,7 @@
       mako
       waybar
       xwayland-satellite
+      blueman
     ];
 
     programs.niri.enable = true;
