@@ -12,13 +12,12 @@
     environment.systemPackages = with pkgs; [
       fuzzel
       mako
+      waybar
       xwayland-satellite
     ];
 
     programs.niri.enable = true;
 
     wayland.enable = true;
-
-    programs.waybar.enable = true;
   };
 }
