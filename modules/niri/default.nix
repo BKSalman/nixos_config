@@ -11,6 +11,7 @@
   config = lib.mkIf config.niri.enable {
     environment.systemPackages = with pkgs; [
       swaylock
+      waylock
       swww
       fuzzel
       mako
