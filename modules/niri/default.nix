@@ -10,6 +10,7 @@
 
   config = lib.mkIf config.niri.enable {
     environment.systemPackages = with pkgs; [
+      swww
       fuzzel
       mako
       waybar
