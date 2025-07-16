@@ -21,9 +21,9 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  niri.enable = true;
+  niri.enable = false;
 
-  wayland.enable = true;
+  cosmic.enable = true;
 
   # Enable networking
   networking.networkmanager = {
@@ -82,6 +82,7 @@
   # services.desktopManager.cosmic.enable = true;
   # services.displayManager.cosmic-greeter.enable = true;
 
+  wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
   services.displayManager.sddm.enable = true;
 
