@@ -35,36 +35,6 @@
     x11.enable = true;
   };
 
-  # gtk = {
-  #   enable = true;
-  #   # theme = {
-  #   #   name = "Tokyonight-Dark-BL";
-  #   #   package = pkgs.tokyonight-gtk.override {themeVariants = ["Dark-BL"];};
-  #   # };
-  # };
-
-  # qt = {
-  #   enable = true;
-  #   platformTheme.name = "gtk";
-  # };
-
-  programs.obs-studio = {
-    enable = true;
-    plugins = [
-      pkgs.obs-studio-plugins.wlrobs
-    ];
-  };
-
-  # programs.firefox = {
-  #   enable = true;
-  #   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-  #     forceWayland = true;
-  #     extraPolicies = {
-  #       ExtensionSettings = {};
-  #     };
-  #   };
-  # };
-
   programs.vscode = {
     enable = true;
     profiles.default.extensions = with pkgs.vscode-extensions; [
@@ -101,7 +71,6 @@
     comma
     gf
     haskellPackages.greenclip
-    networkmanagerapplet
     calc
     # just for pactl
     pulseaudio
@@ -110,7 +79,6 @@
     mediainfo
     brightnessctl
     wayvnc
-    maliit-keyboard
     gimp
     direnv
     qmk
@@ -136,7 +104,6 @@
     nixpkgs-review
     xdg-user-dirs
     ludusavi
-    swww
     yt-dlp
     pacman
     lolcat
@@ -169,29 +136,6 @@
     vim
   ];
 
-  # TODO: move to rofi directory
-  home.file.".config/rofi/off.sh".source = ../../modules/rofi/off.sh;
-  home.file.".config/rofi/launcher.sh".source = ../../modules/rofi/launcher.sh;
-  home.file.".config/rofi/launcher_theme.rasi".source = ../../modules/rofi/launcher_theme.rasi;
-  home.file.".config/rofi/clipboard_theme.rasi".source = ../../modules/rofi/clipboard_theme.rasi;
-  home.file.".config/rofi/powermenu.sh".source = ../../modules/rofi/powermenu.sh;
-  home.file.".config/rofi/powermenu_theme.rasi".source = ../../modules/rofi/powermenu_theme.rasi;
-
-  home.file.".config/evremap/config.toml".source = ../../packages/evremap/config.toml;
-
-  home.file.".local/bin/cliphist-rofi" = {
-    text = ''
-      #!/usr/bin/env bash
-
-      if [ -z "$1" ]; then
-          cliphist list
-      else
-          cliphist decode <<<"$1" | wl-copy
-      fi
-    '';
-    executable = true;
-  };
-
   home.file.".local/share/applications/uxplay.desktop".text = ''
     [Desktop Entry]
     Encoding=UTF-8
@@ -211,8 +155,6 @@
   };
 
   programs.zoxide.enable = true;
-
-  # programs.nushell.enable = true;
 
   programs.lazygit.enable = true;
 }
