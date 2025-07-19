@@ -121,10 +121,6 @@
       webcord = prev.callPackage ./packages/webcord {};
     };
 
-    obs-text-pango-overlay = final: prev: {
-      obs-text-pango = prev.callPackage ./packages/obs-plugins/text-pango.nix {};
-    };
-
     eza-overlay = final: prev: {
       eza = eza.packages.${system}.default;
     };
@@ -155,7 +151,6 @@
         # helix.overlays.default
         prismlauncher.overlays.default
         eza-overlay
-        obs-text-pango-overlay
         # (import ./overlays/mpvpaper.nix)
         tokyonight-gtk-overlay
         evremap-overlay
@@ -173,11 +168,10 @@
         specialArgs = {
           inherit sadmadbotlad;
           inherit hyprland;
+          inherit nixos-cosmic;
         };
 
         modules = [
-          nixos-cosmic.nixosModules.default
-
           determinate.nixosModules.default
 
           sops-nix.nixosModules.sops
