@@ -17,6 +17,9 @@
       nixos-cosmic.packages."x86_64-linux".cosmic-ext-applet-clipboard-manager
     ];
 
+    # The zwlr_data_control_manager_v1 protocol needs to be enabled to make the clipboard work
+    environment.sessionVariables.COSMIC_DATA_CONTROL_ENABLED = 1;
+
     xdg.portal = {
       enable = true;
       extraPortals = [

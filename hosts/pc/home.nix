@@ -71,7 +71,6 @@
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
     jdk17
-    (python311.withPackages (ps: with ps; [pandas requests openpyxl mypy]))
     go
     marksman
     deno
@@ -108,14 +107,11 @@
     ranger
     # huiontablet
     uxplay
-    jetbrains.idea-community
     hwloc
     nix-index
     # evremap
     appimage-run
     gamescope
-    python311Packages.python-lsp-server
-    python311Packages.pylsp-mypy
     ytdlp-gui
     ffmpeg_6-full
     thunderbird
