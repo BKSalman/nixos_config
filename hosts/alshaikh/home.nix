@@ -83,7 +83,6 @@
     direnv
     qmk
     tokei
-    bottles
     fd
     kondo
     eww

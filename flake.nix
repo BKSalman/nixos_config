@@ -215,6 +215,9 @@
         ];
       };
       alshaikh = lib.nixosSystem {
+        specialArgs = {
+          inherit nixos-cosmic;
+        };
         inherit system pkgs;
 
         modules = [
