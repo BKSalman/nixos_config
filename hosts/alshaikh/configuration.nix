@@ -23,7 +23,7 @@
 
   niri.enable = false;
 
-  cosmic.enable = true;
+  cosmic.enable = false;
 
   # Enable networking
   networking.networkmanager = {
