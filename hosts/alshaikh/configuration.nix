@@ -169,7 +169,7 @@
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [];
+    allowedTCPPorts = [3030];
     checkReversePath = "loose";
     trustedInterfaces = ["tailscale0"];
     allowedUDPPorts = [config.services.tailscale.port];
