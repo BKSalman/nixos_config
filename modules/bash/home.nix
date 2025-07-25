@@ -44,6 +44,7 @@
       MANPAGER = "sh -c 'col -bx | bat -l man -p'";
       MANROFFOPT = "-c";
       EDITOR = "hx";
+      PAGER = "less -FRX";
       STEEL_LSP_HOME = "/home/salman/.config/steel-lsp/";
     };
     enableCompletion = true;
