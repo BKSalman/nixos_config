@@ -68,8 +68,6 @@
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
     };
-
-    # proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
     };
@@ -82,6 +80,8 @@
       url = "github:lilyinstarlight/nixos-cosmic";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
   };
 
   outputs = {
@@ -100,11 +100,11 @@
     arion,
     sops-nix,
     hyprland,
-    # proxmox-nixos,
     nixos-hardware,
     nixos-cosmic,
     reaction-roles-bot,
     nur,
+    proxmox-nixos,
     ...
   }: let
     system = "x86_64-linux";
@@ -242,18 +242,15 @@
       };
       home-server = lib.nixosSystem {
         inherit system pkgs;
+        specialArgs = {
+          inherit proxmox-nixos;
+        };
 
         modules = [
-          # {
-          #   nix.settings = {
-          #     substituters = ["https://cache.saumon.network/proxmox-nixos"];
-          #     trusted-public-keys = ["proxmox-nixos:nveXDuVVhFDRFx8Dn19f1WDEaNRJjPrF2CPD2D+m1ys="];
-          #   };
-          # }
           ./hosts/home-server/configuration.nix
           sops-nix.nixosModules.sops
           arion.nixosModules.arion
-          # proxmox-nixos.nixosModules.proxmox-ve
+          proxmox-nixos.nixosModules.proxmox-ve
         ];
       };
     };

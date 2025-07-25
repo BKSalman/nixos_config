@@ -97,12 +97,12 @@
     hostName = "nixos-server";
     defaultGateway = "192.168.0.1";
     nameservers = ["1.1.1.1"];
-    interfaces.enp7s0.ipv4.addresses = [
-      {
-        address = "192.168.0.225";
-        prefixLength = 24;
-      }
-    ];
+    # interfaces.enp7s0.ipv4.addresses = [
+    #   {
+    #     address = "192.168.0.225";
+    #     prefixLength = 24;
+    #   }
+    # ];
     hostId = "f6c1cbac";
     firewall = {
       enable = true;
@@ -154,6 +154,7 @@
     packages = with pkgs; [];
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIJkV9LhQ+F3F9dWbpuqKQSkGaCSy9HWPmllFSYemLo5 pc"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAVPe6Tcsh7X89G6mjfurhez2Md9/VV6CxWIaDXdZfa salman@nixos"
     ];
   };
 
