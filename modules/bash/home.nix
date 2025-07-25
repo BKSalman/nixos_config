@@ -33,7 +33,6 @@
       ls = "eza --time-style=long-iso --group-directories-first --icons --no-permissions --no-user -l --git";
       ll = "eza --time-style=long-iso --group-directories-first --icons -la";
       cat = "bat";
-      imwheel = "imwheel -b 45";
       sk = "screenkey -g 300x500+1520+600";
       db = "distrobox";
       wmdev = "Xephyr -br -ac -noreset -screen 1880x1000 :2";
