@@ -73,6 +73,8 @@
           fi
           rm -f -- "$tmp"
         }
+
+        export PAGER="less -FRX"
     '';
   };
 }
