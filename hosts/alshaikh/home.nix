@@ -102,7 +102,6 @@
     thunderbird
     nixpkgs-review
     xdg-user-dirs
-    ludusavi
     yt-dlp
     pacman
     lolcat

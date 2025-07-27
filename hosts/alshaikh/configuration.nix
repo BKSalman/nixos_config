@@ -233,6 +233,7 @@
       # here, NOT in environment.systemPackages
       pkg-config
       openssl
+      stdenv.cc.cc
     ];
   };
 }
