@@ -179,6 +179,8 @@
     git
     easyeffects
     podman-compose
+    acpica-tools
+    edid-decode
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
