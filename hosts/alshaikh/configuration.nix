@@ -263,12 +263,4 @@
       stdenv.cc.cc
     ];
   };
-
-  boot.kernelParams = [
-    "amd_pstate=active"
-    "amdgpu.dcdebugmask=0x10"
-    "usbcore.autosuspend=1" # Enable USB autosuspend
-    "pcie_aspm=force" # Force PCIe power management
-    "pci=noaer" # Disable PCIe error reporting
-  ];
 }
