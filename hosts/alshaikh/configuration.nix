@@ -103,7 +103,6 @@
   hardware.bluetooth.powerOnBoot = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -128,6 +127,8 @@
 
   # Install firefox.
   programs.firefox.enable = true;
+  services.auto-cpufreq.enable = true;
+  services.power-profiles-daemon.enable = false;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
