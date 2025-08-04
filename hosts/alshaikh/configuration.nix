@@ -158,6 +158,7 @@
           extraOutputsToInstall = ["dev"];
         }))
 
+    dig
     mission-center
     anki
     jujutsu
