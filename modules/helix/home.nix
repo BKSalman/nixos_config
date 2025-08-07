@@ -10,7 +10,7 @@
 
   programs.helix.enable = true;
 
-  home.file.".config/helix/languages.toml".source = config.lib.file.mkOutOfStoreSymlink (./. + "/languages.toml");
+  home.file.".config/helix/languages.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/languages.toml";
 
   # home.file.".config/helix/languages.toml".source = ./languages.toml;
   home.file.".config/helix/config.toml".source = ./config.toml;
