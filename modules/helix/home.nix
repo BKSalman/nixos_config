@@ -1,5 +1,8 @@
 {helix, ...}: {
-  programs.helix.package = helix.packages."x86_64-linux".default;
+  programs.helix.package = helix.packages."x86_64-linux".default.overrideAttrs (oldAttrs: {
+    buildFeatures = (oldAttrs.buildFeatures or []) ++ ["steel"]; # enable steel as the plugin system language
+  });
+
   programs.helix.enable = true;
 
   home.file.".config/helix/languages.toml".source = ./languages.toml;
