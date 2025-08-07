@@ -159,6 +159,7 @@ in {
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     fhs
+    asciinema
     dig
     mission-center
     anki
