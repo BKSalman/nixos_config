@@ -6,10 +6,9 @@
 (require "package.scm")
 (require-builtin helix/core/text)
 
-(load-package "cogs/rainbow-parens.scm")
 (load-package "cogs/keymaps.scm")
 
-(provide shell git-add open-helix-scm open-init-scm list-packages half-page-up half-page-down helix.set-status!)
+(provide git-add open-helix-scm open-init-scm list-packages half-page-up half-page-down helix.set-status!)
 
 ;;@doc
 ;; Specialized shell implementation, where % is a wildcard for the current file

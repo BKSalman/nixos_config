@@ -36,6 +36,8 @@
         paperless-password = {
           owner = "paperless";
         };
+        ryot-db-env = {};
+        ryot-env = {};
       }
     ];
   };

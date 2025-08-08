@@ -17,6 +17,7 @@
     ./seafile.nix
     ./paperless.nix
     ./proxmox.nix
+    ./ryot.nix
   ];
 
   seafile.enable = true;
