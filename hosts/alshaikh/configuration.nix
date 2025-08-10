@@ -158,6 +158,8 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    inotify-tools
+    lsof
     fhs
     asciinema
     dig
