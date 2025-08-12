@@ -205,7 +205,7 @@ in {
     allowedTCPPorts = [3030 53317];
     checkReversePath = "loose";
     trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [config.services.tailscale.port];
+    allowedUDPPorts = [config.services.tailscale.port 53317];
   };
 
   services.resolved.enable = true;
