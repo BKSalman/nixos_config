@@ -204,10 +204,10 @@ in {
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [3030 53317];
+    allowedTCPPorts = [3030 53317 3389];
     checkReversePath = "loose";
     trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [config.services.tailscale.port 53317];
+    allowedUDPPorts = [config.services.tailscale.port 53317 3389];
   };
 
   services.resolved.enable = true;
