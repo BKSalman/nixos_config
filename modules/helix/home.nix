@@ -1,5 +1,6 @@
 {
   helix,
+  pkgs,
   config,
   ...
 }: {
