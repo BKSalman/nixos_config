@@ -6,6 +6,12 @@
 }: {
   programs.helix.package = helix.packages."x86_64-linux".default.overrideAttrs (oldAttrs: {
     cargoBuildFeatures = (oldAttrs.cargoBuildFeatures or []) ++ ["helix-term/git" "helix-term/steel"]; # enable steel as the plugin system language
+
+    # patches =
+    #   (oldAttrs.patches or [])
+    #   ++ [
+    #     ./rsx-query.patch
+    #   ];
   });
   # programs.helix.package = helix.packages."x86_64-linux".default;
 

@@ -1,0 +1,42 @@
+diff --git a/runtime/queries/rust/injections.scm b/runtime/queries/rust/injections.scm
+index af1970a9..103a317e 100644
+--- a/runtime/queries/rust/injections.scm
++++ b/runtime/queries/rust/injections.scm
+@@ -6,6 +6,8 @@
+  (#set! injection.combined))
+ 
+ ((macro_invocation
++  macro: (identifier) @_name
++  (#not-eq? @_name "rsx")
+   (token_tree) @injection.content)
+  (#set! injection.language "rust")
+  (#set! injection.include-children))
+@@ -154,27 +156,3 @@
+   (#set! injection.language "rust-format-args-macro")
+   (#set! injection.include-children)
+ )
+-
+-; Dioxus' "rsx!" macro relies heavily on string interpolation as well. The strings can be nested very deeply
+-(
+-  (macro_invocation
+-    macro: [
+-        (scoped_identifier
+-          name: (_) @_macro_name)
+-        (identifier) @_macro_name
+-    ]
+-    ; TODO: This only captures 1 level of string literals. But in dioxus you can have
+-    ; nested string literals. For instance:
+-    ; 
+-    ; rsx! { "{hello} world" }:
+-    ; -> (token_tree (string_literal))
+-    ; rsx! { div { "{hello} world" } }
+-    ; -> (token_tree (token_tree (string_literal)))
+-    ; rsx! { div { div { "{hello} world" } } }
+-    ; -> (token_tree (token_tree (token_tree (string_literal))))
+-    (token_tree (string_literal) @injection.content)
+-  )
+-  (#eq? @_macro_name "rsx")
+-  (#set! injection.language "rust-format-args")
+-  (#set! injection.include-children)
+-)
+

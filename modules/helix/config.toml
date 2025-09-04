@@ -93,3 +93,10 @@ cursor-line = "error"
 [editor.file-picker]
 hidden = false
 git-ignore = true
+
+[editor.auto-pairs]
+'(' = ')'
+'{' = '}'
+'[' = ']'
+'"' = '"'
+'<' = '>'
