@@ -225,28 +225,28 @@ in {
 
   virtualisation = {
     # Podman
-    oci-containers.backend = "podman";
-    podman = {
-      enable = true;
-      # Create a `docker` alias for podman, to use it as a drop-in replacement
-      dockerCompat = true;
-      dockerSocket.enable = true;
-
-      # Required for containers under podman-compose to be able to talk to each other.
-      defaultNetwork.settings = {
-        dns_enabled = true;
-      };
-    };
-
-    # Docker
-    # oci-containers.backend = "docker";
-    # docker = {
+    # oci-containers.backend = "podman";
+    # podman = {
     #   enable = true;
-    #   rootless = {
-    #     enable = true;
-    #     setSocketVariable = true;
+    #   # Create a `docker` alias for podman, to use it as a drop-in replacement
+    #   dockerCompat = true;
+    #   dockerSocket.enable = true;
+
+    #   # Required for containers under podman-compose to be able to talk to each other.
+    #   defaultNetwork.settings = {
+    #     dns_enabled = true;
     #   };
     # };
+
+    # Docker
+    oci-containers.backend = "docker";
+    docker = {
+      enable = true;
+      rootless = {
+        enable = true;
+        setSocketVariable = true;
+      };
+    };
   };
 
   uxplay.enable = true;
