@@ -79,7 +79,6 @@
     mediainfo
     brightnessctl
     wayvnc
-    gimp
     direnv
     qmk
     tokei

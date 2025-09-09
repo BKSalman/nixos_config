@@ -143,7 +143,7 @@ in {
   users.users.salman = {
     isNormalUser = true;
     description = "salman";
-    extraGroups = ["networkmanager" "wheel" "input"];
+    extraGroups = ["networkmanager" "wheel" "input" "docker"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird

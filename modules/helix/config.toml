@@ -79,6 +79,8 @@ right = ["version-control", "diagnostics", "selections", "position", "file-encod
 [editor]
 line-number = "relative"
 bufferline = "multiple"
+terminal.command = "kitty"
+terminal.args = ["-e"]
 
 # Minimum severity to show a diagnostic after the end of a line:
 end-of-line-diagnostics = "hint"

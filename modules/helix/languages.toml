@@ -3,10 +3,6 @@ name = "rust"
 language-servers = ["rust-analyzer"]
 # auto-format = false
 
-[language-server.rust-analyzer]
-command = "rust-analyzer"
-environment = { "CARGO_TARGET_DIR" = "target/analyzer" }
-
 [language.debugger]
 command = "codelldb"
 name = "codelldb"
@@ -23,6 +19,10 @@ name = "binary"
 [language.debugger.templates.args]
 program = "{0}"
 runInTerminal = true
+
+[language-server.rust-analyzer]
+command = "rust-analyzer"
+environment = { "CARGO_TARGET_DIR" = "target/analyzer" }
 
 [[language]]
 name = "python"
