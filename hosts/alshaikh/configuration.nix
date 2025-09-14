@@ -153,7 +153,6 @@ in {
   # Install firefox.
   programs.firefox.enable = true;
 
-  # services.auto-cpufreq.enable = true;
   # services.tlp = {
   #   enable = true;
   #   settings = {
@@ -175,7 +174,21 @@ in {
   #     PCIE_ASPM_ON_BAT = "powersupersave";
   #   };
   # };
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      # https://github.com/AdnanHodzic/auto-cpufreq
+      battery = {
+        governor = "powersave";
+        turbo = "never";
+      };
+      charger = {
+        governor = "performance";
+        turbo = "auto";
+      };
+    };
+  };
   powerManagement.powertop.enable = true;
 
   # List packages installed in system profile. To search, run:
