@@ -16,7 +16,7 @@
 
   sway.enable = false;
 
-  cosmic.enable = true;
+  cosmic.enable = false;
 
   hyprland.enable = true;
 
@@ -306,7 +306,7 @@
     # duplicity
     vim
     wget
-    libsForQt5.ark
+    # libsForQt6.ark
     libsecret
     nix-prefetch
   ];

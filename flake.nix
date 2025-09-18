@@ -130,15 +130,16 @@
       config = {
         allowUnfree = true;
         permittedInsecurePackages = [
-          "python-2.7.18.8"
-          "python-2.7.18.6"
+          # "python-2.7.18.8"
+          # "python-2.7.18.6"
+          "qtwebengine-5.15.19"
 
           # FIXME: remove after https://github.com/NixOS/nixpkgs/issues/360592
           # and https://github.com/NixOS/nixpkgs/issues/326335 are sorted out
-          "aspnetcore-runtime-6.0.36"
-          "aspnetcore-runtime-wrapped-6.0.36"
-          "dotnet-sdk-6.0.428"
-          "dotnet-sdk-wrapped-6.0.428"
+          # "aspnetcore-runtime-6.0.36"
+          # "aspnetcore-runtime-wrapped-6.0.36"
+          # "dotnet-sdk-6.0.428"
+          # "dotnet-sdk-wrapped-6.0.428"
         ];
       };
       overlays = [
