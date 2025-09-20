@@ -5,6 +5,7 @@ xkb_keymap {
     xkb_symbols   {
         include "pc+us+ara:2+inet(evdev)"
         include "group(alt_shift_toggle)"
+        key <CAPS> { [ Escape ] };
     };
     xkb_geometry  { include "pc(pc105)" };
 };

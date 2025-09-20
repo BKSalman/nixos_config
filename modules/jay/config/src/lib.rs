@@ -9,10 +9,10 @@ use jay_config::keyboard::parse_keymap;
 use jay_config::keyboard::syms::{
     KeySym, SYM_Arabic_alef, SYM_Arabic_alefmaksura, SYM_Arabic_beh, SYM_Arabic_dad,
     SYM_Arabic_gaf, SYM_Arabic_hamza, SYM_Arabic_hamzaonwaw, SYM_Arabic_meem, SYM_Arabic_noon,
-    SYM_Arabic_ra, SYM_Arabic_tah, SYM_Arabic_yeh, SYM_Print, SYM_Super_L, SYM_b, SYM_c, SYM_d,
-    SYM_f, SYM_g, SYM_h, SYM_j, SYM_k, SYM_l, SYM_n, SYM_p, SYM_q, SYM_r, SYM_t, SYM_v, SYM_x,
-    SYM_0, SYM_1, SYM_2, SYM_3, SYM_4, SYM_5, SYM_6, SYM_7, SYM_8, SYM_9, SYM_F1, SYM_F10, SYM_F11,
-    SYM_F12, SYM_F2, SYM_F3, SYM_F4, SYM_F5, SYM_F6, SYM_F7, SYM_F8, SYM_F9,
+    SYM_Arabic_ra, SYM_Arabic_tah, SYM_Arabic_yeh, SYM_Escape, SYM_Print, SYM_Super_L, SYM_b,
+    SYM_c, SYM_d, SYM_f, SYM_g, SYM_h, SYM_j, SYM_k, SYM_l, SYM_n, SYM_p, SYM_q, SYM_r, SYM_t,
+    SYM_v, SYM_x, SYM_0, SYM_1, SYM_2, SYM_3, SYM_4, SYM_5, SYM_6, SYM_7, SYM_8, SYM_9, SYM_F1,
+    SYM_F10, SYM_F11, SYM_F12, SYM_F2, SYM_F3, SYM_F4, SYM_F5, SYM_F6, SYM_F7, SYM_F8, SYM_F9,
 };
 use jay_config::status::set_status;
 use jay_config::timer::{duration_until_wall_clock_is_multiple_of, get_timer};
@@ -79,7 +79,7 @@ fn setup_keybinds(seat: Seat) {
     seat.bind(MOD | SYM_g, move || seat.create_split(Axis::Horizontal));
     seat.bind(MOD | SYM_b, move || seat.create_split(Axis::Vertical));
     seat.bind(MOD | SYM_t, move || seat.toggle_split());
-    seat.bind(MOD | SYM_p, move || seat.focus_parent());
+    // seat.bind(MOD | SYM_p, move || seat.focus_parent());
 
     seat.bind(MOD | SHIFT | SYM_Arabic_meem, move || {
         seat.move_(Direction::Right)
@@ -144,6 +144,15 @@ fn setup_keybinds(seat: Seat) {
             r#"jay run-privileged -- grim -g "$(slurp)" - | tee $(xdg-user-dir PICTURES)/$(date +"screenshot_%Y-%m-%d_%H:%M:%S.png") | wl-copy --type image/png"#
         ).spawn()
     });
+
+    seat.bind(MOD | SYM_p, move || seat.toggle_float_pinned());
+
+    seat.bind(MOD | SYM_Escape, move || {
+        exec::Command::new("sh")
+            .arg("-c")
+            .arg(r#"jay idle"#)
+            .spawn()
+    });
 }
 
 fn set_max_refresh_rate(connector: Connector) {
@@ -159,15 +168,22 @@ fn configure() {
 
     let seat = get_default_seat();
 
-    seat.set_keymap(parse_keymap(include_str!("keymap.xkb")));
-
-    setup_keybinds(seat);
+    for input_device in seat.input_devices() {
+        input_device.set_natural_scrolling_enabled(true);
+        input_device.set_tap_enabled(true);
+        input_device.set_drag_enabled(true);
+        input_device.set_middle_button_emulation_enabled(true);
+    }
 
     for connector in connectors() {
         set_max_refresh_rate(connector);
     }
 
+    setup_keybinds(seat);
+
     on_connector_connected(set_max_refresh_rate);
+
+    seat.set_keymap(parse_keymap(include_str!("keymap.xkb")));
 
     on_graphics_initialized(|| {
         exec::Command::new("jay")
