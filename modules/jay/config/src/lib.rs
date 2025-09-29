@@ -9,10 +9,11 @@ use jay_config::keyboard::parse_keymap;
 use jay_config::keyboard::syms::{
     KeySym, SYM_Arabic_alef, SYM_Arabic_alefmaksura, SYM_Arabic_beh, SYM_Arabic_dad,
     SYM_Arabic_gaf, SYM_Arabic_hamza, SYM_Arabic_hamzaonwaw, SYM_Arabic_meem, SYM_Arabic_noon,
-    SYM_Arabic_ra, SYM_Arabic_tah, SYM_Arabic_yeh, SYM_Escape, SYM_Print, SYM_Super_L, SYM_b,
-    SYM_c, SYM_d, SYM_f, SYM_g, SYM_h, SYM_j, SYM_k, SYM_l, SYM_n, SYM_p, SYM_q, SYM_r, SYM_t,
-    SYM_v, SYM_x, SYM_0, SYM_1, SYM_2, SYM_3, SYM_4, SYM_5, SYM_6, SYM_7, SYM_8, SYM_9, SYM_F1,
-    SYM_F10, SYM_F11, SYM_F12, SYM_F2, SYM_F3, SYM_F4, SYM_F5, SYM_F6, SYM_F7, SYM_F8, SYM_F9,
+    SYM_Arabic_ra, SYM_Arabic_tah, SYM_Arabic_yeh, SYM_Escape, SYM_Print, SYM_Super_L, SYM_a,
+    SYM_b, SYM_c, SYM_d, SYM_f, SYM_g, SYM_h, SYM_j, SYM_k, SYM_l, SYM_n, SYM_p, SYM_q, SYM_r,
+    SYM_t, SYM_v, SYM_x, SYM_0, SYM_1, SYM_2, SYM_3, SYM_4, SYM_5, SYM_6, SYM_7, SYM_8, SYM_9,
+    SYM_F1, SYM_F10, SYM_F11, SYM_F12, SYM_F2, SYM_F3, SYM_F4, SYM_F5, SYM_F6, SYM_F7, SYM_F8,
+    SYM_F9,
 };
 use jay_config::status::set_status;
 use jay_config::timer::{duration_until_wall_clock_is_multiple_of, get_timer};
@@ -23,24 +24,59 @@ use sysinfo::{CpuRefreshKind, MemoryRefreshKind, RefreshKind, System};
 const MOD: Modifiers = MOD4;
 const SUPER: KeySym = SYM_Super_L;
 
+fn get_battery() -> Option<String> {
+    let status = std::fs::read_to_string("/sys/class/power_supply/BAT1/status").ok()?;
+
+    if status.trim() == "Full" || status.trim() == "Not charging" {
+        return None;
+    }
+
+    std::fs::read_to_string("/sys/class/power_supply/BAT1/capacity")
+        .ok()
+        .map(|s| s.trim().to_string())
+}
+
 fn setup_status() {
+    use std::fmt::Write;
+
+    const SPAN: &str = r##" <span color="#333333">|</span> "##;
+
     let time_format: Vec<_> = StrftimeItems::new("%Y-%m-%d %H:%M:%S").collect();
     let specifics = RefreshKind::new()
         .with_cpu(CpuRefreshKind::new().with_cpu_usage())
         .with_memory(MemoryRefreshKind::new().with_ram());
+
     let system = RefCell::new(System::new_with_specifics(specifics));
+
     let update_status = move || {
         let mut system = system.borrow_mut();
         system.refresh_specifics(specifics);
         let cpu_usage = system.cpus().iter().map(|cpu| cpu.cpu_usage()).sum::<f32>() / 100.0;
         let used = system.used_memory() as f64 / (1024 * 1024) as f64;
         let total = system.total_memory() as f64 / (1024 * 1024) as f64;
-        let status = format!(
-            r##"MEM: {used:.1}/{total:.1} <span color="#333333">|</span> CPU: {cpu_usage:5.2} <span color="#333333">|</span> {time}"##,
-            time = Local::now().format_with_items(time_format.iter())
+        let mut status = String::new();
+        _ = write!(&mut status, r##"MEM: {used:.1}/{total:.1}"##,);
+
+        status.push_str(SPAN);
+
+        _ = write!(&mut status, "CPU: {cpu_usage:5.2}");
+
+        if let Some(battery) = get_battery() {
+            status.push_str(SPAN);
+            _ = write!(&mut status, "BAT: {battery}%");
+        }
+
+        status.push_str(SPAN);
+
+        _ = write!(
+            &mut status,
+            "{}",
+            Local::now().format_with_items(time_format.iter())
         );
+
         set_status(&status);
     };
+
     update_status();
     let period = Duration::from_secs(5);
     let timer = get_timer("status_timer");
@@ -76,14 +112,14 @@ fn setup_keybinds(seat: Seat) {
         seat.move_(Direction::Up)
     });
 
-    seat.bind(MOD | SYM_g, move || seat.create_split(Axis::Horizontal));
-    seat.bind(MOD | SYM_b, move || seat.create_split(Axis::Vertical));
-    seat.bind(MOD | SYM_t, move || seat.toggle_split());
-    // seat.bind(MOD | SYM_p, move || seat.focus_parent());
-
+    seat.bind(MOD | SHIFT | SYM_l, move || seat.move_(Direction::Right));
     seat.bind(MOD | SHIFT | SYM_Arabic_meem, move || {
         seat.move_(Direction::Right)
     });
+
+    seat.bind(MOD | SYM_g, move || seat.create_split(Axis::Horizontal));
+    seat.bind(MOD | SYM_b, move || seat.create_split(Axis::Vertical));
+    seat.bind(MOD | SYM_t, move || seat.toggle_split());
 
     seat.bind(MOD | SYM_q, || exec::Command::new("kitty").spawn());
     seat.bind(MOD | SYM_Arabic_dad, || exec::Command::new("kitty").spawn());
@@ -124,8 +160,13 @@ fn setup_keybinds(seat: Seat) {
         seat.bind(MOD | SHIFT | sym, move || seat.set_workspace(ws));
     }
 
-    seat.bind(MOD | SYM_f, move || seat.toggle_fullscreen());
-    seat.bind(MOD | SYM_Arabic_beh, move || seat.toggle_fullscreen());
+    seat.bind(MOD | SHIFT | SYM_f, move || seat.toggle_fullscreen());
+    seat.bind(MOD | SHIFT | SYM_Arabic_beh, move || {
+        seat.toggle_fullscreen()
+    });
+
+    seat.bind(MOD | SYM_f, move || seat.toggle_mono());
+    seat.bind(MOD | SYM_Arabic_beh, move || seat.toggle_mono());
 
     seat.bind(MOD | SYM_v, move || seat.toggle_floating());
     seat.bind(MOD | SYM_Arabic_ra, move || seat.toggle_floating());
@@ -147,11 +188,8 @@ fn setup_keybinds(seat: Seat) {
 
     seat.bind(MOD | SYM_p, move || seat.toggle_float_pinned());
 
-    seat.bind(MOD | SYM_Escape, move || {
-        exec::Command::new("sh")
-            .arg("-c")
-            .arg(r#"jay idle"#)
-            .spawn()
+    seat.bind(MOD | SYM_a, move || {
+        seat.focus_parent();
     });
 }
 
@@ -181,7 +219,10 @@ fn configure() {
 
     setup_keybinds(seat);
 
-    on_connector_connected(set_max_refresh_rate);
+    on_connector_connected(|connector| {
+        set_max_refresh_rate(connector);
+        log::debug!("{}", connector.name());
+    });
 
     seat.set_keymap(parse_keymap(include_str!("keymap.xkb")));
 
