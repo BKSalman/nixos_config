@@ -112,7 +112,6 @@
     ncmpcpp
     pavucontrol
     bat
-    stremio
     lutris
     killall
     qimgv

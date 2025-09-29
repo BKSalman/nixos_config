@@ -39,6 +39,8 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  programs.k3b.enable = true;
+
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -75,7 +77,7 @@ in {
     LC_MEASUREMENT = "ar_SA.UTF-8";
     LC_MONETARY = "ar_SA.UTF-8";
     LC_NAME = "ar_SA.UTF-8";
-    LC_NUMERIC = "ar_SA.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
     LC_PAPER = "ar_SA.UTF-8";
     LC_TELEPHONE = "ar_SA.UTF-8";
     LC_TIME = "ar_SA.UTF-8";
@@ -145,7 +147,7 @@ in {
   users.users.salman = {
     isNormalUser = true;
     description = "salman";
-    extraGroups = ["networkmanager" "wheel" "input" "docker"];
+    extraGroups = ["networkmanager" "wheel" "input" "docker" "cdrom"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
@@ -196,6 +198,10 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    iotop
+    kdePackages.partitionmanager
+    nixd
+    ethersync
     distrobox
     unzip
     deno
