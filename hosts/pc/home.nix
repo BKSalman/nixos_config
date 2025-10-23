@@ -31,7 +31,7 @@
   # changes in each release.
   home.stateVersion = "23.05";
 
-  jay.enable = false;
+  jay.enable = true;
 
   hyprland.enable = true;
 

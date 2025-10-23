@@ -4,7 +4,7 @@
   lib,
   ...
 }: let
-  jay-with-session = pkgs.jay.overrideAttrs (final: prev: {
+  jay = pkgs.jay.overrideAttrs (final: prev: {
     postInstall =
       prev.postInstall
       + ''
@@ -18,12 +18,12 @@ in {
   };
 
   config = lib.mkIf config.jay.enable {
-    services.displayManager.defaultSession = "jay";
+    # services.displayManager.defaultSession = "jay";
     services.displayManager.sessionPackages = [
-      jay-with-session
+      jay
     ];
     environment.systemPackages = with pkgs; [
-      jay-with-session
+      jay
       bemenu
       grim
       slurp

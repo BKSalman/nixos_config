@@ -12,7 +12,7 @@
 
   leftwm.enable = false;
 
-  # jay.enable = true;
+  jay.enable = true;
 
   sway.enable = false;
 
