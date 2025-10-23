@@ -58,6 +58,8 @@
 
       # eval "$(jay generate-completion bash)"
 
+      eval "$(zellij setup --generate-auto-start bash)"
+
       if command -v fzf-share >/dev/null; then
         source "$(fzf-share)/key-bindings.bash"
         source "$(fzf-share)/completion.bash"
