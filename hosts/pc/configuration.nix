@@ -40,7 +40,6 @@
   # udev rules
   services.udev = {
     packages = [
-      pkgs.android-udev-rules
     ];
     extraRules = ''
       # Define some simple rules for LPCXpresso supported USB Devices

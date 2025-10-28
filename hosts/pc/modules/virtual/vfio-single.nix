@@ -17,7 +17,6 @@
     enable = true;
     onBoot = "ignore";
     onShutdown = "shutdown";
-    qemu.ovmf.enable = true;
     qemu.runAsRoot = true;
   };
 
