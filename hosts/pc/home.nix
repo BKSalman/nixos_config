@@ -236,4 +236,10 @@
     IdentityFile ~/.ssh/aur
     User aur
   '';
+
+  services.vicinae = {
+    enable = true; # default: false
+    autoStart = true; # default: true
+  };
+  
 }

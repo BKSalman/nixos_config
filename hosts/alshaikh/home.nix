@@ -153,4 +153,9 @@
   programs.zoxide.enable = true;
 
   programs.lazygit.enable = true;
+
+  services.vicinae = {
+    enable = true; # default: false
+    autoStart = true; # default: true
+  };
 }
