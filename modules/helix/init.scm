@@ -1,5 +1,5 @@
 (require "helix/configuration.scm")
-(require "keymaps.scm")
+(require "helix/keymaps.scm")
 (require (only-in "helix/ext.scm" evalp eval-buffer))
 
 (define-lsp "steel-language-server" (command "steel-language-server") (args '()))
