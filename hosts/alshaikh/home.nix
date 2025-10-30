@@ -108,7 +108,7 @@
     playerctl
     chromium
     pamixer
-    mpc-cli
+    mpc
     ncmpcpp
     pavucontrol
     bat
@@ -116,7 +116,7 @@
     killall
     qimgv
     vopono
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     neovim
     btop
     nodejs

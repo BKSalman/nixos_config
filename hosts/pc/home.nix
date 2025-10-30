@@ -129,7 +129,7 @@
     # cava
     chromium
     pamixer
-    mpc-cli
+    mpc
     ncmpcpp
     webcord
     pavucontrol
@@ -143,7 +143,7 @@
     qimgv
     vopono
     nil
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     gdb
     lldb
     unzip

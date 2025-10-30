@@ -158,7 +158,7 @@
     cava
     chromium
     pamixer
-    mpc-cli
+    mpc
     ncmpcpp
     pavucontrol
     bat
@@ -173,7 +173,7 @@
     qimgv
     vopono
     nil
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     lldb
     unzip
     neovim
