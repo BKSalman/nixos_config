@@ -14,5 +14,3 @@ eval "$(starship init bash)"
 eval "$(zoxide init bash)"
 
 eval "$(direnv hook bash)"
-
-eval "$(zellij setup --generate-auto-start bash)"
