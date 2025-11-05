@@ -14,13 +14,11 @@
     ./deluge.nix
     ./minecraft.nix
     ./cloudflared.nix
-    ./seafile.nix
     ./paperless.nix
     ./proxmox.nix
     ./ryot.nix
   ];
 
-  seafile.enable = true;
   minecraft.enable = false;
   cloudflared.enable = true;
 }

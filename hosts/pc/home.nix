@@ -241,5 +241,4 @@
     enable = true; # default: false
     autoStart = true; # default: true
   };
-  
 }
