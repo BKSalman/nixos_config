@@ -17,6 +17,7 @@
     ./paperless.nix
     ./proxmox.nix
     ./ryot.nix
+    ./home-assistant.nix
   ];
 
   minecraft.enable = false;
