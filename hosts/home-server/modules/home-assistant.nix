@@ -21,11 +21,31 @@ in {
       "isal"
       "zha"
       "mqtt"
+      "webostv"
+    ];
+    lovelaceConfig = {};
+    customLovelaceModules = with pkgs.home-assistant-custom-lovelace-modules; [
+      mini-graph-card
+      mini-media-player
+      universal-remote-card
+      mushroom
     ];
     config = {
       # Includes dependencies for a basic setup
       # https://www.home-assistant.io/integrations/default_config/
       default_config = {};
+
+      panel_iframe = {
+        zigbee2mqtt = {
+          title = "Zigbee2MQTT";
+          url = "https://zigbee2mqtt.bksalman.com";
+          icon = "mdi:bee";
+        };
+      };
+
+      # "automation ui" = "!include automations.yaml";
+      "scene ui" = "!include scenes.yaml";
+      # "script ui" = "!include scripts.yaml";
     };
     openFirewall = true;
   };
