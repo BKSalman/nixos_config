@@ -82,8 +82,6 @@
     };
 
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
-
-    vicinae.url = "github:vicinaehq/vicinae";
   };
 
   outputs = {
@@ -107,7 +105,6 @@
     reaction-roles-bot,
     nur,
     proxmox-nixos,
-    vicinae,
     ...
   }: let
     system = "x86_64-linux";
@@ -189,7 +186,6 @@
             home-manager.users.salman = {
               imports = [
                 ./hosts/pc/home.nix
-                vicinae.homeManagerModules.default
               ];
             };
             home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
@@ -239,7 +235,6 @@
             home-manager.users.salman = {
               imports = [
                 ./hosts/alshaikh/home.nix
-                vicinae.homeManagerModules.default
               ];
             };
             home-manager.extraSpecialArgs = {inherit helix;};

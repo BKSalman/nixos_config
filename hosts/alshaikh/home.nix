@@ -60,7 +60,6 @@
     inkscape
     localsend
     ripgrep
-    drawio
     hunspell
     hunspellDicts.en_US
     xcolor
@@ -153,9 +152,4 @@
   programs.zoxide.enable = true;
 
   programs.lazygit.enable = true;
-
-  services.vicinae = {
-    enable = true; # default: false
-    autoStart = true; # default: true
-  };
 }
