@@ -1856,11 +1856,11 @@
         "rust-overlay": "rust-overlay_8"
       },
       "locked": {
-        "lastModified": 1763256731,
-        "narHash": "sha256-QRJNEqnz8c3qbeQW1U8qulqa94sa2/2SK4opBe0vz9U=",
+        "lastModified": 1763311603,
+        "narHash": "sha256-93ssD9jTiTxh4Y3PEDZwstad7t/GDKpiTxGjtI8dQnI=",
         "owner": "bksalman",
         "repo": "sadmadbotlad",
-        "rev": "e21663033f1a8a0e49a3f1a65ce873c00e98c1af",
+        "rev": "ec4ed02f1b9fca279f516d218743a3279d1813da",
         "type": "github"
       },
       "original": {
