@@ -18,7 +18,7 @@
 
   cosmic.enable = false;
 
-  hyprland.enable = true;
+  hyprland.enable = false;
 
   sadmadbotlad.enable = true;
 

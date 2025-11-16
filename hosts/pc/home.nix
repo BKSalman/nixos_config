@@ -33,7 +33,7 @@
 
   jay.enable = true;
 
-  hyprland.enable = true;
+  hyprland.enable = false;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
