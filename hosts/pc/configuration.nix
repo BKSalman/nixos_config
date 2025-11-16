@@ -217,6 +217,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    claude-code
     protontricks
     jujutsu
     usbutils
