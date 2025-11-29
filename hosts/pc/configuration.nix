@@ -217,6 +217,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    obs-studio-plugins.obs-vkcapture
     claude-code
     protontricks
     jujutsu
