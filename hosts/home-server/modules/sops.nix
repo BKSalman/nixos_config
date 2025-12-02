@@ -27,9 +27,9 @@
         wireguard-private-key = {};
         gluetun-wg-config = {};
         gluetun-env = {};
-        deluge-web-auth = {
-          owner = "deluge";
-        };
+        # deluge-web-auth = {
+        #   owner = "deluge";
+        # };
         cloudflared-home-server-reverse-proxy = {
           # owner = "cloudflared";
         };

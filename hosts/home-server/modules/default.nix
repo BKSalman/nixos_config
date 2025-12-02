@@ -11,7 +11,7 @@
     ./sonarr.nix
     ./radarr.nix
     ./bazarr.nix
-    ./deluge.nix
+    # ./deluge.nix
     ./minecraft.nix
     ./cloudflared.nix
     ./paperless.nix

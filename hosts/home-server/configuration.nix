@@ -117,19 +117,19 @@
     iproute2.rttablesExtraConfig = ''
       200 vpn
     '';
-    wg-quick.interfaces.wg1 = {
-      table = "vpn";
-      address = ["10.70.98.176/32"];
-      privateKeyFile = config.sops.secrets.wireguard-private-key.path;
-      peers = [
-        {
-          publicKey = "VgNcwWy8MRhfEZY+XSisDM1ykX+uXlHQScOLqqGMLkc=";
-          allowedIPs = ["0.0.0.0/0"];
-          endpoint = "194.36.25.48:51820";
-          persistentKeepalive = 25;
-        }
-      ];
-    };
+    # wg-quick.interfaces.wg1 = {
+    #   table = "vpn";
+    #   address = ["10.70.98.176/32"];
+    #   privateKeyFile = config.sops.secrets.wireguard-private-key.path;
+    #   peers = [
+    #     {
+    #       publicKey = "VgNcwWy8MRhfEZY+XSisDM1ykX+uXlHQScOLqqGMLkc=";
+    #       allowedIPs = ["0.0.0.0/0"];
+    #       endpoint = "194.36.25.48:51820";
+    #       persistentKeepalive = 25;
+    #     }
+    #   ];
+    # };
   };
 
   services.resolved = {
