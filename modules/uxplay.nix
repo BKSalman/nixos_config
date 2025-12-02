@@ -26,5 +26,9 @@
         domain = true;
       };
     };
+
+    environment.systemPackages = with pkgs; [
+      uxplay
+    ];
   };
 }

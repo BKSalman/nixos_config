@@ -217,6 +217,8 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    orca-slicer
+    python3
     obs-studio-plugins.obs-vkcapture
     claude-code
     protontricks
@@ -560,6 +562,8 @@
       alsa-lib
     ];
   };
+
+  uxplay.enable = true;
 
   hardware.keyboard.zsa.enable = true;
 }

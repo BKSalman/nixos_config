@@ -106,7 +106,6 @@
     # nodePackages_latest.bash-language-server
     ranger
     # huiontablet
-    uxplay
     hwloc
     nix-index
     # evremap
@@ -133,7 +132,6 @@
     ncmpcpp
     webcord
     pavucontrol
-    stremio
     # prusa-slicer
     # cura
     xclip
@@ -160,7 +158,6 @@
     sqlx-cli
     mpv
     frp
-    prismlauncher
     lazygit
     flameshot
     ngrok

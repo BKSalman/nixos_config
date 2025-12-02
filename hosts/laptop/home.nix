@@ -162,7 +162,6 @@
     ncmpcpp
     pavucontrol
     bat
-    stremio
     # prusa-slicer
     # cura
     lutris
