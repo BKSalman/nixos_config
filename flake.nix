@@ -47,33 +47,41 @@
 
     leftwm = {
       url = "github:leftwm/leftwm";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     manmap = {
       url = "github:bksalman/manmap";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     sadmadbotlad = {
       url = "github:bksalman/sadmadbotlad";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     eza = {
       url = "github:eza-community/eza";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     arion = {
       url = "github:hercules-ci/arion";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     hyprland = {
       url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     reaction-roles-bot = {
       url = "github:bksalman/reaction_roles";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-cosmic = {
@@ -81,7 +89,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+    proxmox-nixos = {
+      url = "github:SaumonNet/proxmox-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     quickshell = {
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

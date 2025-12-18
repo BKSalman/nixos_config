@@ -4,7 +4,6 @@
   quickshell,
   ...
 }: {
-
   home.packages = with pkgs; [
     quickshell.packages."x86_64-linux".default
     kdePackages.qtdeclarative

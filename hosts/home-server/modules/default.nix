@@ -18,6 +18,7 @@
     ./proxmox.nix
     ./ryot.nix
     ./home-assistant.nix
+    ./qbittorrent
   ];
 
   minecraft.enable = false;
