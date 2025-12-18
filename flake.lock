@@ -1603,6 +1603,26 @@
         "type": "github"
       }
     },
+    "quickshell": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1764663772,
+        "narHash": "sha256-sHqLmm0wAt3PC4vczJeBozI1/f4rv9yp3IjkClHDXDs=",
+        "ref": "refs/heads/master",
+        "rev": "26531fc46ef17e9365b03770edd3fb9206fcb460",
+        "revCount": 713,
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
+      }
+    },
     "reaction-roles-bot": {
       "inputs": {
         "crane": "crane_3",
@@ -1641,6 +1661,7 @@
         "nur": "nur",
         "prismlauncher": "prismlauncher",
         "proxmox-nixos": "proxmox-nixos",
+        "quickshell": "quickshell",
         "reaction-roles-bot": "reaction-roles-bot",
         "sadmadbotlad": "sadmadbotlad",
         "sops-nix": "sops-nix",

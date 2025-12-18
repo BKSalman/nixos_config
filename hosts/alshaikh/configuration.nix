@@ -54,6 +54,8 @@ in {
 
   cosmic.enable = false;
 
+  hyprland.enable = true;
+
   # Enable networking
   networking.networkmanager = {
     enable = true;
@@ -198,6 +200,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    uv
     claude-code
     iotop
     kdePackages.partitionmanager

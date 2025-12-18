@@ -82,6 +82,11 @@
     };
 
     proxmox-nixos.url = "github:SaumonNet/proxmox-nixos";
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -105,6 +110,7 @@
     reaction-roles-bot,
     nur,
     proxmox-nixos,
+    quickshell,
     ...
   }: let
     system = "x86_64-linux";
@@ -218,6 +224,7 @@
       alshaikh = lib.nixosSystem {
         specialArgs = {
           inherit nixos-cosmic;
+          inherit hyprland;
         };
         inherit system pkgs;
 
@@ -237,7 +244,10 @@
                 ./hosts/alshaikh/home.nix
               ];
             };
-            home-manager.extraSpecialArgs = {inherit helix;};
+            home-manager.extraSpecialArgs = {
+              inherit helix;
+              inherit quickshell;
+            };
           }
         ];
       };

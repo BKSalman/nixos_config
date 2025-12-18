@@ -7,6 +7,7 @@
     ../../modules/helix/home.nix
     ../../modules/mpv/home.nix
     ../../modules/bash/home.nix
+    ../../modules/quickshell/home.nix
   ];
 
   # Home Manager needs a bit of information about you and the
