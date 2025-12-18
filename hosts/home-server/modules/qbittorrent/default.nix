@@ -29,6 +29,10 @@ in {
             defaultSavePath = "${dataDir}/torrents";
             FinishedTorrentExportDirectory = "${dataDir}/torrents/complete";
             SubcategoriesEnabled = true;
+            QueueingSystemEnabled = false;
+            DisableAutoTMMByDefault = false;
+            DisableAutoTMMTriggers.CategorySavePathChanged = false;
+            DisableAutoTMMTriggers.DefaultSavePathChanged = false;
           };
         };
         Preferences = {
@@ -36,10 +40,6 @@ in {
             Password_PBKDF2 = "tyFVEcHist9pqAiag8t6eQ==:NJJpQEEZJiix+U0DYp+Rf4scPL1d+mY4iW/eDCNCNsQ9T55OqTDf3f2h7WA/EgR7zPzd2pRM3+mNBSR9Ziqh4w==";
           };
         };
-        # queueingEnabled = false;
-        # disableAutoTMMByDefault = false;
-        # disableAutoTMMTriggersCategorySavePathChanged = false;
-        # disableAutoTMMTriggersDefaultSavePathChanged = false;
       };
 
       webuiPort = 4414;
@@ -57,31 +57,28 @@ in {
       };
     };
 
-    networking.wireguard.interfaces.wg-mullvad = {
+    networking.wg-quick.interfaces.wg-mullvad = {
       # Use a separate network namespace for the VPN.
       # sudo ip netns exec wg-qbittorrent curl --interface wg-mullvad https://am.i.mullvad.net/connected
+      table = "vpn";
 
       privateKeyFile = config.sops.secrets.wireguard-private-key.path;
-      ips = ["10.70.98.176/32"];
-      interfaceNamespace = "wg-qbittorrent";
+      address = ["10.68.23.177/32" "fc00:bbbb:bbbb:bb01::5:17b0/128"];
 
-      preSetup = ''
-        ip netns add wg-qbittorrent
-        ip -n wg-qbittorrent link set lo up
-      '';
-
-      postShutdown = ''
-        ip netns delete wg-qbittorrent
-      '';
+      listenPort = 51820;
 
       peers = [
         {
-          publicKey = "VgNcwWy8MRhfEZY+XSisDM1ykX+uXlHQScOLqqGMLkc=";
+          publicKey = "TDHn9OvFYoHh9nwlYG7OCpPRvCjfODUOksSQPzhguTg=";
           allowedIPs = ["0.0.0.0/0" "::0/0"];
-          endpoint = "194.36.25.48:51820";
+          endpoint = "149.102.229.158:51820";
           persistentKeepalive = 25;
         }
       ];
+    };
+
+    networking.firewall = {
+      allowedUDPPorts = [config.networking.wg-quick.interfaces.wg-mullvad.listenPort];
     };
 
     security.acme = {
