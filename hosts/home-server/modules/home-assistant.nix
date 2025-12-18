@@ -35,14 +35,6 @@ in {
       # https://www.home-assistant.io/integrations/default_config/
       default_config = {};
 
-      panel_iframe = {
-        zigbee2mqtt = {
-          title = "Zigbee2MQTT";
-          url = "https://zigbee2mqtt.bksalman.com";
-          icon = "mdi:bee";
-        };
-      };
-
       # "automation ui" = "!include automations.yaml";
       "scene ui" = "!include scenes.yaml";
       # "script ui" = "!include scripts.yaml";
