@@ -38,6 +38,9 @@
         };
         ryot-db-env = {};
         ryot-env = {};
+        sab-config = {
+          owner = "sabnzbd";
+        };
       }
     ];
   };

@@ -56,26 +56,6 @@ in {
       };
     };
 
-    networking.wg-quick.interfaces.wg-mullvad = {
-      # Use a separate network namespace for the VPN.
-      # sudo ip netns exec wg-qbittorrent curl --interface wg-mullvad https://am.i.mullvad.net/connected
-      table = "vpn";
-
-      privateKeyFile = config.sops.secrets.wireguard-private-key.path;
-      address = ["10.68.23.177/32" "fc00:bbbb:bbbb:bb01::5:17b0/128"];
-
-      listenPort = 51820;
-
-      peers = [
-        {
-          publicKey = "TDHn9OvFYoHh9nwlYG7OCpPRvCjfODUOksSQPzhguTg=";
-          allowedIPs = ["0.0.0.0/0" "::0/0"];
-          endpoint = "149.102.229.158:51820";
-          persistentKeepalive = 25;
-        }
-      ];
-    };
-
     networking.firewall = {
       allowedUDPPorts = [config.networking.wg-quick.interfaces.wg-mullvad.listenPort];
     };

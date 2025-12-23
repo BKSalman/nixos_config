@@ -19,6 +19,7 @@
     ./ryot.nix
     ./home-assistant.nix
     ./qbittorrent
+    ./sabnzbd
   ];
 
   minecraft.enable = false;
