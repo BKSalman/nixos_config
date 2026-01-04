@@ -18,7 +18,7 @@
 
   cosmic.enable = false;
 
-  hyprland.enable = false;
+  hyprland.enable = true;
 
   sadmadbotlad.enable = true;
 
@@ -217,6 +217,9 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    anki
+    socat
+    bitwarden-desktop
     orca-slicer
     python3
     obs-studio-plugins.obs-vkcapture

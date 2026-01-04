@@ -1,6 +1,5 @@
 {
   lib,
-  hyprland,
   config,
   pkgs,
   ...
@@ -12,13 +11,15 @@
   config = lib.mkIf config.hyprland.enable {
     programs.hyprland = {
       enable = true;
-      package = hyprland.packages.${pkgs.system}.hyprland;
     };
 
     environment.systemPackages = with pkgs; [
-      wofi
+      (rofi.override {plugins = [pkgs.rofi-emoji];})
       hyprpaper
-      mako
+      grim
+      grimblast
+      hyprpicker
+      # mako
       # swayidle
       # swaylock-effects
       waybar

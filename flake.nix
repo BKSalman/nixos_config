@@ -65,10 +65,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland = {
-      url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -109,7 +105,6 @@
     sadmadbotlad,
     arion,
     sops-nix,
-    hyprland,
     nixos-hardware,
     nixos-cosmic,
     reaction-roles-bot,
@@ -126,10 +121,6 @@
 
     evremap-overlay = final: prev: {
       evremap = prev.callPackage ./packages/evremap {};
-    };
-
-    webcord-overlay = final: prev: {
-      webcord = prev.callPackage ./packages/webcord {};
     };
 
     pkgs = import nixpkgs {
@@ -161,7 +152,6 @@
         # (import ./overlays/mpvpaper.nix)
         tokyonight-gtk-overlay
         evremap-overlay
-        webcord-overlay
         # proxmox-nixos.overlays.${system}
         nur.overlays.default
       ];
@@ -174,7 +164,6 @@
         inherit system pkgs;
         specialArgs = {
           inherit sadmadbotlad;
-          inherit hyprland;
           inherit nixos-cosmic;
         };
 
@@ -194,7 +183,11 @@
                 ./hosts/pc/home.nix
               ];
             };
-            home-manager.extraSpecialArgs = {inherit helix sadmadbotlad;};
+            home-manager.extraSpecialArgs = {
+              inherit helix;
+              inherit sadmadbotlad;
+              inherit quickshell;
+            };
           }
 
           ./hosts/pc/configuration.nix
@@ -217,14 +210,15 @@
                 ./hosts/laptop/home.nix
               ];
             };
-            home-manager.extraSpecialArgs = {inherit helix;};
+            home-manager.extraSpecialArgs = {
+              inherit helix;
+            };
           }
         ];
       };
       alshaikh = lib.nixosSystem {
         specialArgs = {
           inherit nixos-cosmic;
-          inherit hyprland;
         };
         inherit system pkgs;
 

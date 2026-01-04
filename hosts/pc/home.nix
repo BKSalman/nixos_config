@@ -33,7 +33,7 @@
 
   jay.enable = true;
 
-  hyprland.enable = false;
+  hyprland.enable = true;
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
@@ -91,8 +91,6 @@
     # davinci-resolve
     audacity
     direnv
-    grimblast
-    hyprpicker
     qmk
     tokei
     fd
@@ -123,14 +121,12 @@
     lolcat
     neofetch
     zoom-us
-    hyprpicker
     playerctl
     # cava
     chromium
     pamixer
     mpc
     ncmpcpp
-    webcord
     pavucontrol
     # prusa-slicer
     # cura
