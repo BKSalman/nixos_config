@@ -123,7 +123,6 @@
     mpv
     frp
     gh
-    eza
     piper
     spotify
     chatterino2

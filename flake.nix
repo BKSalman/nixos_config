@@ -60,11 +60,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    eza = {
-      url = "github:eza-community/eza";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     arion = {
       url = "github:hercules-ci/arion";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -112,7 +107,6 @@
     leftwm,
     manmap,
     sadmadbotlad,
-    eza,
     arion,
     sops-nix,
     hyprland,
@@ -136,10 +130,6 @@
 
     webcord-overlay = final: prev: {
       webcord = prev.callPackage ./packages/webcord {};
-    };
-
-    eza-overlay = final: prev: {
-      eza = eza.packages.${system}.default;
     };
 
     pkgs = import nixpkgs {
@@ -168,7 +158,6 @@
         hyprland-contrib.overlays.default
         # helix.overlays.default
         prismlauncher.overlays.default
-        eza-overlay
         # (import ./overlays/mpvpaper.nix)
         tokyonight-gtk-overlay
         evremap-overlay
