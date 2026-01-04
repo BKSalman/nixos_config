@@ -18,9 +18,8 @@ in {
 
       serverConfig = {
         # LegalNotice.Accepted = true;
-        Bittorrent = {
+        BitTorrent = {
           Session = {
-            BTProtocol = "TCP";
             GlobalDLSpeedLimit = 6500;
             GlobalUPSpeedLimit = 2000;
             Interface = "wg-mullvad";
