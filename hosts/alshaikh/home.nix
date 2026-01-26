@@ -98,7 +98,6 @@
     gamescope
     ytdlp-gui
     ffmpeg_6-full
-    thunderbird
     nixpkgs-review
     xdg-user-dirs
     yt-dlp
