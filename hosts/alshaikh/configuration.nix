@@ -39,6 +39,8 @@ in {
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
+  boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
+
   # programs.k3b.enable = true;
 
   networking.hostName = "nixos"; # Define your hostname.
