@@ -9,7 +9,7 @@
     quickshell.enable = lib.mkEnableOption "Enable Quickshell";
   };
 
-  config = lib.mkIf config.hyprland.enable {
+  config = lib.mkIf config.quickshell.enable {
     home.packages = with pkgs; [
       quickshell.packages."x86_64-linux".default
       kdePackages.qtdeclarative
