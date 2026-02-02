@@ -34,9 +34,6 @@
   # Enable virtual machines VFIO
   vfio.enable = true;
 
-  # Enable android stuff
-  programs.adb.enable = true;
-
   # udev rules
   services.udev = {
     packages = [
@@ -217,6 +214,8 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    opencode
+    android-tools
     libva-utils
     anki
     socat

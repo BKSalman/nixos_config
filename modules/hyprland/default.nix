@@ -19,6 +19,7 @@
       grim
       grimblast
       hyprpicker
+      cliphist
       # mako
       # swayidle
       # swaylock-effects
