@@ -3,6 +3,7 @@ import QtQuick
 import Quickshell
 import Quickshell.Services.Notifications
 import Quickshell.Io
+import Quickshell.Wayland
 
 ShellRoot {
     ActivateLinux {}
@@ -22,6 +23,23 @@ ShellRoot {
 
     ScreenshotOverlay {
         id: screenshotOverlay
+    }
+
+    PanelWindow {
+        color: "transparent"
+        anchors {
+            top: true
+            left: true
+            right: true
+            bottom: true
+        }
+        exclusionMode: ExclusionMode.Ignore
+        WlrLayershell.layer: WlrLayer.Background
+
+        Image {
+            source: "background.png"
+            anchors.fill: parent
+        }
     }
 
     SocketServer {

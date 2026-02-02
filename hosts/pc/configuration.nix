@@ -217,6 +217,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    libva-utils
     anki
     socat
     bitwarden-desktop

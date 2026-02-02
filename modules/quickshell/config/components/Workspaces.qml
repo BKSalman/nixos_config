@@ -16,12 +16,12 @@ RowLayout {
             const dy = event.angleDelta.y
 
             if (dy < 0) {
-                if (monitor?.activeWorkspace) {
-                    Hyprland.dispatch("workspace " + Math.min(monitor?.activeWorkspace?.id + 1, 10))
+                if (root.monitor?.activeWorkspace) {
+                    Hyprland.dispatch("workspace " + Math.min(root.monitor?.activeWorkspace?.id + 1, 10))
                 }
             } else if (dy > 0) {
-                if (monitor?.activeWorkspace) {
-                    Hyprland.dispatch("workspace " + Math.max(monitor?.activeWorkspace?.id - 1, 0))
+                if (root.monitor?.activeWorkspace) {
+                    Hyprland.dispatch("workspace " + Math.max(root.monitor?.activeWorkspace?.id - 1, 0))
                 }
             }
         }
