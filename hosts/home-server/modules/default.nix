@@ -20,6 +20,7 @@
     ./home-assistant.nix
     ./qbittorrent
     ./sabnzbd
+    ./stirling-pdf
   ];
 
   minecraft.enable = false;
