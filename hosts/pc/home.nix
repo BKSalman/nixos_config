@@ -6,6 +6,7 @@
 }: {
   # TODO: find a better way for home manager modules
   imports = [
+    ../../modules/nix/home.nix
     ../../modules/x11/leftwm/config.nix
     ../../modules/helix/home.nix
     ../../modules/zellij/home.nix
@@ -162,8 +163,6 @@
     gh
     eza
     discord
-    zoxide
-    starship
     piper
     spotify
     kdePackages.kdenlive

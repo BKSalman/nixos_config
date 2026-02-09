@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [
+    ../../modules/nix/home.nix
     ../../modules/helix/home.nix
     ../../modules/mpv/home.nix
     ../../modules/bash/home.nix
@@ -234,15 +235,6 @@
   '';
 
   home.file.".config/starship.toml".source = ../../modules/starship.toml;
-
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
-  programs.zoxide.enable = true;
-
-  # programs.nushell.enable = true;
 
   programs.lazygit.enable = true;
 }

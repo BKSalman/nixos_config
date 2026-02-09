@@ -4,9 +4,11 @@
   ...
 }: {
   imports = [
+    ../../modules/nix/home.nix
     ../../modules/helix/home.nix
     ../../modules/mpv/home.nix
     ../../modules/bash/home.nix
+    ../../modules/fish/home.nix
     ../../modules/quickshell/home.nix
   ];
 
@@ -140,15 +142,6 @@
     Name=UXplay
     Icon=~/.local/share/applications/Airplay.png
   '';
-
-  home.file.".config/starship.toml".source = ../../modules/starship.toml;
-
-  programs.starship = {
-    enable = true;
-    enableBashIntegration = true;
-  };
-
-  programs.zoxide.enable = true;
 
   programs.lazygit.enable = true;
 }

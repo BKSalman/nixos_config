@@ -9,8 +9,4 @@ export MANROFFOPT="-c"
 
 export EDITOR=hx
 
-eval "$(starship init bash)"
-
-eval "$(zoxide init bash)"
-
 eval "$(direnv hook bash)"
