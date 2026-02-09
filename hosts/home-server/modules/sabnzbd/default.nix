@@ -15,12 +15,6 @@
   nsIp = "10.200.1.2";
   sabPort = 2142;
 in {
-  disabledModules = ["services/networking/sabnzbd.nix"];
-
-  imports = [
-    ./module.nix
-  ];
-
   # Create the network namespace and veth pair
   systemd.services."netns-${nsName}" = {
     description = "Network namespace for SABnzbd";
