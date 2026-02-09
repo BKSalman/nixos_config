@@ -202,6 +202,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    opencode
     thunderbird
     framework-tool
     eza
@@ -240,7 +241,6 @@ in {
     rustup
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
-    git
     easyeffects
     podman-compose
     acpica-tools
@@ -316,6 +316,13 @@ in {
   system.stateVersion = "23.11"; # Did you read the comment?
 
   hardware.keyboard.zsa.enable = true;
+
+  programs.kdeconnect.enable = true;
+
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
+  };
 
   programs.nix-ld = {
     enable = true;
