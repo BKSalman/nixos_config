@@ -15,6 +15,7 @@
     ../../modules/mpv/home.nix
     ../../modules/hyprland/home.nix
     ../../modules/jay/home.nix
+    ../../modules/fish/home.nix
   ];
 
   # Home Manager needs a bit of information about you and the
