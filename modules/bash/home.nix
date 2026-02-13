@@ -6,7 +6,7 @@
   programs.bash = {
     enable = true;
     shellAliases = {
-      nd = "nix develop";
+      nd = "nix develop --command fish";
       ls = "eza --time-style=long-iso --group-directories-first --icons --no-permissions --no-user -l --git";
       ll = "eza --time-style=long-iso --group-directories-first --icons -la";
       cat = "bat";

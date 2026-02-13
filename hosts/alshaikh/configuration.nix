@@ -151,7 +151,7 @@ in {
   users.users.salman = {
     isNormalUser = true;
     description = "salman";
-    extraGroups = ["networkmanager" "wheel" "input" "docker" "cdrom"];
+    extraGroups = ["networkmanager" "wheel" "input" "docker" "cdrom" "adbusers"];
     packages = with pkgs; [
       kdePackages.kate
       #  thunderbird
@@ -202,6 +202,7 @@ in {
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    android-tools
     opencode
     thunderbird
     framework-tool
@@ -236,7 +237,6 @@ in {
     sops
     rpcs3
     dolphin-emu
-    vesktop
     gcc
     rustup
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
@@ -333,5 +333,13 @@ in {
       openssl
       stdenv.cc.cc
     ];
+  };
+
+  programs.weylus = {
+    enable = true;
+    users = [
+      "salman"
+    ];
+    openFirewall = true;
   };
 }

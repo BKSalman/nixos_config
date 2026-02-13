@@ -546,28 +546,28 @@
       pango
       harfbuzz
       libnotify
-      xorg.libX11
-      xorg.libXrandr
+      libX11
+      libXrandr
       libxkbcommon
       atk
       cairo
       gdk-pixbuf
       glib
-      xorg.libXScrnSaver
-      xorg.libXtst
-      xorg.libXext
-      xorg.libXfixes
-      xorg.libXrender
-      xorg.libXdamage
+      libXScrnSaver
+      libXtst
+      libXext
+      libXfixes
+      libXrender
+      libXdamage
       libdrm
       libgbm
-      xorg.libXcomposite
+      libXcomposite
       dbus
       expat
       nss
       nspr
       cups
-      xorg.libxcb
+      libxcb
       alsa-lib
     ];
   };

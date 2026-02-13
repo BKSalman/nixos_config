@@ -95,7 +95,6 @@
     hwloc
     nix-index
     winetricks
-    wineWowPackages.stable
     appimage-run
     gamescope
     ytdlp-gui

@@ -9,7 +9,7 @@
     };
 
     shellAbbrs = {
-      nd = "nix develop";
+      nd = "nix develop --command fish";
       sk = "screenkey -g 300x500+1520+600";
       db = "distrobox";
       o = "xdg-open";
