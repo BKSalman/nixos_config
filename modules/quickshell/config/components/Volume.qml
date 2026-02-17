@@ -10,6 +10,8 @@ Item {
     implicitHeight: row.implicitHeight
 
     MouseArea {
+        property real scrollAccumulator: 0
+
         anchors.fill: parent
         acceptedButtons: Qt.LeftButton | Qt.RightButton | Qt.MiddleButton
 
@@ -20,9 +22,24 @@ Item {
                 Services.Audio.toggleMute()
             }
         }
+
         onWheel: wheel => {
             let delta = wheel.angleDelta.y > 0 ? 5 : -5
-            Services.Audio.setVolume(Services.Audio.volume + delta)
+            const dy = wheel.angleDelta.y
+            if ((scrollAccumulator > 0 && dy < 0) || (scrollAccumulator < 0 && dy > 0))
+                scrollAccumulator = 0
+            scrollAccumulator += dy
+            const threshold = 120
+
+            while (Math.abs(scrollAccumulator) >= threshold) {
+                if (scrollAccumulator >= threshold) {
+                    scrollAccumulator -= threshold
+                    Services.Audio.setVolume(Services.Audio.volume + 5)
+                } else if (scrollAccumulator <= -threshold) {
+                    scrollAccumulator += threshold
+                    Services.Audio.setVolume(Services.Audio.volume - 5)
+                }
+            }
         }
     }
 
