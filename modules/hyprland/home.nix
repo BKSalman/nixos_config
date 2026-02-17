@@ -14,5 +14,10 @@
 
   config = lib.mkIf config.hyprland.enable {
     quickshell.enable = true;
+
+    home.file.".config/hypr/hyprland.conf" = {
+      recursive = true;
+      source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/hyprland/hyprland.conf";
+    };
   };
 }
