@@ -8,20 +8,30 @@ RowLayout {
     required property var monitor
     spacing: 4
 
+    property real scrollAccumulator: 0
+
     WheelHandler {
         id: wheel
         acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchPad
 
         onWheel: event => {
             const dy = event.angleDelta.y
+            if ((root.scrollAccumulator > 0 && dy < 0) || (root.scrollAccumulator < 0 && dy > 0))
+                root.scrollAccumulator = 0
+            root.scrollAccumulator += dy
+            const threshold = 120
 
-            if (dy < 0) {
-                if (root.monitor?.activeWorkspace) {
-                    Hyprland.dispatch("workspace " + Math.min(root.monitor?.activeWorkspace?.id + 1, 10))
-                }
-            } else if (dy > 0) {
-                if (root.monitor?.activeWorkspace) {
-                    Hyprland.dispatch("workspace " + Math.max(root.monitor?.activeWorkspace?.id - 1, 0))
+            while (Math.abs(root.scrollAccumulator) >= threshold) {
+                if (root.scrollAccumulator >= threshold) {
+                    root.scrollAccumulator -= threshold
+                    if (root.monitor?.activeWorkspace) {
+                        Hyprland.dispatch("workspace " + Math.max(root.monitor?.activeWorkspace?.id - 1, 1))
+                    }
+                } else if (root.scrollAccumulator <= -threshold) {
+                    root.scrollAccumulator += threshold
+                    if (root.monitor?.activeWorkspace) {
+                        Hyprland.dispatch("workspace " + Math.min(root.monitor?.activeWorkspace?.id + 1, 10))
+                    }
                 }
             }
         }
