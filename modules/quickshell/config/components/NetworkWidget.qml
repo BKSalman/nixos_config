@@ -13,11 +13,11 @@ RowLayout {
         color: Services.Network.connected ? Root.Theme.fg : Root.Theme.fgDim
     }
 
-    Text {
-        text: Services.Network.status
-        font.family: Root.Theme.fontFamily
-        font.pixelSize: Root.Theme.fontSize
-        color: Services.Network.connected ? Root.Theme.fg : Root.Theme.fgDim
-        visible: Services.Network.connected
-    }
+    // Text {
+    //     text: Services.Network.status
+    //     font.family: Root.Theme.fontFamily
+    //     font.pixelSize: Root.Theme.fontSize
+    //     color: Services.Network.connected ? Root.Theme.fg : Root.Theme.fgDim
+    //     visible: Services.Network.connected
+    // }
 }
