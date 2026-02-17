@@ -31,10 +31,18 @@ Item {
         spacing: 4
 
         Text {
+            text: Services.Audio.micIcon
+            font.family: Root.Theme.fontFamily
+            font.pixelSize: 14
+            color: Services.Audio.micMuted ? Root.Theme.fgDim : Root.Theme.fg
+        }
+
+        Text {
             text: Services.Audio.icon
             font.family: Root.Theme.fontFamily
             font.pixelSize: 14
             color: Services.Audio.muted ? Root.Theme.fgDim : Root.Theme.fg
+            Layout.leftMargin: 4
         }
 
         Text {
