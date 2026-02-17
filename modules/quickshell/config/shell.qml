@@ -25,6 +25,10 @@ ShellRoot {
         id: screenshotOverlay
     }
 
+    LockScreen {
+        id: lockScreen
+    }
+
     PanelWindow {
         color: "transparent"
         anchors {
@@ -44,19 +48,17 @@ ShellRoot {
 
     SocketServer {
         active: true
-        path: "/tmp/quickshell-screenshot.sock"
+        path: "/tmp/quickshell.sock"
 
         handler: Socket {
             id: handler
-
-            onConnectedChanged: {
-                console.log(connected ? "new connection!" : "connection dropped!");
-            }
 
             parser: SplitParser {
                 onRead: msg => {
                     if (msg === "screenshot") {
                         screenshotOverlay.activate(handler);
+                    } else if (msg === "lock") {
+                        lockScreen.lock();
                     }
                 }
             }

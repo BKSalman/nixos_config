@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-SOCKET="/tmp/quickshell-screenshot.sock"
+SOCKET="/tmp/quickshell.sock"
 
 if [ ! -S "$SOCKET" ]; then
     echo "Screenshot" "QuickShell not running"

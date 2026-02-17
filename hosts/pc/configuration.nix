@@ -20,6 +20,8 @@
 
   hyprland.enable = true;
 
+  quickshell.enable = true;
+
   sadmadbotlad.enable = true;
 
   programs.nh = {

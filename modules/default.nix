@@ -9,6 +9,7 @@
     ./niri
     ./sway
     ./hyprland
+    ./quickshell
     ./cosmic
     ./nix.nix
     ./ssh.nix
