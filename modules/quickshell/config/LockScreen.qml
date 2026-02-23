@@ -19,7 +19,7 @@ Scope {
     IdleMonitor {
         timeout: 600
         onIsIdleChanged: {
-            if (isIdle && !lock.locked) {
+            if (isIdle && !lock.locked && !Services.Media.playing) {
                 lock.locked = true;
             }
         }
