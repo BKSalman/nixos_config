@@ -20,9 +20,16 @@ Singleton {
     }
 
     Connections {
-        target: Pipewire.defaultAudioSink?.audio
+        target: Pipewire.defaultAudioSink?.audio ?? null
 
         function onVolumeChanged() {
+        }
+    }
+
+    Connections {
+        target: Pipewire.defaultAudioSource?.audio ?? null
+
+        function onMutedChanged() {
         }
     }
 

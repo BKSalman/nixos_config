@@ -4,10 +4,12 @@ import Quickshell
 import Quickshell.Services.Notifications
 import Quickshell.Io
 import Quickshell.Wayland
+import "components"
 
 ShellRoot {
     ActivateLinux {}
     Bar {}
+    MicMuteOSD {}
 
     // Notification server - enables notifications to be received
     // You can build a notification popup UI using NotificationServer.notifications
