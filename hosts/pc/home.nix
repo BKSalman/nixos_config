@@ -159,12 +159,9 @@
     lazygit
     flameshot
     ngrok
-    piper
-    libratbag
     gh
     eza
     discord
-    piper
     spotify
     kdePackages.kdenlive
     chatterino2

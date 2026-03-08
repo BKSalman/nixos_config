@@ -216,6 +216,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    piper
     opencode
     android-tools
     libva-utils
@@ -292,7 +293,6 @@
     zellij
 
     xdg-utils
-    solaar
     gparted
     # docker-compose
     # podman-compose
@@ -380,7 +380,10 @@
   programs.partition-manager.enable = true;
 
   services.ratbagd.enable = true;
-
+  hardware.logitech.wireless = {
+    enable = true;
+    enableGraphical = true;  # this pulls in Solaar GUI
+  };
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path

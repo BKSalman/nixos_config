@@ -123,7 +123,6 @@
     mpv
     frp
     gh
-    piper
     spotify
     chatterino2
     alacritty

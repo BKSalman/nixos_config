@@ -185,12 +185,9 @@
     prismlauncher
     flameshot
     ngrok
-    piper
-    libratbag
     gh
     eza
     discord
-    piper
     spotify
     kdePackages.kate
     chatterino2
