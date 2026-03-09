@@ -13,6 +13,9 @@
       enable = true;
     };
 
+    environment.etc."xdg/menus/applications.menu".source =
+      "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+
     environment.systemPackages = with pkgs; [
       (rofi.override {plugins = [pkgs.rofi-emoji];})
       hyprpaper
@@ -20,10 +23,6 @@
       grimblast
       hyprpicker
       cliphist
-      # mako
-      # swayidle
-      # swaylock-effects
-      waybar
     ];
 
     services.displayManager.sessionPackages = [

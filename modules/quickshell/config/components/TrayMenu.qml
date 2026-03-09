@@ -33,7 +33,12 @@ PopupWindow {
 
     HyprlandFocusGrab {
         id: focusGrab
-        windows: [popup]
+        windows: {
+            const list = [popup];
+            const barWin = anchorItem?.QsWindow?.window ?? null;
+            if (barWin) list.push(barWin);
+            return list;
+        }
         active: popup.visible
         onCleared: popup.close()
     }
