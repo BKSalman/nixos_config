@@ -216,6 +216,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    typst
     piper
     opencode
     android-tools
