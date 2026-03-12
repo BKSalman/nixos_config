@@ -3,33 +3,33 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Wayland
 import Quickshell.Services.Pipewire
 import ".." as Root
 
-PopupWindow {
+PanelWindow {
     id: popup
 
     required property Item anchorItem
 
     visible: false
-    color: Root.Theme.bg
+    color: "transparent"
 
-    anchor.window: anchorItem?.QsWindow?.window ?? null
-    anchor.adjustment: PopupAdjustment.Flip
+    exclusionMode: ExclusionMode.Ignore
+    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.namespace: "quickshell-mixer"
 
-    anchor.onAnchoring: {
-        if (!anchorItem) return;
-        const window = anchorItem.QsWindow.window;
-        if (!window) return;
-        const mapped = window.contentItem.mapFromItem(
-            anchorItem, 0, - anchorItem.height - popup.implicitHeight,
-            anchorItem.width, anchorItem.height
-        );
-        popup.anchor.rect = mapped;
+    // Use the same screen as the bar
+    screen: anchorItem?.QsWindow?.window?.screen ?? null
+
+    anchors {
+        top: true
+        left: true
+        right: true
+        bottom: true
     }
 
-    implicitWidth: Math.max(content.implicitWidth + 20, 300)
-    implicitHeight: Math.min(content.implicitHeight + 20, 400)
+    mask: Region { item: mixerContent }
 
     HyprlandFocusGrab {
         windows: [popup]
@@ -38,7 +38,11 @@ PopupWindow {
     }
 
     function toggle() {
-        visible = !visible;
+        if (visible) {
+            close();
+        } else {
+            open();
+        }
     }
 
     function open() {
@@ -49,40 +53,60 @@ PopupWindow {
         visible = false;
     }
 
-    ScrollView {
-        anchors.fill: parent
-        contentWidth: availableWidth
+    Rectangle {
+        id: mixerContent
 
-        ColumnLayout {
-            id: content
+        width: Math.max(content.implicitWidth + 20, 300)
+        height: Math.min(content.implicitHeight + 20, 400)
+        color: Root.Theme.bg
+        radius: Root.Theme.radius
 
+        // Position relative to the anchor item within the bar
+        x: {
+            if (!popup.anchorItem) return 0;
+            const barWin = popup.anchorItem.QsWindow?.window;
+            if (!barWin) return 0;
+            barWin.windowTransform;
+            const pos = barWin.itemPosition(popup.anchorItem);
+            const ideal = pos.x + popup.anchorItem.width / 2 - width / 2;
+            return Math.max(0, Math.min(ideal, popup.width - width));
+        }
+
+        // Place above the bar
+        y: parent.height - Root.Theme.barHeight - height - 4
+
+        ScrollView {
             anchors.fill: parent
-            anchors.margins: 10
+            contentWidth: availableWidth
 
-            // get a list of nodes that output to the default sink
-            PwNodeLinkTracker {
-                id: linkTracker
-                node: Pipewire.defaultAudioSink
-            }
+            ColumnLayout {
+                id: content
 
-            MixerEntry {
-                node: Pipewire.defaultAudioSink
-            }
+                anchors.fill: parent
+                anchors.margins: 10
 
-            Rectangle {
-                Layout.fillWidth: true
-                color: palette.active.text
-                implicitHeight: 1
-            }
-
-            Repeater {
-                model: linkTracker.linkGroups
+                PwNodeLinkTracker {
+                    id: linkTracker
+                    node: Pipewire.defaultAudioSink
+                }
 
                 MixerEntry {
-                    required property PwLinkGroup modelData
-                    // Each link group contains a source and a target.
-                    // Since the target is the default sink, we want the source.
-                    node: modelData.source
+                    node: Pipewire.defaultAudioSink
+                }
+
+                Rectangle {
+                    Layout.fillWidth: true
+                    color: palette.active.text
+                    implicitHeight: 1
+                }
+
+                Repeater {
+                    model: linkTracker.linkGroups
+
+                    MixerEntry {
+                        required property PwLinkGroup modelData
+                        node: modelData.source
+                    }
                 }
             }
         }

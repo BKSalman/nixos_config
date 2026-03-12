@@ -2,43 +2,38 @@ import QtQuick
 import QtQuick.Controls
 import Quickshell
 import Quickshell.Hyprland
+import Quickshell.Wayland
 import Quickshell.Widgets
 import ".." as Root
 
-PopupWindow {
+PanelWindow {
     id: popup
 
     required property var trayItem
     required property Item anchorItem
 
     visible: false
-    anchor.window: anchorItem?.QsWindow?.window ?? null
-    anchor.adjustment: PopupAdjustment.Flip
+    color: "transparent"
 
-    anchor.onAnchoring: {
-        if (!anchorItem) return;
-        const window = anchorItem.QsWindow.window;
-        if (!window) return;
-        const mapped = window.contentItem.mapFromItem(
-            anchorItem, 0, - anchorItem.height - popup.height + 4,
-            anchorItem.width, anchorItem.height
-        );
-        popup.anchor.rect = mapped;
+    exclusionMode: ExclusionMode.Ignore
+    WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.namespace: "quickshell-traymenu"
+
+    // Use the same screen as the bar
+    screen: anchorItem?.QsWindow?.window?.screen ?? null
+
+    anchors {
+        top: true
+        left: true
+        right: true
+        bottom: true
     }
 
-    color: Root.Theme.bg
-
-    implicitWidth: menuStack.implicitWidth
-    implicitHeight: menuStack.implicitHeight
+    // Only the menu content area is clickable
+    mask: Region { item: menuContent }
 
     HyprlandFocusGrab {
-        id: focusGrab
-        windows: {
-            const list = [popup];
-            const barWin = anchorItem?.QsWindow?.window ?? null;
-            if (barWin) list.push(barWin);
-            return list;
-        }
+        windows: [popup]
         active: popup.visible
         onCleared: popup.close()
     }
@@ -57,36 +52,47 @@ PopupWindow {
 
     function close() {
         visible = false;
-        // Delay stack reset to avoid visual glitch
         Qt.callLater(() => menuStack.pop(null));
     }
 
-    // Catch clicks on the background to close
-    MouseArea {
-        anchors.fill: parent
-        acceptedButtons: Qt.LeftButton | Qt.RightButton
-        propagateComposedEvents: true
-        z: -1
+    Rectangle {
+        id: menuContent
 
-        onClicked: event => {
-            event.accepted = false; // Let it propagate to children
-        }
-    }
+        width: menuStack.implicitWidth
+        height: menuStack.implicitHeight
+        color: Root.Theme.bg
+        radius: Root.Theme.radius
 
-    StackView {
-        id: menuStack
-
-        implicitWidth: currentItem?.implicitWidth ?? 200
-        implicitHeight: currentItem?.implicitHeight ?? 100
-
-        initialItem: SubMenu {
-            handle: popup.trayItem.menu
+        // Position relative to the anchor item within the bar
+        x: {
+            if (!popup.anchorItem) return 0;
+            const barWin = popup.anchorItem.QsWindow?.window;
+            if (!barWin) return 0;
+            barWin.windowTransform;
+            const pos = barWin.itemPosition(popup.anchorItem);
+            const ideal = pos.x + popup.anchorItem.width / 2 - width / 2;
+            return Math.max(0, Math.min(ideal, popup.width - width));
         }
 
-        pushEnter: Transition { NumberAnimation { duration: 0 } }
-        pushExit: Transition { NumberAnimation { duration: 0 } }
-        popEnter: Transition { NumberAnimation { duration: 0 } }
-        popExit: Transition { NumberAnimation { duration: 0 } }
+        // Place above the bar
+        y: parent.height - Root.Theme.barHeight - height - 4
+
+        StackView {
+            id: menuStack
+            anchors.fill: parent
+
+            implicitWidth: currentItem?.implicitWidth ?? 200
+            implicitHeight: currentItem?.implicitHeight ?? 100
+
+            initialItem: SubMenu {
+                handle: popup.trayItem.menu
+            }
+
+            pushEnter: Transition { NumberAnimation { duration: 0 } }
+            pushExit: Transition { NumberAnimation { duration: 0 } }
+            popEnter: Transition { NumberAnimation { duration: 0 } }
+            popExit: Transition { NumberAnimation { duration: 0 } }
+        }
     }
 
     component SubMenu: Column {
@@ -128,7 +134,7 @@ PopupWindow {
                     spacing: 4
 
                     Text {
-                        text: "‹"
+                        text: "\u2039"
                         font.family: Root.Theme.fontFamily
                         font.pixelSize: Root.Theme.fontSize
                         color: Root.Theme.fg
@@ -217,7 +223,7 @@ PopupWindow {
                         // Submenu arrow
                         Text {
                             visible: menuItem.modelData.hasChildren
-                            text: "›"
+                            text: "\u203A"
                             font.family: Root.Theme.fontFamily
                             font.pixelSize: Root.Theme.fontSize
                             color: menuItem.modelData.enabled ? Root.Theme.fg : Root.Theme.fgDim
