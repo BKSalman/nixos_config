@@ -31,6 +31,14 @@ ShellRoot {
         id: lockScreen
     }
 
+    IpcHandler {
+        target: "shell"
+
+        function lock(): void {
+            lockScreen.lock();
+        }
+    }
+
     PanelWindow {
         color: "transparent"
         anchors {
@@ -59,8 +67,6 @@ ShellRoot {
                 onRead: msg => {
                     if (msg === "screenshot") {
                         screenshotOverlay.activate(handler);
-                    } else if (msg === "lock") {
-                        lockScreen.lock();
                     }
                 }
             }

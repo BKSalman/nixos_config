@@ -13,6 +13,7 @@ PanelWindow {
 
     exclusionMode: ExclusionMode.Ignore
     WlrLayershell.layer: WlrLayer.Overlay
+    WlrLayershell.keyboardFocus: WlrKeyboardFocus.Exclusive
 
     anchors {
         top: true
