@@ -67,7 +67,6 @@
 
     nixos-hardware = {
       url = "github:NixOS/nixos-hardware/master";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     reaction-roles-bot = {
@@ -82,7 +81,6 @@
 
     proxmox-nixos = {
       url = "github:SaumonNet/proxmox-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     quickshell = {

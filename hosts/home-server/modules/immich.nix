@@ -7,6 +7,7 @@
 in {
   services.immich = {
     enable = true;
+    host = "0.0.0.0";
     mediaLocation = "/mnt/immich/data";
   };
 
@@ -22,7 +23,7 @@ in {
       forceSSL = true;
       enableACME = true;
       locations."/" = {
-        proxyPass = "http://[::1]:${toString config.services.immich.port}";
+        proxyPass = "http://127.0.0.1:${toString config.services.immich.port}";
         proxyWebsockets = true;
         recommendedProxySettings = true;
         extraConfig = ''
