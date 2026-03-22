@@ -14,6 +14,7 @@
     # ./deluge.nix
     ./minecraft.nix
     ./cloudflared.nix
+    ./newt.nix
     ./paperless.nix
     ./proxmox.nix
     ./ryot.nix
