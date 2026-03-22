@@ -16,11 +16,10 @@
 
     xdg.portal = {
       enable = true;
-      extraPortals = with pkgs; [ xdg-desktop-portal-hyprland ];
+      extraPortals = with pkgs; [xdg-desktop-portal-hyprland];
     };
 
-    environment.etc."xdg/menus/applications.menu".source =
-      "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+    environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
     environment.etc = {
       "xdg/qt5ct/qt5ct.conf".text = ''

@@ -41,6 +41,9 @@
         sab-config = {
           owner = "sabnzbd";
         };
+        grafana-secret-key = {
+          owner = "grafana";
+        };
       }
     ];
   };

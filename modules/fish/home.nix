@@ -55,7 +55,7 @@
   };
 
   # use fish only for interactive shells (not login shell) because it's not posix, and could break something
-  programs.bash.initExtra  = ''
+  programs.bash.initExtra = ''
     if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
     then
       shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""

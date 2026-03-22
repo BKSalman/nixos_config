@@ -215,8 +215,23 @@
 
   environment.localBinInPath = true;
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; let
+    orca-slicer-wrapped = pkgs.symlinkJoin {
+      name = "orca-slicer-wrapped";
+      paths = [pkgs.orca-slicer];
+      buildInputs = [pkgs.makeWrapper];
+      postBuild = ''
+        wrapProgram $out/bin/orca-slicer \
+          --set __GLX_VENDOR_LIBRARY_NAME mesa \
+          --set __EGL_VENDOR_LIBRARY_FILENAMES "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json" \
+          --set MESA_LOADER_DRIVER_OVERRIDE zink \
+          --set GALLIUM_DRIVER zink \
+          --set WEBKIT_DISABLE_DMABUF_RENDERER 1 \
+      '';
+    };
+  in [
     typst
+    tinymist
     piper
     opencode
     android-tools
@@ -224,7 +239,7 @@
     anki
     socat
     bitwarden-desktop
-    orca-slicer
+    orca-slicer-wrapped
     python3
     obs-studio-plugins.obs-vkcapture
     claude-code
@@ -326,6 +341,7 @@
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
+    (noto-fonts.override {variants = ["NotoKufiArabic"];})
     corefonts
     # fira-code
     # fira-code-symbols
@@ -383,7 +399,7 @@
   services.ratbagd.enable = true;
   hardware.logitech.wireless = {
     enable = true;
-    enableGraphical = true;  # this pulls in Solaar GUI
+    enableGraphical = true; # this pulls in Solaar GUI
   };
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
@@ -573,4 +589,12 @@
   uxplay.enable = true;
 
   hardware.keyboard.zsa.enable = true;
+
+  programs.weylus = {
+    enable = true;
+    users = [
+      "salman"
+    ];
+    openFirewall = true;
+  };
 }

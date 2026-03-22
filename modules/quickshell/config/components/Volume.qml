@@ -24,7 +24,6 @@ Item {
         }
 
         onWheel: wheel => {
-            let delta = wheel.angleDelta.y > 0 ? 5 : -5
             const dy = wheel.angleDelta.y
             if ((scrollAccumulator > 0 && dy < 0) || (scrollAccumulator < 0 && dy > 0))
                 scrollAccumulator = 0

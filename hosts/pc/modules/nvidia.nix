@@ -46,6 +46,6 @@
 
   environment.sessionVariables = {
     LIBVA_DRIVER_NAME = "nvidia";
-    NVD_BACKEND="direct";
+    NVD_BACKEND = "direct";
   };
 }
