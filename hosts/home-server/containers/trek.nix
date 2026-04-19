@@ -8,7 +8,7 @@
 
   # Docker container
   virtualisation.oci-containers.containers.trek = {
-    image = "mauriceboe/trek:2.9.8";
+    image = "mauriceboe/trek:2.9.14";
     ports = ["3001:3000"];
     volumes = [
       "/mnt/trek/data:/app/data"
