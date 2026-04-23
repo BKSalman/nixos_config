@@ -9,7 +9,7 @@ in {
 
   # TODO: move all multimedia stuff to a single module
   systemd.tmpfiles.rules = [
-    "d /mnt/media 0770 - multimedia - -"
+    "d /mnt/media 0775 - multimedia - -"
   ];
 
   services.nginx.virtualHosts.${domain} = {

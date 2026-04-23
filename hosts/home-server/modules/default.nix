@@ -22,6 +22,7 @@
     ./qbittorrent
     ./sabnzbd
     ./stirling-pdf
+    ./recyclarr.nix
   ];
 
   minecraft.enable = false;

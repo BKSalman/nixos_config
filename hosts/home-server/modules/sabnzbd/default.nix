@@ -120,6 +120,8 @@ in {
         complete_dir = "${dataDir}/complete";
         # Bind to the namespace IP so it's accessible via veth
         host = "0.0.0.0";
+        # Set permissions so group members (radarr/sonarr) can access files
+        permissions = "775";
       };
     };
   };

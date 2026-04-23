@@ -44,6 +44,9 @@
         grafana-secret-key = {
           owner = "grafana";
         };
+        sonarr-api-key = {
+          owner = "recyclarr";
+        };
       }
     ];
   };
