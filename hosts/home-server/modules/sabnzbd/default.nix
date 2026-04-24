@@ -132,6 +132,7 @@ in {
     requires = ["wg-quick-wg-${nsName}.service"];
     serviceConfig = {
       NetworkNamespacePath = "/var/run/netns/${nsName}";
+      UMask = "0002";
     };
   };
 
