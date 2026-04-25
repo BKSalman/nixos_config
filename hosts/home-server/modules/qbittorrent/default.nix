@@ -20,12 +20,12 @@ in {
         # LegalNotice.Accepted = true;
         BitTorrent = {
           Session = {
-            GlobalDLSpeedLimit = 6500;
+            # GlobalDLSpeedLimit = 6500;
             GlobalUPSpeedLimit = 2000;
             Interface = "wg-mullvad";
             InterfaceName = "wg-mullvad";
             Preallocation = true;
-            defaultSavePath = "${dataDir}/torrents";
+            DefaultSavePath = "${dataDir}/torrents";
             FinishedTorrentExportDirectory = "${dataDir}/torrents/complete";
             SubcategoriesEnabled = true;
             QueueingSystemEnabled = false;
@@ -44,6 +44,12 @@ in {
       webuiPort = 4414;
       torrentingPort = 3313;
       openFirewall = true;
+    };
+
+    systemd.services.qbittorrent = {
+      serviceConfig = {
+        UMask = "0002";
+      };
     };
 
     services.nginx.virtualHosts.${domain} = {

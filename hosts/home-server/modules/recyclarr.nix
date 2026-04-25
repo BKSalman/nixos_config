@@ -104,6 +104,22 @@
               # "abe720fab2d27682adc2a735136cec02"  # [Streaming Services] General
             ];
           };
+
+          custom_formats = [
+            {
+              trash_ids = ["0329044e3d9137b08502a9f84a7e58db"]; # Anime BD Tier 07 (P2P/Scene)
+              assign_scores_to = [
+                {
+                  name = "[Anime] Remux-1080p";
+                  score = 100;
+                }
+                {
+                  name = "WEB-1080p";
+                  score = 100;
+                }
+              ];
+            }
+          ];
         };
       };
     };
