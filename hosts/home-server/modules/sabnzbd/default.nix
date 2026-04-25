@@ -64,6 +64,10 @@ in {
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = pkgs.writeShellScript "wg-up" ''
+        # Configure DNS for the namespace
+        mkdir -p /etc/netns/${nsName}
+        echo "nameserver 10.64.0.1" > /etc/netns/${nsName}/resolv.conf
+
         # Create wireguard interface inside the namespace
         ${pkgs.iproute2}/bin/ip link add wg-${nsName} type wireguard
         ${pkgs.iproute2}/bin/ip link set wg-${nsName} netns ${nsName}
