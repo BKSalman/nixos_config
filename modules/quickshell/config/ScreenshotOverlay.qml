@@ -86,7 +86,7 @@ PanelWindow {
 
                 // Border
                 ctx.strokeStyle = Theme.accent;
-                ctx.lineWidth = 6;
+                ctx.lineWidth = 1;
                 ctx.strokeRect(geomRect.selX, geomRect.selY, geomRect.selW, geomRect.selH);
             }
         }
@@ -135,7 +135,7 @@ PanelWindow {
             geomRect.visible = false;
 
             if (overlay.socket && geomRect.selW > 0 && geomRect.selH > 0) {
-                const geom = `${geomRect.selX},${geomRect.selY} ${geomRect.selW}x${geomRect.selH}`;
+                const geom = `${geomRect.selX+geomRect.borderWidth},${geomRect.selY+geomRect.borderWidth} ${geomRect.selW-geomRect.borderWidth}x${geomRect.selH-geomRect.borderWidth}`;
                 overlay.socket.write(geom + "\n");
                 overlay.socket.flush();
             } else if (overlay.socket) {
