@@ -964,6 +964,7 @@
         "reaction-roles-bot": "reaction-roles-bot",
         "sadmadbotlad": "sadmadbotlad",
         "sops-nix": "sops-nix",
+        "yeetmouse": "yeetmouse",
         "ytdlp-gui": "ytdlp-gui"
       }
     },
@@ -1278,6 +1279,28 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "yeetmouse": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "dir": "nix",
+        "lastModified": 1776863312,
+        "narHash": "sha256-YBMcJrtMAxMt/MGrLsEYt6Xlfmm9e5tMHga5YA1Hdg8=",
+        "owner": "AndyFilter",
+        "repo": "YeetMouse",
+        "rev": "63f133462aba176178dcdd9caaee7cb242f06384",
+        "type": "github"
+      },
+      "original": {
+        "dir": "nix",
+        "owner": "AndyFilter",
+        "repo": "YeetMouse",
         "type": "github"
       }
     },

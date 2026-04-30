@@ -88,7 +88,6 @@
     wayvnc
     libreoffice-qt
     inkscape
-    helvum
     sd
     # davinci-resolve
     audacity
@@ -116,12 +115,10 @@
     nixpkgs-review
     xdg-user-dirs
     ludusavi
-    swww
     yt-dlp
     # mpvpaper
     pacman
     lolcat
-    neofetch
     zoom-us
     playerctl
     # cava
@@ -147,10 +144,10 @@
     zenith-nvidia
     htop
     btop
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted
-    nodePackages.svelte-language-server
-    nodePackages.pnpm
+    typescript-language-server
+    vscode-langservers-extracted
+    svelte-language-server
+    pnpm
     nodejs
     vscode
     sqlx-cli

@@ -87,6 +87,11 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    yeetmouse = {
+      url = "github:AndyFilter/YeetMouse?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -109,6 +114,7 @@
     nur,
     proxmox-nixos,
     quickshell,
+    yeetmouse,
     ...
   }: let
     system = "x86_64-linux";
@@ -139,6 +145,7 @@
         ];
       };
       overlays = [
+        yeetmouse.overlays.default
         manmap.overlay
         leftwm.overlays.default
         ytdlp-gui.overlay

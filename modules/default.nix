@@ -13,5 +13,6 @@
     ./cosmic
     ./nix.nix
     ./ssh.nix
+    ./yeetmouse.nix
   ];
 }

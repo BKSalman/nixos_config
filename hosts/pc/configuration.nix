@@ -195,7 +195,7 @@
   users.users.salman = {
     isNormalUser = true;
     description = "Salman";
-    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "audio" "video" "adbusers" "plugdev" "dialout" "wireshark"];
+    extraGroups = ["networkmanager" "wheel" "kvm" "docker" "podman" "sddm" "input" "audio" "video" "adbusers" "plugdev" "dialout" "wireshark"];
     packages = with pkgs; [
       # kdePackages.kate
       #  thunderbird
@@ -230,6 +230,8 @@
       '';
     };
   in [
+    clang-tools
+    awww
     typst
     tinymist
     piper
@@ -284,9 +286,6 @@
     waydroid
     lutris
     heroic
-    # winetricks
-    # wineWowPackages.stable
-    wineWowPackages.waylandFull
     zathura
     # mypaint
     # easyeffects
