@@ -9,6 +9,7 @@ in {
     enable = true;
     # dataDir = "/mnt/jellyfin";
     openFirewall = true;
+    cacheDir = "/mnt/jellyfin/cache";
     group = "multimedia";
   };
 
