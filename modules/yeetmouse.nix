@@ -1,13 +1,16 @@
-{ config, pkgs, ... }:
-let
+{
+  config,
+  pkgs,
+  ...
+}: let
   yeetmouse = pkgs.yeetmouse.override {
     inherit (config.boot.kernelPackages) kernel;
   };
 
-  echo     = "${pkgs.coreutils}/bin/echo";
+  echo = "${pkgs.coreutils}/bin/echo";
   modprobe = "${pkgs.kmod}/bin/modprobe";
   basename = "${pkgs.coreutils}/bin/basename";
-  dirname  = "${pkgs.coreutils}/bin/dirname";
+  dirname = "${pkgs.coreutils}/bin/dirname";
 
   setupKensington = pkgs.writeShellScriptBin "yeetmouse-setup" ''
     ${modprobe} yeetmouse
@@ -21,12 +24,11 @@ let
     ${echo} "0.0" > /sys/module/yeetmouse/parameters/Acceleration
     ${echo} "1" > /sys/module/yeetmouse/parameters/update
   '';
-in
-{
-  boot.extraModulePackages = [ yeetmouse ];
-  boot.kernelModules = [ "yeetmouse" ];
+in {
+  boot.extraModulePackages = [yeetmouse];
+  boot.kernelModules = ["yeetmouse"];
 
-  environment.systemPackages = [ yeetmouse ];
+  environment.systemPackages = [yeetmouse];
 
   services.udev.extraRules = ''
     ACTION=="add", \

@@ -310,7 +310,7 @@
     xdg-utils
     gparted
     # docker-compose
-    # podman-compose
+    podman-compose
     bat
     # tmux
     egl-wayland

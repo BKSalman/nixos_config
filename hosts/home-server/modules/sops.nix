@@ -47,6 +47,9 @@
         sonarr-api-key = {
           owner = "recyclarr";
         };
+        radarr-api-key = {
+          owner = "recyclarr";
+        };
       }
     ];
   };
