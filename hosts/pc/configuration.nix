@@ -334,19 +334,22 @@
   ];
 
   fonts.packages = with pkgs; [
+    cantarell-fonts        # libadwaita's default UI font
+
     liberation_ttf
+
     nerd-fonts.fira-code
     nerd-fonts.noto
+
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     (noto-fonts.override {variants = ["NotoKufiArabic"];})
+
     corefonts
-    # fira-code
-    # fira-code-symbols
     mplus-outline-fonts.githubRelease
-    # dina-font
-    # proggyfonts
+    dejavu_fonts
+    liberation_ttf
   ];
 
   services.flatpak.enable = true;
