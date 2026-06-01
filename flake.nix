@@ -170,6 +170,7 @@
         specialArgs = {
           inherit sadmadbotlad;
           inherit nixos-cosmic;
+          inherit quickshell;
         };
 
         modules = [

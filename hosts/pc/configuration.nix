@@ -230,6 +230,7 @@
       '';
     };
   in [
+    libnotify
     clang-tools
     awww
     typst
@@ -282,13 +283,11 @@
     rustup
     # looking-glass-client
     # prayer-times-applet
-    easyeffects
     waydroid
     lutris
     heroic
     zathura
     # mypaint
-    # easyeffects
     sendme
     yazi
     ripgrep

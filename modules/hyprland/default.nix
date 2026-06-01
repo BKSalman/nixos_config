@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  quickshell,
   ...
 }: {
   options = {
@@ -20,6 +21,8 @@
     };
 
     environment.etc."xdg/menus/applications.menu".source = "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+    systemd.user.services.drkonqi-coredump-launcher.unitConfig.ConditionEnvironment = "!XDG_CURRENT_DESKTOP=Hyprland";
+    systemd.user.sockets.drkonqi-coredump-launcher.unitConfig.ConditionEnvironment = "!XDG_CURRENT_DESKTOP=Hyprland";
 
     environment.etc = {
       "xdg/qt5ct/qt5ct.conf".text = ''
@@ -32,7 +35,12 @@
       '';
     };
 
+    services.hypridle.enable = true;
+    systemd.user.services.hypridle.path = [ quickshell.packages."x86_64-linux".default ];
+
     environment.systemPackages = with pkgs; [
+      mako
+      hyprshutdown
       (rofi.override {plugins = [pkgs.rofi-emoji];})
       hyprpaper
       grim
