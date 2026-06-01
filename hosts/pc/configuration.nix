@@ -230,6 +230,7 @@
       '';
     };
   in [
+    jq
     libnotify
     clang-tools
     awww
