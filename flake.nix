@@ -92,6 +92,11 @@
       url = "github:AndyFilter/YeetMouse?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    droidux = {
+      url = "github:leath-dub/droidux";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -115,6 +120,7 @@
     proxmox-nixos,
     quickshell,
     yeetmouse,
+    droidux,
     ...
   }: let
     system = "x86_64-linux";
@@ -197,6 +203,10 @@
           }
 
           ./hosts/pc/configuration.nix
+          droidux.nixosModules.default
+          {
+            programs.droidux.enable = true;
+          }
         ];
       };
       laptop = lib.nixosSystem {

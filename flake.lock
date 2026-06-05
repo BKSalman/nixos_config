@@ -163,6 +163,26 @@
         "url": "https://install.determinate.systems/determinate-nixd/tag/v3.17.3/x86_64-linux"
       }
     },
+    "droidux": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1777915321,
+        "narHash": "sha256-WWT1ejMaAsoYRvsS9gPgcuvJaEapfPYZvpeNK/hGkw8=",
+        "owner": "leath-dub",
+        "repo": "droidux",
+        "rev": "86ab27c1b049459b352e70a9edac4dfb4e82c97f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "leath-dub",
+        "repo": "droidux",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -949,6 +969,7 @@
       "inputs": {
         "arion": "arion",
         "determinate": "determinate",
+        "droidux": "droidux",
         "helix": "helix",
         "home-manager": "home-manager",
         "hyprland-contrib": "hyprland-contrib",
