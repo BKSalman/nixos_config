@@ -24,7 +24,8 @@
       set -gx MANROFFOPT "-c"
       set -gx EDITOR "hx"
       set -gx PAGER "less -FRX"
-      set -gx STEEL_LSP_HOME "/home/salman/.config/steel-lsp/"
+      set -gx STEEL_LSP_HOME "$HOME/.config/steel-lsp/"
+      set -gx PATH "$HOME/.cargo/bin:$PATH"
     '';
 
     interactiveShellInit = ''

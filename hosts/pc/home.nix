@@ -68,6 +68,7 @@
 
   programs.firefox = {
     enable = true;
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
   };
 
   # TODO: move important stuff to system conf

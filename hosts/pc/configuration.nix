@@ -131,6 +131,7 @@
       }
     ];
   };
+  boot.zfs.forceImportRoot = false;
   services.zfs.autoScrub.enable = true;
 
   boot.loader.grub.useOSProber = true;
@@ -230,6 +231,7 @@
       '';
     };
   in [
+    lua-language-server
     jq
     libnotify
     clang-tools
@@ -242,7 +244,6 @@
     libva-utils
     anki
     socat
-    bitwarden-desktop
     orca-slicer-wrapped
     python3
     obs-studio-plugins.obs-vkcapture
@@ -366,6 +367,7 @@
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     EDITOR = "hx";
     QT_QPA_PLATFORMTHEME = "kde";
+    QT_QPA_PLATFORM = "wayland";
   };
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
