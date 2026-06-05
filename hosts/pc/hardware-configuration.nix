@@ -51,6 +51,7 @@
   fileSystems."/media/extra" = {
     device = "/dev/disk/by-uuid/78ec7175-a339-4330-a463-d6516b6f169f";
     fsType = "ext4";
+    options = [ "nofail" "noauto" ];
   };
 
   swapDevices = [];
