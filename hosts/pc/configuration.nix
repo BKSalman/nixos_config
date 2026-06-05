@@ -334,7 +334,7 @@
   ];
 
   fonts.packages = with pkgs; [
-    cantarell-fonts        # libadwaita's default UI font
+    cantarell-fonts # libadwaita's default UI font
 
     liberation_ttf
 

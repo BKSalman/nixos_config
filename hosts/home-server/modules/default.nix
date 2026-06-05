@@ -23,8 +23,10 @@
     ./sabnzbd
     ./stirling-pdf
     ./recyclarr.nix
+    ./seafile.nix
   ];
 
+  seafile.enable = true;
   minecraft.enable = false;
   cloudflared.enable = true;
 }
