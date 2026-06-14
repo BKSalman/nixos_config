@@ -4,5 +4,6 @@
     ./nvidia.nix
     ./sadmadbotlad.nix
     ./sops.nix
+    ./newt.nix
   ];
 }
