@@ -1351,11 +1351,11 @@
         "rust-overlay": "rust-overlay_8"
       },
       "locked": {
-        "lastModified": 1778248536,
-        "narHash": "sha256-3fWZxKwT3mgbGIzkZThN5M6g1npMk40688C4osd61uk=",
+        "lastModified": 1781891185,
+        "narHash": "sha256-q6YF5T7u2I8sT9MLoQr/PK10iA2C6qydcZ5ReQNF/PE=",
         "owner": "bksalman",
         "repo": "ytdlp-gui",
-        "rev": "b1ef084667494448479babb6ac4c3df303894139",
+        "rev": "606fc7e107aa3c0eb2ddee99c63e49eefb85ea39",
         "type": "github"
       },
       "original": {

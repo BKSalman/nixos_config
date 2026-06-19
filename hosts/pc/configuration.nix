@@ -231,6 +231,7 @@
       '';
     };
   in [
+    ytdlp-gui
     lua-language-server
     jq
     libnotify
