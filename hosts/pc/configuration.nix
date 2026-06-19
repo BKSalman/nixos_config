@@ -363,7 +363,6 @@
     # LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     # BINDGEN_EXTRA_CLANG_ARGS = "-isystem ${pkgs.llvmPackages.libclang.lib}/lib/clang/${pkgs.lib.getVersion pkgs.clang}/include";
     # PKG_CONFIG_PATH = "${pkgs.openssl.dev}/lib/pkgconfig";
-    WLR_NO_HARDWARE_CURSORS = "1";
     MANROFFOPT = "-c";
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     EDITOR = "hx";
