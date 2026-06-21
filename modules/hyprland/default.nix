@@ -2,7 +2,6 @@
   lib,
   config,
   pkgs,
-  quickshell,
   ...
 }: {
   options = {
@@ -36,7 +35,7 @@
     };
 
     services.hypridle.enable = true;
-    systemd.user.services.hypridle.path = [quickshell.packages."x86_64-linux".default];
+    systemd.user.services.hypridle.path = [pkgs.quickshell];
 
     environment.systemPackages = with pkgs; [
       mako

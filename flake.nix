@@ -272,7 +272,6 @@
             };
             home-manager.extraSpecialArgs = {
               inherit helix;
-              inherit quickshell;
             };
           }
         ];

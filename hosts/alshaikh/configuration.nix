@@ -207,7 +207,6 @@ in {
     thunderbird
     framework-tool
     eza
-    bitwarden-desktop
     uv
     claude-code
     iotop
@@ -235,7 +234,8 @@ in {
     sendme
     tree
     sops
-    rpcs3
+    # waiting for  https://github.com/NixOS/nixpkgs/pull/530692
+    # rpcs3
     dolphin-emu
     gcc
     rustup
