@@ -25,12 +25,12 @@ RowLayout {
                 if (root.scrollAccumulator >= threshold) {
                     root.scrollAccumulator -= threshold
                     if (root.monitor?.activeWorkspace) {
-                        Hyprland.dispatch("workspace " + Math.max(root.monitor?.activeWorkspace?.id - 1, 1))
+                        Hyprland.dispatch("hl.dsp.focus({ workspace = \"%1\" })".arg(Math.max(root.monitor?.activeWorkspace?.id - 1, 1)))
                     }
                 } else if (root.scrollAccumulator <= -threshold) {
                     root.scrollAccumulator += threshold
                     if (root.monitor?.activeWorkspace) {
-                        Hyprland.dispatch("workspace " + Math.min(root.monitor?.activeWorkspace?.id + 1, 10))
+                        Hyprland.dispatch("hl.dsp.focus({ workspace = \"%1\" })".arg(Math.min(root.monitor?.activeWorkspace?.id + 1, 10)))
                     }
                 }
             }
@@ -44,7 +44,7 @@ RowLayout {
             required property int index
             property int wsId: index + 1
             property HyprlandWorkspace ws: Hyprland.workspaces.values.find(w => w.id === wsId) ?? null
-            property bool active: monitor?.activeWorkspace?.id === wsId
+            property bool active: root.monitor?.activeWorkspace?.id === wsId
             property bool occupied: ws !== null && ws.windows > 0
 
             Layout.preferredWidth: 20
@@ -64,7 +64,7 @@ RowLayout {
 
             MouseArea {
                 anchors.fill: parent
-                onClicked: Hyprland.dispatch("workspace " + wsId)
+                onClicked: Hyprland.dispatch("hl.dsp.focus({ workspace = \"%1\" })".arg(parent.wsId))
             }
         }
     }
