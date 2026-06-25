@@ -39,6 +39,7 @@
   # udev rules
   services.udev = {
     packages = [
+      pkgs.probe-rs-tools
     ];
     extraRules = ''
       # Define some simple rules for LPCXpresso supported USB Devices
@@ -231,6 +232,7 @@
       '';
     };
   in [
+    probe-rs-tools
     ytdlp-gui
     lua-language-server
     jq
