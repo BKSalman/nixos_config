@@ -24,9 +24,11 @@
     ./stirling-pdf
     ./recyclarr.nix
     ./seafile.nix
+    ./ntfy.nix
   ];
 
   seafile.enable = true;
   minecraft.enable = false;
   cloudflared.enable = true;
+  ntfy.enable = true;
 }
