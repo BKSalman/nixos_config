@@ -18,5 +18,10 @@
       TZ = "Asia/Riyadh";
       PORT = "3000";
     };
+    extraOptions = [
+      "--add-host=host.docker.internal:host-gateway"
+    ];
   };
+
+  networking.firewall.trustedInterfaces = ["docker0"];
 }

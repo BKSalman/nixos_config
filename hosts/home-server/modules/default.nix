@@ -25,10 +25,12 @@
     ./recyclarr.nix
     ./seafile.nix
     ./ntfy.nix
+    ./ollama.nix
   ];
 
   seafile.enable = true;
   minecraft.enable = false;
   cloudflared.enable = true;
   ntfy.enable = true;
+  ollama.enable = true;
 }
