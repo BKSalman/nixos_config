@@ -218,6 +218,9 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    kdePackages.plasma-bigscreen
+
+    pandoc
     probe-rs-tools
     ytdlp-gui
     lua-language-server
