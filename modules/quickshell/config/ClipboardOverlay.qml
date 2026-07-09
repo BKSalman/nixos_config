@@ -177,6 +177,20 @@ PanelWindow {
                         } else if (event.key === Qt.Key_Up) {
                             if (list.currentIndex > 0) list.currentIndex--;
                             event.accepted = true;
+                        } else if (event.key === Qt.Key_Home) {
+                            if (listModel.count > 0) list.currentIndex = 0;
+                            event.accepted = true;
+                        } else if (event.key === Qt.Key_End) {
+                            if (listModel.count > 0) list.currentIndex = listModel.count - 1;
+                            event.accepted = true;
+                        } else if (event.key === Qt.Key_PageDown) {
+                            if (listModel.count > 0)
+                                list.currentIndex = Math.min(list.currentIndex + 10, listModel.count - 1);
+                            event.accepted = true;
+                        } else if (event.key === Qt.Key_PageUp) {
+                            if (listModel.count > 0)
+                                list.currentIndex = Math.max(list.currentIndex - 10, 0);
+                            event.accepted = true;
                         }
                     }
                 }
