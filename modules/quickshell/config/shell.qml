@@ -27,6 +27,10 @@ ShellRoot {
         id: screenshotOverlay
     }
 
+    ClipboardOverlay {
+        id: clipboardOverlay
+    }
+
     LockScreen {
         id: lockScreen
     }
@@ -67,6 +71,8 @@ ShellRoot {
                 onRead: msg => {
                     if (msg === "screenshot") {
                         screenshotOverlay.activate(handler);
+                    } else if (msg === "clipboard") {
+                        clipboardOverlay.toggle();
                     }
                 }
             }
