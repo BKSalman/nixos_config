@@ -162,6 +162,10 @@
 
   wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
+  services.displayManager.sessionPackages = with pkgs; [
+    kdePackages.plasma-bigscreen
+  ];
+
   environment.plasma6.excludePackages = with pkgs.kdePackages; [
     konsole
     oxygen
