@@ -274,8 +274,6 @@ in {
   programs.steam.enable = true;
   programs.steam.remotePlay.openFirewall = true;
 
-  services.flatpak.enable = true;
-
   virtualisation = {
     # Podman
     oci-containers.backend = "podman";

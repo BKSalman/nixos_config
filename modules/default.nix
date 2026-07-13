@@ -14,5 +14,6 @@
     ./nix.nix
     ./ssh.nix
     ./yeetmouse.nix
+    ./flatpak
   ];
 }

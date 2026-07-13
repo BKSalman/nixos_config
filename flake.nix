@@ -97,6 +97,15 @@
       url = "github:leath-dub/droidux";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    
+    # TEMPORARY: pinned to the last nixpkgs revision known to ship Flatpak 1.16.6.
+    # Flatpak >=1.18.0 leaks the NixOS host environment into the sandbox and breaks
+    # glycin-svg icon loading (e.g. OpenDeck). Remove this input, the overlay-less
+    # services.flatpak.package override below, and this comment once
+    # https://github.com/flatpak/flatpak/issues/6721 is fixed upstream and merged
+    # into nixpkgs (see also flatpak/flatpak#6717, NixOS/nixpkgs#534376).
+    nixpkgs-flatpak.url = "github:NixOS/nixpkgs/51effaf9783e0226281ad10e95a4af6c8a145316";
   };
 
   outputs = {
@@ -121,6 +130,7 @@
     quickshell,
     yeetmouse,
     droidux,
+    nixpkgs-flatpak,
     ...
   }: let
     system = "x86_64-linux";
@@ -177,6 +187,7 @@
           inherit sadmadbotlad;
           inherit nixos-cosmic;
           inherit quickshell;
+          inherit nixpkgs-flatpak;
         };
 
         modules = [
@@ -235,6 +246,7 @@
       alshaikh = lib.nixosSystem {
         specialArgs = {
           inherit nixos-cosmic;
+          inherit nixpkgs-flatpak;
         };
         inherit system pkgs;
 

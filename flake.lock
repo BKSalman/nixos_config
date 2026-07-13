@@ -673,6 +673,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-flatpak": {
+      "locked": {
+        "lastModified": 1781332575,
+        "narHash": "sha256-tyh5yzbIN2ftH+uilyTWR6WCMZQeh3m5iOowTLNodyk=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "51effaf9783e0226281ad10e95a4af6c8a145316",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "51effaf9783e0226281ad10e95a4af6c8a145316",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1769909678,
@@ -994,6 +1010,7 @@
         "nixos-cosmic": "nixos-cosmic",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_6",
+        "nixpkgs-flatpak": "nixpkgs-flatpak",
         "nur": "nur",
         "prismlauncher": "prismlauncher",
         "proxmox-nixos": "proxmox-nixos",
