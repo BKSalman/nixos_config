@@ -102,7 +102,6 @@
     protonup-qt
     wlsunset
     blender
-    # nodePackages_latest.bash-language-server
     ranger
     # huiontablet
     hwloc

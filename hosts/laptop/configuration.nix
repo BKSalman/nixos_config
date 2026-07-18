@@ -9,13 +9,6 @@
     # ../battery.nix
   ];
 
-  nix = {
-    package = pkgs.nixVersions.stable;
-    extraOptions = ''
-      experimental-features = nix-command flakes
-    '';
-  };
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -23,8 +16,11 @@
     options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
   '';
 
-  services.desktopManager.cosmic.enable = true;
-  services.displayManager.cosmic-greeter.enable = true;
+  wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  services.displayManager.sessionPackages = with pkgs; [
+    kdePackages.plasma-bigscreen
+  ];
 
   environment.localBinInPath = true;
 
@@ -64,7 +60,6 @@
     # displayManager.gdm.enable = true;
     # displayManager.gdm.wayland = true;
     # displayManager.defaultSession = "none+leftwm";
-    # desktopManager.plasma5.enable = true;
     # windowManager.bunnuafeth.enable = true;
     enable = true;
     xkb = {
@@ -90,7 +85,7 @@
 
   hardware.bluetooth.enable = true;
 
-  hardware.pulseaudio.enable = false;
+  # hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -107,7 +102,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-  services.libinput.touchpad.naturalScrolling = true;
+#   services.libinput.touchpad.naturalScrolling = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.salman = {
@@ -126,13 +121,14 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    kdePackages.plasma-bigscreen
     sops
     zathura
 
     rustup
     gcc
 
-    probe-rs
+    probe-rs-tools
 
     # IOS
     libimobiledevice
@@ -154,7 +150,7 @@
     neovim
     helix
     wget
-    libsForQt5.ark
+    # libsForQt5.ark
     libsecret
     nix-prefetch
     gamemode
@@ -162,12 +158,12 @@
 
   fonts.packages = with pkgs; [
     liberation_ttf
-    nerdfonts
+    nerd-fonts.fira-code
+    nerd-fonts.noto
     noto-fonts
     noto-fonts-cjk-sans
     noto-fonts-color-emoji
     corefonts
-    google-fonts
     # fira-code
     # fira-code-symbols
     mplus-outline-fonts.githubRelease
@@ -182,8 +178,6 @@
     MANPAGER = "sh -c 'col -bx | bat -l man -p'";
     EDITOR = "hx";
   };
-
-  environment.noXlibs = false;
 
   environment.etc."makepkg.conf".source = "${pkgs.pacman}/etc/makepkg.conf";
 
@@ -223,8 +217,6 @@
 
   services.ratbagd.enable = true;
 
-  services.input-remapper.enable = true;
-
   # xdg-desktop-portal works by exposing a series of D-Bus interfaces
   # known as portals under a well-known name
   # (org.freedesktop.portal.Desktop) and object path
@@ -248,10 +240,10 @@
   # Open ports in the firewall.
   networking.firewall = {
     # enable = false;
-    allowedTCPPorts = [8101 8000 8080 443 11000 4000 53317];
+    allowedTCPPorts = [3389 101 8000 8080 443 11000 4000 53317];
     checkReversePath = "loose";
     trustedInterfaces = ["tailscale0"];
-    allowedUDPPorts = [41641 config.services.tailscale.port];
+    allowedUDPPorts = [3389 41641 config.services.tailscale.port];
   };
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -323,20 +315,20 @@
 
   hardware.opentabletdriver.enable = true;
 
-  systemd.user.services.polkit-auth-agent = {
-    enable = true;
-    description = "polkit-kde-authentication-agent-1";
-    wantedBy = ["graphical-session.target"];
-    wants = ["graphical-session.target"];
-    after = ["graphical-session.target"];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
-      Restart = "on-failure";
-      RestartSec = 1;
-      TimeoutStopSec = 10;
-    };
-  };
+  # systemd.user.services.polkit-auth-agent = {
+  #   enable = true;
+  #   description = "polkit-kde-authentication-agent-1";
+  #   wantedBy = ["graphical-session.target"];
+  #   wants = ["graphical-session.target"];
+  #   after = ["graphical-session.target"];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.libsForQt5.polkit-kde-agent}/libexec/polkit-kde-authentication-agent-1";
+  #     Restart = "on-failure";
+  #     RestartSec = 1;
+  #     TimeoutStopSec = 10;
+  #   };
+  # };
 
   security.pam.services.swaylock = {
     text = ''

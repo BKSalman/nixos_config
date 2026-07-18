@@ -89,7 +89,6 @@
     eww
     cliphist
     protonup-qt
-    nodePackages_latest.bash-language-server
     yazi
     uxplay
     hwloc
@@ -104,7 +103,6 @@
     yt-dlp
     pacman
     lolcat
-    neofetch
     playerctl
     chromium
     pamixer

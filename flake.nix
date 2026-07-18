@@ -222,6 +222,10 @@
       };
       laptop = lib.nixosSystem {
         inherit system pkgs;
+        specialArgs = {
+          inherit quickshell;
+          inherit nixpkgs-flatpak;
+        };
 
         modules = [
           ./hosts/laptop/configuration.nix

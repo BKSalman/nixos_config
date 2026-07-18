@@ -29,6 +29,7 @@
   programs.home-manager.enable = true;
 
   home.pointerCursor = {
+    enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
     size = 24;
@@ -66,14 +67,14 @@
   #   };
   # };
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-      #   dracula-theme.theme-dracula
-      asvetliakov.vscode-neovim
-      #   yzhang.markdown-all-in-one
-    ];
-  };
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = with pkgs.vscode-extensions; [
+  #     #   dracula-theme.theme-dracula
+  #     asvetliakov.vscode-neovim
+  #     #   yzhang.markdown-all-in-one
+  #   ];
+  # };
 
   # TODO: move important stuff to system conf
   home.packages = with pkgs; [
@@ -98,8 +99,6 @@
     jq
     nh
     screenkey
-    taskwarrior
-    taskwarrior-tui
     pdfarranger
     comma
     gf
@@ -112,7 +111,6 @@
     pulseaudio
     magic-wormhole
     libreoffice
-    realvnc-vnc-viewer
     mediainfo
     # python broke here
     # glaxnimate
@@ -123,7 +121,6 @@
     direnv
     qmk
     tokei
-    bottles
     fd
     kondo
     # this is broken for now
@@ -131,7 +128,6 @@
     eww
     cliphist
     protonup-qt
-    nodePackages_latest.bash-language-server
     yazi
     uxplay
     hwloc
@@ -139,22 +135,18 @@
     mypaint
     nix-index
     winetricks
-    wineWowPackages.stable
     appimage-run
     gamescope
-    ytdlp-gui
     ffmpeg_6-full
     thunderbird
     nixpkgs-review
     xdg-user-dirs
     ludusavi
-    swww
+    awww
     yt-dlp
     # mpvpaper
     pacman
     lolcat
-    neofetch
-    zoom-us
     playerctl
     cava
     chromium
@@ -182,13 +174,11 @@
     nodejs
     mpv
     frp
-    prismlauncher
     flameshot
     ngrok
     gh
     eza
     discord
-    spotify
     kdePackages.kate
     chatterino2
     alacritty
