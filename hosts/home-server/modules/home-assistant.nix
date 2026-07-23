@@ -100,7 +100,10 @@ in {
 
   security.acme = {
     acceptTerms = true;
-    defaults.email = "salman.f.abuhaimed@gmail.com";
+    defaults = {
+      email = "salman.f.abuhaimed@gmail.com";
+      dnsResolver = "1.1.1.1:53";
+    };
     certs.${domain} = {
       dnsProvider = "cloudflare";
       environmentFile = config.sops.secrets.cloudflare-api-info.path;
