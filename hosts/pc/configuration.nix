@@ -374,7 +374,8 @@
   #   user = "salman";
   # };
 
-  boot.kernelPackages = pkgs.linuxPackages_6_12;
+  # depends on zfs kernel support
+  boot.kernelPackages = pkgs.linuxPackages_6_18;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 
