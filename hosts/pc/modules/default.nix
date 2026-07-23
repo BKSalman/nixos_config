@@ -5,5 +5,6 @@
     ./sadmadbotlad.nix
     ./sops.nix
     ./newt.nix
+    ./kdev.nix
   ];
 }
