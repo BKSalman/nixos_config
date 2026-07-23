@@ -457,6 +457,8 @@ hl.config({
     },
 })
 
+hl.workspace_rule({ workspace = "1", layout = "scrolling", layout_opts = { direction = "right" } })
+
 hl.device({
     name = "onyx_emp_wacom-i2c-digitizer",
     transform = 2
