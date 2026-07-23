@@ -41,6 +41,10 @@ ShellRoot {
         function lock(): void {
             lockScreen.lock();
         }
+
+        function screenshot(): void {
+            screenshotOverlay.activate();
+        }
     }
 
     PanelWindow {
@@ -69,9 +73,7 @@ ShellRoot {
 
             parser: SplitParser {
                 onRead: msg => {
-                    if (msg === "screenshot") {
-                        screenshotOverlay.activate(handler);
-                    } else if (msg === "clipboard") {
+                    if (msg === "clipboard") {
                         clipboardOverlay.toggle();
                     }
                 }
