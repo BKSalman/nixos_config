@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   domain = "jellyfin.bksalman.com";
@@ -11,7 +12,27 @@ in {
     openFirewall = true;
     cacheDir = "/mnt/jellyfin/cache";
     group = "multimedia";
+    hardwareAcceleration = {
+      enable = true;
+      type = "nvenc";
+      device = "/dev/dri/renderD128";
+    };
+    transcoding = {
+      enableHardwareEncoding = true;
+      hardwareDecodingCodecs = {
+        h264 = true;
+        hevc = true;
+      };
+    };
   };
+
+  systemd.services.jellyfin.serviceConfig.DeviceAllow = lib.mkForce [
+    "/dev/nvidia0 rw"
+    "/dev/nvidiactl rw"
+    "/dev/nvidia-uvm rw"
+    "/dev/nvidia-uvm-tools rw"
+    "/dev/nvidia-modeset rw"
+  ];
 
   services.nginx.virtualHosts.${domain} = {
     forceSSL = true;

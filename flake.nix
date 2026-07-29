@@ -98,7 +98,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    
     # TEMPORARY: pinned to the last nixpkgs revision known to ship Flatpak 1.16.6.
     # Flatpak >=1.18.0 leaks the NixOS host environment into the sandbox and breaks
     # glycin-svg icon loading (e.g. OpenDeck). Remove this input, the overlay-less
@@ -176,6 +175,16 @@
         # proxmox-nixos.overlays.${system}
         nur.overlays.default
       ];
+    };
+
+    hs-pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [];
+        cudaSupport = true;
+      };
+      overlays = [];
     };
 
     lib = nixpkgs.lib;
@@ -277,7 +286,8 @@
         ];
       };
       home-server = lib.nixosSystem {
-        inherit system pkgs;
+        inherit system;
+        pkgs = hs-pkgs;
         specialArgs = {
           inherit proxmox-nixos;
         };

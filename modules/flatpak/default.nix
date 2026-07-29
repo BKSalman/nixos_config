@@ -12,4 +12,3 @@
     package = nixpkgs-flatpak.legacyPackages.${pkgs.system}.flatpak;
   };
 }
-
