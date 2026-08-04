@@ -28,14 +28,14 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  home.pointerCursor = {
-    enable = true;
-    name = "Adwaita";
-    package = pkgs.adwaita-icon-theme;
-    size = 24;
-    gtk.enable = true;
-    x11.enable = true;
-  };
+  # home.pointerCursor = {
+  #   enable = true;
+  #   name = "Adwaita";
+  #   package = pkgs.adwaita-icon-theme;
+  #   size = 24;
+  #   gtk.enable = true;
+  #   x11.enable = true;
+  # };
 
   gtk = {
     enable = true;
@@ -45,170 +45,45 @@
     # };
   };
 
-  # qt = {
-  #   enable = true;
-  #   platformTheme.name = "gtk";
-  # };
-
-  programs.obs-studio = {
-    enable = true;
-    plugins = [
-      pkgs.obs-studio-plugins.wlrobs
-    ];
-  };
-
-  # programs.firefox = {
-  #   enable = true;
-  #   package = pkgs.wrapFirefox pkgs.firefox-unwrapped {
-  #     forceWayland = true;
-  #     extraPolicies = {
-  #       ExtensionSettings = {};
-  #     };
-  #   };
-  # };
-
-  # programs.vscode = {
-  #   enable = true;
-  #   extensions = with pkgs.vscode-extensions; [
-  #     #   dracula-theme.theme-dracula
-  #     asvetliakov.vscode-neovim
-  #     #   yzhang.markdown-all-in-one
-  #   ];
-  # };
-
-  # TODO: move important stuff to system conf
   home.packages = with pkgs; [
-    jdk
-    go
-    cmake
-    meson
-    marksman
-
-    difftastic
-    alejandra
     fzf
     zellij
-    tmux
-    inkscape
     localsend
     ripgrep
-    drawio
     hunspell
     hunspellDicts.en_US
-    xcolor
     jq
-    nh
-    screenkey
-    pdfarranger
-    comma
-    gf
-    haskellPackages.greenclip
-    networkmanagerapplet
-    feh
-    calc
-    termusic
     # just for pactl
     pulseaudio
     magic-wormhole
-    libreoffice
     mediainfo
-    # python broke here
-    # glaxnimate
-    brightnessctl
-    wayvnc
-    maliit-keyboard
-    gimp
-    direnv
-    qmk
-    tokei
     fd
-    kondo
-    # this is broken for now
-    # gifski
-    eww
     cliphist
-    protonup-qt
     yazi
     uxplay
-    hwloc
-    looking-glass-client
-    mypaint
     nix-index
-    winetricks
     appimage-run
-    gamescope
     ffmpeg_6-full
-    thunderbird
-    nixpkgs-review
     xdg-user-dirs
-    ludusavi
-    awww
     yt-dlp
-    # mpvpaper
-    pacman
-    lolcat
     playerctl
-    cava
     chromium
     pamixer
     mpc
-    ncmpcpp
     pavucontrol
     bat
-    # prusa-slicer
-    # cura
-    lutris
-    xclip
-    # freecad
     killall
-    # spice-gtk
     qimgv
-    vopono
     nil
-    onlyoffice-desktopeditors
-    lldb
     unzip
-    neovim
-    htop
     btop
-    nodejs
     mpv
-    frp
-    flameshot
-    ngrok
     gh
     eza
-    discord
     kdePackages.kate
-    chatterino2
     alacritty
     kitty
-    # plasma5Packages.bismuth
-    vim
   ];
-
-  # TODO: move to rofi directory
-  home.file.".config/rofi/off.sh".source = ../../modules/rofi/off.sh;
-  home.file.".config/rofi/launcher.sh".source = ../../modules/rofi/launcher.sh;
-  home.file.".config/rofi/launcher_theme.rasi".source = ../../modules/rofi/launcher_theme.rasi;
-  home.file.".config/rofi/clipboard_theme.rasi".source = ../../modules/rofi/clipboard_theme.rasi;
-  home.file.".config/rofi/powermenu.sh".source = ../../modules/rofi/powermenu.sh;
-  home.file.".config/rofi/powermenu_theme.rasi".source = ../../modules/rofi/powermenu_theme.rasi;
-
-  home.file.".config/evremap/config.toml".source = ../../packages/evremap/config.toml;
-
-  home.file.".local/bin/cliphist-rofi" = {
-    text = ''
-      #!/usr/bin/env bash
-
-      if [ -z "$1" ]; then
-          cliphist list
-      else
-          cliphist decode <<<"$1" | wl-copy
-      fi
-    '';
-    executable = true;
-  };
 
   home.file.".local/share/applications/uxplay.desktop".text = ''
     [Desktop Entry]
