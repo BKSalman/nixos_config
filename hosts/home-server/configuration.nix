@@ -11,6 +11,12 @@
     ../../modules/ssh.nix
   ];
 
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 14d";
+  };
+
   boot = {
     loader = {
       grub.enable = false;
