@@ -1,6 +1,7 @@
 {
   config,
   pkgs,
+  lib,
   ...
 }: let
   yeetmouse = pkgs.yeetmouse.override {
@@ -25,15 +26,21 @@
     ${echo} "1" > /sys/module/yeetmouse/parameters/update
   '';
 in {
-  boot.extraModulePackages = [yeetmouse];
-  boot.kernelModules = ["yeetmouse"];
+  options = {
+    yeetmouse.enable = lib.mkEnableOption "Enable YeetMouse";
+  };
 
-  environment.systemPackages = [yeetmouse];
+  config = lib.mkIf config.yeetmouse.enable {
+    boot.extraModulePackages = [yeetmouse];
+    boot.kernelModules = ["yeetmouse"];
 
-  services.udev.extraRules = ''
-    ACTION=="add", \
-      SUBSYSTEM=="hid", \
-      ATTRS{name}=="Kensington ORBIT WIRELESS TB Mouse", \
-      RUN+="${setupKensington}/bin/yeetmouse-setup"
-  '';
+    environment.systemPackages = [yeetmouse];
+
+    services.udev.extraRules = ''
+      ACTION=="add", \
+        SUBSYSTEM=="hid", \
+        ATTRS{name}=="Kensington ORBIT WIRELESS TB Mouse", \
+        RUN+="${setupKensington}/bin/yeetmouse-setup"
+    '';
+  };
 }
