@@ -104,7 +104,7 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-#   services.libinput.touchpad.naturalScrolling = true;
+  #   services.libinput.touchpad.naturalScrolling = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.salman = {
@@ -170,7 +170,7 @@
   hardware = {
     graphics = {
       enable = true;
-      enable32Bit = true;  # needed for Steam/some apps
+      enable32Bit = true; # needed for Steam/some apps
       extraPackages = with pkgs; [
         mesa
         libva-utils
