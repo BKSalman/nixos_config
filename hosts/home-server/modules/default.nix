@@ -26,6 +26,7 @@
     ./seafile.nix
     ./ntfy.nix
     ./ollama.nix
+    ./ups.nix
   ];
 
   seafile.enable = true;

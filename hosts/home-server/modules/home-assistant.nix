@@ -39,7 +39,6 @@ in {
       "scene ui" = "!include scenes.yaml";
       # "script ui" = "!include scripts.yaml";
     };
-    openFirewall = true;
   };
 
   services.zigbee2mqtt = {
@@ -70,6 +69,7 @@ in {
 
   networking.firewall = {
     allowedTCPPorts = [
+      # config.services.home-assistant.config.http.server_port
       1883
       8088
     ];
