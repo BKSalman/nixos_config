@@ -198,10 +198,16 @@ in {
   #   };
   # };
   # powerManagement.powertop.enable = true;
+  services.udev = {
+    packages = [
+      pkgs.openlogi
+    ];
+  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    openlogi
     android-tools
     opencode
     thunderbird

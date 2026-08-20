@@ -121,7 +121,6 @@
     mpv
     frp
     gh
-    spotify
     chatterino2
     alacritty
     kitty

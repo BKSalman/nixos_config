@@ -158,7 +158,6 @@
     gh
     eza
     discord
-    spotify
     kdePackages.kdenlive
     chatterino2
     alacritty
