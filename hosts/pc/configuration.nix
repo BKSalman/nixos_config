@@ -422,7 +422,7 @@
 
   networking = {
     hostId = "97d1662c";
-    hostName = "nixos";
+    hostName = "home-machine";
     nameservers = ["1.1.1.1#one.one.one.one" "1.0.0.1#one.one.one.one"];
     firewall.allowedTCPPorts = [53317 5900 5800 5000 47989 47990 48010 47984 4000 8000 12345 443 80 3001 3030];
     firewall.allowedUDPPorts = [53317 5900 5800 47989 47990 48010 47984 47999 4000 41641];

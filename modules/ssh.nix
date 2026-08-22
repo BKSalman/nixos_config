@@ -3,8 +3,8 @@
     enable = true;
     openFirewall = true;
     knownHosts = {
-      alshaikh.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAAVPe6Tcsh7X89G6mjfurhez2Md9/VV6CxWIaDXdZfa";
-      home-machine.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIJkV9LhQ+F3F9dWbpuqKQSkGaCSy9HWPmllFSYemLo5";
+      alshaikh.publicKey     = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6CRObYTJVKb84dLw0NhI5/0Fusr0hH4GQPw9xEzCKF";
+      home-machine.publicKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM4KRfVeUgRDU8euKHzsF38/1YA/+PEObYfkfAIA2+dg";
     };
 
     settings = {
