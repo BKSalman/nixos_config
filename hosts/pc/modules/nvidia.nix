@@ -7,10 +7,7 @@
     graphics = {
       enable = true;
       extraPackages = with pkgs; [
-        libva-vdpau-driver
-        libvdpau-va-gl
         nvidia-vaapi-driver
-        pipewire
       ];
     };
     nvidia = {
@@ -27,9 +24,8 @@
       modesetting.enable = true;
       powerManagement.enable = false;
       nvidiaSettings = true;
-      # 1070 TI is not supported by the open kernel module
       # https://github.com/NVIDIA/open-gpu-kernel-modules?tab=readme-ov-file#compatible-gpus
-      open = false;
+      open = true;
     };
   };
 
@@ -39,7 +35,6 @@
   };
 
   boot.kernelParams = [
-    "nvidia-drm.modeset=1"
     # "nvidia-drm.fbdev=1"
     # "nvidia.NVreg_EnableGpuFirmware=0"
   ];

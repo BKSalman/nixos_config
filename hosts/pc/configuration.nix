@@ -7,6 +7,7 @@
     ./hardware-configuration.nix
     ./modules
     ../../modules
+    ../../modules/obs.nix
     ./nfs.nix
   ];
 
@@ -118,8 +119,6 @@
 
   services.fwupd.enable = true;
 
-  # boot.zfs.package = pkgs.linuxKernel.packages.linux_6_11.zfs_unstable;
-
   # Bootloader.
   boot.loader.grub = {
     enable = true;
@@ -138,7 +137,7 @@
 
   boot.loader.grub.useOSProber = true;
   boot.extraModprobeConfig = ''
-    options kvm_intel nested=1 v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+    options kvm_intel nested=1
   '';
   # boot.binfmt.emulatedSystems = ["aarch64-linux"];
 
@@ -223,6 +222,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    fastfetch
     openlogi
     handy
     wtype
@@ -376,7 +376,7 @@
   # };
 
   # depends on zfs kernel support
-  boot.kernelPackages = pkgs.linuxPackages_6_18;
+  boot.kernelPackages = pkgs.linuxPackages_7_2;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [v4l2loopback];
 

@@ -8,7 +8,7 @@
     };
 
     settings = {
-      AcceptEnv = lib.mkForce ["LANG" "LC_*"];
+      AcceptEnv = lib.mkForce ["LANG" "LC_*" "ZELLIJ"];
     };
   };
 }

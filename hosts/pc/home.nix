@@ -220,5 +220,8 @@
     Host aur.archlinux.org
     IdentityFile ~/.ssh/aur
     User aur
+
+    Host alshaikh
+    SendEnv ZELLIJ
   '';
 }
