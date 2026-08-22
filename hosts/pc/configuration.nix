@@ -40,6 +40,7 @@
   services.udev = {
     packages = [
       pkgs.probe-rs-tools
+      pkgs.openlogi
     ];
     extraRules = ''
       # Define some simple rules for LPCXpresso supported USB Devices
@@ -222,6 +223,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    openlogi
     handy
     wtype
     kdePackages.plasma-bigscreen
@@ -278,7 +280,6 @@
     distrobox
     seafile-client
     sendme
-    keymapp
     rustup
     # looking-glass-client
     # prayer-times-applet
