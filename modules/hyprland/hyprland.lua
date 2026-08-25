@@ -284,7 +284,7 @@ hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
 hl.bind(mainMod .. " + SHIFT + J", hl.dsp.window.move({ direction = "d" }))
 
-hl.bind(mainMod .. " + d", hl.dsp.exec_cmd("pkill rofi || ~/.config/rofi/launcher.sh"))
+hl.bind(mainMod .. " + d", hl.dsp.exec_cmd("qs ipc call launcher toggle"))
 
 hl.bind(mainMod .. " + CTRL + V", hl.dsp.exec_cmd("echo \"clipboard\" | socat - UNIX-CONNECT:/tmp/quickshell.sock"))
 hl.bind(mainMod .. " + ESCAPE", hl.dsp.exec_cmd("loginctl lock-session"))

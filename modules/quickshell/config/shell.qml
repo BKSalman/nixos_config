@@ -35,6 +35,10 @@ ShellRoot {
         id: lockScreen
     }
 
+    Launcher {
+        id: launcher
+    }
+
     IpcHandler {
         target: "shell"
 
@@ -75,6 +79,8 @@ ShellRoot {
                 onRead: msg => {
                     if (msg === "clipboard") {
                         clipboardOverlay.toggle();
+                    } else if (msg === "launcher") {
+                        launcher.toggle();
                     }
                 }
             }
