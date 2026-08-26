@@ -279,6 +279,8 @@ hl.bind(mainMod .. " + CTRL + H", hl.dsp.window.resize({ x = -45, y = 0, relativ
 hl.bind(mainMod .. " + CTRL + K", hl.dsp.window.resize({ x = 0, y = -45, relative = true }), { repeating = true })
 hl.bind(mainMod .. " + CTRL + J", hl.dsp.window.resize({ x = 0, y = 45, relative = true }), { repeating = true })
 
+hl.bind(mainMod .. " + CTRL + F", hl.dsp.layout("colresize 1.0"))
+
 hl.bind(mainMod .. " + SHIFT + L", hl.dsp.window.move({ direction = "r" }))
 hl.bind(mainMod .. " + SHIFT + H", hl.dsp.window.move({ direction = "l" }))
 hl.bind(mainMod .. " + SHIFT + K", hl.dsp.window.move({ direction = "u" }))
@@ -457,7 +459,9 @@ hl.config({
     },
 })
 
-hl.workspace_rule({ workspace = "1", layout = "scrolling", layout_opts = { direction = "right" } })
+hl.workspace_rule({
+    workspace = "1", layout = "scrolling", layout_opts = { direction = "right" }
+})
 
 hl.device({
     name = "onyx_emp_wacom-i2c-digitizer",
