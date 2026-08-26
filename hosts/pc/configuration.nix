@@ -222,6 +222,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    esp-generate
     fastfetch
     openlogi
     handy
@@ -591,6 +592,7 @@
       cups
       libxcb
       alsa-lib
+      libusb1
     ];
   };
 
