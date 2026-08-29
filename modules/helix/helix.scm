@@ -7,8 +7,19 @@
 (require-builtin helix/core/text)
 
 (load-package "cogs/keymaps.scm")
+(require "cogs/teamtype.scm")
 
 (provide git-add open-helix-scm open-init-scm list-packages half-page-up half-page-down helix.set-status!)
+
+;; Teamtype — collaborative editing. See cogs/teamtype.scm.
+(provide teamtype-connect
+         teamtype-disconnect
+         teamtype-status
+         teamtype-peers
+         teamtype-share
+         teamtype-join
+         teamtype-debug!
+         teamtype-dump-log)
 
 ;;@doc
 ;; Specialized shell implementation, where % is a wildcard for the current file

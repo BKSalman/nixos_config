@@ -222,6 +222,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    teamtype
     esp-generate
     fastfetch
     openlogi

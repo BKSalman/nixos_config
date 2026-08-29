@@ -20,6 +20,7 @@
   home.file.".config/helix/languages.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/languages.toml";
   home.file.".config/helix/config.toml".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/config.toml";
   home.file.".config/helix/cogs/keymaps.scm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/cogs/keymaps.scm";
+  home.file.".config/helix/cogs/teamtype.scm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/cogs/teamtype.scm";
   home.file.".config/helix/init.scm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/init.scm";
   home.file.".config/helix/helix.scm".source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos_config/modules/helix/helix.scm";
 
