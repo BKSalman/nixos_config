@@ -222,6 +222,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    btop-cuda
     teamtype
     esp-generate
     fastfetch

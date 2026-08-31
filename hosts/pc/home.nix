@@ -142,7 +142,6 @@
     neovim
     zenith-nvidia
     htop
-    btop
     typescript-language-server
     vscode-langservers-extracted
     svelte-language-server
