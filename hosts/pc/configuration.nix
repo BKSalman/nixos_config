@@ -378,6 +378,13 @@
   #   user = "salman";
   # };
 
+  zramSwap = {
+    enable = true;
+    memoryPercent = 25;
+    algorithm = "zstd";
+    priority = 100;
+  };
+
   # depends on zfs kernel support
   boot.kernelPackages = pkgs.linuxPackages_7_2;
 
