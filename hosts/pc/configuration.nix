@@ -602,6 +602,8 @@
       libxcb
       alsa-lib
       libusb1
+      webkitgtk_4_1
+      libsoup_3
     ];
   };
 
