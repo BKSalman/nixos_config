@@ -222,6 +222,9 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    uv
+    ty
+    ruff
     ((cisco-packet-tracer_9.override {
         version = "9.0.1";
         requireFile = args:
