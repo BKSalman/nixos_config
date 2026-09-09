@@ -222,6 +222,18 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    ((cisco-packet-tracer_9.override {
+        version = "9.0.1";
+        requireFile = args:
+          pkgs.requireFile (args
+            // {
+              name = "CiscoPacketTracer_901_Ubuntu_64bit.deb";
+              hash = "sha256-NoPdh+d5iFNyrpo1wabllNEvST5knnxpdAhynBRZR5s=";
+            });
+      })
+      .overrideAttrs (old: {
+        buildCommand = builtins.replaceStrings ["9.0.0"] ["9.0.1"] old.buildCommand;
+      }))
     btop-cuda
     teamtype
     esp-generate
