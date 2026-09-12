@@ -23,6 +23,8 @@
       systemd-boot = {
         enable = true;
 
+        configurationLimit = 10;
+
         extraInstallCommands = ''
           ${pkgs.util-linux}/bin/mount -t vfat -o iocharset=iso8859-1 /dev/disk/by-label/boot /efiboot/efi
           ${pkgs.coreutils}/bin/cp -r /efiboot/efi/*
@@ -37,7 +39,7 @@
       };
     };
 
-    kernelPackages = pkgs.linuxPackages_6_12;
+    kernelPackages = pkgs.linuxPackages_7_2;
 
     initrd = {
       kernelModules = ["zfs"];
