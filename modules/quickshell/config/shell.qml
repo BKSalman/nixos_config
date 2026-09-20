@@ -28,7 +28,7 @@ ShellRoot {
     }
 
     ClipboardOverlay {
-        id: clipboardOverlay
+        id: clipboard
     }
 
     LockScreen {
@@ -49,6 +49,14 @@ ShellRoot {
         function screenshot(): void {
             screenshotOverlay.activate();
         }
+
+        function clipboard(): void {
+            clipboard.toggle();
+        }
+
+        function launcher(): void {
+            launcher.toggle();
+        }
     }
 
     PanelWindow {
@@ -65,25 +73,6 @@ ShellRoot {
         Image {
             source: "background.png"
             anchors.fill: parent
-        }
-    }
-
-    SocketServer {
-        active: true
-        path: "/tmp/quickshell.sock"
-
-        handler: Socket {
-            id: handler
-
-            parser: SplitParser {
-                onRead: msg => {
-                    if (msg === "clipboard") {
-                        clipboardOverlay.toggle();
-                    } else if (msg === "launcher") {
-                        launcher.toggle();
-                    }
-                }
-            }
         }
     }
 }
