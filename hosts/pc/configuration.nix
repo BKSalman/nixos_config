@@ -23,7 +23,7 @@
 
   quickshell.enable = true;
 
-  sadmadbotlad.enable = true;
+  sadmadbotlad.enable = false;
 
   programs.nh = {
     enable = true;
