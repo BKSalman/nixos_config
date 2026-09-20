@@ -222,6 +222,7 @@
   environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
+    vesktop
     uv
     ty
     ruff
@@ -350,24 +351,32 @@
     nix-prefetch
   ];
 
-  fonts.packages = with pkgs; [
-    cantarell-fonts # libadwaita's default UI font
+  fonts = {
+    packages = with pkgs; [
+      cantarell-fonts # libadwaita's default UI font
 
-    liberation_ttf
+      liberation_ttf
 
-    nerd-fonts.fira-code
-    nerd-fonts.noto
+      nerd-fonts.fira-code
+      nerd-fonts.noto
 
-    noto-fonts
-    noto-fonts-cjk-sans
-    noto-fonts-color-emoji
-    (noto-fonts.override {variants = ["NotoKufiArabic"];})
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      (noto-fonts.override {variants = ["Noto Sans" "NotoKufiArabic" "Noto Naskh Arabic"];})
 
-    corefonts
-    mplus-outline-fonts.githubRelease
-    dejavu_fonts
-    liberation_ttf
-  ];
+      corefonts
+      mplus-outline-fonts.githubRelease
+      dejavu_fonts
+      liberation_ttf
+    ];
+
+    fontconfig.defaultFonts = {
+      sansSerif = [ "Noto Sans" "Noto Naskh Arabic" ];
+      serif     = [ "Noto Serif" "Noto Naskh Arabic" ];
+      monospace = [ "Noto Sans Mono" ];
+    };
+  };
 
   xdg.portal = {
     enable = true;
