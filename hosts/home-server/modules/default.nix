@@ -27,6 +27,7 @@
     ./ntfy.nix
     ./ollama.nix
     ./ups.nix
+    ./dawarich.nix
   ];
 
   seafile.enable = true;
@@ -34,4 +35,5 @@
   cloudflared.enable = true;
   ntfy.enable = true;
   ollama.enable = true;
+  dawarich.enable = true;
 }
